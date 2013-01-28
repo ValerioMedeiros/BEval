@@ -1,0 +1,432 @@
+THEORY User_Pass IS
+Operation(Properties) & Pattern(a : b) & ff(0) & pr;
+Operation(Properties) & Pattern(a<=b) & ff(0) & pr;
+Operation(Properties) & Pattern(a : b) & ff(0) & dd & ah(w1 : BYTE) & eh(byte_uchar,_h,Goal) & eh(BYTE,_h,Goal) & mp(Tac(RulesProBProperties_7));
+Operation(Properties) & Pattern(a<=b) & ff(0) & dd & ah(w1 : BYTE) & eh(byte_uchar,_h,Goal) & eh(BYTE,_h,Goal) & mp(Tac(RulesProBProperties_8));
+Operation(Properties) & Pattern(a : b) & ff(0) & dd & eh(uchar_byte,_h,Goal) & eh(UCHAR,_h,Goal) & mp(Tac(RulesProBProperties_10));
+Operation(Properties) & Pattern(a : b) & ff(0) & dd & eh(byte_uchar,_h,Goal) & eh(BYTE,_h,Goal) & mp(Tac(RulesProBProperties_12));
+Operation(Properties) & Pattern(a<=b) & ff(0) & dd & ah(w1 : BYTE) & eh(byte_uchar,_h,Goal) & eh(BYTE,_h,Goal) & mp(Tac(RulesProBProperties_13));
+Operation(Properties) & Pattern(a : b) & ff(0) & dd & eh(uchar_byte,_h,Goal) & eh(UCHAR,_h,Goal) & mp(Tac(RulesProBProperties_15));
+Operation(Properties) & Pattern(a : b) & ff(0) & dd & ah(w1 : UCHAR) & ah(dom(uchar_schar) = UCHAR) & eh(uchar_schar,_h,Goal) & eh(UCHAR,_h,Goal) & pp(rt.0) & dd & eh(dom(uchar_schar),_h,Goal);
+Operation(Properties) & Pattern(a : b) & ff(0) & dd & eh(uchar_schar,_h,Goal) & eh(UCHAR,_h,Goal) & mp(Tac(RulesProBProperties_19));
+Operation(Properties) & Pattern(a : b) & ff(0) & dd & ah(w2 : UCHAR) & eh(UCHAR,_h,Goal) & eh(uchar_schar,_h,Goal) & eh(UCHAR,_h,Goal) & mp(Tac(RulesProBProperties_20));
+Operation(Properties) & Pattern(a : b) & ff(0) & dd & eh(uchar_schar,_h,Goal) & eh(UCHAR,_h,Goal) & mp(Tac(RulesProBProperties_21));
+Operation(Properties) & Pattern(a : b) & ff(0) & dd & eh(half8UCHAR,_h,Goal) & eh(UCHAR,_h,Goal) & mp(Tac(RulesProBProperties_27));
+Operation(Properties) & Pattern(a : b) & ff(2) & dd & ah(w2 : UCHAR) & eh(UCHAR,_h,Goal) & eh(uchar_schar,_h,Goal) & eh(UCHAR,_h,Goal) & mp(Tac(RulesProBProperties_38));
+Operation(Properties) & Pattern(a<=b) & ff(0) & dd & ah(w1 : BV16) & eh(BV16,_h,Goal) & eh(bv16_ushort,_h,Goal) & eh(BV16,_h,Goal) & mp(Tac(RulesProBProperties_69));
+Operation(Properties) & Pattern(a<=b) & ff(0) & dd & ah(v0 : BYTE) & eh(BYTE,_h,Goal) & mp(Tac(RulesProBProperties_93));
+Operation(Properties) & Pattern(a : b) & ff(0) & dd & eh(uchar_byte,_h,Goal) & eh(UCHAR,_h,Goal) & mp(Tac(RulesProBProperties_95));
+Operation(Assertions) & Pattern(a : b) & ff(0) & pr;
+Operation(Properties) & Pattern(a : b) & ff(0) & dd & ah(w1 : BYTE) & eh(byte_uchar,_h,Goal) & ah(dom(uchar_byte) = UCHAR) & eh(uchar_byte,_h,Goal) & eh(UCHAR,_h,Goal) & pr & dd & eh(dom(uchar_byte),_h,Goal) & eh(BYTE,_h,Goal) & eh(UCHAR,_h,Goal) & mp(Tac(RulesProBProperties_9));
+Operation(Properties) & Pattern(a : b) & ff(0) & dd & ah(dom(ushort_bv16) = USHORT) & eh(ushort_bv16,_h,Goal) & pr & dd & eh(dom(ushort_bv16),_h,Goal) & eh(bv16_ushort,_h,Goal) & eh(USHORT,_h,Goal) & eh(BV16,_h,Goal) & ah(w1 : BV16) & eh(BV16,_h,Goal) & mp(Tac(RulesProBProperties_70));
+Operation(Properties) & Pattern(a : b) & ff(0) & dd & ah(dom(ushort_bv16) = USHORT & ran(ushort_bv16) = BV16) & eh(ushort_bv16,_h,Goal) & pr & eh(ushort_bv16,_h,Goal) & eh(USHORT,_h,Goal) & eh(BV16,_h,Goal) & mp(Tac(RulesProBProperties_71)) & dd & eh(dom(ushort_bv16),_h,Goal) & eh(ran(ushort_bv16),_h,Goal) & eh(ushort_bv16,_h,Goal) & eh(BV16,_h,Goal) & eh(USHORT,_h,Goal) & mp(Tac(RulesProBProperties_71));
+Operation(Properties) & Pattern(a : b) & ff(0) & dd & ah(dom(bv16_ushort) = BV16 & ran(bv16_ushort) = USHORT) & eh(bv16_ushort,_h,Goal) & pr & eh(bv16_ushort,_h,Goal) & eh(BV16,_h,Goal) & eh(USHORT,_h,Goal) & mp(Tac(RulesProBProperties_73)) & dd & eh(dom(bv16_ushort),_h,Goal) & eh(ran(bv16_ushort),_h,Goal) & eh(bv16_ushort,_h,Goal) & eh(BV16,_h,Goal) & eh(USHORT,_h,Goal) & mp(Tac(RulesProBProperties_73));
+Operation(Properties) & Pattern(a : b) & ff(0) & dd & ah(dom(ushort_bv16) = USHORT) & eh(ushort_bv16,_h,Goal) & pr & dd & eh(dom(ushort_bv16),_h,Goal) & ah(bv16_ushort = %v0.(v0 : BV16 | 32768*v0(16)+16384*v0(15)+8192*v0(14)+4096*v0(13)+2048*v0(12)+1024*v0(11)+512*v0(10)+256*v0(9)+128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1))) & eh(USHORT,_h,Goal) & eh(BV16,_h,Goal) & ah(w1 : BV16) & eh(BV16,_h,Goal) & mp(Tac(RulesProBProperties_75));
+Operation(Properties) & Pattern(a : b) & ff(0) & dd & ah(dom(uchar_byte) = UCHAR) & eh(uchar_byte,_h,Goal) & pr & dd & eh(dom(uchar_byte),_h,Goal) & eh(UCHAR,_h,Goal) & ah(v0 : BYTE) & eh(BYTE,_h,Goal) & mp(Tac(RulesProBProperties_94));
+Operation(Properties) & Pattern(a : b) & ff(0) & dd & ah(dom(bv16_ushort) = BV16 & ran(bv16_ushort) = USHORT) & eh(bv16_ushort,_h,Goal) & ss & pr & eh(bv16_ushort,_h,Goal) & eh(BV16,_h,Goal) & eh(USHORT,_h,Goal) & mp(Tac(RulesProBProperties_68)) & dd & eh(dom(bv16_ushort),_h,Goal) & eh(ran(bv16_ushort),_h,Goal) & eh(BV16,_h,Goal) & eh(USHORT,_h,Goal) & eh(bv16_ushort,_h,Goal) & eh(BV16,_h,Goal) & mp(Tac(RulesProBProperties_68));
+Operation(Properties) & Pattern(a : b) & ff(0) & dd & ah(dom(uchar_byte) = UCHAR) & eh(uchar_byte,_h,Goal) & ss & pr & dd & eh(dom(uchar_byte),_h,Goal) & eh(UCHAR,_h,Goal) & eh(byte_uchar,_h,Goal) & ah(w1 : BYTE) & eh(BYTE,_h,Goal) & pr(Tac(RulesProBProperties_14));
+Operation(Properties) & Pattern(a<=b) & ff(0) & dd & ah(w1 : BV16) & dd(1) & ah(BV16 = 1..16 --> {0,1} & w1 : BV16 & bv16_ushort = %v0.(v0 : BV16 | 32768*v0(16)+16384*v0(15)+8192*v0(14)+4096*v0(13)+2048*v0(12)+1024*v0(11)+512*v0(10)+256*v0(9)+128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1))) & pr & pp(rp.1) & mp & ss & ah(w1 : 1..16 --> {0,1}) & pr & mp(Tac(RulesProBProperties_74));
+Operation(Properties) & Pattern(a : b) & ff(2) & dd & ah(w1 : UCHAR) & eh(uchar_schar,_h,Goal) & ss & pr
+END &
+
+THEORY ALU IS
+    
+    /*  (0 = schar_sshort(0,0)) verified by Eval (ProB version 1.3.4) */
+    
+0 = (%(w1,w2).(w1: -128..127 & w2: -128..127 | (%v0.(v0: BV16 | (-32768)*v0(16)+16384*v0(15)+8192*v0(14)+4096*v0(13)+2048*v0(12)+1024*v0(11)+512*v0(10)+256*v0(9)+128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+v0(1)))((%(bv1,bv2).(bv1: 1..8 --> {0,1} & bv2: 1..8 --> {0,1} | {16|->bv1(8),15|->bv1(7),14|->bv1(6),13|->bv1(5),12|->bv1(4),11|->bv1(3),10|->bv1(2),9|->bv1(1),8|->bv2(8),7|->bv2(7),6|->bv2(6),5|->bv2(5),4|->bv2(4),3|->bv2(3),2|->bv2(2),1|->bv2(1)}))((%v0.(v0: -128..127 & 0<=v0 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128])\/%v0.(v0: -128..127 & not(0<=v0) | [(v0+256) mod 2/1,(v0+256) mod 4/2,(v0+256) mod 8/4,(v0+256) mod 16/8,(v0+256) mod 32/16,(v0+256) mod 64/32,(v0+256) mod 128/64,(v0+256) mod 256/128]))(w1),(%v0.(v0: -128..127 & 0<=v0 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128])\/%v0.(v0: -128..127 & not(0<=v0) | [(v0+256) mod 2/1,(v0+256) mod 4/2,(v0+256) mod 8/4,(v0+256) mod 16/8,(v0+256) mod 32/16,(v0+256) mod 64/32,(v0+256) mod 128/64,(v0+256) mod 256/128]))(w2)))))(0,0) == btrue;
+    
+    /* (ran(instruction_jump) = USHORT) verified by Eval (ProB version 1.3.4) */
+    ran(%(p0,e0).(p0: 0..65535 & e0: -126..129 | (p0+e0+65536) mod 65536)) = 0..65535 == btrue;    
+    
+    /* (ran(instruction_next) = USHORT) verified by Eval (ProB version 1.3.4) */
+    ran(%w1.(w1: 0..65535 | (w1+1) mod 65536)) = 0..65535 == btrue;
+    
+    
+    
+    /* (ran(update_refresh_reg) = BYTE) verified by Eval (ProB version 1.3.4) */
+    ran(%v0.(v0: 1..8 --> {0,1} | (%v0.(v0: 0..255 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128]))(128*v0(8)+(64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+v0(1)) mod 128))) = 1..8 --> {0,1}== btrue;
+    
+    
+    /* assertion (ran(dec_BV16) = BV16) verified by Eval (ProB version 1.3.4) time 694490 ms  */ 
+    
+    ran(%w1.(w1: 1..16 --> {0,1} | (%v0.(v0: 0..65535 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128,v0 mod 512/256,v0 mod 1024/512,v0 mod 2048/1024,v0 mod 4096/2048,v0 mod 8192/4096,v0 mod 16384/8192,v0 mod 32768/16384,v0 mod 65536/32768]))(((%v0.(v0: 1..16 --> {0,1} | 32768*v0(16)+16384*v0(15)+8192*v0(14)+4096*v0(13)+2048*v0(12)+1024*v0(11)+512*v0(10)+256*v0(9)+128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)))(w1)+65536-1) mod 65536))) = 1..16 --> {0,1}== btrue;
+    
+    /* assertion (ran(inc_BV16) = BV16) verified by Eval (ProB version 1.3.4) time 694490 ms  */     
+    ran(%w1.(w1: 1..16 --> {0,1} | (%v0.(v0: 0..65535 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128,v0 mod 512/256,v0 mod 1024/512,v0 mod 2048/1024,v0 mod 4096/2048,v0 mod 8192/4096,v0 mod 16384/8192,v0 mod 32768/16384,v0 mod 65536/32768]))(((%v0.(v0: 1..16 --> {0,1} | 32768*v0(16)+16384*v0(15)+8192*v0(14)+4096*v0(13)+2048*v0(12)+1024*v0(11)+512*v0(10)+256*v0(9)+128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)))(w1)+1) mod 65536))) = 1..16 --> {0,1}== btrue;
+    
+    
+    /* assertion      (ran(sub_carryUSHORT) = BIT) verified by Eval (ProB version 1.3.4) time 1730  ms 
+     proved a equivalent with a reduced interval
+    ran(%(b1,w1,w2).(b1: {0,1} & w1: 0..63 & w2: 0..63 | {TRUE|->1,FALSE|->0}(bool(0<= -65+w1+w2-b1)))) = {0,1}*/
+    
+	ran(%(b1,w1,w2).(b1: {0,1} & w1: 0..65535 & w2: 0..65535 | {TRUE|->1,FALSE|->0}(bool(0<= -65537+w1+w2-b1)))) = {0,1}==btrue;
+	
+	
+	
+	
+	/* 
+	"`Check assertion (ran(sub16USHORT) = USHORT) deduction - ref 3.2, 4.2, 5.3' verified by Eval (ProB version 1.3.4) 
+    proved a equivalent with a reduced interval
+	ran(%(b1,w1,w2).(b1: {0,1} & w1: 0..15 & w2: 0..15 | (b1+w1+(16-w2)) mod 16)) = 0..15 */ 
+	ran(%(b1,w1,w2).(b1: {0,1} & w1: 0..65535 & w2: 0..65535 | (b1+w1+(65536-w2)) mod 65536)) = 0..65535 == btrue;
+	
+	
+	/*
+	Check assertion (ran(add_carryUSHORT) = BIT) deduction - ref 3.2, 4.2, 5.3 - verified by Eval (ProB version 1.3.4) 
+    proved a equivalent with a reduced interval
+    ran(%(b1,w1,w2).(b1: {0,1} & w1: 0..15 & w2: 0..15 | {TRUE|->1,FALSE|->0}(bool(0<= -16+w1+w2+b1)))) = {0,1}
+    */ 
+	
+	ran(%(b1,w1,w2).(b1: {0,1} & w1: 0..65535 & w2: 0..65535 | {TRUE|->1,FALSE|->0}(bool(0<= -65536+w1+w2+b1)))) = {0,1} == btrue;
+	
+	
+	/*
+ 	"`Check assertion (ran(add16USHORT) = USHORT)   - verified by Eval (ProB version 1.3.4)  
+ 	proved a equivalent with a reduced interval
+ 	ran(%(b1,w1,w2).(b1: {0,1} & w1: 0..15    & w2: 0..15 | (b1+w1+w2) mod 16   )) = 0..15 */
+	ran(%(b1,w1,w2).(b1: {0,1} & w1: 0..65535 & w2: 0..65535 | (b1+w1+w2) mod 65536)) = 0..65535== btrue;
+	
+	/*
+	 "`Check assertion (ran(substract8UCHAR): POW(UCHAR*BIT*BIT*BIT*BIT))  - verified by Eval (ProB version 1.3.5-beta15)  	
+	*/
+
+	ran(%(carry,w1,w2).(carry: {0,1} & w1: 0..255 & w2: 0..255 | (carry+w1+(256-w2)) mod 256,{TRUE|->1,FALSE|->0}(bool(0<= -1-carry-(%v1.(v1: 0..255 & v1<=127 | v1)\/%v1.(v1: 0..255 & not(v1<=127) | v1-256))(w1)+(%v1.(v1: 0..255 & v1<=127 | v1)\/%v1.(v1: 0..255 & not(v1<=127) | v1-256))(w2))),{TRUE|->1,FALSE|->0}(bool(0<= -1+carry+w1-w2-255)),{TRUE|->1,FALSE|->0}(bool(0<= -16+carry+(%ww.(ww: 0..255 | ww mod 16))(w1)-(%ww.(ww: 0..255 | ww mod 16))(w2))),{TRUE|->1,FALSE|->0}(bool((256+carry+w1-w2) mod 256 = 0)))) <: (0..255)*{0,1}*{0,1}*{0,1}*{0,1}==btrue;
+	
+	
+	/*"`Check assertion (ran(add8UCHAR): POW(UCHAR*BIT*BIT*BIT*BIT)) deduction - ref 3.2, 4.2, 5.3'	verified by Eval (ProB version 1.3.4)*/	
+	
+	ran(%(carry,w1,w2).(carry: {0,1} & w1: 0..255 & w2: 0..255 | (carry+w1+w2) mod 256,{TRUE|->1,FALSE|->0}(bool(0<= -1-carry-(%v1.(v1: 0..255 & v1<=127 | v1)\/%v1.(v1: 0..255 & not(v1<=127) | v1-256))(w1)-(%v1.(v1: 0..255 & v1<=127 | v1)\/%v1.(v1: 0..255 & not(v1<=127) | v1-256))(w2))),{TRUE|->1,FALSE|->0}(bool(0<= -1+carry+w1+w2-255)),{TRUE|->1,FALSE|->0}(bool(0<= -16+carry+(%ww.(ww: 0..255 | ww mod 16))(w1)+(%ww.(ww: 0..255 | ww mod 16))(w2))),{TRUE|->1,FALSE|->0}(bool((carry+w1+w2) mod 256 = 0)))) <: (0..255)*{0,1}*{0,1}*{0,1}*{0,1}==btrue;
+	
+	/* Check assertion (ran(simple_add8UCHAR) = UCHAR)  verified by Eval (ProB version 1.3.4)*/
+	ran(%(w1,w2).(w1: 0..255 & w2: 0..255 | (w1+w2) mod 256)) = 0..255==btrue;
+	
+
+	
+	/* Check assertion (ran(dec) = BYTE) - verified by Eval (ProB version 1.3.4)*/
+	ran(%w1.(w1: 1..8 --> {0,1} | (%v0.(v0: 0..255 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128]))(((%v0.(v0: 1..8 --> {0,1} | 128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)))(w1)+255) mod 256))) = 1..8 --> {0,1}==btrue;
+	
+	/* Check assertion (ran(inc) = BYTE) - verified by Eval (ProB version 1.3.4) */
+	ran(%w1.(w1: 1..8 --> {0,1} | (%v0.(v0: 0..255 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128]))(((%v0.(v0: 1..8 --> {0,1} | 128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)))(w1)+1) mod 256))) = 1..8 --> {0,1}==btrue;
+	
+	
+	/* Check assertion (ran(half8UCHAR) <: UCHAR) - verified by Eval (ProB version 1.3.4) */
+	ran(%ww.(ww: 0..255 | ww mod 16)) <: 0..255 ==btrue;
+	
+
+	/* Check assertion ((ran(is_negative) = BIT) - verified by Eval (ProB version 1.3.4) */
+	ran(%w1.(w1: 1..8 --> {0,1} | w1(7))) = {0,1}==btrue;
+	
+	/* Check assertion (ran(is_zero16USHORT) = BIT) - verified by Eval (ProB version 1.3.4) */
+	ran(%nat1.(nat1: 0..65535 | {TRUE|->1,FALSE|->0}(bool(nat1 = 0)))) = {0,1}==btrue;
+	
+	
+	/* Check assertion (sub_carryUSHORT: BIT*USHORT*USHORT --> BIT) - verified by Eval (ProB version 1.3.4) with a reduced interval*/
+	
+	%(b1,w1,w2).(b1: {0,1} & w1: 0..65535 & w2: 0..65535 | {TRUE|->1,FALSE|->0}(bool(0<= -65537+w1+w2-b1))): {0,1}*(0..65535)*(0..65535) +-> {0,1}==btrue;
+	
+		/* Check assertion (sub16USHORT: BIT*USHORT*USHORT --> USHORT) - verified by Eval (ProB version 1.3.4) with a reduced interval*/
+	
+	%(b1,w1,w2).(b1: {0,1} & w1: 0..65535 & w2: 0..65535 | (b1+w1+(65536-w2)) mod 65536): {0,1}*(0..65535)*(0..65535) +-> 0..65535==btrue;
+	
+	
+	/*Check assertion (add_carryUSHORT: BIT*USHORT*USHORT --> BIT) - verified by Eval (ProB version 1.3.4) with a reduced interval*/
+	%(b1,w1,w2).(b1: {0,1} & w1: 0..65535 & w2: 0..65535 | {TRUE|->1,FALSE|->0}(bool(0<= -65536+w1+w2+b1))): {0,1}*(0..65535)*(0..65535) +-> {0,1}==btrue;
+	
+	/* (substract8UCHAR: BIT*UCHAR*UCHAR --> UCHAR*BIT*BIT*BIT*BIT) - verified by Eval (ProB version 1.3.4) with a reduced interval*/
+	
+	%(carry,w1,w2).(carry: {0,1} & w1: 0..255 & w2: 0..255 | ((carry+w1+(256-w2)) mod 256,{TRUE|->1,FALSE|->0}(bool(0<= -1-carry-(%v1.(v1: 0..255 & v1<=127 | v1)\/%v1.(v1: 0..255 & not(v1<=127) | v1-256))(w1)+(%v1.(v1: 0..255 & v1<=127 | v1)\/%v1.(v1: 0..255 & not(v1<=127) | v1-256))(w2))),{TRUE|->1,FALSE|->0}(bool(0<= -1+carry+w1-w2-255)),{TRUE|->1,FALSE|->0}(bool(0<= -16+carry+(%ww.(ww: 0..255 | ww mod 16))(w1)-(%ww.(ww: 0..255 | ww mod 16))(w2))),{TRUE|->1,FALSE|->0}(bool((256+carry+w1-w2) mod 256 = 0)))): {0,1}*(0..255)*(0..255) +-> (0..255)*{0,1}*{0,1}*{0,1}*{0,1}==btrue;
+	
+	/* (add16USHORT: BIT*USHORT*USHORT --> USHORT) - verified by Eval (ProB version 1.3.4) with a reduced interval*/	
+	%(b1,w1,w2).(b1: {0,1} & w1: 0..65535 & w2: 0..65535 | (b1+w1+w2) mod 65536): {0,1}*(0..65535)*(0..65535) +-> 0..65535==btrue;
+	
+	
+	/* (simple_add8UCHAR: UCHAR*UCHAR --> UCHAR) - verified by Eval (ProB version 1.3.4) */
+	%(w1,w2).(w1: 0..255 & w2: 0..255 | (w1+w2) mod 256): (0..255)*(0..255) +-> 0..255==btrue;
+	
+	
+	
+	/*(half8UCHAR: UCHAR --> UCHAR) - verified by Eval (ProB version 1.3.4) */
+	%ww.(ww: 0..255 | ww mod 16): 0..255 +-> 0..255==btrue;
+	
+	/*51 assertion   "`Check assertion (is_zero16USHORT: USHORT --> BIT)  
+	verified by Eval (ProB version 1.3.4) with a reduced interval*/
+	
+	%nat1.(nat1: 0..65535 | {TRUE|->1,FALSE|->0}(bool(nat1 = 0))): 0..65535 +-> {0,1}==btrue
+
+END
+&
+THEORY RulesProBProperties_7 IS 
+
+
+	 /* Expression from Properties.7, it was added  in Sun Dec 30 15:31:26 BRT 2012
+	  verified with ProB in 1127 milliseconds
+	  Module Path:/media/B_Resources/Z80_ProB/ALU.mch */
+
+	 w1:1..8-->{0,1}=>%v0.(v0:1..8-->{0,1}|128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)):dom(%v0.(v0:1..8-->{0,1}|128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)))+->ran(%v0.(v0:1..8-->{0,1}|128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)))==btrue
+
+END
+&
+THEORY RulesProBProperties_8 IS 
+
+
+
+	  /*Expression from Properties.8, it was added  in Sun Dec 30 15:32:42 BRT 2012
+	  verified with ProB in 887 milliseconds
+	  Module Path:/media/B_Resources/Z80_ProB/ALU.mch */
+
+	 w1:1..8-->{0,1}=>0<=(%v0.(v0:1..8-->{0,1}|128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)))(w1)+1==btrue
+
+END&
+THEORY RulesProBProperties_9 IS 
+
+
+	 /* Expression from Properties.9, it was added  in Fri Jan 04 08:56:35 BRT 2013
+	  verified with ProB in 961 milliseconds
+	  Module Path:/media/B_Resources/Z80_ProB/ALU.mch */
+
+	 a:1..8-->{0,1}
+	 =>
+	 ((%b.(b:1..8-->{0,1}|128*b(8)+64*b(7)+32*b(6)+16*b(5)+8*b(4)+4*b(3)+2*b(2)+1*b(1)))(a)+1) mod 256 : 0..255 ==btrue
+
+END 
+&
+THEORY RulesProBProperties_10 IS 
+    
+    
+    /* Expression from Properties.10, it was added  in Sun Jan 06 13:09:50 BRT 2013
+	  verified with ProB in 787 milliseconds
+	  Module Path:/media/B_Resources/Z80_ProB/ALU.mch */
+
+	  %v0.(v0: 0..255 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128]): dom(%v0.(v0: 0..255 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128])) +-> ran(%v0.(v0: 0..255 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128]))==btrue
+
+
+
+END
+&
+THEORY RulesProBProperties_12 IS 
+
+
+	 /* Expression from Properties.12, it was added  in Sun Jan 06 12:11:14 BRT 2013
+	  verified with ProB in 791 milliseconds
+	  Module Path:/media/B_Resources/Z80_ProB/ALU.mch */
+
+	  %v0.(v0: 1..8 --> {0,1} | 128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)): dom(%v0.(v0: 1..8 --> {0,1} | 128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1))) +-> ran(%v0.(v0: 1..8 --> {0,1} | 128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)))==btrue
+
+END 
+&
+THEORY RulesProBProperties_13 IS 
+
+
+	 /* Expression from Properties.13, it was added  in Sun Jan 06 12:11:50 BRT 2013
+	  verified with ProB in 729 milliseconds
+	  Module Path:/media/B_Resources/Z80_ProB/ALU.mch */
+
+	  w1: 1..8 --> {0,1} => 0<=(%v0.(v0: 1..8 --> {0,1} | 128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)))(w1)+255==btrue
+
+END
+&
+THEORY RulesProBProperties_14 IS 
+
+
+	 /* Expression from Properties.14, it was added  in Sun Jan 06 13:15:21 BRT 2013
+	  verified with ProB in 765 milliseconds
+	  Module Path:/media/B_Resources/Z80_ProB/ALU.mch */
+
+	  w1: 1..8 --> {0,1} => ((%v0.(v0: 1..8 --> {0,1} | 128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)))(w1)+255) mod 256: 0..255
+
+END
+&
+THEORY RulesProBProperties_15 IS 
+
+
+	 /* Expression from Properties.15, it was added  in Mon Jan 07 13:04:42 BRT 2013
+	  verified with ProB in 968 milliseconds
+	  Module Path:/media/B_Resources/Z80_ProB/ALU.mch */
+
+	  %v0.(v0: 0..255 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128]): dom(%v0.(v0: 0..255 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128])) +-> ran(%v0.(v0: 0..255 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128]))==btrue
+
+END
+&
+THEORY RulesProBProperties_19 IS 
+
+
+	 /* Expression from Properties.19, it was added  in Mon Jan 07 13:05:38 BRT 2013
+	  verified with ProB in 822 milliseconds
+	  Module Path:/media/B_Resources/Z80_ProB/ALU.mch */
+
+	  %v1.(v1: 0..255 & v1<=127 | v1)\/%v1.(v1: 0..255 & not(v1<=127) | v1-256): dom(%v1.(v1: 0..255 & v1<=127 | v1)\/%v1.(v1: 0..255 & not(v1<=127) | v1-256)) +-> ran(%v1.(v1: 0..255 & v1<=127 | v1)\/%v1.(v1: 0..255 & not(v1<=127) | v1-256))==btrue
+
+END
+&
+THEORY RulesProBProperties_20 IS 
+
+
+	 /* Expression from Properties.20, it was added  in Mon Jan 07 13:07:43 BRT 2013
+	  verified with ProB in 823 milliseconds
+	  Module Path:/media/B_Resources/Z80_ProB/ALU.mch */
+
+	  w2: 0..255 => w2: dom(%v1.(v1: 0..255 & v1<=127 | v1)\/%v1.(v1: 0..255 & not(v1<=127) | v1-256))==btrue
+
+END
+&
+THEORY RulesProBProperties_21 IS 
+
+
+	 /* Expression from Properties.21, it was added  in Mon Jan 07 13:08:17 BRT 2013
+	  verified with ProB in 973 milliseconds
+	  Module Path:/media/B_Resources/Z80_ProB/ALU.mch */
+
+	  %v1.(v1: 0..255 & v1<=127 | v1)\/%v1.(v1: 0..255 & not(v1<=127) | v1-256): dom(%v1.(v1: 0..255 & v1<=127 | v1)\/%v1.(v1: 0..255 & not(v1<=127) | v1-256)) +-> ran(%v1.(v1: 0..255 & v1<=127 | v1)\/%v1.(v1: 0..255 & not(v1<=127) | v1-256))==btrue
+
+END
+&
+THEORY RulesProBProperties_27 IS 
+
+
+	 /* Expression from Properties.27, it was added  in Mon Jan 07 13:09:25 BRT 2013
+	  verified with ProB in 831 milliseconds
+	  Module Path:/media/B_Resources/Z80_ProB/ALU.mch */
+
+	  %ww.(ww: 0..255 | ww mod 16): dom(%ww.(ww: 0..255 | ww mod 16)) +-> ran(%ww.(ww: 0..255 | ww mod 16))==btrue
+
+END
+&
+THEORY RulesProBProperties_38 IS 
+
+
+	 /* Expression from Properties.38, it was added  in Mon Jan 07 13:13:01 BRT 2013
+	  verified with ProB in 792 milliseconds
+	  Module Path:/media/B_Resources/Z80_ProB/ALU.mch */
+
+	  w2: 0..255 => w2: dom(%v1.(v1: 0..255 & v1<=127 | v1)\/%v1.(v1: 0..255 & not(v1<=127) | -256+v1))==btrue
+
+END
+&
+THEORY RulesProBProperties_68 IS 
+
+
+	 /* Expression from Properties.68, it was added  in Mon Jan 07 13:38:55 BRT 2013
+	  verified with ProB in 5248 milliseconds
+	  Module Path:/media/B_Resources/Z80_ProB/ALU.mch */
+
+	  ran(%v0.(v0: 1..16 --> {0,1} | 32768*v0(16)+16384*v0(15)+8192*v0(14)+4096*v0(13)+2048*v0(12)+1024*v0(11)+512*v0(10)+256*v0(9)+128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1))) = 0..65535==btrue;
+
+	 /* Expression from Properties.68, it was added  in Mon Jan 07 13:40:43 BRT 2013
+	  verified with ProB in 16562 milliseconds
+	  Module Path:/media/B_Resources/Z80_ProB/ALU.mch */
+
+	  %v0.(v0: 1..16 --> {0,1} | 32768*v0(16)+16384*v0(15)+8192*v0(14)+4096*v0(13)+2048*v0(12)+1024*v0(11)+512*v0(10)+256*v0(9)+128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)): 1..16 --> {0,1} +-> 0..65535==btrue
+
+END
+&
+THEORY RulesProBProperties_69 IS 
+
+
+	 /* Expression from Properties.69, it was added  in Mon Jan 07 13:43:20 BRT 2013
+	  verified with ProB in 870 milliseconds
+	  Module Path:/media/B_Resources/Z80_ProB/ALU.mch */
+
+	  w1: 1..16 --> {0,1} => 0<=(%v0.(v0: 1..16 --> {0,1} | 32768*v0(16)+16384*v0(15)+8192*v0(14)+4096*v0(13)+2048*v0(12)+1024*v0(11)+512*v0(10)+256*v0(9)+128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)))(w1)+1==btrue
+
+END
+&
+THEORY RulesProBProperties_70 IS 
+
+
+	 /* Expression from Properties.70, it was added  in Mon Jan 07 13:51:07 BRT 2013
+	  verified with ProB in 8460 milliseconds
+	  Module Path:/media/B_Resources/Z80_ProB/ALU.mch */
+
+	  w1: 1..16 --> {0,1} => ((%v0.(v0: 1..16 --> {0,1} | 32768*v0(16)+16384*v0(15)+8192*v0(14)+4096*v0(13)+2048*v0(12)+1024*v0(11)+512*v0(10)+256*v0(9)+128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)))(w1)+1) mod 65536: 0..65535==btrue
+
+END
+&
+THEORY RulesProBProperties_71 IS 
+
+
+	 /* Expression from Properties.71, it was added  in Mon Jan 07 13:57:32 BRT 2013
+	  verified with ProB in 23482 milliseconds
+	  Module Path:/media/B_Resources/Z80_ProB/ALU.mch */
+
+	  ran(%v0.(v0: 0..65535 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128,v0 mod 512/256,v0 mod 1024/512,v0 mod 2048/1024,v0 mod 4096/2048,v0 mod 8192/4096,v0 mod 16384/8192,v0 mod 32768/16384,v0 mod 65536/32768])) = 1..16 --> {0,1}==btrue;
+
+	 /* Expression from Properties.71, it was added  in Mon Jan 07 13:58:43 BRT 2013
+	  verified with ProB in 16166 milliseconds
+	  Module Path:/media/B_Resources/Z80_ProB/ALU.mch */
+
+	  %v0.(v0: 0..65535 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128,v0 mod 512/256,v0 mod 1024/512,v0 mod 2048/1024,v0 mod 4096/2048,v0 mod 8192/4096,v0 mod 16384/8192,v0 mod 32768/16384,v0 mod 65536/32768]): 0..65535 +-> (1..16 --> {0,1})==btrue
+
+END
+&
+THEORY RulesProBProperties_73 IS 
+
+
+	 /* Expression from Properties.73, it was added  in Mon Jan 07 14:01:38 BRT 2013
+	  verified with ProB in 5268 milliseconds
+	  Module Path:/media/B_Resources/Z80_ProB/ALU.mch */
+
+	  ran(%v0.(v0: 1..16 --> {0,1} | 32768*v0(16)+16384*v0(15)+8192*v0(14)+4096*v0(13)+2048*v0(12)+1024*v0(11)+512*v0(10)+256*v0(9)+128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1))) = 0..65535==btrue;
+
+
+	 /* Expression from Properties.73, it was added  in Mon Jan 07 14:02:44 BRT 2013
+	  verified with ProB in 16570 milliseconds
+	  Module Path:/media/B_Resources/Z80_ProB/ALU.mch */
+
+	  %v0.(v0: 1..16 --> {0,1} | 32768*v0(16)+16384*v0(15)+8192*v0(14)+4096*v0(13)+2048*v0(12)+1024*v0(11)+512*v0(10)+256*v0(9)+128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)): 1..16 --> {0,1} +-> 0..65535==btrue
+
+END
+&
+THEORY RulesProBProperties_74 IS 
+
+
+	 /* Expression from Properties.74, it was added  in Mon Jan 07 14:14:44 BRT 2013
+	  verified with ProB in 908 milliseconds
+	  Module Path:/media/B_Resources/Z80_ProB/ALU.mch */
+
+	  w1: 1..16 --> {0,1} => 0<=65535+32768*w1(16)+16384*w1(15)+8192*w1(14)+4096*w1(13)+2048*w1(12)+1024*w1(11)+512*w1(10)+256*w1(9)+128*w1(8)+64*w1(7)+32*w1(6)+16*w1(5)+8*w1(4)+4*w1(3)+2*w1(2)+w1(1)==btrue
+
+END
+&
+THEORY RulesProBProperties_75 IS 
+
+
+	 /* Expression from Properties.75, it was added  in Mon Jan 07 14:19:29 BRT 2013
+	  verified with ProB in 8643 milliseconds
+	  Module Path:/media/B_Resources/Z80_ProB/ALU.mch */
+
+	  w1: 1..16 --> {0,1} => ((%v0.(v0: 1..16 --> {0,1} | 32768*v0(16)+16384*v0(15)+8192*v0(14)+4096*v0(13)+2048*v0(12)+1024*v0(11)+512*v0(10)+256*v0(9)+128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)))(w1)+65536-1) mod 65536: 0..65535==btrue
+
+END
+&
+THEORY RulesProBProperties_93 IS 
+
+
+	 /* Expression from Properties.93, it was added  in Mon Jan 07 14:23:30 BRT 2013
+	  verified with ProB in 930 milliseconds
+	  Module Path:/media/B_Resources/Z80_ProB/ALU.mch */
+
+	  v0: 1..8 --> {0,1} => 0<=64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+v0(1)==btrue
+
+END
+&
+THEORY RulesProBProperties_94 IS 
+
+
+	 /* Expression from Properties.94, it was added  in Mon Jan 07 14:24:39 BRT 2013
+	  verified with ProB in 951 milliseconds
+	  Module Path:/media/B_Resources/Z80_ProB/ALU.mch */
+
+	  v0: 1..8 --> {0,1} => 128*v0(8)+(64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+v0(1)) mod 128: 0..255==btrue
+
+END
+&
+THEORY RulesProBProperties_95 IS 
+
+
+	 /* Expression from Properties.95, it was added  in Mon Jan 07 14:27:09 BRT 2013
+	  verified with ProB in 909 milliseconds
+	  Module Path:/media/B_Resources/Z80_ProB/ALU.mch */
+
+	  %v0.(v0: 0..255 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128]): dom(%v0.(v0: 0..255 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128])) +-> ran(%v0.(v0: 0..255 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128]))==btrue
+
+END
