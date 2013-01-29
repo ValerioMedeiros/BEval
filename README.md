@@ -14,14 +14,17 @@ Installation Procedures
 
 2. In terminal, type:
 
-    java -jar BIntegration.jar --install
+    `java -jar BIntegration.jar --install`
     
 3. Past the file path of binary probcli
 
 
-### To run:
-Use the shortcut (Command+P or CRTL+P) to call the B Integration in AtelierB`s interactive prover with a current proof obligation.
-  
-    
+### Solving one proof obligation:
+
+1. Use the shortcut (`Command+P` or `CRTL+P`) to call the B Integration in AtelierB`s interactive prover with a current proof obligation.
+
+2. Load the rule created, type in interactive prover terminal `pc` to precompile the rule created.
+
+3. Apply the rule selecting the new rule in theory list and clicking in `mp(Tac(..))` 
 
 [BIntegration]: https://www.dropbox.com/s/fvdozx39xaa3h92/BIntegration.jar
