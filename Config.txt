@@ -1,0 +1,10 @@
+#This file contains some configurations about the calling of ProB Logic Calculator
+#Step 1 - copy the files BIntegrationGoal.etool BIntegration.jar, BIntegration.sh, b2asm.png to $AtelierB/AB/extensions
+#Step 2 - you must define below the path of probcli and parameters
+#Step 3 - you must define the full path of BIntegration.jar in BIntegrationGoal.etool 
+/Users/valerio/Myprograms/ProB/probcli
+-p BOOL_AS_PREDICATE TRUE
+-p CLPFD TRUE
+-p MAXINT 65536
+-p MININT -65536
+-p TIME_OUT 50000
