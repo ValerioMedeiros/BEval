@@ -1,27 +1,21 @@
 BIntegration
 ============
 
-### How B Integration works
+### Advanced instructions
 
-B Integration is a tool to systematize the verification of B expressions integrated with AtelierB using the different ways with ProB.
-Basically, the B integration take a B proof obligation in  B syntax from AtelierB and submit to ProB evaluate. When the proof obligation is ''true'', it is admitted as a B rule only in its specific module, the rule is precompiled and applied  in proof obligation.
+A proof obligation can be solved using diiffents parameters of ProB. Learn more about parameters in [ProB Command Line].
 
+Main Parameters of call
+-----------------------
 
-Installation Procedures
----------------------
+`-p init` - it loads definitions from B module. This parameter is very useful when the proof obligation was not fully expand in only logic and math elements. But this parameter uses more memory and processor. This parameter is obligatory to use,  when the proof obligation has dependency of definitions. For example, the proof obligation `0 : UCHAR` depends of $UCHAR$ definition. But this proof obligation can be expanded in   `0  :  0..255` and it becomes independent. This parameter can be only disabled when the current proof obligation is fully independent.
 
-1. Move the files [BIntegration] and B2asm.png to $AtelierBDirectory/AB/extensions
+`-p KODKOD TRUE` - can be solved using a mixture of SAT-solving and ProB's own constraint-solving capabilities developed using constraint logic programming: the first-order parts which can be dealt with by Kodkod and the remaining parts solved by the existing ProB kernel providing an alternative way of solving B.
 
-2. In terminal, type:
+`-p SMT TRUE` - it forces ProB to do more aggressive constraint solving.
 
-    java -jar BIntegration.jar --install
-    
-3. Past the file path of binary probcli
+There are still several different parameters available: time out,  constraint logic programming over finite domains and others. The full list is available in ProB`s web site\cite{Leuschel_Commands}.
 
 
-### To run:
-Use the shortcut (Command+P or CRTL+P) to call the B Integration in AtelierB`s interactive prover with a current proof obligation.
-  
-    
 
-[BIntegration]: https://www.dropbox.com/s/fvdozx39xaa3h92/BIntegration.jar
+[ProB Command Line]: http://www.stups.uni-duesseldorf.de/ProB/index.php5/Using_the_Command-Line_Version_of_ProB
