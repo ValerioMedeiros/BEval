@@ -1,0 +1,27 @@
+BIntegration
+============
+
+### How B Integration works
+
+B Integration is a tool to systematize the verification of B expressions integrated with AtelierB using the different ways with ProB.
+Basically, the B integration take a B proof obligation in  B syntax from AtelierB and submit to ProB evaluate. When the proof obligation is ''true'', it is admitted as a B rule only in its specific module, the rule is precompiled and applied  in proof obligation.
+
+
+Installation Procedures
+---------------------
+
+1. Move the files [BIntegration] and B2asm.png to $AtelierBDirectory/AB/extensions
+
+2. In terminal, type:
+
+    java -jar BIntegration.jar --install
+    
+3. Past the file path of binary probcli
+
+
+### To run:
+Use the shortcut (Command+P or CRTL+P) to call the B Integration in AtelierB`s interactive prover with a current proof obligation.
+  
+    
+
+[BIntegration]: https://www.dropbox.com/s/fvdozx39xaa3h92/BIntegration.jar
