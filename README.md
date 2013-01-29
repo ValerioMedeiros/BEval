@@ -4,7 +4,7 @@ BIntegration
 ### How B Integration works
 
 B Integration is a tool to systematize the verification of B expressions integrated with AtelierB using the different ways with ProB.
-Basically, the B integration take a B proof obligation in  B syntax from AtelierB and submit to ProB evaluate. When the proof obligation is ''true'', it is admitted as a B rule only in its specific module, the rule is precompiled and applied  in proof obligation.
+Basically, the B integration take a B proof obligation in  B syntax from AtelierB and submit to ProB evaluate. When the proof obligation is ''true'', it is admitted as a B rule only in its specific module, the rule is precompiled and applied in proof obligation.
 
 
 ### Solving one proof obligation:
