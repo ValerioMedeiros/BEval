@@ -18,7 +18,7 @@ Basically, the B integration take a B proof obligation in  B syntax from Atelier
 * Parameters are explained in [here].
 
 
-Installation Procedures
+Installation procedures
 ---------------------
 
 1. Move the files [BIntegration] and B2asm.png to $AtelierBDirectory/AB/extensions
