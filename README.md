@@ -15,6 +15,7 @@ Basically, the B integration take a B proof obligation in  B syntax from Atelier
 
 3. Apply the rule selecting the new rule in theory list and clicking in `mp(Tac(..))` 
 
+* Parameters are explained in [here].
 
 
 Installation Procedures
@@ -32,3 +33,4 @@ Installation Procedures
 * Requires: AtelierB, ProB and Java
 
 [BIntegration]: https://www.dropbox.com/s/fvdozx39xaa3h92/BIntegration.jar
+[here]:https://github.com/ValerioMedeiros/BIntegration/blob/master/doc/Instructions.md
