@@ -2,13 +2,13 @@ package br.ufrn.forall.b2asm.bintegration.pos;
 
 import br.ufrn.forall.b2asm.bintegration.core.Control;
 
-public class POStatistics {
+ class POsStatus {
 	
 	private String pathFile;
 	
 	private String original;
 
-	private String[] theoriesSplittedsRead;
+	private String[] theoriesSplittedsRead, proofStateSplitted;
 
 	private String balanceXRead;
 
@@ -22,7 +22,7 @@ public class POStatistics {
 	 * This constructor receives a file "*.pmi" from bdp.
 	 * @param pathFile
 	 */
-	POStatistics(String pathFile){
+	POsStatus(String pathFile){
 
 		this.pathFile = pathFile;
 
@@ -52,13 +52,38 @@ public class POStatistics {
 			if(theoriesSplittedsRead[i].contains("THEORY PassList IS"))
 				passListRead = theoriesSplittedsRead[i];
 		
-	//	loadProofState();
+		loadProofState();
 		
 		
 		
 	}
 	
+	void loadProofState(){
+		proofStateSplitted = proofStateRead.replaceAll("\n", "").split(";");
+		
+	}
 	
+	void printStates(){
+		int proveds=0;
+		for(int i=0;i<proofStateSplitted.length;i++){
+			if(proofStateSplitted[i].contains("Proved"))proveds++;
+			System.out.println(proofStateSplitted[i]);
+		}
+		
+		System.out.println("Total:"+proofStateSplitted.length+" and Proved:"+proveds);
+	}
 	
+	/**
+	 * Returns true, when the proof obligation is evaluated true
+	 * @param number enumerating from 1 up to numbers of proof obligations
+	 * @return
+	 */
+	
+	boolean isProvedTheProofState(int number){
+		return proofStateSplitted[number-1].contains( "Proved");
+	}
+	String getProofState(int number){
+		return proofStateSplitted[number-1];
+	}
 
 }

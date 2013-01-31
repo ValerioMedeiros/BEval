@@ -1,0 +1,77 @@
+THEORY BalanceX IS
+  BYTE_DEFINITION,18,6,0,12,0,0,0;
+  AssertionLemmas,18,6,0,12,0,0,0;
+  Initialisation,0,0,0,0,0,0,0
+END
+&
+THEORY ProofState IS
+  Proved(Util);
+  Proved(Util);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(Util);
+  Proved(0);
+  Proved(Util);
+  Proved(0);
+  Proved(Util);
+  Proved(0);
+  Proved(Util)
+END
+&
+THEORY MethodList IS
+  dd & eh(BYTE,_h,Goal) & pp(rt.0);
+  dd & eh(BYTE,_h,Goal) & pp(rt.0);
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  dd & eh(bv8_xor,_h,Goal) & ar(SimplifyRelDomXY.5,Goal) & pp(rt.0);
+  pr;
+  dd & eh(bv8_or,_h,Goal) & ar(SimplifyRelDomXY.5,Goal) & pp(rt.0);
+  pr;
+  dd & eh(bv8_and,_h,Goal) & ar(SimplifyRelDomXY.5,Goal) & pp(rt.0);
+  pr;
+  dd & eh(BYTE,_h,Goal) & ar(Card_Bit_Vector.1,Goal) & ss & pr
+END
+&
+THEORY PassList IS
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?
+END
+&
+THEORY ManForms 
+END
+&
+THEORY Version IS
+  POVersion(V3.8.3)(CLT == "V3.7.6")(genOPO == KO,genDivergencePO == KO,local_op == OK);
+  PRVersion("V3.3.3.p39")(CLT == "V3.7.6");
+  PRVersion("svn")(CLT == "V4.0-9385")
+END

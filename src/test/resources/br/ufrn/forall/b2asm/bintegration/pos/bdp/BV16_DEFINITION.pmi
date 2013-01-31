@@ -1,0 +1,42 @@
+﻿THEORY BalanceX IS
+  BV16_DEFINITION,6,4,0,2,0,0,0;
+  AssertionLemmas,6,4,0,2,0,0,0;
+  Initialisation,0,0,0,0,0,0,0
+END
+&
+THEORY ProofState IS
+  Proved(Util);
+  Proved(0);
+  Proved(0);
+  Proved(Util);
+  Proved(Util);
+  Proved(Util)
+END
+&
+THEORY MethodList IS
+  eh(BV16,_h,Goal) & dd & pr & mp(Tac(RulesProBAssertionLemmas_6));
+  pr;
+  pr;
+  eh(byte_bv16,_h,Goal) & eh(BYTE,_h,Goal) & eh(bv16_byte,_h,Goal) & dd & eh(BV16,_h,Goal) & mp(Tac(RulesProBAssertionLemmas_3));
+  pr(Tac(SimplifyBV16));
+  pr(Tac(SimplifyBV16))
+END
+&
+THEORY PassList IS
+  Force(0),(?;0;1);
+  Force(0),?;
+  Force(0),?;
+  Force(1),(?;0;1);
+  Force(1),(?;0;1);
+  Force(1),(?;0;1)
+END
+&
+THEORY ManForms 
+END
+&
+THEORY Version IS
+  POVersion(V3.8.3)(CLT == "V3.7.6")(genOPO == KO,genDivergencePO == KO,local_op == OK);
+  PRVersion("V3.3.3.p39")(CLT == "V3.7.6");
+  PRVersion("svn")(CLT == "V4.0-9385");
+  PRVersion("svn")(CLT == "V4.0-31779")
+END

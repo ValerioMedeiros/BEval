@@ -1,0 +1,77 @@
+THEORY BalanceX IS
+  POWER2,18,16,0,2,0,0,0;
+  AssertionLemmas,18,16,0,2,0,0,0;
+  Initialisation,0,0,0,0,0,0,0
+END
+&
+THEORY ProofState IS
+  Proved(Util);
+  Proved(Util);
+  Proved(Util);
+  Proved(Util);
+  Proved(Util);
+  Proved(Util);
+  Proved(Util);
+  Proved(Util);
+  Proved(Util);
+  Proved(Util);
+  Proved(Util);
+  Proved(Util);
+  Proved(Util);
+  Proved(Util);
+  Proved(Util);
+  Proved(Util);
+  Proved(0);
+  Proved(0)
+END
+&
+THEORY MethodList IS
+  ph(2,16,!(nn,pp).(nn: INTEGER & 0<=nn & not(nn = 0) & (pp: INTEGER & 0<=pp & pp<=2147483647) => (pp = 0 => nn**pp = 1 & nn**pp = 1) & (pp = 1 => nn**pp = nn & nn**pp = nn) & (2<=pp => nn**pp = nn*nn**(-1+pp) & nn**pp = nn*nn**(pp-1)))) & pr & pr & pr & pr & pr & pr & pr;
+  ph(2,15,!(nn,pp).(nn: INTEGER & 0<=nn & not(nn = 0) & (pp: INTEGER & 0<=pp & pp<=2147483647) => (pp = 0 => nn**pp = 1 & nn**pp = 1) & (pp = 1 => nn**pp = nn & nn**pp = nn) & (2<=pp => nn**pp = nn*nn**(-1+pp) & nn**pp = nn*nn**(pp-1)))) & pr & pr & pr & pr & pr & pr & pr;
+  ph(2,14,!(nn,pp).(nn: INTEGER & 0<=nn & not(nn = 0) & (pp: INTEGER & 0<=pp & pp<=2147483647) => (pp = 0 => nn**pp = 1 & nn**pp = 1) & (pp = 1 => nn**pp = nn & nn**pp = nn) & (2<=pp => nn**pp = nn*nn**(-1+pp) & nn**pp = nn*nn**(pp-1)))) & pr & pr & pr & pr & pr & pr & pr;
+  ph(2,13,!(nn,pp).(nn: INTEGER & 0<=nn & not(nn = 0) & (pp: INTEGER & 0<=pp & pp<=2147483647) => (pp = 0 => nn**pp = 1 & nn**pp = 1) & (pp = 1 => nn**pp = nn & nn**pp = nn) & (2<=pp => nn**pp = nn*nn**(-1+pp) & nn**pp = nn*nn**(pp-1)))) & pr & pr & pr & pr & pr & pr & pr;
+  ph(2,11,!(nn,pp).(nn: INTEGER & 0<=nn & not(nn = 0) & (pp: INTEGER & 0<=pp & pp<=2147483647) => (pp = 0 => nn**pp = 1 & nn**pp = 1) & (pp = 1 => nn**pp = nn & nn**pp = nn) & (2<=pp => nn**pp = nn*nn**(-1+pp) & nn**pp = nn*nn**(pp-1)))) & pr & pr & pr & pr & pr & pr & pr & ph(2,12,!(nn,pp).(nn: INTEGER & 0<=nn & not(nn = 0) & (pp: INTEGER & 0<=pp & pp<=2147483647) => (pp = 0 => nn**pp = 1 & nn**pp = 1) & (pp = 1 => nn**pp = nn & nn**pp = nn) & (2<=pp => nn**pp = nn*nn**(-1+pp) & nn**pp = nn*nn**(pp-1)))) & pr & pr & pr & pr & pr & pr & pr;
+  ph(2,11,!(nn,pp).(nn: INTEGER & 0<=nn & not(nn = 0) & (pp: INTEGER & 0<=pp & pp<=2147483647) => (pp = 0 => nn**pp = 1 & nn**pp = 1) & (pp = 1 => nn**pp = nn & nn**pp = nn) & (2<=pp => nn**pp = nn*nn**(-1+pp) & nn**pp = nn*nn**(pp-1)))) & pr & pr & pr & pr & pr & pr & pr;
+  ph(2,10,!(nn,pp).(nn: INTEGER & 0<=nn & not(nn = 0) & (pp: INTEGER & 0<=pp & pp<=2147483647) => (pp = 0 => nn**pp = 1 & nn**pp = 1) & (pp = 1 => nn**pp = nn & nn**pp = nn) & (2<=pp => nn**pp = nn*nn**(-1+pp) & nn**pp = nn*nn**(pp-1)))) & pr & pr & pr & pr & pr & pr & pr;
+  ph(2,9,!(nn,pp).(nn: INTEGER & 0<=nn & not(nn = 0) & (pp: INTEGER & 0<=pp & pp<=2147483647) => (pp = 0 => nn**pp = 1 & nn**pp = 1) & (pp = 1 => nn**pp = nn & nn**pp = nn) & (2<=pp => nn**pp = nn*nn**(-1+pp) & nn**pp = nn*nn**(pp-1)))) & pr & pr & pr & pr & pr & pr & pr;
+  ph(2,8,!(nn,pp).(nn: INTEGER & 0<=nn & not(nn = 0) & (pp: INTEGER & 0<=pp & pp<=2147483647) => (pp = 0 => nn**pp = 1 & nn**pp = 1) & (pp = 1 => nn**pp = nn & nn**pp = nn) & (2<=pp => nn**pp = nn*nn**(-1+pp) & nn**pp = nn*nn**(pp-1)))) & pr & pr & pr & pr & pr & pr & pr;
+  ar(SimplifyIntPower) & ss & ar(SimplifyIntPower) & ss & ar(SimplifyIntPower) & ss & ar(SimplifyIntPower) & ss & ar(SimplifyIntPower) & ss & ar(SimplifyIntPower) & ss & pr;
+  ph(2,7,!(nn,pp).(nn: INTEGER & 0<=nn & not(nn = 0) & (pp: INTEGER & 0<=pp & pp<=2147483647) => (pp = 0 => nn**pp = 1 & nn**pp = 1) & (pp = 1 => nn**pp = nn & nn**pp = nn) & (2<=pp => nn**pp = nn*nn**(-1+pp) & nn**pp = nn*nn**(pp-1)))) & pr & pr & pr & pr & pr & pr & pr;
+  ph(2,6,!(nn,pp).(nn: INTEGER & 0<=nn & not(nn = 0) & (pp: INTEGER & 0<=pp & pp<=2147483647) => (pp = 0 => nn**pp = 1 & nn**pp = 1) & (pp = 1 => nn**pp = nn & nn**pp = nn) & (2<=pp => nn**pp = nn*nn**(-1+pp) & nn**pp = nn*nn**(pp-1)))) & pr & pr & pr & pr & pr & pr & pr;
+  ph(2,5,!(nn,pp).(nn: INTEGER & 0<=nn & not(nn = 0) & (pp: INTEGER & 0<=pp & pp<=2147483647) => (pp = 0 => nn**pp = 1 & nn**pp = 1) & (pp = 1 => nn**pp = nn & nn**pp = nn) & (2<=pp => nn**pp = nn*nn**(-1+pp) & nn**pp = nn*nn**(pp-1)))) & pr & pr & pr & pr & pr & pr & pr;
+  ph(2,4,!(nn,pp).(nn: INTEGER & 0<=nn & not(nn = 0) & (pp: INTEGER & 0<=pp & pp<=2147483647) => (pp = 0 => nn**pp = 1 & nn**pp = 1) & (pp = 1 => nn**pp = nn & nn**pp = nn) & (2<=pp => nn**pp = nn*nn**(-1+pp) & nn**pp = nn*nn**(pp-1)))) & pr & pr & pr & pr & pr & pr & pr;
+  ph(2,3,!(nn,pp).(nn: INTEGER & 0<=nn & not(nn = 0) & (pp: INTEGER & 0<=pp & pp<=2147483647) => (pp = 0 => nn**pp = 1 & nn**pp = 1) & (pp = 1 => nn**pp = nn & nn**pp = nn) & (2<=pp => nn**pp = nn*nn**(-1+pp) & nn**pp = nn*nn**(pp-1)))) & pr & pr & pr & pr & pr & pr & pr;
+  ph(2,2,!(nn,pp).(nn: INTEGER & 0<=nn & not(nn = 0) & (pp: INTEGER & 0<=pp & pp<=2147483647) => (pp = 0 => nn**pp = 1 & nn**pp = 1) & (pp = 1 => nn**pp = nn & nn**pp = nn) & (2<=pp => nn**pp = nn*nn**(-1+pp) & nn**pp = nn*nn**(pp-1)))) & pr & pr & pr & pr & pr & pr & pr;
+  pr;
+  pr
+END
+&
+THEORY PassList IS
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),(?;0;1;2;3);
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?
+END
+&
+THEORY ManForms 
+END
+&
+THEORY Version IS
+  POVersion(V3.8.3)(CLT == "V3.7.6")(genOPO == KO,genDivergencePO == KO,local_op == OK);
+  PRVersion("V3.3.3.p39")(CLT == "V3.7.6");
+  PRVersion("svn")(CLT == "V4.0-9385")
+END

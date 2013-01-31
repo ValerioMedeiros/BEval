@@ -1,0 +1,35 @@
+THEORY BalanceX IS
+  SSHORT_DEFINITION,4,1,0,3,0,0,0;
+  AssertionLemmas,4,1,0,3,0,0,0;
+  Initialisation,0,0,0,0,0,0,0
+END
+&
+THEORY ProofState IS
+  Proved(0);
+  Proved(Util);
+  Proved(0);
+  Proved(0)
+END
+&
+THEORY MethodList IS
+  pr;
+  eh(sshort_bv16,_h,Goal) & eh(SSHORT,_h,Goal) & dd & mp(Tac(RulesProBAssertionLemmas_3));
+  pr;
+  pr
+END
+&
+THEORY PassList IS
+  Force(0),?;
+  Force(0),(?;0;1;2;3);
+  Force(0),?;
+  Force(0),?
+END
+&
+THEORY ManForms 
+END
+&
+THEORY Version IS
+  POVersion("V4.0-7792")(CLT == "V4.0-9385")(genOPO == KO,genDivergencePO == KO,local_op == OK);
+  PRVersion("V3.3.3.p39")(CLT == "V3.7.6");
+  PRVersion("svn")(CLT == "V4.0-9385")
+END

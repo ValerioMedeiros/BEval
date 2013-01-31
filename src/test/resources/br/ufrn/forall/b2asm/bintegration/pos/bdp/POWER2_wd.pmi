@@ -1,0 +1,19 @@
+THEORY BalanceX IS
+POWER2,0,0,0,0,0,0,0;
+(Assertions,0,0,0,0,0,0,0)
+
+END
+&
+
+THEORY ProofState 
+END
+&
+
+THEORY MethodList
+END
+&
+
+THEORY PassList 
+END
+&
+THEORY Manforms END

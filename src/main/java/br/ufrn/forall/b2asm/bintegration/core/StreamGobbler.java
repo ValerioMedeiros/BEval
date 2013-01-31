@@ -12,12 +12,12 @@ import java.io.PrintWriter;
  * 
  * @author Michael C. Daconta, JavaWorld.com, 12/29/00
  * @see http://www.javaworld.com/javaworld/jw-12-2000/jw-1229-traps.html?page=4 
- * This code is public and licensed under BSD license:
+ * The following code is public and licensed under BSD license:
  * https://code.google.com/p/jmkvpropedit/source/browse/trunk/src/com/googlecode/jmkvpropedit/StreamGobbler.java?r=329df04f655dbd35ccbeda4336a6f7e3c1669a4d
  */
 
 
-class StreamGobbler extends Thread
+public class StreamGobbler extends Thread
 {
 	InputStream is;
 	String type;

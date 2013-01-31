@@ -1,0 +1,170 @@
+THEORY BalanceX IS
+  BIT_DEFINITION,49,30,0,19,0,0,0;
+  AssertionLemmas,49,30,0,19,0,0,0;
+  Initialisation,0,0,0,0,0,0,0
+END
+&
+THEORY ProofState IS
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(Util);
+  Proved(Util);
+  Proved(Util);
+  Proved(Util);
+  Proved(Util);
+  Proved(Util);
+  Proved(0);
+  Proved(Util);
+  Proved(Util);
+  Proved(Util);
+  Proved(0);
+  Proved(Util);
+  Proved(Util);
+  Proved(Util);
+  Proved(Util);
+  Proved(Util);
+  Proved(Util);
+  Proved(Util);
+  Proved(Util);
+  Proved(Util);
+  Proved(Util);
+  Proved(Util);
+  Proved(Util);
+  Proved(Util);
+  Proved(Util);
+  Proved(Util);
+  Proved(0);
+  Proved(Util);
+  Proved(Util);
+  Proved(Util);
+  Proved(Util);
+  Proved(Util);
+  Proved(Util);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0)
+END
+&
+THEORY MethodList IS
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  eh(BIT,_h,Goal) & dd & eh(bit_and,_h,Goal) & dc(b1 = 0) & dc(b2 = 0) & ss & pr & dc(b2 = 1) & ss & pr;
+  eh(BIT,_h,Goal) & dd & eh(1,_h,Goal) & eh(bit_and,_h,Goal) & dc(b1 = 0) & dc(b2 = 0) & ss & pr & dc(b2 = 1) & ss & pr;
+  eh(BIT,_h,Goal) & dd & eh(0,_h,Goal) & eh(bit_and,_h,Goal) & dc(b1 = 0) & dc(b2 = 0) & ss & pr & dc(b2 = 1) & ss & pr;
+  eh(BIT,_h,Goal) & dd & dc(b1 = 1) & dc(b2 = 0) & dc(b3 = 0) & eh(bit_and,_h,Goal) & ss & pr & eh(bit_and,_h,Goal) & ss & pr & dc(b3 = 0) & eh(bit_and,_h,Goal) & ss & pr & eh(bit_and,_h,Goal) & pr & dc(b2 = 0) & dc(b3 = 1) & eh(bit_and,_h,Goal) & ss & pr & eh(bit_and,_h,Goal) & ss & pr & dc(b3 = 1) & eh(bit_and,_h,Goal) & ss & pr & eh(bit_and,_h,Goal) & ss & pr;
+  eh(BIT,_h,Goal) & dd & dc(b1 = 1) & pr(Tac(SimplifyBinaryFunctions)) & pr(Tac(SimplifyBinaryFunctions));
+  pr(Tac(SimplifyBinaryFunctions));
+  pr;
+  eh(bit_or,_h,Goal) & pr & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr;
+  eh(bit_or,_h,Goal) & pr & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr;
+  pr & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr;
+  pr;
+  dd & ah(b1: BIT & b2: BIT) & pr & pr & eh(BIT,_h,Goal) & dd & dc(b1 = 0) & dc(b2 = 0) & dd & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,1) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,0) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & ss & pr & dc(b2 = 1) & ss & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,0) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,1) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,0),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,1),_h,Goal) & ss & pr;
+  dd & eh(1,_h,Goal) & ah(b1: BIT & b2: BIT) & pr & pr & dd & ah(b1: BIT & b2: BIT) & pr & pr & eh(BIT,_h,Goal) & dd & dc(b1 = 0) & dc(b2 = 0) & dd & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,1) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,0) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & ss & pr & dc(b2 = 1) & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,0) = 1) & ss & pr & dd & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,1) = 1) & ss & pr & dd & ss & pr & pr(Tac(SimplifyBinaryFunctions));
+  dd & eh(0) & ah(b1: BIT & b2: BIT) & pr & pr & dd & ah(b1: BIT & b2: BIT) & pr & pr & eh(BIT,_h,Goal) & dd & dc(b1 = 0) & dc(b2 = 0) & dd & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,1) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,0) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & ss & pr & dc(b2 = 1) & ss & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,0) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,1) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,0),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,1),_h,Goal) & ss & pr;
+  eh(BIT,_h,Goal) & dd & eh(1) & eh(bit_or,_h,Goal) & pr & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & eh(b1) & pr & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr;
+  dd & eh(0,_h,Goal) & eh(bit_or,_h,Goal) & pr & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & pr;
+  eh(BIT,_h,Goal) & dd & eh(bit_or,_h,Goal) & dc(b1 = 0) & dc(b2 = 0) & dc(b3 = 0) & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,0) = 0) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,0),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,0),_h,Goal) & ss & pr & dd & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,0) = 0) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,0),_h,Goal) & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,1) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,1)) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & dc(b3 = 1) & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,1) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,1),_h,Goal) & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,1) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,1),_h,Goal) & pr & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,1) = 1) & pr(Tac(SimplifyBinaryFunctions)) & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,1),_h,Goal) & dd & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,0) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,0),_h,Goal) & pr & dc(b2 = 1) & dc(b3 = 1) & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,1) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,1),_h,Goal) & dd & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,1) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,1),_h,Goal) & dd & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,0) = 1) & pr(Tac(SimplifyBinaryFunctions)) & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,0)) & pr(Tac(SimplifyBinaryFunctions)) & dd & dc(b3 = 1) & dd & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,0) = 1) & pr(Tac(SimplifyBinaryFunctions)) & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,0)) & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,1) = 1) & pr(Tac(SimplifyBinaryFunctions)) & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,1)) & ss & pr & pr & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,0) = 1) & pr(Tac(SimplifyBinaryFunctions)) & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,0),_h,Goal) & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,0) = 0) & pr(Tac(SimplifyBinaryFunctions)) & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,0)) & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,0) = 1);
+  eh(BIT,_h,Goal) & dc(b1 = 0) & dc(b2 = 1) & dc(b3 = 0) & dd & eh(bit_or,_h,Goal) & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,0) = 1) & pr(Tac(SimplifyBinaryFunctions)) & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,0)) & pr(Tac(SimplifyBinaryFunctions)) & dd & dd & ah(b3 = 1) & pr & eh(bit_or,_h,Goal) & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,1) = 1) & pr(Tac(SimplifyBinaryFunctions)) & dd & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,1) = 1) & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,1)) & pr(Tac(SimplifyBinaryFunctions)) & dd & dd & ah(b2 = 0) & pr & fh(not(b2 = 1)) & ah(bit_or(0,b2) = 1) & eh(bit_or,_h,Goal) & ss & dc(b2 = 1) & ss & pr(Tac(SimplifyBinaryFunctions)) & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,0) = 0) & pr(Tac(SimplifyBinaryFunctions)) & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,0)) & pr & dd & dd & ah(b1 = 1) & pr & dc(b2 = 0) & dc(b3 = 0) & eh(bit_or,_h,Goal) & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,0) = 0) & pr(Tac(SimplifyBinaryFunctions)) & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,0),_h,Goal) & pr(Tac(SimplifyBinaryFunctions)) & eh(bit_or,_h,Goal) & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,1) = 1) & pr(Tac(SimplifyBinaryFunctions)) & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,1),_h,Goal) & dd & pr(Tac(SimplifyBinaryFunctions)) & dc(b3 = 0) & dd & eh(bit_or,_h,Goal) & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,1) = 1) & pr(Tac(SimplifyBinaryFunctions)) & dd & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,0) = 1) & pr(Tac(SimplifyBinaryFunctions)) & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,0)) & pr(Tac(SimplifyBinaryFunctions)) & eh(bit_or,_h,Goal) & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,1) = 1) & pr(Tac(SimplifyBinaryFunctions)) & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,1),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,1),_h,Goal) & pr;
+  dd & eh(1) & ah(b1: BIT & b2: BIT & b3: BIT) & pr & pr & pr & eh(BIT,_h,Goal) & dd & eh(bit_or,_h,Goal) & dc(b1 = 0) & dc(b2 = 0) & dc(b3 = 0) & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,0) = 0) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,0),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,0),_h,Goal) & ss & pr & dd & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,0) = 0) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,0),_h,Goal) & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,1) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,1)) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & dc(b3 = 1) & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,1) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,1),_h,Goal) & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,1) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,1),_h,Goal) & pr & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,1) = 1) & pr(Tac(SimplifyBinaryFunctions)) & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,1),_h,Goal) & dd & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,0) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,0),_h,Goal) & pr & dc(b2 = 1) & dc(b3 = 1) & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,1) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,1),_h,Goal) & dd & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,1) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,1),_h,Goal) & dd & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,0) = 1) & pr(Tac(SimplifyBinaryFunctions)) & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,0)) & pr(Tac(SimplifyBinaryFunctions)) & dd & dc(b3 = 1) & dd & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,0) = 1) & pr(Tac(SimplifyBinaryFunctions)) & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,0)) & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,1) = 1) & pr(Tac(SimplifyBinaryFunctions)) & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,1)) & ss & pr & pr & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,0) = 1) & pr(Tac(SimplifyBinaryFunctions)) & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,0),_h,Goal) & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,0) = 0) & pr(Tac(SimplifyBinaryFunctions)) & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(0,0)) & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->1}(1,0) = 1);
+  pr(Tac(SimplifyBinaryFunctions));
+  pr(Tac(SimplifyBinaryFunctions));
+  pr(Tac(SimplifyBinaryFunctions));
+  pr(Tac(SimplifyBinaryFunctions));
+  ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0) = 0 & {(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1) = 1 & {(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0) = 1 & {(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,1) = 0) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & pr;
+  eh(bit_xor,_h,Goal) & pr & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0) = 0 & {(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1) = 1 & {(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0) = 1 & {(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,1) = 0) & ar(SimplifyBinaryFunctions) & ss & pr & ss & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr;
+  eh(bit_xor,_h,Goal) & pr(Tac(SimplifyBinaryFunctions));
+  pr;
+  dd & ah(b1: BIT & b2: BIT) & pr & pr & eh(bit_xor,_h,Goal) & eh(BIT,_h,Goal) & dd & dc(b1 = 0) & dc(b2 = 0) & dd & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0),_h,Goal) & ss & pr & dc(b2 = 1) & ss & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1),_h,Goal) & ss & pr;
+  dd & eh(1,_h,Goal) & ah(b1: BIT & b2: BIT) & pr & pr & dd & ah(b1: BIT & b2: BIT) & pr & pr & eh(bit_xor,_h,Goal) & eh(BIT,_h,Goal) & dd & dc(b1 = 0) & dc(b2 = 0) & dd & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0),_h,Goal) & ss & pr & dc(b2 = 1) & ss & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1),_h,Goal) & ss & pr;
+  dd & eh(0,_h,Goal) & ah(b1: BIT & b2: BIT) & pr & pr & dd & ah(b1: BIT & b2: BIT) & pr & pr & eh(bit_xor,_h,Goal) & eh(BIT,_h,Goal) & dd & dc(b1 = 0) & dc(b2 = 0) & dd & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0),_h,Goal) & ss & pr & dc(b2 = 1) & ss & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1),_h,Goal) & ss & pr;
+  eh(BIT,_h,Goal) & dd & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0) = 0) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,1) = 0) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & ss & dd & dc(b1 = 0) & dc(b2 = 0) & dc(b3 = 0) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0),_h,Goal) & pr & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1),_h,Goal) & dc(b3 = 1) & ss & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0),_h,Goal) & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0) = 0) & ss & pr & ss & pr & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1) = 1) & pr & ss & pr & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0) = 1) & ss & pr & pr & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,1) = 0) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & ss & dd & eh(b2,_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1),_h,Goal) & pr & dd & eh(b3,_h,Goal) & dc(b2 = 0) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0),_h,Goal) & pr & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0) = 0) & ss & pr & pr;
+  dd & eh(1,_h,Goal) & ah(b1: BIT & b2: BIT & b3: BIT) & pr & pr & pr & eh(bit_xor,_h,Goal) & eh(BIT,_h,Goal) & dd & dc(b1 = 0) & dc(b2 = 0) & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & pr & dc(b2 = 1) & ss & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0) = 1) & ss & pr & dd & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1) = 1) & ss & pr & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1),_h,Goal) & pr & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0) = 0) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & pr & dd & eh(b3,_h,Goal) & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0) = 0) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0),_h,Goal) & ss & pr & pr & eh(b3,_h,Goal) & ss & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0) = 0) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0),_h,Goal) & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1),_h,Goal) & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0) = 0) & dd & pr & dd & eh(b3,_h,Goal) & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0) = 0 & {(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1) = 1 & {(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0) = 1 & {(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,1) = 0) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1),_h,Goal) & ss & pr & pr & ss & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0) = 1 & {(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1),_h,Goal) & ss & pr & pr & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0) = 0 & {(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1) = 1 & {(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0) = 1 & {(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,1) = 0) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,1),_h,Goal) & ss & pr & pr & eh(b2,_h,Goal) & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0) = 0 & {(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1) = 1 & {(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0) = 1 & {(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,1) = 0) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,1),_h,Goal) & ss & pr & dd & eh(b2,_h,Goal) & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0) = 0 & {(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1) = 1 & {(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0) = 1 & {(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,1) = 0) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0),_h,Goal) & ss & pr;
+  pr & pr & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0} = {(0,1)|->1,(1,0)|->1,(1,1)|->0}\/{(0,0)|->0}) & ss & pr & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0},_h,Goal) & eh({(0,1)|->1,(1,0)|->1,(1,1)|->0,(0,0)|->0},_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0},_h,Goal) & pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr
+END
+&
+THEORY PassList IS
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(3),?;
+  Force(3),?;
+  Force(1),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(3),?;
+  Force(3),?;
+  Force(3),?;
+  Force(3),?;
+  Force(3),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?
+END
+&
+THEORY ManForms 
+END
+&
+THEORY Version IS
+  POVersion("V4.0-7792")(CLT == "V4.0-9385")(genOPO == KO, genDivergencePO == KO, local_op == OK);
+  PRVersion("V3.3.3.p39")(CLT == "V3.7.6");
+  PRVersion("svn")(CLT == "V4.0-9385")
+END

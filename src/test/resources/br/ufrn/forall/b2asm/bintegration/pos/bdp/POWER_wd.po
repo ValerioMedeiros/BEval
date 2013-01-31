@@ -1,0 +1,37 @@
+
+THEORY ProofList IS
+_f(5) & _f(4) & _f(3) & _f(2) & _f(1) & _f(8) & _f(7) & _f(11) & _f(10) & _f(6) & Assertions.4,(_f(18) => _f(19));
+_f(5) & _f(4) & _f(3) & _f(2) & _f(1) & _f(8) & _f(7) & _f(11) & _f(10) & _f(6) & Assertions.3,(_f(16) => _f(17));
+_f(5) & _f(4) & _f(3) & _f(2) & _f(1) & _f(8) & _f(7) & _f(11) & _f(10) & _f(6) & Assertions.2,(_f(14) => _f(15));
+_f(5) & _f(4) & _f(3) & _f(2) & _f(1) & _f(8) & _f(7) & _f(11) & _f(10) & _f(6) & Assertions.1,(_f(12) => _f(13))
+
+END
+&
+
+THEORY Formulas IS
+("`Component constraints'" & btrue);
+("`Used machines constraints'" & btrue);
+("`Component properties'" & btrue);
+("`Seen and used machines properties'" & btrue);
+("`Included,imported and extended machines properties'" & btrue);
+("`Component invariant'" & btrue);
+("`Seen and used machines invariants'" & btrue);
+("`Included,imported and extended machines invariants'" & btrue);
+("`Component assertions'" & !(nn,pp).(nn: INTEGER & 0<=nn & not(nn = 0) & pp: INTEGER & 0<=pp & pp<=maxint => (pp = 0 => nn**pp = 1) & (pp = 1 => nn**pp = nn) & (2<=pp => nn**pp = nn*nn**(pp-1))));
+("`Seen and used machines assertions'" & btrue);
+("`Included,imported and extended machines assertions'" & btrue);
+("`Local hypotheses'" & nn: INTEGER & 0<=nn & not(nn = 0) & pp: INTEGER & 0<=pp & pp<=maxint & pp = 0);
+(0<=pp);
+("`Local hypotheses'" & nn: INTEGER & 0<=nn & not(nn = 0) & pp: INTEGER & 0<=pp & pp<=maxint & (pp = 0 => nn**pp = 1) & pp = 1);
+(0<=pp);
+("`Local hypotheses'" & nn: INTEGER & 0<=nn & not(nn = 0) & pp: INTEGER & 0<=pp & pp<=maxint & (pp = 0 => nn**pp = 1) & (pp = 1 => nn**pp = nn) & 2<=pp);
+(0<=pp);
+("`Local hypotheses'" & nn: INTEGER & 0<=nn & not(nn = 0) & pp: INTEGER & 0<=pp & pp<=maxint & (pp = 0 => nn**pp = 1) & (pp = 1 => nn**pp = nn) & 2<=pp);
+(0<=pp-1)
+
+END
+&
+
+THEORY EnumerateX 
+
+END

@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 import br.ufrn.forall.b2asm.bintegration.core.Control;
 
-class POs {
+public class POs {
 	private String pathFile;
 	private String original;
 	private String [] theoriesSplittedsRead;
@@ -20,6 +20,7 @@ class POs {
 	private String [] formulasSplitted;
 	private String [] expandedHypoThesis;
 	private String [] expandedGoal;
+	private POsStatus pOsStatus;
 	
 	
 	/**
@@ -32,6 +33,8 @@ class POs {
 		this.pathFile = pathPOFile;
 
 		original = Control.readFile(pathFile);
+		
+		pOsStatus = new POsStatus(pathFile.substring(0, pathFile.length()-3)+".pmi" ); 
 		
 		load();
 		
@@ -102,12 +105,11 @@ class POs {
 			
 		}
 		
+		expandedHypoThesis[count]= hypoStringBuffer.toString();		
+		
 		//get the list of formulas on goal
 		List<String> listGoal = getAllMatches(goal,"[_][f]\\([0-9]*\\)");
-		
 
-		expandedHypoThesis[count]= hypoStringBuffer.toString();
-		
 		for(int i=0;i<listGoal.size() ;i++){
 			
 			if(listGoal.get(i)==null)break;
@@ -148,7 +150,7 @@ class POs {
 	 * @param numberOfProofObligation  enumerating from 1 up to numbers of proof obligations
 	 * @return
 	 */
-	String getExpandedProofObligations(int numberOfProofObligation){
+	public String getExpandedProofObligations(int numberOfProofObligation){
 
 		return expandedHypoThesis[numberOfProofObligation-1]+"\n => "+expandedGoal[numberOfProofObligation-1];
 	}
@@ -158,9 +160,9 @@ class POs {
 	 * @param numberOfProofObligation  enumerating from 1 up to numbers of proof obligations
 	 * @return
 	 */
-	String getCleanExpandedProofObligations(int numberOfProofObligation){
+	public	String getCleanExpandedProofObligations(int numberOfProofObligation){
 		
-		return (expandedHypoThesis[numberOfProofObligation-1]+"\n => "+expandedGoal[numberOfProofObligation-1]).replaceAll("\\\"([^<]*)\\\"", "btrue");
+		return new String((expandedHypoThesis[numberOfProofObligation-1]+"\n => "+expandedGoal[numberOfProofObligation-1]).replaceAll("\\\"([^<]*)\\\"", "btrue"));
 	}
 	
 	/***
@@ -168,9 +170,9 @@ class POs {
 	 * @param numberOfProofObligation  enumerating from 1 up to numbers of proof obligations
 	 * @return
 	 */
-	String getHypoThesisOfCleanExpandedProofObligations(int numberOfProofObligation){
+	public String getHypoThesisOfCleanExpandedProofObligations(int numberOfProofObligation){
 		
-		return (expandedHypoThesis[numberOfProofObligation-1]).replaceAll("\\\"([^<]*)\\\"", "btrue");
+		return new String((expandedHypoThesis[numberOfProofObligation-1]).replaceAll("\\\"([^<]*)\\\"", "btrue"));
 	}
 	
 	
@@ -179,20 +181,23 @@ class POs {
 	 * @param numberOfProofObligation  enumerating from 1 up to numbers of proof obligations
 	 * @return
 	 */
-	String getGoalOfCleanExpandedProofObligations(int numberOfProofObligation){
+	public String getGoalOfCleanExpandedProofObligations(int numberOfProofObligation){
 		
 		return (expandedGoal[numberOfProofObligation-1]).replaceAll("\\\"([^<]*)\\\"", "btrue");
 	}
 	
 	
-	int getNumberOfProofObligations(){
+	public int getNumberOfProofObligations(){
 		//The size of expandedHypoThesis is equal to expandedGoal
 		return expandedGoal.length;
 	}
 	
+	public boolean isProvedTheProofState(int number){
+		return pOsStatus.isProvedTheProofState(number);
+	}
+	public String getProofState(int number){
 	
-	void storeResults(){
-		
+		return pOsStatus.getProofState(number);
 	}
 	
 	

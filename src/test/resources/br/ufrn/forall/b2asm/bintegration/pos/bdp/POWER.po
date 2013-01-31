@@ -1,0 +1,23 @@
+THEORY ProofList IS
+  AssertionLemmas.3,(_f(6) & _f(2) => _f(7));
+  AssertionLemmas.2,(_f(4) & _f(2) => _f(5));
+  AssertionLemmas.1,(_f(1) & _f(2) => _f(3))
+END
+&
+THEORY Formulas IS
+  ("`Local hypotheses'" & nn: INTEGER & 0<=nn & not(nn = 0) & pp: INTEGER & 0<=pp & pp<=2147483647 & pp = 0);
+  "`Check assertion (!(nn,pp).(nn: NATURAL1 & pp: NAT => (pp = 0 => nn**pp = 1) & (pp = 1 => nn**pp = nn) & (pp>1 => nn**pp = nn*nn**(pp-1)))) deduction - ref 3.2, 4.2, 5.3'";
+  (nn**pp = 1);
+  ("`Local hypotheses'" & nn: INTEGER & 0<=nn & not(nn = 0) & pp: INTEGER & 0<=pp & pp<=2147483647 & pp = 1);
+  (nn**pp = nn);
+  ("`Local hypotheses'" & nn: INTEGER & 0<=nn & not(nn = 0) & pp: INTEGER & 0<=pp & pp<=2147483647 & 2<=pp);
+  (nn**pp = nn*nn**(pp-1));
+  ("`Component assertions'" & !(nn,pp).(nn: INTEGER & 0<=nn & not(nn = 0) & (pp: INTEGER & 0<=pp & pp<=2147483647) => (pp = 0 => nn**pp = 1) & (pp = 1 => nn**pp = nn) & (2<=pp => nn**pp = nn*nn**(pp-1))))
+END
+&
+THEORY EnumerateX 
+END
+&
+THEORY Version IS
+  POVersion(V3.8.3)(CLT == "V3.7.6")(genOPO == KO, genDivergencePO == KO, local_op == OK)
+END

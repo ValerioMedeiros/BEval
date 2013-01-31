@@ -23,7 +23,7 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 
-		//for( String s : args) System.out.println(s);
+
 		if (args.length ==0 ){
 			System.out.println("B integration solver version "+version);
 			System.out.println("__________________________________");
