@@ -28,7 +28,7 @@ public class POs {
 	 * @param pathPOFile - file ".po" located in bdp
 	 */
 	
-	POs (String pathPOFile){
+	public POs (String pathPOFile){
 		
 		this.pathFile = pathPOFile;
 
@@ -85,45 +85,33 @@ public class POs {
 	private void loadEachExpandedProofObligation(int count) {
 
 		String  hypothesis = posUnexpandedRead[count].split("=>")[0];
-		StringBuffer hypoStringBuffer = new StringBuffer();
 		
 		String  goal = posUnexpandedRead[count].split("=>")[1];
-		StringBuffer goalStringBuffer = new StringBuffer();
 		
+		expandedHypoThesis[count]=getFormulaExpanded(hypothesis);
 		
-		//get the list of formulas on hypothesis
-		List<String> listHypothesis = getAllMatches(hypothesis,"[_][f]\\([0-9]*\\)");
-		
-		for(int i=0;i<listHypothesis.size() ;i++){
-			
-			if(listHypothesis.get(i)==null)break;
-			
-			// Remove the characters no numerics, transform to Integer, get in list of formulas and append
-			hypoStringBuffer.append(formulasSplitted[Integer.parseInt(listHypothesis.get(i).replaceAll("[\\D]", ""))-1]);
-			
-			if(i!=listHypothesis.size()-1)hypoStringBuffer.append(" & ");
-			
-		}
-		
-		expandedHypoThesis[count]= hypoStringBuffer.toString();		
-		
-		//get the list of formulas on goal
-		List<String> listGoal = getAllMatches(goal,"[_][f]\\([0-9]*\\)");
-
-		for(int i=0;i<listGoal.size() ;i++){
-			
-			if(listGoal.get(i)==null)break;
-			
-			// Remove the characters no numerics, transform to Integer, get in list of formulas and append
-			goalStringBuffer.append(formulasSplitted[Integer.parseInt(listGoal.get(i).replaceAll("[\\D]", ""))-1]);
-			
-			if(i!=listGoal.size()-1)goalStringBuffer.append(" & ");
-			
-		}
-		expandedGoal[count]= goalStringBuffer.toString();
+		expandedGoal[count]= getFormulaExpanded(goal );
 		
 		
 	}
+	
+	 String getFormulaExpanded(String originalFormual){
+		 	StringBuffer expandedFormula= new StringBuffer();
+		 	//get the list of formulas on goal
+			List<String> listGoal = getAllMatches(originalFormual,"[_][f]\\([0-9]*\\)");
+
+			for(int i=0;i<listGoal.size() ;i++){
+				
+				if(listGoal.get(i)==null)break;
+				
+				// Remove the characters no numerics, transform to Integer, get in list of formulas and append
+				expandedFormula.append(formulasSplitted[Integer.parseInt(listGoal.get(i).replaceAll("[\\D]", ""))-1]);
+				
+				if(i!=listGoal.size()-1)expandedFormula.append(" & ");
+				
+			}
+			return expandedFormula.toString();
+	 }
 
 	 List<String> getAllMatches(String text, String regex) {
 		
@@ -137,6 +125,8 @@ public class POs {
         }
         return matches;
     }
+	 
+	
 	
 	void loadFormulas(){
 		
@@ -146,15 +136,33 @@ public class POs {
 		
 	}
 	/***
-	 * This method return one proof obligation
+	 * This method return one proof obligation with B comments
 	 * @param numberOfProofObligation  enumerating from 1 up to numbers of proof obligations
-	 * @return
+	 * @return 
 	 */
 	public String getExpandedProofObligations(int numberOfProofObligation){
 
 		return expandedHypoThesis[numberOfProofObligation-1]+"\n => "+expandedGoal[numberOfProofObligation-1];
 	}
-	
+
+	/***
+	 * This method return one proof obligation without comments and with only local hypotheses from proof obligation
+	 * @param numberOfProofObligation  enumerating from 1 up to numbers of proof obligations
+	 * @return 
+	 */
+	public	String getCleanProofObligationsWithLocalHypotheses(int numberOfProofObligation){
+		String tmp;
+		//String tmp = expandedHypoThesis[numberOfProofObligation-1].replaceAll("\"(.*?)\"", "btrue");
+		if(formulasSplitted[numberOfProofObligation-1].contains(","))
+			 tmp = formulasSplitted[numberOfProofObligation-1].split(",")[1];
+		else 
+			 tmp = formulasSplitted[numberOfProofObligation-1];
+			
+		//String basicHypotheses =  tmp.split(",")[1]; //remove unneeded hypotheses when the concepts are loaded
+		String basicHypotheses = getFormulaExpanded(tmp.replaceAll("\"(.*?)\"", "btrue"));
+		
+		return new String(basicHypotheses+"\n => "+expandedGoal[numberOfProofObligation-1]);
+	}
 	/***
 	 * This method return one proof obligation without comments
 	 * @param numberOfProofObligation  enumerating from 1 up to numbers of proof obligations
@@ -162,7 +170,7 @@ public class POs {
 	 */
 	public	String getCleanExpandedProofObligations(int numberOfProofObligation){
 		
-		return new String((expandedHypoThesis[numberOfProofObligation-1]+"\n => "+expandedGoal[numberOfProofObligation-1]).replaceAll("\\\"([^<]*)\\\"", "btrue"));
+		return new String(expandedHypoThesis[numberOfProofObligation-1].replaceAll("\"(.*?)\"", "btrue")+"\n => "+expandedGoal[numberOfProofObligation-1]);
 	}
 	
 	/***
@@ -172,7 +180,7 @@ public class POs {
 	 */
 	public String getHypoThesisOfCleanExpandedProofObligations(int numberOfProofObligation){
 		
-		return new String((expandedHypoThesis[numberOfProofObligation-1]).replaceAll("\\\"([^<]*)\\\"", "btrue"));
+		return new String((expandedHypoThesis[numberOfProofObligation-1]).replaceAll("\"(.*?)\"", "btrue"));
 	}
 	
 	
@@ -183,7 +191,7 @@ public class POs {
 	 */
 	public String getGoalOfCleanExpandedProofObligations(int numberOfProofObligation){
 		
-		return (expandedGoal[numberOfProofObligation-1]).replaceAll("\\\"([^<]*)\\\"", "btrue");
+		return (expandedGoal[numberOfProofObligation-1]).replaceAll("\"(.*?)\"", "btrue");
 	}
 	
 	

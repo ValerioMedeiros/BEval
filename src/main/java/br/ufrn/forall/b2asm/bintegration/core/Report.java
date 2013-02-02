@@ -10,7 +10,7 @@ public class Report {
 	List <Long> times = new ArrayList<Long>();;
 	List <Result> results= new ArrayList<Result>();
 	List <Result> outputsError= new ArrayList<Result>();
-	List <Integer> numbersPo= new ArrayList<Integer>();
+	List <Integer> PoNumber= new ArrayList<Integer>();
 	List <String> proofStatePmiFile= new ArrayList<String>();
 	
 	
@@ -19,7 +19,7 @@ public class Report {
 		this.results.add(result);
 		this.outputsError.add(outputError);
 		this.proofStatePmiFile.add(proofStatePmiFile);
-		this.numbersPo.add(numberPo);
+		this.PoNumber.add(numberPo);
 		size++;
 	}
 	
@@ -28,11 +28,12 @@ public class Report {
 		
 		for(int i=0;i<size;i++){
 		
-			 res.append( "\""+this.numbersPo.get(i) +"\",\""+  this.proofStatePmiFile.get(i)  +"\",\""+ this.outputsError.get(i) +"\",\""+  this.results.get(i) +"\",\""+ this.times.get(i)+"\"\n" );
+			 res.append( "\""+this.PoNumber.get(i) +"\",\""+  this.proofStatePmiFile.get(i)  +"\",\""+ this.outputsError.get(i) +"\",\""+  this.results.get(i) +"\",\""+ this.times.get(i)+"\"\n" );
 			
 		}
 		
 		Control.writeFile(pathFile, res.toString());
+		
 	}
 	
 	

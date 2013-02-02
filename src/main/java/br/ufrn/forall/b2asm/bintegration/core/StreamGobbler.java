@@ -24,7 +24,7 @@ public class StreamGobbler extends Thread
 	OutputStream os;
 
 	public enum Result {
-		INITIAL, ERROR, TRUE, FALSE, NOT_WELL_DEFINED}
+		INITIAL, ERROR, TIME_OUT, TRUE, FALSE, NOT_WELL_DEFINED}
 
 	Result result= Result.INITIAL;
 
@@ -65,11 +65,11 @@ public class StreamGobbler extends Thread
 						result= Result.NOT_WELL_DEFINED;	
 					else if (line.contains("is FALSE"))
 						result= Result.FALSE;
-					else if (line.contains("expecting")){
+					else if (line.contains("expecting ")){
 						result= Result.ERROR;
 					}
-					else if (line.contains("TIME-OUT")){
-						result= Result.ERROR;
+					else if (line.contains("TIME-OUT occured")){
+						result= Result.TIME_OUT;
 					}
 					else if (line.contains("Not a valid")){
 						result= Result.ERROR;

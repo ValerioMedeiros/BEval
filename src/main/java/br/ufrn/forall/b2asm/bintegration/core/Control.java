@@ -128,13 +128,11 @@ public class Control {
 		for (cont++; cont < args.length; cont++)
 			tmpHypothesis.append(" " + args[cont]);
 
-		goal = tmpGoal.toString().replaceAll("\\\"([^<]*)\\\"", "btrue"); // Remove
-																			// description
-																			// tex
-																			// on
-																			// PO
-		hypothesis = tmpHypothesis.toString().replaceAll("\\\"([^<]*)\\\"",
-				"btrue"); // Remove description tex on PO
+		// Remove description text on goal PO
+		goal = tmpGoal.toString().replaceAll("\"(.*?)\"", "btrue");
+
+		// Remove description tex on hypothesis PO
+		hypothesis = tmpHypothesis.toString().replaceAll("\"(.*?)\"", "btrue");
 
 	}
 
@@ -306,39 +304,53 @@ public class Control {
 	/**
 	 * This method was build to support evaluation of a set of proof obligations
 	 * 
-	 * @param pathProBcli
-	 * @param parameters
-	 * @param expressionsToEvaluate
+	 * @param pathProBcli - It contains the path of Probcli
+	 * @param parameters - It contains the parameters to call Probcli
+	 * @param pathBModule - It contains the path of B module in evaluation 
+	 * @param fullProofObligation - When true the proof obligations is full, otherwise, the proof obligations has only the goal  
+	 * @param report - 
 	 * @return
 	 */
-	public static Report callProbLogicEvaluator(String pathProBcli,
-			String parameters, POs expressionsToEvaluate) {
+	public static Report callProbLogicEvaluatorModule(String pathProBcli,
+			String parameters, String pathBModule, boolean fullProofObligation,
+			Report report, String fileNameOut) {
 
 		int localExitVal = 0;
 		long localTotalTime;
-		int numberOftotalPOs = expressionsToEvaluate.getNumberOfProofObligations();
+		String proofObligation;
 		Result resultIndividual = Result.ERROR;
-		Report report = new Report();
+		POs expressionsToEvaluate = new POs((pathBModule.substring(0,
+				pathBModule.length() - 3) + "po").replaceFirst("pos"
+				+ File.separator, "pos" + File.separator + "bdp"
+				+ File.separator));
+		int numberOftotalPOs = expressionsToEvaluate
+				.getNumberOfProofObligations();
 
+		StringBuffer proofObligations = new StringBuffer();
 		try {
-			for (int numberPo = 1; numberPo <=numberOftotalPOs; numberPo++) {
+			for (int numberPo = 1; numberPo <= numberOftotalPOs; numberPo++) {
 				Runtime rt = Runtime.getRuntime();
 
 				String tmpPath = System.getProperty("java.io.tmpdir");
 				String tmpFileName = tmpPath + File.separator + "po_"
-						+ System.currentTimeMillis() + ".goal";
+						+ System.currentTimeMillis() + ".expanded.PO";
 
-				//writeFile(tmpFileName, expressionsToEvaluate.getGoalOfCleanExpandedProofObligations(numberPo));
+				if (fullProofObligation) {
+					proofObligation = expressionsToEvaluate
+							.getGoalOfCleanExpandedProofObligations(numberPo); 
+					writeFile(tmpFileName,proofObligation							);
+				} else {
+					proofObligation = expressionsToEvaluate
+							.getCleanExpandedProofObligations(numberPo);
+					writeFile(tmpFileName,proofObligation	);
+				}
+				System.out.println(proofObligation);
 
-				writeFile(tmpFileName, expressionsToEvaluate.getCleanExpandedProofObligations(numberPo));
-				
-				System.out.println(expressionsToEvaluate.getCleanExpandedProofObligations(numberPo));
-				
 				long initial_time = System.currentTimeMillis();
 
 				Process proc = rt.exec(pathProBcli + " "
 						+ parameters.replace("\n", "") + " --eval_rule_file "
-						+ tmpFileName);
+						+ tmpFileName+ " > "+fullProofObligation+fileNameOut+".out");
 
 				// any error message?
 				StreamGobbler errorGobbler = new StreamGobbler(
@@ -370,11 +382,25 @@ public class Control {
 				}
 
 				System.out.println("Time spent: " + localTotalTime);
-				
+
 				System.out.println("Process exit value: " + localExitVal);
-				
-				report.add(numberPo, expressionsToEvaluate.getProofState(numberPo) ,  errorGobbler.getResult(), resultIndividual, localTotalTime);
+
+				report.add(numberPo,
+						expressionsToEvaluate.getProofState(numberPo),
+						errorGobbler.getResult(), resultIndividual,
+						localTotalTime);
+
+				proofObligations.append(proofObligation + ";\n\n");
+
 			}
+			
+			Control.writeFile(
+					pathBModule.substring(0, pathBModule.length() - 3)
+							+ "full.EPOs", proofObligations.toString());
+			
+			
+			
+
 		} catch (Throwable t) {
 			t.printStackTrace();
 		}
