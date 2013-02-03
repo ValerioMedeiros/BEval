@@ -36,29 +36,30 @@ public class POsTest {
 	@Test
 	public void test2Local() throws IOException {
 
-		 runTwoStrategies("POWER.mch");
-		runTwoStrategies("POWER2.mch"); // OK full proof obligation without
+		 //runTwoStrategies("POWER.mch");
+		//runTwoStrategies("POWER2.mch"); // OK full proof obligation without
 											// -init -
 											// Result very fast
-		 runTwoStrategies("BIT_DEFINITION.mch"); // OK full proof obligation
+		// runTwoStrategies("BIT_DEFINITION.mch"); // OK full proof obligation
 		// without -init - Result very fast
 
-		 runTwoStrategies("BYTE_DEFINITION.mch"); // Timeouts full proof
+		 //runTwoStrategies("BYTE_DEFINITION.mch"); // Timeouts full proof
 		// obligation without -init - Result very slow
 		// Probaly, the stack of hypothesis is very larger causing problems to
 		// verify
 
-		 runTwoStrategies("BV16_DEFINITION.mch");
-		 runTwoStrategies("UCHAR_DEFINITION.mch");
-		 runTwoStrategies("SCHAR_DEFINITION.mch");
-		 runTwoStrategies("USHORT_DEFINITION.mch");
-		 runTwoStrategies("SSHORT_DEFINITION.mch");
+		 //runTwoStrategies("BV16_DEFINITION.mch");
+		 //runTwoStrategies("UCHAR_DEFINITION.mch");
+		 //runTwoStrategies("SCHAR_DEFINITION.mch");
+		 //runTwoStrategies("USHORT_DEFINITION.mch");
+		 //runTwoStrategies("SSHORT_DEFINITION.mch");
+		 runTwoStrategies("TYPES.mch");
 	}
 	
 	public void runTwoStrategies(String filename) throws IOException{
 		Report report = new Report();
 		runIndividual(report, filename, false);
-		runIndividual(report, filename, true);
+		//runIndividual(report, filename, true);
 		
 		report.print(pathTestDirectory + filename+ "REPORT.csv");
 		
@@ -67,11 +68,11 @@ public class POsTest {
 	 * This methods evaluate proof obligations of one module
 	 * @param report
 	 * @param filename
-	 * @param fullProofObligation - when true create a full proof obligation, otherwise, create a parcial proof obligation
+	 * @param isFullProofObligation - when true create a full proof obligation, otherwise, create a parcial proof obligation
 	 * @throws IOException
 	 */
 
-	public void runIndividual(Report report ,String filename, boolean fullProofObligation)
+	public void runIndividual(Report report ,String filename, boolean isFullProofObligation)
 			throws IOException {
 
 		
@@ -79,7 +80,7 @@ public class POsTest {
 		String pathProBcli = "/Users/valerio/Myprograms/ProB/probcli";
 		String parameters = new String();
 		
-		if (fullProofObligation) { 
+		if (isFullProofObligation) { 
 			parameters +=  "-p SYMBOLIC TRUE "; // expands only the concepts needed
 					
 		}else{
@@ -93,12 +94,12 @@ public class POsTest {
 				+ " -p CLPFD TRUE"
 				+ " -p MAXINT 65536 " // + "-p MAXINT 65536 "
 				+ " -p MININT -32768 " // + "-p MININT -65536 "
-				+ " -p TIME_OUT 1000 ";   // 7000 = 35000ms  ; 1000 = 5000ms
+				+ " -p TIME_OUT 7000 ";   // 7000 = 35000ms  ; 2000 = 10000ms ; 1000 = 5000ms; 
 
 		
 
 		Control.callProbLogicEvaluatorModule(pathProBcli, parameters,
-				pathBModule, fullProofObligation, report, pathBModule+".out");
+				pathBModule, isFullProofObligation, report, pathBModule+".out");
 		
 		
 

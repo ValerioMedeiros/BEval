@@ -11,6 +11,8 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
+import br.ufrn.forall.b2asm.bintegration.core.Report.POWD;
+import br.ufrn.forall.b2asm.bintegration.core.Report.PoGenerated;
 import br.ufrn.forall.b2asm.bintegration.core.StreamGobbler.Result;
 import br.ufrn.forall.b2asm.bintegration.pos.POs;
 
@@ -307,12 +309,12 @@ public class Control {
 	 * @param pathProBcli - It contains the path of Probcli
 	 * @param parameters - It contains the parameters to call Probcli
 	 * @param pathBModule - It contains the path of B module in evaluation 
-	 * @param fullProofObligation - When true the proof obligations is full, otherwise, the proof obligations has only the goal  
+	 * @param isFullProofObligation - When true the proof obligations is full, otherwise, the proof obligations has only the goal  
 	 * @param report - 
 	 * @return
 	 */
 	public static Report callProbLogicEvaluatorModule(String pathProBcli,
-			String parameters, String pathBModule, boolean fullProofObligation,
+			String parameters, String pathBModule, boolean isFullProofObligation,
 			Report report, String fileNameOut) {
 
 		int localExitVal = 0;
@@ -335,13 +337,13 @@ public class Control {
 				String tmpFileName = tmpPath + File.separator + "po_"
 						+ System.currentTimeMillis() + ".expanded.PO";
 
-				if (fullProofObligation) {
+				if (isFullProofObligation) {
 					proofObligation = expressionsToEvaluate
-							.getGoalOfCleanExpandedProofObligations(numberPo); 
+							.getCleanExpandedProofObligations(numberPo);
 					writeFile(tmpFileName,proofObligation							);
 				} else {
 					proofObligation = expressionsToEvaluate
-							.getCleanExpandedProofObligations(numberPo);
+							.getGoalOfCleanExpandedProofObligations(numberPo);
 					writeFile(tmpFileName,proofObligation	);
 				}
 				System.out.println(proofObligation);
@@ -350,7 +352,7 @@ public class Control {
 
 				Process proc = rt.exec(pathProBcli + " "
 						+ parameters.replace("\n", "") + " --eval_rule_file "
-						+ tmpFileName+ " > "+fullProofObligation+fileNameOut+".out");
+						+ tmpFileName);
 
 				// any error message?
 				StreamGobbler errorGobbler = new StreamGobbler(
@@ -386,7 +388,10 @@ public class Control {
 				System.out.println("Process exit value: " + localExitVal);
 
 				report.add(numberPo,
-						expressionsToEvaluate.getProofState(numberPo),
+						parameters,
+						POWD.Common,
+						PoGenerated.Full,
+						proofObligation,
 						errorGobbler.getResult(), resultIndividual,
 						localTotalTime);
 
