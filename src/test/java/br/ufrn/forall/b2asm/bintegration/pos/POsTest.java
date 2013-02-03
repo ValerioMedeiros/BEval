@@ -67,7 +67,11 @@ public class POsTest {
 	
 	public void runTwoStrategies(String filename) throws IOException{
 		Report report = new Report();
+		
+		
 		runIndividual(report, filename, false);
+		
+		
 		runIndividual(report, filename, true);
 		
 		report.print(pathTestDirectory + filename+ ".report.csv");

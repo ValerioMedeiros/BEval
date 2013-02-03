@@ -310,7 +310,8 @@ public class Control {
 	 * @param parameters - It contains the parameters to call Probcli
 	 * @param pathBModule - It contains the path of B module in evaluation 
 	 * @param isFullProofObligation - When true the proof obligations is full, otherwise, the proof obligations has only the goal  
-	 * @param report - 
+	 * @param report - It creates the spreadsheet
+	 * @param fileNameOut - It contains the filename out
 	 * @return
 	 */
 	public static Report callProbLogicEvaluatorModule(String pathProBcli,
