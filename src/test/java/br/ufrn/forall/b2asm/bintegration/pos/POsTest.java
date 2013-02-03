@@ -3,7 +3,9 @@ package br.ufrn.forall.b2asm.bintegration.pos;
 import static org.junit.Assert.*;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.util.List;
 
 import org.junit.Before;
@@ -30,6 +32,13 @@ public class POsTest {
 			+ File.separator + "forall" + File.separator + "b2asm"
 			+ File.separator + "bintegration" + File.separator + "pos"
 			+ File.separator;
+	
+	PrintStream out = new PrintStream (new FileOutputStream(pathTestDirectory+"ConsoleOut.txt"));
+	PrintStream outError = new PrintStream (new FileOutputStream(pathTestDirectory+"ConsoleOutError.txt"));
+	System.setOut(out);
+	System.setErr(outError);
+	
+	
 	}
 	
 
@@ -61,9 +70,13 @@ public class POsTest {
 		runIndividual(report, filename, false);
 		runIndividual(report, filename, true);
 		
-		report.print(pathTestDirectory + filename+ "REPORT.csv");
+		report.print(pathTestDirectory + filename+ ".report.csv");
 		
 	}
+	
+	
+	
+	
 	/**
 	 * This methods evaluate proof obligations of one module
 	 * @param report
@@ -77,7 +90,7 @@ public class POsTest {
 
 		
 		String pathBModule = pathTestDirectory + filename;
-		String pathProBcli = "/Users/valerio/Myprograms/ProB/probcli";
+		String pathProBcli = "/home/valerio/Myprograms/ProB_1.3.5_final/probcli";
 		String parameters = new String();
 		
 		if (isFullProofObligation) { 
@@ -94,7 +107,7 @@ public class POsTest {
 				+ " -p CLPFD TRUE"
 				+ " -p MAXINT 65536 " // + "-p MAXINT 65536 "
 				+ " -p MININT -32768 " // + "-p MININT -65536 "
-				+ " -p TIME_OUT 7000 ";   // 7000 = 35000ms  ; 2000 = 10000ms ; 1000 = 5000ms; 
+				+ " -p TIME_OUT 7000 ";   // 10000 = 50000ms; 7000 = 35000ms  ; 2000 = 10000ms ; 1000 = 5000ms; 
 
 		
 
@@ -108,5 +121,6 @@ public class POsTest {
 	void MetaSolver(List<String> paramSolver, List<String> pathBModule) {
 
 	}
-
+	
+	
 }

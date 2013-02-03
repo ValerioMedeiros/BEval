@@ -392,7 +392,9 @@ public class Control {
 						POWD.Common,
 						PoGenerated.Full,
 						proofObligation,
-						errorGobbler.getResult(), resultIndividual,
+						expressionsToEvaluate.getProofState(numberPo),
+						errorGobbler.getResult(), 
+						resultIndividual,
 						localTotalTime);
 
 				proofObligations.append(proofObligation + ";\n\n");

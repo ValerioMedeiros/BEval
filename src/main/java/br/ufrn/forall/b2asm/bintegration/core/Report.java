@@ -16,21 +16,30 @@ public class Report {
 	List <String> parameters = new ArrayList<String>();
 	List <POWD> isKindOfWD = new ArrayList<POWD>();
 	List <PoGenerated> poGenerated = new ArrayList <PoGenerated>();
+	List <String> proofObligations = new ArrayList<String>();
 	List <String> proofStatePmiFile= new ArrayList<String>();
 	
-	/**
-	 * This method add an elemento to report
-	 * @param numberPo - Number identifier of PO 
-	 * @param pathModule - Path of module
-	 * @param parameters - Parameters to verification
-	 * @param isKindOfWD - enum POWD {Common, WD }
-	 * @param pogen - PoGenerated {Full, OnlyGoal, SelectedHypotesesAndGoal }
-	 * @param proofStatePmiFile 
-	 * @param outputError
-	 * @param result
-	 * @param time
-	 */
-	void add(int numberPo,String parameters, POWD isKindOfWD,PoGenerated pogen , String proofStatePmiFile, Result outputError, Result result, Long time){
+/***
+ * This method add an element to report
+ * @param numberPo - identifier of proof obligation
+ * @param parameters - parameters to calll
+ * @param isKindOfWD - enum POWD {Common, WD } - it determines when the proof obligation is WD or common
+ * @param pogen - enum PoGenerated {Full, OnlyGoal, SelectedHypotesesAndGoal }
+ * @param proofObligation - String with a proof obligation
+ * @param proofStatePmiFile - state of verification of AtelierB 
+ * @param outputError - state of error output
+ * @param result - state of output
+ * @param time  - time spent to eval
+ */
+	/*numberPo,
+	parameters,
+	POWD.Common,
+	PoGenerated.Full,
+	proofObligation,ERRO
+	errorGobbler.getResult(),
+	resultIndividual,ERRO
+	localTotalTime*/
+	void add(int numberPo,String parameters, POWD isKindOfWD,PoGenerated pogen , String proofObligation,String proofStatePmiFile, Result outputError, Result result, Long time){
 		this.times.add(time);
 		
 		this.parameters.add(parameters);
@@ -38,6 +47,7 @@ public class Report {
 		this.poGenerated.add(pogen);
 		this.results.add(result);
 		this.outputsError.add(outputError);
+		this.proofObligations.add(proofObligation);
 		this.proofStatePmiFile.add(proofStatePmiFile);
 		this.PoNumber.add(numberPo);
 		size++;
@@ -52,8 +62,11 @@ public class Report {
 					this.parameters.get(i)+"\",\""+
 					this.isKindOfWD.get(i)+"\",\""+
 					this.poGenerated.get(i)+"\",\""+
-					 
-					 this.proofStatePmiFile.get(i)  +"\",\""+ this.outputsError.get(i) +"\",\""+  this.results.get(i) +"\",\""+ this.times.get(i)+"\"\n" );
+					 this.proofObligations.get(i)+"\",\""+
+					 this.proofStatePmiFile.get(i)  +"\",\""+ 
+					 this.outputsError.get(i) +"\",\""+
+					 this.results.get(i) +"\",\""+ 
+					 this.times.get(i)+"\"\n" );
 			
 		}
 		
