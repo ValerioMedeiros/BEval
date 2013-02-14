@@ -266,7 +266,7 @@ public class Control {
 
 			// any output?
 			StreamGobbler outputGobbler = new StreamGobbler(
-					proc.getInputStream(), "OUTPUT");
+					proc.getInputStream(), "OUTPUT"); // Can add a new parameter , System.out
 
 			// kick them off
 			errorGobbler.start();
@@ -360,7 +360,7 @@ public class Control {
 
 				// any output?
 				StreamGobbler outputGobbler = new StreamGobbler(
-						proc.getInputStream(), "OUTPUT");
+						proc.getInputStream(), "OUTPUT"); // Can add a new parameter , System.out
 
 				// kick them off
 				errorGobbler.start();
