@@ -36,34 +36,36 @@ public class POsTest {
 	@Test
 	public void test2Local() throws IOException {
 
-		 runTwoStrategies("POWER.mch");
-		runTwoStrategies("POWER2.mch"); // OK full proof obligation without
-											// -init -
-											// Result very fast
-		 runTwoStrategies("BIT_DEFINITION.mch"); // OK full proof obligation
-		// without -init - Result very fast
+		//runTwoStrategies("POWER.mch");
+		//runTwoStrategies("POWER2.mch"); // OK full proof obligation without
+										// -init -
+										// Result very fast
+		// runTwoStrategies("BIT_DEFINITION.mch"); // OK full proof obligation
+		 										 // without -init - Result very fast
 
-		 runTwoStrategies("BYTE_DEFINITION.mch"); // Timeouts full proof
+		runTwoStrategies("BYTE_DEFINITION.mch"); // Timeouts full proof
 		// obligation without -init - Result very slow
 		// Probaly, the stack of hypothesis is very larger causing problems to
 		// verify
 
-		 runTwoStrategies("BV16_DEFINITION.mch");
-		 runTwoStrategies("UCHAR_DEFINITION.mch");
-		 runTwoStrategies("SCHAR_DEFINITION.mch");
-		 runTwoStrategies("USHORT_DEFINITION.mch");
-		 runTwoStrategies("SSHORT_DEFINITION.mch");
-		 runTwoStrategies("TYPES.mch");
+		// runTwoStrategies("BV16_DEFINITION.mch");
+		// runTwoStrategies("UCHAR_DEFINITION.mch");
+		// runTwoStrategies("SCHAR_DEFINITION.mch");
+		// runTwoStrategies("USHORT_DEFINITION.mch");
+		// runTwoStrategies("SSHORT_DEFINITION.mch");
+		// runTwoStrategies("TYPES.mch");
 	}
 	
 	public void runTwoStrategies(String filename) throws IOException{
-		Report report = new Report();
-		runIndividual(report, filename, false);
-		runIndividual(report, filename, true);
+		Report reportOnlyGoal = new Report();
+		Report reportFullGoal = new Report();
+		runIndividual(reportOnlyGoal, filename, false);
+		runIndividual(reportFullGoal, filename, true);
 		
-		report.print(pathTestDirectory + filename+ "REPORT.csv");
-		
+		reportOnlyGoal.print(pathTestDirectory + filename+ "OG_REPORT.csv");
+		reportFullGoal.print(pathTestDirectory + filename+ "FG_REPORT.csv");
 	}
+	
 	/**
 	 * This methods evaluate proof obligations of one module
 	 * @param report

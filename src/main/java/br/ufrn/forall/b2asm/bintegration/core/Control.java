@@ -386,11 +386,12 @@ public class Control {
 				System.out.println("Time spent: " + localTotalTime);
 
 				System.out.println("Process exit value: " + localExitVal);
-
+				
 				report.add(numberPo,
 						parameters,
 						POWD.Common,
 						PoGenerated.Full,
+						expressionsToEvaluate.getProofState(numberPo),
 						proofObligation,
 						errorGobbler.getResult(), resultIndividual,
 						localTotalTime);
