@@ -33,10 +33,11 @@ public class POsTest {
 			+ File.separator + "bintegration" + File.separator + "pos"
 			+ File.separator;
 	
+	/*
 	PrintStream out = new PrintStream (new FileOutputStream(pathTestDirectory+"ConsoleOut.txt"));
 	PrintStream outError = new PrintStream (new FileOutputStream(pathTestDirectory+"ConsoleOutError.txt"));
 	System.setOut(out);
-	System.setErr(outError);
+	System.setErr(outError);*/
 	
 	
 	}
@@ -44,80 +45,13 @@ public class POsTest {
 
 	@Test
 	public void test2Local() throws IOException {
-
-		//runTwoStrategies("POWER.mch");
-		//runTwoStrategies("POWER2.mch"); // OK full proof obligation without
-										// -init -
-										// Result very fast
-		// runTwoStrategies("BIT_DEFINITION.mch"); // OK full proof obligation
-		 										 // without -init - Result very fast
-
-		runTwoStrategies("BYTE_DEFINITION.mch"); // Timeouts full proof
-		// obligation without -init - Result very slow
-		// Probaly, the stack of hypothesis is very larger causing problems to
-		// verify
-
-		// runTwoStrategies("BV16_DEFINITION.mch");
-		// runTwoStrategies("UCHAR_DEFINITION.mch");
-		// runTwoStrategies("SCHAR_DEFINITION.mch");
-		// runTwoStrategies("USHORT_DEFINITION.mch");
-		// runTwoStrategies("SSHORT_DEFINITION.mch");
-		// runTwoStrategies("TYPES.mch");
-	}
-	
-	public void runTwoStrategies(String filename) throws IOException{
-		Report reportOnlyGoal = new Report();
-		Report reportFullGoal = new Report();
-		runIndividual(reportOnlyGoal, filename, false);
-		runIndividual(reportFullGoal, filename, true);
-
 		
-		reportOnlyGoal.print(pathTestDirectory + filename+ "OG_REPORT.csv");
-		reportFullGoal.print(pathTestDirectory + filename+ "FG_REPORT.csv");
-	}
-	
-	/**
-	 * This methods evaluate proof obligations of one module
-	 * @param report
-	 * @param filename
-	 * @param isFullProofObligation - when true create a full proof obligation, otherwise, create a parcial proof obligation
-	 * @throws IOException
-	 */
-
-	public void runIndividual(Report report ,String filename, boolean isFullProofObligation)
-			throws IOException {
-
+		String pathBModule = new String(pathTestDirectory+"bdp"+File.separator+"BIT_DEFINITION.mch");
 		
-		String pathBModule = pathTestDirectory + filename;
-		String pathProBcli = "/home/valerio/Myprograms/ProB_1.3.5_final/probcli";
-		String parameters = new String();
+		POs expressionsToEvaluate = new POs((pathBModule.substring(0,
+				pathBModule.length() - 3) + "po"));
 		
-		if (isFullProofObligation) { 
-			parameters +=  "-p SYMBOLIC TRUE "; // expands only the concepts needed
-					
-		}else{
-			// Only the goal
-			parameters = pathBModule + " -init "; // With initilialization
-		}
-		
-		
-		parameters +=  
-				" -p BOOL_AS_PREDICATE TRUE "
-				+ " -p CLPFD TRUE"
-				+ " -p MAXINT 65536 " // + "-p MAXINT 65536 "
-				+ " -p MININT -32768 " // + "-p MININT -65536 "
-				+ " -p TIME_OUT 7000 ";   // 10000 = 50000ms; 7000 = 35000ms  ; 2000 = 10000ms ; 1000 = 5000ms; 
-
-		
-
-		Control.callProbLogicEvaluatorModule(pathProBcli, parameters,
-				pathBModule, isFullProofObligation, report, pathBModule+".out");
-		
-		
-
-	}
-
-	void MetaSolver(List<String> paramSolver, List<String> pathBModule) {
+		System.out.println( expressionsToEvaluate.getCleanProofObligationsWithLocalHypotheses(1));
 
 	}
 	
