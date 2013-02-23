@@ -95,12 +95,31 @@ public class POs {
 		
 	}
 	
-	 String getFormulaExpanded(String originalFormual){
+	String getFormulaExpanded(String originalFormula){
+	 	StringBuffer expandedFormula= new StringBuffer();
+	 	//get the list of formulas on goal
+		List<String> listGoal = getAllMatches(originalFormula,"[_][f]\\([0-9]*\\)");
+
+		for(int i=0;i<listGoal.size() ;i++){
+			
+			if(listGoal.get(i)==null)break;
+			
+			// Remove the characters no numerics, transform to Integer, get in list of formulas and append
+			expandedFormula.append(formulasSplitted[Integer.parseInt(listGoal.get(i).replaceAll("[\\D]", ""))-1]);
+			
+			if(i!=listGoal.size()-1)expandedFormula.append(" & ");
+			
+		}
+		return expandedFormula.toString();
+ 	}
+
+	
+	 String getFormulaExpandedWithOnlyLocalHypothesis(String originalFormula){
 		 	StringBuffer expandedFormula= new StringBuffer();
 		 	//get the list of formulas on goal
-			List<String> listGoal = getAllMatches(originalFormual,"[_][f]\\([0-9]*\\)");
+			List<String> listGoal = getAllMatches(originalFormula,"[_][f]\\([0-9]*\\)");
 
-			for(int i=0;i<listGoal.size() ;i++){
+			for(int i=listGoal.size()-2;i<listGoal.size() ;i++){
 				
 				if(listGoal.get(i)==null)break;
 				
@@ -151,17 +170,12 @@ public class POs {
 	 * @return 
 	 */
 	public	String getCleanProofObligationsWithLocalHypotheses(int numberOfProofObligation){
-		String tmp;
-		//String tmp = expandedHypoThesis[numberOfProofObligation-1].replaceAll("\"(.*?)\"", "btrue");
-		if(formulasSplitted[numberOfProofObligation-1].contains(","))
-			 tmp = formulasSplitted[numberOfProofObligation-1].split(",")[1];
-		else 
-			 tmp = formulasSplitted[numberOfProofObligation-1];
-			
-		//String basicHypotheses =  tmp.split(",")[1]; //remove unneeded hypotheses when the concepts are loaded
-		String basicHypotheses = getFormulaExpanded(tmp.replaceAll("\"(.*?)\"", "btrue"));
 		
-		return new String(basicHypotheses+"\n => "+expandedGoal[numberOfProofObligation-1]);
+		String tmp = this.posUnexpandedRead[numberOfProofObligation-1].split("=>")[0];
+		 
+		String basicHypotheses = getFormulaExpandedWithOnlyLocalHypothesis(tmp);
+		
+		return new String( "("+basicHypotheses.replaceAll("\"(.*?)\"", "btrue")+"\n => "+expandedGoal[numberOfProofObligation-1]+")");
 	}
 	/***
 	 * This method return one proof obligation without comments

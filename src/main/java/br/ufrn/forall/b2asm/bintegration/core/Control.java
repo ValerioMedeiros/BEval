@@ -344,7 +344,8 @@ public class Control {
 					writeFile(tmpFileName,proofObligation							);
 				} else {
 					proofObligation = expressionsToEvaluate
-							.getGoalOfCleanExpandedProofObligations(numberPo);
+							//.getGoalOfCleanExpandedProofObligations(numberPo);
+							.getCleanProofObligationsWithLocalHypotheses(numberPo);
 					writeFile(tmpFileName,proofObligation	);
 				}
 				System.out.println(proofObligation);
@@ -394,10 +395,19 @@ public class Control {
 						PoGenerated.Full,
 						expressionsToEvaluate.getProofState(numberPo),
 						proofObligation,
+						errorGobbler.getResult(), resultIndividual,
+						localTotalTime);
+
+				/*report.add(numberPo,
+						parameters,
+						POWD.Common,
+						PoGenerated.Full,
+						expressionsToEvaluate.getProofState(numberPo),
+						proofObligation,
 						expressionsToEvaluate.getProofState(numberPo),
 						errorGobbler.getResult(), 
 						resultIndividual,
-						localTotalTime);
+						localTotalTime);*/
 
 				proofObligations.append(proofObligation + ";\n\n");
 
