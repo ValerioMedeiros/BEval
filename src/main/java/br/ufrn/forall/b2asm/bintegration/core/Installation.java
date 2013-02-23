@@ -77,6 +77,10 @@ public class Installation {
 		
 		pathProbCli = keyboard.nextLine();
 		
+		//TODO: Remove the config file and use only informations stored in Preferences
+		
+		GeneralPreferences.updatePathProbcli(pathProbCli);
+		
 		Control.writeFile(currentPathExtensions + "Config.txt",
 				Installation.configTxt.replaceFirst("/Users/valerio/Myprograms/ProB/probcli", pathProbCli));
 		

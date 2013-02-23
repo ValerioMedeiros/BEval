@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.ufrn.forall.b2asm.bintegration.core.Control;
+import br.ufrn.forall.b2asm.bintegration.core.GeneralPreferences;
 import br.ufrn.forall.b2asm.bintegration.core.Report;
 import br.ufrn.forall.b2asm.bintegration.core.StreamGobbler.Result;
 
@@ -79,7 +80,8 @@ public class ControlTest {
 
 		
 		String pathBModule = pathTestDirectory + filename;
-		String pathProBcli = "/Users/valerio/Myprograms/ProB/probcli";
+		//String pathProBcli = "/Users/valerio/Myprograms/ProB/probcli";
+		String pathProBcli = GeneralPreferences.getPathProbcli();
 		String parameters = new String();
 		
 		if (isFullProofObligation) { 
