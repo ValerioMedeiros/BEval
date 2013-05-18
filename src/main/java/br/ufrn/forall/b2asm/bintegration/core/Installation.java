@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 public class Installation {
 
 	public static String filenameJar = "BIntegration.jar";
@@ -19,16 +21,16 @@ public class Installation {
 			"#Step 1 - copy the files BIntegrationGoal.etool BIntegration.jar, BIntegration.sh, b2asm.png to $AtelierB/AB/extensions\n"+
 			"#Step 2 - you must define below the path of probcli and parameters\n"+
 			"#Step 3 - you must define the full path of BIntegration.jar in BIntegrationGoal.etool\n"+ 
-			"/Users/valerio/Myprograms/ProB/probcli\n"+
+			"/Users/valerio/Myprograms/ProB/probcli\n"+ //Its replaced using Input dialog getting the path
 			"-p BOOL_AS_PREDICATE TRUE\n"+
 			"-p CLPFD TRUE\n"+
 			"-p MAXINT 65536\n"+
 			"-p MININT -65536\n"+
 			"-p TIME_OUT 50000\n";
 
-	protected static String bIntegrationGoalEtool = "<externalTool category=\"goal\"   name=\"ProB Logic Calculator\" icon=\"b2asm.png\" label=\"&amp;Call ProB Evaluator \"  shortcut=\"Ctrl+P\" >\n"
+	protected static String bIntegrationGoalEtool = "<externalTool category=\"goal\"   name=\"ProB Logic Calculator\" icon=\"b2asm.png\" label=\"&amp;Call B-Integration (B2ASM) \"  shortcut=\"Ctrl+P\" >\n"
 			+ "<toolParameter name=\"editor\" type=\"tool\" configure=\"yes\"\n"
-			+ "default=\"/Applications/AtelierB.app/AB/extensions/BIntegration.sh\"/>\n"
+			+ "default=\"/Applications/AtelierB.app/AB/extensions/BIntegration.sh\"/>\n" //Its replaced using the field currentPathExtensions 
 			+ "<command>${editor}</command>\n"
 			+ "<param>${poName}</param>\n"
 			+ "<param>${componentName}</param>\n"
@@ -37,9 +39,9 @@ public class Installation {
 			+ "<param>${poGoal}</param>\n"
 			+ "<param> #@# ${poHypothesis}</param>" + "</externalTool>";
 
-	protected static String bIntegrationProofEtool = "<externalTool category=\"po\"   name=\"ProBPO\" label=\"&amp;Call prover (B2ASM)\">\n"
+	protected static String bIntegrationProofEtool = "<externalTool category=\"component\"   name=\"ProBPO\" label=\"&amp;Call B-Integration (B2ASM)\"   shortcut=\"Ctrl+K\"  >\n"
 			+ "<toolParameter name=\"editor\" type=\"tool\" configure=\"yes\"\n"
-			+ "default=\"/Applications/AtelierB.app/AB/extensions/BIntegration.sh\"/>\n"
+			+ "default=\"/Applications/AtelierB.app/AB/extensions/BIntegration.sh\"/>\n" //Its replaced using the field currentPathExtensions
 			+ "<command>${editor}</command>\n"
 			+ "<param>${poName}</param>\n"
 			+ "<param>${componentName}</param>\n"
@@ -51,7 +53,7 @@ public class Installation {
 
 	protected static String bIntegrationSh = "#!/bin/bash\n"
 			+ "export TRAILSTKSIZE=1M\n"
-			+ "java -jar /Applications/AtelierB.app/AB/extensions/BIntegration.jar $@\n"
+			+ "java -jar /Applications/AtelierB.app/AB/extensions/BIntegration.jar $@\n" //TODO: Update for the current path
 			+ "res=$?\n" + "echo \"The numbers of arguments is  $#\"\n"
 			+ "#echo \"The parameters are: $@\" #it is useful in debug mode\n"
 			+ "#echo $res\n" + "exit $res\n";
@@ -71,11 +73,13 @@ public class Installation {
 		Control.writeFile(currentPathExtensions + "BIntegrationGoal.etool",
 				Installation.bIntegrationGoalEtool.replaceFirst("/Applications/AtelierB.app/AB/extensions/BIntegration.sh", currentPathExtensions+"BIntegration.sh"));
 		
-		System.out.println("Type the path of binary file probcli, for example /Users/guest/Myprograms/ProB/probcli:");
+		//System.out.println("Type the path of binary file probcli, for example /Users/guest/Myprograms/ProB/probcli:");
 		
-		Scanner keyboard = new Scanner(System.in);
+		//Scanner keyboard = new Scanner(System.in);
 		
-		pathProbCli = keyboard.nextLine();
+		//pathProbCli = keyboard.nextLine();
+		
+		pathProbCli = new JOptionPane().showInputDialog("Type the path of binary file probcli, for example /Users/guest/Myprograms/ProB/probcli:");
 		
 		//TODO: Remove the config file and use only informations stored in Preferences
 		

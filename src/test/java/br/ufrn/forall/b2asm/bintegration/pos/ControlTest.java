@@ -49,11 +49,11 @@ public class ControlTest {
 		// Probaly, the stack of hypothesis is very larger causing problems to
 		// verify
 
-		 runTwoStrategies("BV16_DEFINITION.mch");
-		 runTwoStrategies("UCHAR_DEFINITION.mch");
-		 runTwoStrategies("SCHAR_DEFINITION.mch");
-		 runTwoStrategies("USHORT_DEFINITION.mch");
-		 runTwoStrategies("SSHORT_DEFINITION.mch");
+		// runTwoStrategies("BV16_DEFINITION.mch");
+		// runTwoStrategies("UCHAR_DEFINITION.mch");
+		// runTwoStrategies("SCHAR_DEFINITION.mch");
+		// runTwoStrategies("USHORT_DEFINITION.mch");
+		// runTwoStrategies("SSHORT_DEFINITION.mch");
 		 runTwoStrategies("TYPES.mch");
 	}
 	
@@ -61,7 +61,7 @@ public class ControlTest {
 		Report reportOnlyGoal = new Report();
 		Report reportFullGoal = new Report();
 		runIndividual(reportOnlyGoal, filename, false);
-		runIndividual(reportFullGoal, filename, true);
+		//runIndividual(reportFullGoal, filename, true);
 		
 		reportOnlyGoal.print(pathTestDirectory + filename+ "LH_REPORT.csv");
 		reportFullGoal.print(pathTestDirectory + filename+ "FG_REPORT.csv");

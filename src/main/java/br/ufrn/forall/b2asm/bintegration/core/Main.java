@@ -48,7 +48,7 @@ public class Main {
 			public void run() {
 				try {
 					
-					Gui window = new Gui(control);
+					GuiPoIndividual window = new GuiPoIndividual(control);
 					
 					window.frame.setVisible(true);
 				

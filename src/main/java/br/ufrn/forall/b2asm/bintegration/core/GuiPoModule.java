@@ -9,6 +9,7 @@ import java.awt.BorderLayout;
 import javax.swing.JButton;
 import net.miginfocom.swing.MigLayout;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -28,6 +29,7 @@ import java.awt.event.ItemEvent;
 import javax.swing.DropMode;
 import javax.swing.UIManager;
 import javax.swing.JTabbedPane;
+import javax.swing.JList;
 
 /**
  * This class contains the graphic elements
@@ -36,7 +38,7 @@ import javax.swing.JTabbedPane;
  * 
  */
 
-public class Gui extends JFrame {
+public class GuiPoModule extends JFrame {
 
 	JFrame frame;
 	final Control control;
@@ -47,19 +49,17 @@ public class Gui extends JFrame {
 	private final JTextArea configFile = new JTextArea();
 	private final JScrollPane scrollconfigFile = new JScrollPane(configFile);
 
-	private final JTextArea expression = new JTextArea();
-	private final JScrollPane scrollExpression = new JScrollPane(expression);
-
 	private final JLabel lblParametersOfFile = new JLabel(
 			"Parameters of file config");
 	private final JLabel lblExpressionToEvaluate = new JLabel(
-			"Goal to evaluate");
-	private final JTextArea textHypothesis = new JTextArea();
-	private final JScrollPane scrollHypothesis = new JScrollPane(textHypothesis);
-	private final JCheckBox chckbxToAdd = new JCheckBox("Add hypothesis");
-	private final JCheckBox checkBoxKokod = new JCheckBox("Kodkod");
-	private final JCheckBox checkBoxSmt = new JCheckBox("Smt");
-	private final JCheckBox checkBoxInitialiseModule = new JCheckBox("Initialise");
+			"Proof Obligations");
+	private  JList list ;
+	private final JCheckBox checkBox = new JCheckBox("Kodkod");
+	private final JCheckBox checkBox_1 = new JCheckBox("Smt");
+	private final JCheckBox checkBox_2 = new JCheckBox("Initialise");
+	
+	
+	
 
 	/**
 	 * Launch the application.
@@ -79,7 +79,7 @@ public class Gui extends JFrame {
 			public void run() {
 				try {
 
-					Gui window = new Gui(control);
+					GuiPoModule window = new GuiPoModule(control);
 					window.frame.setVisible(true);
 
 				} catch (Exception e) {
@@ -93,7 +93,7 @@ public class Gui extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public Gui(Control control) {
+	public GuiPoModule(Control control) {
 
 		this.control = control;
 		initialize();
@@ -110,55 +110,47 @@ public class Gui extends JFrame {
 		frame.setBounds(new Rectangle(702, 439));
 		frame.setLocationRelativeTo(null);// center the window
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		// Create some items to add to the list
+		String	listData[] = {	"Item 1","Item 2", "Item 3","Item 4", "Item 2", "Item 3","Item 4",	"Item 2", "Item 3","Item 4",		"Item 3","Item 4",	"Item 1","Item 2", "Item 3","Item 4"};
+
+		list = new JList (listData);
+		
 		frame.getContentPane().setLayout(
-				new MigLayout("", "[-25.00][228.00,grow][][grow][:215.00:200.00]", "[][][][][][31.00][-9.00][][][][][][][][26.00][grow][]"));
+				new MigLayout("", "[-25.00][228.00,grow][122.00][195.00,grow][:215.00:200.00]", "[][][][][][31.00][-9.00][grow][][][][][][][26.00][grow][]"));
 
 		frame.getContentPane().add(lblParametersOfFile, "cell 1 0");
 
 		configFile.setLineWrap(true);
 		configFile.setText(control.getCommand().toString());
-		frame.getContentPane().add(scrollconfigFile, "cell 1 1 1 4,grow");
-
-		frame.getContentPane().add(checkBoxKokod, "flowx,cell 2 1,aligny top");
+		frame.getContentPane().add(scrollconfigFile, "cell 1 1 3 4,grow");
 
 		addEventsIncheckBox();
-
-		textHypothesis.setBackground(UIManager.getColor("CheckBox.background"));
-		textHypothesis.setEditable(false);
-		textHypothesis.setWrapStyleWord(true);
-		textHypothesis.setText(control.getHypothesis());
-		textHypothesis.setLineWrap(true);
-
-		frame.getContentPane().add(scrollHypothesis, "cell 3 1 4 4,grow");
-
-		frame.getContentPane().add(checkBoxSmt, "cell 2 2");
-
-		frame.getContentPane().add(checkBoxInitialiseModule, "cell 2 3");
+		
+		frame.getContentPane().add(checkBox, "cell 4 1");
+		
+		frame.getContentPane().add(checkBox_1, "cell 4 2");
+		
+		frame.getContentPane().add(checkBox_2, "cell 4 3");
 
 		frame.getContentPane().add(lblExpressionToEvaluate, "cell 1 5");
-
-		frame.getContentPane().add(scrollExpression, "cell 1 6 4 10,grow");
 		
-		expression.setWrapStyleWord(true);
-		
-		expression.setLineWrap(true);
-		
-				expression.setText(control.getGoal());
+		frame.getContentPane().add(new JScrollPane(list), "cell 1 7 4 8,grow");
 
 		frame.getContentPane().add(chckbxPoWD,
 				"cell 1 16,alignx center,aligny center");
 
 		frame.getContentPane().add(chckbxAddRule,
 				"cell 3 16,alignx center,aligny center");
+		
+		
+		
 
 		btnEval.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
 
-				control.callProbLogicEvaluator(chckbxPoWD.isSelected(),
-						chckbxAddRule.isSelected(), configFile.getText(),
-						expression.getText());
-
+				
 				frame.dispose();
 
 				int exitVal = control.getExitVal(); 
@@ -181,59 +173,10 @@ public class Gui extends JFrame {
 		});
 
 		frame.getContentPane().add(btnEval, "cell 4 16,alignx right");
-		chckbxToAdd.setEnabled(false);
-
-		frame.getContentPane().add(chckbxToAdd, "cell 3 0");
 
 	}
 
 	private void addEventsIncheckBox() {
-
-		checkBoxKokod.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-				String parameterToConfig = new String(" -p KODKOD TRUE \n");
-
-				if (((JCheckBox) e.getItem()).isSelected())
-					configFile.setText(parameterToConfig
-							+ configFile.getText().replaceAll(
-									parameterToConfig, ""));
-				else {
-					configFile.setText(configFile.getText().replaceAll(
-							parameterToConfig, ""));
-				}
-			}
-		});
-
-		checkBoxInitialiseModule.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-				String parameterToConfig = new String(control.getModulePath()
-						+ " -init ");
-
-				if (((JCheckBox) e.getItem()).isSelected())
-					configFile.setText(parameterToConfig
-							+ configFile.getText().replaceAll(
-									parameterToConfig, ""));
-				else {
-					configFile.setText(configFile.getText().replaceAll(
-							parameterToConfig, ""));
-				}
-			}
-		});
-
-		checkBoxSmt.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-				String parameterToConfig = new String(" -p SMT TRUE ");
-
-				if (((JCheckBox) e.getItem()).isSelected())
-					configFile.setText(parameterToConfig
-							+ configFile.getText().replaceAll(
-									parameterToConfig, ""));
-				else {
-					configFile.setText(configFile.getText().replaceAll(
-							parameterToConfig, ""));
-				}
-			}
-		});
 
 	}
 

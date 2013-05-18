@@ -46,7 +46,9 @@ public class POsTest {
 	@Test
 	public void test2Local() throws IOException {
 		
-		String pathBModule = new String(pathTestDirectory+"bdp"+File.separator+"BIT_DEFINITION.mch");
+		//String pathBModule = new String(pathTestDirectory+"bdp"+File.separator+"BIT_DEFINITION.mch");
+		
+		String pathBModule = new String(pathTestDirectory+"bdp"+File.separator+"TYPES.mch");
 		
 		POs expressionsToEvaluate = new POs((pathBModule.substring(0,
 				pathBModule.length() - 3) + "po"));
