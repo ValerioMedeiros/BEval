@@ -71,7 +71,7 @@ public class GuiPoModule extends JFrame {
 
 		final Control control = new Control();
 
-		control.setGoalParameters(args);
+		control.setIndividualArgs(args);
 
 		control.loadConfig();
 

@@ -100,7 +100,47 @@ public class Control {
 		return executablePath;
 	}
 
-	public void setGoalParameters(String[] args) {
+	public void setIndividualArgs(String[] args) {
+		boolean startReadHypothesis = false;
+		StringBuffer tmpGoal = new StringBuffer();
+		StringBuffer tmpHypothesis = new StringBuffer();
+		try {
+			expressionName = args[indExpressionName];
+			moduleName = args[indModuleName];
+			modulePath = args[indModulePath];
+			componentExtension = args[indComponentExtension];
+
+		} catch (Exception e) {
+
+			System.err.println("Error: you need specify the parameters");
+
+		}
+
+		int cont = indGoal;
+
+		for (; cont < args.length; cont++) {
+
+			if (!startReadHypothesis && !args[cont].contains("#@#"))
+				tmpGoal.append(" " + args[cont]);
+			else
+				break;
+
+		}
+		// start the read the next element of hypothesis
+		for (cont++; cont < args.length; cont++)
+			tmpHypothesis.append(" " + args[cont]);
+
+		// Remove description text on goal PO
+		goal = tmpGoal.toString().replaceAll("\"(.*?)\"", "btrue");
+
+		// Remove description tex on hypothesis PO
+		hypothesis = tmpHypothesis.toString().replaceAll("\"(.*?)\"", "btrue");
+
+	}
+
+
+	public void setModuleArgs(String[] args) {
+		
 		boolean startReadHypothesis = false;
 		StringBuffer tmpGoal = new StringBuffer();
 		StringBuffer tmpHypothesis = new StringBuffer();

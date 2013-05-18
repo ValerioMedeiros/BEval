@@ -21,7 +21,7 @@ public class Installation {
 			"#Step 1 - copy the files BIntegrationGoal.etool BIntegration.jar, BIntegration.sh, b2asm.png to $AtelierB/AB/extensions\n"+
 			"#Step 2 - you must define below the path of probcli and parameters\n"+
 			"#Step 3 - you must define the full path of BIntegration.jar in BIntegrationGoal.etool\n"+ 
-			"/Users/valerio/Myprograms/ProB/probcli\n"+ //Its replaced using Input dialog getting the path
+			"!pathProbCli!\n"+ //Its replaced using Input dialog getting the path
 			"-p BOOL_AS_PREDICATE TRUE\n"+
 			"-p CLPFD TRUE\n"+
 			"-p MAXINT 65536\n"+
@@ -30,7 +30,7 @@ public class Installation {
 
 	protected static String bIntegrationGoalEtool = "<externalTool category=\"goal\"   name=\"ProB Logic Calculator\" icon=\"b2asm.png\" label=\"&amp;Call B-Integration (B2ASM) \"  shortcut=\"Ctrl+P\" >\n"
 			+ "<toolParameter name=\"editor\" type=\"tool\" configure=\"yes\"\n"
-			+ "default=\"/Applications/AtelierB.app/AB/extensions/BIntegration.sh\"/>\n" //Its replaced using the field currentPathExtensions 
+			+ "default=\"!currentPathExtensions!BIntegration.sh\"/>\n" //Its replaced using the field currentPathExtensions 
 			+ "<command>${editor}</command>\n"
 			+ "<param>${poName}</param>\n"
 			+ "<param>${componentName}</param>\n"
@@ -39,21 +39,22 @@ public class Installation {
 			+ "<param>${poGoal}</param>\n"
 			+ "<param> #@# ${poHypothesis}</param>" + "</externalTool>";
 
-	protected static String bIntegrationProofEtool = "<externalTool category=\"component\"   name=\"ProBPO\" label=\"&amp;Call B-Integration (B2ASM)\"   shortcut=\"Ctrl+K\"  >\n"
+	protected static final String IdModule = "#@Module#";
+	protected static String bIntegrationProofEtool = "<externalTool category=\"component\"   name=\"B-Integration\" label=\"&amp;Call B-Integration (B2ASM)\"   shortcut=\"Ctrl+K\"  >\n"
 			+ "<toolParameter name=\"editor\" type=\"tool\" configure=\"yes\"\n"
-			+ "default=\"/Applications/AtelierB.app/AB/extensions/BIntegration.sh\"/>\n" //Its replaced using the field currentPathExtensions
+			+ "default=\"!currentPathExtensions!BIntegration.sh\"/>\n" //Its replaced using the field currentPathExtensions
 			+ "<command>${editor}</command>\n"
 			+ "<param>${poName}</param>\n"
 			+ "<param>${componentName}</param>\n"
 			+ "<param>${componentPath}</param>\n"
 			+ "<param> ${componentExt}</param>\n"
 			+ "<param>${poGoal}</param>\n"
-			+ "<param> #@# ${poHypothesis}</param>\n"
+			+ "<param> "+IdModule+"  Bacana${poHypothesis}</param>\n"
 			+ "</externalTool>\n";
 
 	protected static String bIntegrationSh = "#!/bin/bash\n"
 			+ "export TRAILSTKSIZE=1M\n"
-			+ "java -jar /Applications/AtelierB.app/AB/extensions/BIntegration.jar $@\n" //TODO: Update for the current path
+			+ "java -jar !currentPathExtensions!BIntegration.jar $@\n" //TODO: Update for the current path
 			+ "res=$?\n" + "echo \"The numbers of arguments is  $#\"\n"
 			+ "#echo \"The parameters are: $@\" #it is useful in debug mode\n"
 			+ "#echo $res\n" + "exit $res\n";
@@ -65,13 +66,13 @@ public class Installation {
 				.replaceAll(Installation.filenameJar, "");
 
 		Control.writeFile(currentPathExtensions + "BIntegration.sh",
-				Installation.bIntegrationSh.replaceFirst("/Applications/AtelierB.app/AB/extensions/BIntegration.jar", currentPathExtensions+"BIntegration.jar"));
+				Installation.bIntegrationSh.replaceFirst("!currentPathExtensions!BIntegration.jar", currentPathExtensions+"BIntegration.jar"));
 		
 		Control.writeFile(currentPathExtensions + "BIntegrationProof.etool",
-				Installation.bIntegrationProofEtool.replaceFirst("/Applications/AtelierB.app/AB/extensions/BIntegration.sh", currentPathExtensions+"BIntegration.sh"));
+				Installation.bIntegrationProofEtool.replaceFirst("!currentPathExtensions!BIntegration.sh", currentPathExtensions+"BIntegration.sh"));
 		
 		Control.writeFile(currentPathExtensions + "BIntegrationGoal.etool",
-				Installation.bIntegrationGoalEtool.replaceFirst("/Applications/AtelierB.app/AB/extensions/BIntegration.sh", currentPathExtensions+"BIntegration.sh"));
+				Installation.bIntegrationGoalEtool.replaceFirst("!currentPathExtensions!BIntegration.sh", currentPathExtensions+"BIntegration.sh"));
 		
 		//System.out.println("Type the path of binary file probcli, for example /Users/guest/Myprograms/ProB/probcli:");
 		
@@ -86,7 +87,7 @@ public class Installation {
 		GeneralPreferences.updatePathProbcli(pathProbCli);
 		
 		Control.writeFile(currentPathExtensions + "Config.txt",
-				Installation.configTxt.replaceFirst("/Users/valerio/Myprograms/ProB/probcli", pathProbCli));
+				Installation.configTxt.replaceFirst("!pathProbCli!", pathProbCli));
 		
 		try {
 			Runtime.getRuntime().exec("chmod +x "+currentPathExtensions + "BIntegration.sh");

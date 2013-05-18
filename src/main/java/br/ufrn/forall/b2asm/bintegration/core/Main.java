@@ -28,8 +28,9 @@ public class Main {
 			System.out.println("B integration solver version "+version);
 			System.out.println("__________________________________");
 			System.out.println("Installation instructions:");
-			System.out.println("1 - Move the file ("+Installation.filenameJar+") to $AtelierB_Directory/AB/extensions, after update the config files");
-			System.out.println("2 - For update the config files, execute #java -jar "+Installation.filenameJar+ " --install");
+			System.out.println("1 - Move the file ("+Installation.filenameJar+") to $AtelierB_Directory/AB/extensions, after update the config files.");
+			System.out.println("2 - For update the config files,execute in terminal:\n" +
+					" #java -jar "+Installation.filenameJar+ " --install");
 			System.exit(0);
 		}
 		
@@ -40,7 +41,11 @@ public class Main {
 
 		final Control control=  new Control();
 
-		control.setGoalParameters(args);
+		if (contains(Installation.IdModule, args)){
+			control.setModuleArgs(args);
+		}
+		else
+			control.setIndividualArgs(args);
 
 		control.loadConfig();
 		
@@ -59,6 +64,21 @@ public class Main {
 		});
 		
 		
+	}
+
+/**
+ * This method analyze if the vector has a String.
+ * @param string - 
+ * @param args -  
+ * @return boolean
+ */
+	private static boolean contains(String string, String[] args) {
+		// TODO Auto-generated method stub
+		for(int i=0;i<args.length;i++){
+			if(args[i].contains(string)) return true;
+		}
+		
+		return false;
 	}
 
 
