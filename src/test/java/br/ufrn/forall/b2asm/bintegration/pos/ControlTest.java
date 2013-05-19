@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.util.List;
 
 import org.junit.Before;
@@ -102,8 +103,10 @@ public class ControlTest {
 
 		
 
-		Control.callProbLogicEvaluatorModule(pathProBcli, parameters,
-				pathBModule, isFullProofObligation, report, pathBModule+".out");
+		Control control = new Control();
+		PrintStream ps = new PrintStream("s");
+		
+		control.callProbLogicEvaluatorModule(ps,pathProBcli, parameters, isFullProofObligation, report, pathBModule+".out");
 		
 		
 

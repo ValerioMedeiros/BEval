@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 
 public class Installation {
 
+	public final static String softwareName = "B-Integration";
 	public static String filenameJar = "BIntegration.jar";
 
 	protected static String pathProbCli;

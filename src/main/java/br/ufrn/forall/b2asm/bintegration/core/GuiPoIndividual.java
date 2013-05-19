@@ -105,7 +105,7 @@ public class GuiPoIndividual extends JFrame {
 	private void initialize() {
 
 		frame = new JFrame();
-		frame.setTitle("B Integration - Project B2ASM ");
+		frame.setTitle(Installation.softwareName+" - Project B2ASM ");
 		frame.setLocationRelativeTo(null);
 		frame.setBounds(new Rectangle(702, 439));
 		frame.setLocationRelativeTo(null);// center the window

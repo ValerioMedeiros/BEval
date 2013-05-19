@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
@@ -32,6 +33,7 @@ public class Control {
 	String expressionName;
 	String moduleName;
 	String modulePath;
+	String pathBModuleInBdpFolderWithoutExtension;
 	String separetor;
 	String componentExtension;
 	String goal; //
@@ -44,14 +46,15 @@ public class Control {
 	final int indComponentExtension = 3;
 	final int indGoal = 4; //
 	private int exitVal;
+	private POs expressionsToEvaluate;
 
 	public Control() {
 
 	}
 
 	/**
-	 * This method load from a file config.txt - the path of ProB - the time
-	 * limit
+	 * This method load from a file config.txt: the path of ProB; the time limit and others informations.
+	 * 
 	 */
 	void loadConfig() {
 
@@ -149,6 +152,11 @@ public class Control {
 			moduleName = args[indModuleName];
 			modulePath = args[indModulePath];
 			componentExtension = args[indComponentExtension];
+			
+			//TODO: To use the variable ${projectBdp}from AtelierB that contains the path to the bdp directory of the project.
+			pathBModuleInBdpFolderWithoutExtension =   modulePath.replace(moduleName+"."+componentExtension,"")+"bdp"+File.separator+moduleName;
+			//pathBModuleInBdpFolderWithExtension =   modulePath+moduleName;		
+			
 
 		} catch (Exception e) {
 
@@ -156,25 +164,7 @@ public class Control {
 
 		}
 
-		int cont = indGoal;
-
-		for (; cont < args.length; cont++) {
-
-			if (!startReadHypothesis && !args[cont].contains("#@#"))
-				tmpGoal.append(" " + args[cont]);
-			else
-				break;
-
-		}
-		// start the read the next element of hypothesis
-		for (cont++; cont < args.length; cont++)
-			tmpHypothesis.append(" " + args[cont]);
-
-		// Remove description text on goal PO
-		goal = tmpGoal.toString().replaceAll("\"(.*?)\"", "btrue");
-
-		// Remove description tex on hypothesis PO
-		hypothesis = tmpHypothesis.toString().replaceAll("\"(.*?)\"", "btrue");
+		
 
 	}
 
@@ -348,24 +338,26 @@ public class Control {
 	 * 
 	 * @param pathProBcli - It contains the path of Probcli
 	 * @param parameters - It contains the parameters to call Probcli
-	 * @param pathBModule - It contains the path of B module in evaluation 
 	 * @param isFullProofObligation - When true the proof obligations is full, otherwise, the proof obligations has only the goal  
 	 * @param report - It creates the spreadsheet
 	 * @param fileNameOut - It contains the filename out
 	 * @return
 	 */
-	public static Report callProbLogicEvaluatorModule(String pathProBcli,
-			String parameters, String pathBModule, boolean isFullProofObligation,
+	public  Report callProbLogicEvaluatorModule(PrintStream ps, String pathProBcli,
+			String parameters,  boolean isFullProofObligation,
 			Report report, String fileNameOut) {
 
 		int localExitVal = 0;
 		long localTotalTime;
 		String proofObligation;
 		Result resultIndividual = Result.ERROR;
-		POs expressionsToEvaluate = new POs((pathBModule.substring(0,
-				pathBModule.length() - 3) + "po").replaceFirst("pos"
-				+ File.separator, "pos" + File.separator + "bdp"
-				+ File.separator));
+		
+		//TODO: It is not needed the use the pathBModule
+		POs expressionsToEvaluate = new POs((pathBModuleInBdpFolderWithoutExtension));
+		
+		//POs expressionsToEvaluate = new POs((pathBModuleInBdpFolderWithExtension.substring(0,
+		//		pathBModuleInBdpFolderWithExtension.length() - 3) + "po"));
+		
 		int numberOftotalPOs = expressionsToEvaluate
 				.getNumberOfProofObligations();
 
@@ -397,18 +389,18 @@ public class Control {
 						+ tmpFileName);
 
 				// any error message?
-				StreamGobbler errorGobbler = new StreamGobbler(
-						proc.getErrorStream(), "ERROR");
+				StreamGobbler errorGobbler = new StreamGobbler(	proc.getErrorStream(), "ERROR");
 
 				// any output?
-				StreamGobbler outputGobbler = new StreamGobbler(
-						proc.getInputStream(), "OUTPUT"); // Can add a new parameter , System.out
+				StreamGobbler outputGobbler = new StreamGobbler(  proc.getInputStream(), "OUTPUT"); // Can add a new parameter , System.out
 
 				// kick them off
 				errorGobbler.start();
 				outputGobbler.start();
 
 				localExitVal = proc.waitFor();
+
+				ps.flush();
 				// Final time
 				localTotalTime = System.currentTimeMillis() - initial_time;
 
@@ -416,14 +408,11 @@ public class Control {
 				res_out = outputGobbler.getResult();
 				res_error = errorGobbler.getResult();
 
-				if (res_out != Result.ERROR && res_error != Result.ERROR) {
-					System.out.println("It was concluded successfully!");
-					resultIndividual = res_out;
+				//res_out != Result.ERROR && res_error != Result.ERROR) {
+				System.out.println("It was concluded successfully!");
+				//resultIndividual = res_out;
 
-				} else {
-					resultIndividual = Result.ERROR;
-					localExitVal = 1;
-				}
+			
 
 				System.out.println("Time spent: " + localTotalTime);
 
@@ -435,7 +424,8 @@ public class Control {
 						PoGenerated.Full,
 						expressionsToEvaluate.getProofState(numberPo),
 						proofObligation,
-						errorGobbler.getResult(), resultIndividual,
+						Result.INITIAL,
+						resultIndividual,
 						localTotalTime);
 
 				/*report.add(numberPo,
@@ -454,8 +444,7 @@ public class Control {
 			}
 			
 			Control.writeFile(
-					pathBModule.substring(0, pathBModule.length() - 3)
-							+ "full.EPOs", proofObligations.toString());
+					pathBModuleInBdpFolderWithoutExtension+ "full.EPOs", proofObligations.toString());
 			
 			
 			
@@ -539,6 +528,24 @@ public class Control {
 
 	public int getExitVal() {
 		return exitVal;
+	}
+
+
+	public String[] getStateAndNameOfProofObligations() {
+		
+		expressionsToEvaluate = new POs((pathBModuleInBdpFolderWithoutExtension));
+		return expressionsToEvaluate.getStateAndNameOfProofObligations();
+	}
+
+	/**
+	 * Returns true, when the proof obligation is evaluated true
+	 * @param number enumerating from 1 up to numbers of proof obligations
+	 * @return
+	 */
+	public boolean isProvedTheProofState(int number){
+		
+		return expressionsToEvaluate.isProvedTheProofState(number);
+		
 	}
 
 }

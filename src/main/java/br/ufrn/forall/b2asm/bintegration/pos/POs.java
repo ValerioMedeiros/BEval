@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 import br.ufrn.forall.b2asm.bintegration.core.Control;
 
 public class POs {
-	private String pathFile;
+	private String pathPOFileWithoutExtension;
 	private String original;
 	private String [] theoriesSplittedsRead;
 	private String [] posUnexpandedRead;
@@ -25,16 +25,17 @@ public class POs {
 	
 	/**
 	 * This constructor parser the proof obligations 
-	 * @param pathPOFile - file ".po" located in bdp
+	 * @param pathPOFileWithoutExtension - file ".po" located in bdp
 	 */
 	
-	public POs (String pathPOFile){
+	public POs (String pathPOFileWithoutExtension){
 		
-		this.pathFile = pathPOFile;
+		this.pathPOFileWithoutExtension = pathPOFileWithoutExtension;
 
-		original = Control.readFile(pathFile);
+		original = Control.readFile(pathPOFileWithoutExtension+".po");
 		
-		pOsStatus = new POsStatus(pathFile.substring(0, pathFile.length()-3)+".pmi" ); 
+		//pOsStatus = new POsStatus(pathFile.substring(0, pathFile.length()-3)+".pmi" );
+		pOsStatus = new POsStatus(pathPOFileWithoutExtension+".pmi" );
 		
 		load();
 		
@@ -67,6 +68,8 @@ public class POs {
 		
 	}
 	
+	
+
 	void loadProofList(){
 		
 		posUnexpandedRead = proofListRead.split(";");
@@ -214,12 +217,34 @@ public class POs {
 		return expandedGoal.length;
 	}
 	
+	/**
+	 * Returns true, when the proof obligation is evaluated true
+	 * @param number enumerating from 1 up to numbers of proof obligations
+	 * @return
+	 */
 	public boolean isProvedTheProofState(int number){
 		return pOsStatus.isProvedTheProofState(number);
 	}
 	public String getProofState(int number){
 	
 		return pOsStatus.getProofState(number);
+	}
+
+	public String[] getStateAndNameOfProofObligations() {
+
+		String[] tmp = proofListRead.split("\n");
+		String[] result = new String[tmp.length-1];
+		
+		for(int i = result.length-1;i>=0;i--){
+			
+			String namePartial = tmp[result.length - i].split(",")[0];
+			result[i]= i+1+" - "+namePartial.substring(namePartial.lastIndexOf("&")+1) + " ("+getProofState(result.length -i)+" )";
+		}
+		
+		
+		
+		return result;
+		
 	}
 	
 	

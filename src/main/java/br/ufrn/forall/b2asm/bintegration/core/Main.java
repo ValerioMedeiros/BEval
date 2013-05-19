@@ -14,7 +14,8 @@ import br.ufrn.forall.b2asm.bintegration.core.StreamGobbler.Result;
  *
  */
 public class Main {
-	final static String version= "0.5"; 
+	final static String version= "0.7";
+	private static boolean isModuleArgs=false; 
 
 
 	/**
@@ -43,6 +44,7 @@ public class Main {
 
 		if (contains(Installation.IdModule, args)){
 			control.setModuleArgs(args);
+			isModuleArgs=true;
 		}
 		else
 			control.setIndividualArgs(args);
@@ -53,9 +55,12 @@ public class Main {
 			public void run() {
 				try {
 					
-					GuiPoIndividual window = new GuiPoIndividual(control);
+					if(isModuleArgs){
+						GuiPoModule window = new GuiPoModule(control); window.frame.setVisible(true);
+					}else{
+						GuiPoIndividual window = new GuiPoIndividual(control); window.frame.setVisible(true);
+					}
 					
-					window.frame.setVisible(true);
 				
 				} catch (Exception e) {
 					e.printStackTrace();

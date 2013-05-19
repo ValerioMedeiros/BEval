@@ -21,15 +21,20 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
+import javax.swing.event.ListSelectionListener;
 
 import br.ufrn.forall.b2asm.bintegration.core.StreamGobbler.Result;
 
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
+import java.io.File;
+import java.io.PrintStream;
+
 import javax.swing.DropMode;
 import javax.swing.UIManager;
 import javax.swing.JTabbedPane;
 import javax.swing.JList;
+import javax.swing.JScrollBar;
 
 /**
  * This class contains the graphic elements
@@ -54,10 +59,12 @@ public class GuiPoModule extends JFrame {
 	private final JLabel lblExpressionToEvaluate = new JLabel(
 			"Proof Obligations");
 	private  JList list ;
-	private final JCheckBox checkBox = new JCheckBox("Kodkod");
-	private final JCheckBox checkBox_1 = new JCheckBox("Smt");
-	private final JCheckBox checkBox_2 = new JCheckBox("Initialise");
-	
+	private final JCheckBox checkBoxKokod = new JCheckBox("Kodkod");
+	private final JCheckBox checkBoxSmt = new JCheckBox("Smt");
+	private final JCheckBox checkBoxInitialiseModule = new JCheckBox("Initialise");
+	private final JCheckBox checkBoxHypothesis = new JCheckBox("Only first hypothesis");
+	private final JTextArea textArea = new JTextArea();
+	private PrintStream ps;
 	
 	
 
@@ -105,19 +112,19 @@ public class GuiPoModule extends JFrame {
 	private void initialize() {
 
 		frame = new JFrame();
-		frame.setTitle("B Integration - Project B2ASM ");
+		frame.setTitle(Installation.softwareName+" - Project B2ASM ");
 		frame.setLocationRelativeTo(null);
 		frame.setBounds(new Rectangle(702, 439));
 		frame.setLocationRelativeTo(null);// center the window
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// Create some items to add to the list
-		String	listData[] = {	"Item 1","Item 2", "Item 3","Item 4", "Item 2", "Item 3","Item 4",	"Item 2", "Item 3","Item 4",		"Item 3","Item 4",	"Item 1","Item 2", "Item 3","Item 4"};
-
+		String	listData[] = control.getStateAndNameOfProofObligations();
 		list = new JList (listData);
 		
+		
 		frame.getContentPane().setLayout(
-				new MigLayout("", "[-25.00][228.00,grow][122.00][195.00,grow][:215.00:200.00]", "[][][][][][31.00][-9.00][grow][][][][][][][26.00][grow][]"));
+				new MigLayout("", "[-25.00][228.00,grow][122.00][195.00,grow][:215.00:200.00]", "[][][][][][31.00][-9.00][grow][grow][][][][][][26.00][grow][]"));
 
 		frame.getContentPane().add(lblParametersOfFile, "cell 1 0");
 
@@ -127,15 +134,30 @@ public class GuiPoModule extends JFrame {
 
 		addEventsIncheckBox();
 		
-		frame.getContentPane().add(checkBox, "cell 4 1");
+		textArea.setEditable(false);
 		
-		frame.getContentPane().add(checkBox_1, "cell 4 2");
+		//Setting the output to TextArea
+        TextAreaOutputStream taos = new TextAreaOutputStream( textArea );
+        ps = new PrintStream( taos );
+        System.setOut( ps );
+        System.setErr( ps );
+			
 		
-		frame.getContentPane().add(checkBox_2, "cell 4 3");
+		
+		frame.getContentPane().add(checkBoxKokod, "cell 4 1");
+		
+		frame.getContentPane().add(checkBoxSmt, "cell 4 2");
+		
+		frame.getContentPane().add(checkBoxInitialiseModule, "cell 4 3");
+		
+		frame.getContentPane().add(checkBoxHypothesis, "cell 4 4");
 
 		frame.getContentPane().add(lblExpressionToEvaluate, "cell 1 5");
 		
-		frame.getContentPane().add(new JScrollPane(list), "cell 1 7 4 8,grow");
+		frame.getContentPane().add(new JScrollPane(list), "cell 1 7 1 8,grow");
+		
+		frame.getContentPane().add(new JScrollPane(textArea), "cell 2 7 3 8,grow");
+		
 
 		frame.getContentPane().add(chckbxPoWD,
 				"cell 1 16,alignx center,aligny center");
@@ -150,10 +172,24 @@ public class GuiPoModule extends JFrame {
 
 			public void actionPerformed(ActionEvent arg0) {
 
+				//list = control.getListOfPOs()
+				//control.callProbLogic 
 				
-				frame.dispose();
+				Report reportTmp = new Report();
+							
+				
+				
+				
+				control.callProbLogicEvaluatorModule(ps, control.getExecutablePath(), configFile.getText(), true, reportTmp, control.modulePath+".out");
+				
+				//		control.callProbLogicEvaluatorModule(pathProBcli, parameters,
+				//		pathBModule, isFullProofObligation, report, pathBModule+".out");
+				
+				//frame.dispose();
 
-				int exitVal = control.getExitVal(); 
+
+				/*
+				  int exitVal = control.getExitVal(); 
 				String info = new String( "Evaluated predicate "+control.expressionName+"\nfrom "+control.moduleName+"."+control.componentExtension+" in "+control.total_time+" milliseconds.\n");
 				if (exitVal == 0 && control.getResult() == Result.FALSE) {
 					JOptionPane.showMessageDialog(frame,
@@ -168,16 +204,79 @@ public class GuiPoModule extends JFrame {
 							info+"The predicate was not solved!\nCode:" + exitVal
 									+ " " + control.getResult(),"Result", JOptionPane.ERROR_MESSAGE);
 					System.exit(1);
-				}
+				}*/
 			}
 		});
 
 		frame.getContentPane().add(btnEval, "cell 4 16,alignx right");
+		
+		/* Seleciona somente as não provadas 
+		int countUnproved=0;
+		for(int i =1; i<=listData.length;i++){ 
+			if(!control.isProvedTheProofState(i))
+				countUnproved++;
+			}
+		
+		int  indicesUnproved [] = new int [countUnproved];
+		for(int j =0; j<listData.length;j++){ 
+			if(!control.isProvedTheProofState(j))
+				indicesUnproved[j] = j ;
+			}
+		
+		list.setSelectedIndices(indicesUnproved);
+		*/
 
 	}
 
 	private void addEventsIncheckBox() {
 
+		checkBoxKokod.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				String parameterToConfig = new String(" -p KODKOD TRUE \n");
+
+				if (((JCheckBox) e.getItem()).isSelected())
+					configFile.setText(parameterToConfig
+							+ configFile.getText().replaceAll(
+									parameterToConfig, ""));
+				else {
+					configFile.setText(configFile.getText().replaceAll(
+							parameterToConfig, ""));
+				}
+			}
+		});
+
+		checkBoxInitialiseModule.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				String parameterToConfig = new String(control.getModulePath()
+						+ " -init ");
+
+				if (((JCheckBox) e.getItem()).isSelected())
+					configFile.setText(parameterToConfig
+							+ configFile.getText().replaceAll(
+									parameterToConfig, ""));
+				else {
+					configFile.setText(configFile.getText().replaceAll(
+							parameterToConfig, ""));
+				}
+			}
+		});
+
+		checkBoxSmt.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				String parameterToConfig = new String(" -p SMT TRUE ");
+
+				if (((JCheckBox) e.getItem()).isSelected())
+					configFile.setText(parameterToConfig
+							+ configFile.getText().replaceAll(
+									parameterToConfig, ""));
+				else {
+					configFile.setText(configFile.getText().replaceAll(
+							parameterToConfig, ""));
+				}
+			}
+		});
+
 	}
+
 
 }

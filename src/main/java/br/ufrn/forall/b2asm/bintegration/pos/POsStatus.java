@@ -78,10 +78,14 @@ import br.ufrn.forall.b2asm.bintegration.core.Control;
 	 * @param number enumerating from 1 up to numbers of proof obligations
 	 * @return
 	 */
-	
 	boolean isProvedTheProofState(int number){
 		return proofStateSplitted[number-1].contains( "Proved");
 	}
+	/**
+	 * Returns the state
+	 * @param number enumerating from 1 up to numbers of proof obligations
+	 * @return
+	 */
 	String getProofState(int number){
 		return proofStateSplitted[number-1];
 	}
