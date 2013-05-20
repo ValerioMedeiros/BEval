@@ -9,7 +9,7 @@ Basically, the B integration take a B proof obligation in  B syntax from Atelier
 
 ### Solving one proof obligation:
 
-1. Use the shortcut (`Command+P` or `CRTL+P`) to call the B Integration in AtelierB`s interactive prover with a current proof obligation.
+1. Use the shortcut (`Command+D` or `CRTL+D`) to call the B Integration in AtelierB`s interactive prover with a current proof obligation.
 
 2. Load the rule created, type in interactive prover terminal `pc` to precompile the rule created.
 
