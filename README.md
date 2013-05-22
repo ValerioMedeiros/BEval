@@ -21,7 +21,7 @@ Basically, the B integration take a B proof obligation in  B syntax from Atelier
 Installation procedures
 ---------------------
 
-1. Move the files [BIntegration] and B2asm.png to $AtelierBInstallationDirectory/AB/extensions (Mac Os) or $AtelierBInstallationDirectory/extensions (Linux).
+1. Move the files [BIntegration.jar] and [B2asm.png] to $AtelierBInstallationDirectory/AB/extensions (Mac Os) or $AtelierBInstallationDirectory/extensions (Linux).
 
 2. In terminal, type:
 
