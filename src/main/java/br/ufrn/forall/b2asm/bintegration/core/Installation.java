@@ -29,7 +29,7 @@ public class Installation {
 			"-p MININT -65536\n"+
 			"-p TIME_OUT 50000\n";
 
-	protected static String bIntegrationGoalEtool = "<externalTool category=\"goal\"   name=\"ProB Logic Calculator\" icon=\"b2asm.png\" label=\"&amp;Call B-Integration (B2ASM) \"  shortcut=\"Ctrl+P\" >\n"
+	protected static String bIntegrationGoalEtool = "<externalTool category=\"goal\"   name=\"ProB Logic Calculator\" icon=\"b2asm.png\" label=\"&amp;Call B-Integration (B2ASM) \"  shortcut=\"Ctrl+D\" >\n"
 			+ "<toolParameter name=\"editor\" type=\"tool\" configure=\"yes\"\n"
 			+ "default=\"!currentPathExtensions!BIntegration.sh\"/>\n" //Its replaced using the field currentPathExtensions 
 			+ "<command>${editor}</command>\n"
@@ -41,7 +41,7 @@ public class Installation {
 			+ "<param> #@# ${poHypothesis}</param>" + "</externalTool>";
 
 	protected static final String IdModule = "#@Module#";
-	protected static String bIntegrationProofEtool = "<externalTool category=\"component\"   name=\"B-Integration\" label=\"&amp;Call B-Integration (B2ASM)\"   shortcut=\"Ctrl+K\"  >\n"
+	protected static String bIntegrationProofEtool = "<externalTool category=\"component\"   name=\"B-Integration\" label=\"&amp;Call B-Integration (B2ASM)\"   shortcut=\"Ctrl+D\"  >\n"
 			+ "<toolParameter name=\"editor\" type=\"tool\" configure=\"yes\"\n"
 			+ "default=\"!currentPathExtensions!BIntegration.sh\"/>\n" //Its replaced using the field currentPathExtensions
 			+ "<command>${editor}</command>\n"

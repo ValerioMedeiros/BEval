@@ -1,5 +1,7 @@
 package br.ufrn.forall.b2asm.bintegration.pos;
 
+import javax.swing.JOptionPane;
+
 import br.ufrn.forall.b2asm.bintegration.core.Control;
 
  class POsStatus {
@@ -55,12 +57,13 @@ import br.ufrn.forall.b2asm.bintegration.core.Control;
 		loadProofState();
 		
 		
-		
 	}
 	
 	void loadProofState(){
-		proofStateSplitted = proofStateRead.replaceAll("\n", "").split(";");
-		
+		//JOptionPane.showMessageDialog(null, proofStateRead);
+		if(proofStateRead!=null){
+			proofStateSplitted = proofStateRead.replaceAll("\n", "").split(";");
+		}
 	}
 	
 	void printStates(){
@@ -79,7 +82,9 @@ import br.ufrn.forall.b2asm.bintegration.core.Control;
 	 * @return
 	 */
 	boolean isProvedTheProofState(int number){
-		return proofStateSplitted[number-1].contains( "Proved");
+		
+			return proofStateSplitted[number-1].contains( "Proved");
+		
 	}
 	/**
 	 * Returns the state
@@ -87,7 +92,10 @@ import br.ufrn.forall.b2asm.bintegration.core.Control;
 	 * @return
 	 */
 	String getProofState(int number){
-		return proofStateSplitted[number-1];
+		if(number >=1 & number <= proofStateSplitted.length ) 
+			return proofStateSplitted[number-1];
+		else return "";
+		
 	}
 
 }

@@ -50,10 +50,8 @@ public class GuiPoIndividual extends JFrame {
 	private final JTextArea expression = new JTextArea();
 	private final JScrollPane scrollExpression = new JScrollPane(expression);
 
-	private final JLabel lblParametersOfFile = new JLabel(
-			"Parameters of file config");
-	private final JLabel lblExpressionToEvaluate = new JLabel(
-			"Goal to evaluate");
+	private final JLabel lblParametersOfFile = new JLabel("Parameters of file config");
+	private final JLabel lblExpressionToEvaluate = new JLabel("Goal to evaluate");
 	private final JTextArea textHypothesis = new JTextArea();
 	private final JScrollPane scrollHypothesis = new JScrollPane(textHypothesis);
 	private final JCheckBox chckbxToAdd = new JCheckBox("Add hypothesis");
@@ -104,9 +102,8 @@ public class GuiPoIndividual extends JFrame {
 	 */
 	private void initialize() {
 
-		frame = new JFrame();
-		frame.setTitle(Installation.softwareName+" - Project B2ASM ");
-		frame.setLocationRelativeTo(null);
+		frame = new JFrame(Installation.softwareName);
+        frame.setTitle(Installation.softwareName+" - Project B2ASM ");
 		frame.setBounds(new Rectangle(702, 439));
 		frame.setLocationRelativeTo(null);// center the window
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -143,7 +140,7 @@ public class GuiPoIndividual extends JFrame {
 		
 		expression.setLineWrap(true);
 		
-				expression.setText(control.getGoal());
+		expression.setText(control.getGoal());
 
 		frame.getContentPane().add(chckbxPoWD,
 				"cell 1 16,alignx center,aligny center");

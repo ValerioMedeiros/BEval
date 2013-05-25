@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.List;
 
+import javax.swing.JTextArea;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -104,9 +106,9 @@ public class ControlTest {
 		
 
 		Control control = new Control();
-		PrintStream ps = new PrintStream("s");
+		JTextArea ps = new JTextArea();
 		
-		control.callProbLogicEvaluatorModule(ps,pathProBcli, parameters, isFullProofObligation, report, pathBModule+".out");
+		control.callProbLogicEvaluatorModule(null,ps,pathProBcli, parameters, isFullProofObligation, report, pathBModule+".out");
 		
 		
 

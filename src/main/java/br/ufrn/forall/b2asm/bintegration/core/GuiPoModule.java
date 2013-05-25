@@ -2,39 +2,30 @@ package br.ufrn.forall.b2asm.bintegration.core;
 
 import java.awt.EventQueue;
 import java.awt.Rectangle;
-
-import javax.swing.JFrame;
-import javax.swing.JCheckBox;
-import java.awt.BorderLayout;
-import javax.swing.JButton;
-import net.miginfocom.swing.MigLayout;
-
-import javax.swing.DefaultListModel;
-import javax.swing.JDialog;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextPane;
-import javax.swing.JTextArea;
-import javax.swing.JLabel;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.event.ChangeListener;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ListSelectionListener;
-
-import br.ufrn.forall.b2asm.bintegration.core.StreamGobbler.Result;
-
-import java.awt.event.ItemListener;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
-import java.io.File;
+import java.awt.event.ItemListener;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintStream;
 
-import javax.swing.DropMode;
-import javax.swing.UIManager;
-import javax.swing.JTabbedPane;
+import javax.sound.sampled.ReverbType;
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JScrollBar;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.SwingUtilities;
+
+import net.miginfocom.swing.MigLayout;
+import br.ufrn.forall.b2asm.bintegration.pos.POs;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 /**
  * This class contains the graphic elements
@@ -65,6 +56,7 @@ public class GuiPoModule extends JFrame {
 	private final JCheckBox checkBoxHypothesis = new JCheckBox("Only first hypothesis");
 	private final JTextArea textArea = new JTextArea();
 	private PrintStream ps;
+	private DefaultListModel listModel=new DefaultListModel();
 	
 	
 
@@ -110,8 +102,8 @@ public class GuiPoModule extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-
-		frame = new JFrame();
+		
+		frame = new JFrame(Installation.softwareName);
 		frame.setTitle(Installation.softwareName+" - Project B2ASM ");
 		frame.setLocationRelativeTo(null);
 		frame.setBounds(new Rectangle(702, 439));
@@ -119,12 +111,14 @@ public class GuiPoModule extends JFrame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// Create some items to add to the list
-		String	listData[] = control.getStateAndNameOfProofObligations();
-		list = new JList (listData);
+		String	listData [] = control.getStateAndNameOfProofObligations(false);
+
+		for (int i=0; i<listData.length; i++) {
+			listModel.addElement(listData[i]);
+		}
+		list=new JList(listModel);
 		
-		
-		frame.getContentPane().setLayout(
-				new MigLayout("", "[-25.00][228.00,grow][122.00][195.00,grow][:215.00:200.00]", "[][][][][][31.00][-9.00][grow][grow][][][][][][26.00][grow][]"));
+		frame.getContentPane().setLayout(new MigLayout("", "[-25.00][214.00,grow][122.00][195.00,grow][:215.00:200.00]", "[][][][][][31.00][-9.00][grow][grow][][][][][][26.00][grow][]"));
 
 		frame.getContentPane().add(lblParametersOfFile, "cell 1 0");
 
@@ -136,13 +130,8 @@ public class GuiPoModule extends JFrame {
 		
 		textArea.setEditable(false);
 		
-		//Setting the output to TextArea
-        TextAreaOutputStream taos = new TextAreaOutputStream( textArea );
-        ps = new PrintStream( taos );
-        System.setOut( ps );
-        System.setErr( ps );
-			
-		
+		//Setting the output to TextArea        
+        redirectSystemStreams();
 		
 		frame.getContentPane().add(checkBoxKokod, "cell 4 1");
 		
@@ -158,6 +147,28 @@ public class GuiPoModule extends JFrame {
 		
 		frame.getContentPane().add(new JScrollPane(textArea), "cell 2 7 3 8,grow");
 		
+		chckbxPoWD.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				
+				if(chckbxPoWD.isSelected()){
+					// Create some items to add to the list
+					String	listData [] = control.getStateAndNameOfProofObligations(true);
+					listModel.removeAllElements();
+					for (int i=0; i<listData.length; i++) {
+						listModel.addElement(listData[i]);
+					}
+				}else{
+					// Create some items to add to the list
+					String	listData [] = control.getStateAndNameOfProofObligations(false);
+					listModel.removeAllElements();
+					for (int i=0; i<listData.length; i++) {
+						listModel.addElement(listData[i]);
+					}
+				}
+			
+			}
+		});
+		
 
 		frame.getContentPane().add(chckbxPoWD,
 				"cell 1 16,alignx center,aligny center");
@@ -171,61 +182,39 @@ public class GuiPoModule extends JFrame {
 		btnEval.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
-
-				//list = control.getListOfPOs()
-				//control.callProbLogic 
-				
+				POs expressionsToEvaluate;
 				Report reportTmp = new Report();
-							
 				
 				
 				
-				control.callProbLogicEvaluatorModule(ps, control.getExecutablePath(), configFile.getText(), true, reportTmp, control.modulePath+".out");
+				//TODO: move this logic to Control class
+				if(chckbxPoWD.isSelected()){
+					
+					expressionsToEvaluate = new POs((control.pathBModuleInBdpFolderWithoutExtension+"_wd"));
+					
+				}else{
+					
+					expressionsToEvaluate = new POs((control.pathBModuleInBdpFolderWithoutExtension));
+					
+				}
 				
-				//		control.callProbLogicEvaluatorModule(pathProBcli, parameters,
-				//		pathBModule, isFullProofObligation, report, pathBModule+".out");
-				
-				//frame.dispose();
+				int numberOftotalPOs = expressionsToEvaluate.getNumberOfProofObligations();
 
-
-				/*
-				  int exitVal = control.getExitVal(); 
-				String info = new String( "Evaluated predicate "+control.expressionName+"\nfrom "+control.moduleName+"."+control.componentExtension+" in "+control.total_time+" milliseconds.\n");
-				if (exitVal == 0 && control.getResult() == Result.FALSE) {
-					JOptionPane.showMessageDialog(frame,
-							info+"The predicate is false!","Result", JOptionPane.WARNING_MESSAGE);
-					System.exit(0);
-				} else if (exitVal == 0 && control.getResult() == Result.TRUE) {
-					JOptionPane.showMessageDialog(frame,
-							info+"The predicate is true!","Result", JOptionPane.INFORMATION_MESSAGE);
-					System.exit(0);
-				} else {
-					JOptionPane.showMessageDialog(frame,
-							info+"The predicate was not solved!\nCode:" + exitVal
-									+ " " + control.getResult(),"Result", JOptionPane.ERROR_MESSAGE);
-					System.exit(1);
-				}*/
+				StringBuffer proofObligations = new StringBuffer();
+				
+					for (int numberPo = 1; numberPo <= numberOftotalPOs; numberPo++) {
+						
+						if(!expressionsToEvaluate.isProvedTheProofState(numberPo)){
+							control.callProbLogicEvaluator(false,false, configFile.getText(), expressionsToEvaluate.getCleanProofObligationsWithLocalHypotheses(numberPo));
+							textArea.repaint();
+							frame.validate();
+							frame.repaint();
+						}
+					}
 			}
 		});
 
 		frame.getContentPane().add(btnEval, "cell 4 16,alignx right");
-		
-		/* Seleciona somente as não provadas 
-		int countUnproved=0;
-		for(int i =1; i<=listData.length;i++){ 
-			if(!control.isProvedTheProofState(i))
-				countUnproved++;
-			}
-		
-		int  indicesUnproved [] = new int [countUnproved];
-		for(int j =0; j<listData.length;j++){ 
-			if(!control.isProvedTheProofState(j))
-				indicesUnproved[j] = j ;
-			}
-		
-		list.setSelectedIndices(indicesUnproved);
-		*/
-
 	}
 
 	private void addEventsIncheckBox() {
@@ -276,6 +265,36 @@ public class GuiPoModule extends JFrame {
 			}
 		});
 
+	}
+	
+	private void updateTextArea(final String text) {
+		  SwingUtilities.invokeLater(new Runnable() {
+		    public void run() {
+		      textArea.append(text);
+		    }
+		  });
+	}
+		 
+	private void redirectSystemStreams() {
+		  OutputStream out = new OutputStream() {
+		    @Override
+		    public void write(int b) throws IOException {
+		      updateTextArea(String.valueOf((char) b));
+		    }
+		 
+		    @Override
+		    public void write(byte[] b, int off, int len) throws IOException {
+		      updateTextArea(new String(b, off, len));
+		    }
+		 
+		    @Override
+		    public void write(byte[] b) throws IOException {
+		      write(b, 0, b.length);
+		    }
+		  };
+		 
+		  System.setOut(new PrintStream(out, true));
+		  System.setErr(new PrintStream(out, true));
 	}
 
 

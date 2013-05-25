@@ -34,7 +34,6 @@ public class POs {
 
 		original = Control.readFile(pathPOFileWithoutExtension+".po");
 		
-		//pOsStatus = new POsStatus(pathFile.substring(0, pathFile.length()-3)+".pmi" );
 		pOsStatus = new POsStatus(pathPOFileWithoutExtension+".pmi" );
 		
 		load();
@@ -72,16 +71,20 @@ public class POs {
 
 	void loadProofList(){
 		
+		if(proofListRead!=null && proofListRead.length()>=7){
+			
 		posUnexpandedRead = proofListRead.split(";");
+		
 		//System.out.println("List "+posUnexpandedRead.length);
 
 		expandedHypoThesis = new String [posUnexpandedRead.length];
 		expandedGoal = new String [posUnexpandedRead.length];
 		
-		for(int count = 0; count<posUnexpandedRead.length ; count++ )
-			loadEachExpandedProofObligation(count);
+			for(int count = 0; count<posUnexpandedRead.length ; count++ ){
+				loadEachExpandedProofObligation(count);
+			}
 		
-	
+		}
 		
 	}
 	
@@ -226,25 +229,29 @@ public class POs {
 		return pOsStatus.isProvedTheProofState(number);
 	}
 	public String getProofState(int number){
-	
-		return pOsStatus.getProofState(number);
+		
+			return pOsStatus.getProofState(number);
 	}
 
 	public String[] getStateAndNameOfProofObligations() {
 
-		String[] tmp = proofListRead.split("\n");
-		String[] result = new String[tmp.length-1];
-		
-		for(int i = result.length-1;i>=0;i--){
+		if(proofListRead==null){
+			return new String[0];
 			
-			String namePartial = tmp[result.length - i].split(",")[0];
-			result[i]= i+1+" - "+namePartial.substring(namePartial.lastIndexOf("&")+1) + " ("+getProofState(result.length -i)+" )";
+		}else{
+			
+			String[] tmp = proofListRead.split(";");
+			String[] result = new String[tmp.length-1];
+			
+			for(int i = result.length-1;i>=0;i--){
+				
+				String namePartial = tmp[result.length - i].split(",")[0];
+				//System.out.println(result.length -i + " R:"+result.length+ " "+ i);
+				result[i]= i+1+" - "+namePartial.substring(namePartial.lastIndexOf("&")+1) + " ("+getProofState(result.length -i)+" )";
+			}
+			
+			return result;
 		}
-		
-		
-		
-		return result;
-		
 	}
 	
 	

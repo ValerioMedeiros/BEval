@@ -12,6 +12,10 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
+
 import br.ufrn.forall.b2asm.bintegration.core.Report.POWD;
 import br.ufrn.forall.b2asm.bintegration.core.Report.PoGenerated;
 import br.ufrn.forall.b2asm.bintegration.core.StreamGobbler.Result;
@@ -285,7 +289,9 @@ public class Control {
 			writeFile(tmpFileName, goalExpression);
 
 			long initial_time = System.currentTimeMillis();
-
+			
+			//JOptionPane.showMessageDialog(null, this.getExecutablePath() + " "+ parameters.replace("\n", "") + " --eval_rule_file "+ tmpFileName);
+			
 			Process proc = rt.exec(this.getExecutablePath() + " "
 					+ parameters.replace("\n", "") + " --eval_rule_file "
 					+ tmpFileName);
@@ -343,7 +349,7 @@ public class Control {
 	 * @param fileNameOut - It contains the filename out
 	 * @return
 	 */
-	public  Report callProbLogicEvaluatorModule(PrintStream ps, String pathProBcli,
+	public  Report callProbLogicEvaluatorModule(JFrame frame, JTextArea jTextArea , String pathProBcli,
 			String parameters,  boolean isFullProofObligation,
 			Report report, String fileNameOut) {
 
@@ -387,33 +393,46 @@ public class Control {
 				Process proc = rt.exec(pathProBcli + " "
 						+ parameters.replace("\n", "") + " --eval_rule_file "
 						+ tmpFileName);
-
+				
+				
+				/*
 				// any error message?
 				StreamGobbler errorGobbler = new StreamGobbler(	proc.getErrorStream(), "ERROR");
 
 				// any output?
 				StreamGobbler outputGobbler = new StreamGobbler(  proc.getInputStream(), "OUTPUT"); // Can add a new parameter , System.out
-
+				
+				
+				
 				// kick them off
 				errorGobbler.start();
 				outputGobbler.start();
-
+				*/
+				
+				
+				
 				localExitVal = proc.waitFor();
-
-				ps.flush();
+				
+				//printStream.flush();
+				//jTextArea.repaint();
+				//jTextArea.getGraphics().
+				
+				//outputGobbler.os. jTextArea();
+				
 				// Final time
 				localTotalTime = System.currentTimeMillis() - initial_time;
 
 				Result res_out, res_error;
-				res_out = outputGobbler.getResult();
-				res_error = errorGobbler.getResult();
+				//res_out = outputGobbler.getResult();
+				//res_error = errorGobbler.getResult();
 
 				//res_out != Result.ERROR && res_error != Result.ERROR) {
 				System.out.println("It was concluded successfully!");
 				//resultIndividual = res_out;
-
-			
-
+				
+				frame.repaint();
+				//JOptionPane.showMessageDialog(null, numberPo);
+				
 				System.out.println("Time spent: " + localTotalTime);
 
 				System.out.println("Process exit value: " + localExitVal);
@@ -428,25 +447,12 @@ public class Control {
 						resultIndividual,
 						localTotalTime);
 
-				/*report.add(numberPo,
-						parameters,
-						POWD.Common,
-						PoGenerated.Full,
-						expressionsToEvaluate.getProofState(numberPo),
-						proofObligation,
-						expressionsToEvaluate.getProofState(numberPo),
-						errorGobbler.getResult(), 
-						resultIndividual,
-						localTotalTime);*/
-
 				proofObligations.append(proofObligation + ";\n\n");
 
 			}
 			
 			Control.writeFile(
 					pathBModuleInBdpFolderWithoutExtension+ "full.EPOs", proofObligations.toString());
-			
-			
 			
 
 		} catch (Throwable t) {
@@ -531,9 +537,13 @@ public class Control {
 	}
 
 
-	public String[] getStateAndNameOfProofObligations() {
+	public String[] getStateAndNameOfProofObligations(boolean isWD) {
 		
-		expressionsToEvaluate = new POs((pathBModuleInBdpFolderWithoutExtension));
+		if(isWD){
+			expressionsToEvaluate = new POs((pathBModuleInBdpFolderWithoutExtension+"_wd"));
+		} else{
+			expressionsToEvaluate = new POs((pathBModuleInBdpFolderWithoutExtension));
+		}
 		return expressionsToEvaluate.getStateAndNameOfProofObligations();
 	}
 
