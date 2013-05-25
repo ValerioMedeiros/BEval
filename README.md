@@ -9,7 +9,7 @@ Basically, the B integration take a B proof obligation in  B syntax from Atelier
 
 ### Solving one proof obligation:
 
-1. Use the shortcut (`Command+P` or `CRTL+P`) to call the B Integration in AtelierB`s interactive prover with a current proof obligation.
+1. Use the shortcut (`Command+D` or `CRTL+D`) to call the B Integration in AtelierB`s interactive prover with a current proof obligation.
 
 2. Load the rule created, type in interactive prover terminal `pc` to precompile the rule created.
 
@@ -21,7 +21,7 @@ Basically, the B integration take a B proof obligation in  B syntax from Atelier
 Installation procedures
 ---------------------
 
-1. Move the files [BIntegration] and B2asm.png to $AtelierBDirectory/AB/extensions
+1. Move the files `BIntegration.jar` and `B2asm.png` to $AtelierBInstallationDirectory/AB/extensions (Mac Os) or $AtelierBInstallationDirectory/extensions (Linux).
 
 2. In terminal, type:
 
