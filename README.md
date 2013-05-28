@@ -1,6 +1,8 @@
+[BIntegration]: https://www.dropbox.com/s/fvdozx39xaa3h92/BIntegration.jar
+[here]:https://github.com/ValerioMedeiros/BIntegration/blob/master/doc/Instructions.md
+
 BIntegration
 ============
-
 
 
 Installation procedures
@@ -10,19 +12,15 @@ Installation procedures
 * B-Integration is compatible with Mac Os and Linux.
 
 Steps:
+1. Donwload this file [BIntegration].
 
-1. Move the files `BIntegration.jar` and `B2asm.png` to $AtelierBInstallationDirectory/AB/extensions (Mac Os) or $AtelierBInstallationDirectory/extensions (Linux).
+2. Move the file `BIntegration.jar` to $AtelierBInstallationDirectory/AB/extensions (Mac Os) or $AtelierBInstallationDirectory/extensions (Linux).
 
-2. In terminal, type:
+3. In terminal, type:
 
     `java -jar BIntegration.jar --install`
     
-3. Past the file path of binary probcli
-
-
-
-[BIntegration]: https://www.dropbox.com/s/fvdozx39xaa3h92/BIntegration.jar
-[here]:https://github.com/ValerioMedeiros/BIntegration/blob/master/doc/Instructions.md
+4. Past the file path of binary probcli and press enter.
 
 
 ### How B Integration works
