@@ -6,7 +6,8 @@ BIntegration
 Installation procedures
 ---------------------
 
-* Requires: AtelierB 4.1, ProB 1.3.6 and Java 1.7; B-Integration is compatible with Mac Os and Linux.
+* Requires: AtelierB `4.1`, ProB `1.3.6` and Java `1.7`
+* B-Integration is compatible with Mac Os and Linux.
 
 Steps:
 
