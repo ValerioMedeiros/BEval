@@ -6,6 +6,11 @@ BIntegration
 Installation procedures
 ---------------------
 
+* BCompatible with Mac Os and Linux
+* Requires: AtelierB 4.1, ProB 1.3.6 and Java 1.7
+
+Steps:
+
 1. Move the files `BIntegration.jar` and `B2asm.png` to $AtelierBInstallationDirectory/AB/extensions (Mac Os) or $AtelierBInstallationDirectory/extensions (Linux).
 
 2. In terminal, type:
@@ -14,8 +19,7 @@ Installation procedures
     
 3. Past the file path of binary probcli
 
-* Compatible with: Mac Os and Linux
-* Requires: AtelierB 4.1, ProB 1.3.6 and Java 1.7
+
 
 [BIntegration]: https://www.dropbox.com/s/fvdozx39xaa3h92/BIntegration.jar
 [here]:https://github.com/ValerioMedeiros/BIntegration/blob/master/doc/Instructions.md
