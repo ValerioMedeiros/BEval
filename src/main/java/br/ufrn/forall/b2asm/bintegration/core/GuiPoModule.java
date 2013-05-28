@@ -24,6 +24,8 @@ import javax.swing.SwingUtilities;
 
 import net.miginfocom.swing.MigLayout;
 import br.ufrn.forall.b2asm.bintegration.pos.POs;
+import br.ufrn.forall.b2asm.utils.AutoDismiss;
+
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 
@@ -40,8 +42,6 @@ public class GuiPoModule extends JFrame {
 	final Control control;
 	private final JCheckBox chckbxPoWD = new JCheckBox("P.O. W. D.");
 	private final JButton btnEval = new JButton("Eval");
-	private final JCheckBox chckbxAddRule = new JCheckBox(
-			"Add rule (when predicate is true)");
 	private final JTextArea configFile = new JTextArea();
 	private final JScrollPane scrollconfigFile = new JScrollPane(configFile);
 
@@ -57,6 +57,7 @@ public class GuiPoModule extends JFrame {
 	private final JTextArea textArea = new JTextArea();
 	private PrintStream ps;
 	private DefaultListModel listModel=new DefaultListModel();
+	private final JLabel label = new JLabel("Results");
 	
 	
 
@@ -104,19 +105,29 @@ public class GuiPoModule extends JFrame {
 	private void initialize() {
 		
 		frame = new JFrame(Installation.softwareName);
-		frame.setTitle(Installation.softwareName+" - Project B2ASM ");
+		frame.setTitle(" ("+control.getModuleName()+") "+Installation.softwareName+" - Project B2ASM ");
 		frame.setLocationRelativeTo(null);
 		frame.setBounds(new Rectangle(702, 439));
 		frame.setLocationRelativeTo(null);// center the window
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		//TODO: Move part of this commands to Control
 		// Create some items to add to the list
 		String	listData [] = control.getStateAndNameOfProofObligations(false);
-
+		int indicesSelected [] = new int [listData.length];
+		//Initialise
+		for(int i = 0; i < indicesSelected.length; ++i)indicesSelected[i] = -1;
+		
 		for (int i=0; i<listData.length; i++) {
 			listModel.addElement(listData[i]);
+			if(!control.isProvedTheProofState(i+1)){
+				indicesSelected[i]=i;
+			}
 		}
+		
 		list=new JList(listModel);
+		list.setSelectedIndices(indicesSelected);
+
 		
 		frame.getContentPane().setLayout(new MigLayout("", "[-25.00][214.00,grow][122.00][195.00,grow][:215.00:200.00]", "[][][][][][31.00][-9.00][grow][grow][][][][][][26.00][grow][]"));
 
@@ -143,6 +154,8 @@ public class GuiPoModule extends JFrame {
 
 		frame.getContentPane().add(lblExpressionToEvaluate, "cell 1 5");
 		
+		frame.getContentPane().add(label, "cell 2 5");
+		
 		frame.getContentPane().add(new JScrollPane(list), "cell 1 7 1 8,grow");
 		
 		frame.getContentPane().add(new JScrollPane(textArea), "cell 2 7 3 8,grow");
@@ -154,16 +167,31 @@ public class GuiPoModule extends JFrame {
 					// Create some items to add to the list
 					String	listData [] = control.getStateAndNameOfProofObligations(true);
 					listModel.removeAllElements();
+					//Initialise
+					int indicesSelected [] = new int [listData.length];
+					for(int i = 0; i < indicesSelected.length; ++i)indicesSelected[i] = -1;
 					for (int i=0; i<listData.length; i++) {
 						listModel.addElement(listData[i]);
+						if(!control.isProvedTheProofState(i+1)){
+							indicesSelected[i]=i;
+						}
 					}
+					list.setSelectedIndices(indicesSelected);
+					
 				}else{
 					// Create some items to add to the list
 					String	listData [] = control.getStateAndNameOfProofObligations(false);
 					listModel.removeAllElements();
+					//Initialise
+					int indicesSelected [] = new int [listData.length];
+					for(int i = 0; i < indicesSelected.length; ++i)indicesSelected[i] = -1;
 					for (int i=0; i<listData.length; i++) {
 						listModel.addElement(listData[i]);
+						if(!control.isProvedTheProofState(i+1)){
+							indicesSelected[i]=i;
+						}
 					}
+					list.setSelectedIndices(indicesSelected);
 				}
 			
 			}
@@ -172,9 +200,6 @@ public class GuiPoModule extends JFrame {
 
 		frame.getContentPane().add(chckbxPoWD,
 				"cell 1 16,alignx center,aligny center");
-
-		frame.getContentPane().add(chckbxAddRule,
-				"cell 3 16,alignx center,aligny center");
 		
 		
 		
@@ -182,35 +207,38 @@ public class GuiPoModule extends JFrame {
 		btnEval.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
-				POs expressionsToEvaluate;
-				Report reportTmp = new Report();
-				
-				
-				
-				//TODO: move this logic to Control class
-				if(chckbxPoWD.isSelected()){
-					
-					expressionsToEvaluate = new POs((control.pathBModuleInBdpFolderWithoutExtension+"_wd"));
-					
-				}else{
-					
-					expressionsToEvaluate = new POs((control.pathBModuleInBdpFolderWithoutExtension));
-					
-				}
-				
-				int numberOftotalPOs = expressionsToEvaluate.getNumberOfProofObligations();
 
-				StringBuffer proofObligations = new StringBuffer();
+				//TODO: add suport to write a report and open (?)
+				//Report reportTmp = new Report();
 				
-					for (int numberPo = 1; numberPo <= numberOftotalPOs; numberPo++) {
+				control.setIsWD(chckbxPoWD.isSelected());
+				
+				int numberOftotalPOs = control.getNumberOfProofObligations();
+				
+				int [] selectedItens = list.getSelectedIndices();
+				int countSelected=0;
+				for (int numberPo = 1; numberPo <= numberOftotalPOs; numberPo++) {
+					
+					if( countSelected<selectedItens.length && selectedItens[countSelected]==numberPo-1){
+						countSelected++;
+						String proofObligation;
+						if(checkBoxHypothesis.isSelected())
+							proofObligation = control.getCleanProofObligationsWithLocalHypotheses(numberPo);
+						else
+							proofObligation = control.getGoalOfCleanExpandedProofObligations(numberPo);
 						
-						if(!expressionsToEvaluate.isProvedTheProofState(numberPo)){
-							control.callProbLogicEvaluator(false,false, configFile.getText(), expressionsToEvaluate.getCleanProofObligationsWithLocalHypotheses(numberPo));
-							textArea.repaint();
-							frame.validate();
-							frame.repaint();
-						}
+						int res = control.callProbLogicEvaluator(false,false, configFile.getText(),  proofObligation);
+						
+						AutoDismiss.showMessageDialog(null, "Progress "+ countSelected+"/"+selectedItens.length+"\n"
+							+"The result is "+control.getResult()+"\n"
+							+proofObligation  ,1000); 
+
+						System.out.println("\nThe result is "+ control.getResult()+" and progress "+ countSelected+"/"+selectedItens.length+"\n");
+						textArea.repaint();
+						frame.validate();
+						frame.repaint();
 					}
+				}
 			}
 		});
 

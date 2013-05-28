@@ -43,7 +43,7 @@ public class Installation {
 	protected static final String IdModule = "#@Module#";
 	protected static String bIntegrationProofEtool = "<externalTool category=\"component\"   name=\"B-Integration\" label=\"&amp;Call B-Integration (B2ASM)\"   shortcut=\"Ctrl+D\"  >\n"
 			+ "<toolParameter name=\"editor\" type=\"tool\" configure=\"yes\"\n"
-			+ "default=\"!currentPathExtensions!BIntegration.sh\"/>\n" //Its replaced using the field currentPathExtensions
+			+ "default=\"!currentPathExtensions!BIntegration.sh\"/>\n" //It is replaced using the field currentPathExtensions
 			+ "<command>${editor}</command>\n"
 			+ "<param>${poName}</param>\n"
 			+ "<param>${componentName}</param>\n"
@@ -55,7 +55,7 @@ public class Installation {
 
 	protected static String bIntegrationSh = "#!/bin/bash\n"
 			+ "export TRAILSTKSIZE=1M\n"
-			+ "java -jar !currentPathExtensions!BIntegration.jar $@\n" //TODO: Update for the current path
+			+ "java -Xms1064m -Xmx1512m  -jar !currentPathExtensions!BIntegration.jar $@\n" //TODO: Update for the current path
 			+ "res=$?\n" + "echo \"The numbers of arguments is  $#\"\n"
 			+ "#echo \"The parameters are: $@\" #it is useful in debug mode\n"
 			+ "#echo $res\n" + "exit $res\n";

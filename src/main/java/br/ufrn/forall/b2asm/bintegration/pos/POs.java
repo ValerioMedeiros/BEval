@@ -111,7 +111,11 @@ public class POs {
 			if(listGoal.get(i)==null)break;
 			
 			// Remove the characters no numerics, transform to Integer, get in list of formulas and append
-			expandedFormula.append(formulasSplitted[Integer.parseInt(listGoal.get(i).replaceAll("[\\D]", ""))-1]);
+			expandedFormula.append(
+					formulasSplitted[Integer.parseInt(
+							listGoal.get(i)
+							.replaceAll("[\\D]", ""))-1
+					                 ]);
 			
 			if(i!=listGoal.size()-1)expandedFormula.append(" & ");
 			
@@ -177,11 +181,11 @@ public class POs {
 	 */
 	public	String getCleanProofObligationsWithLocalHypotheses(int numberOfProofObligation){
 		
-		String tmp = this.posUnexpandedRead[numberOfProofObligation-1].split("=>")[0];
+		String tmp = this.posUnexpandedRead[posUnexpandedRead.length - numberOfProofObligation].split("=>")[0];
 		 
 		String basicHypotheses = getFormulaExpandedWithOnlyLocalHypothesis(tmp);
 		
-		return new String( "("+basicHypotheses.replaceAll("\"(.*?)\"", "btrue")+"\n => "+expandedGoal[numberOfProofObligation-1]+")");
+		return new String( "("+basicHypotheses.replaceAll("\"(.*?)\"", "btrue")+"\n => "+expandedGoal[posUnexpandedRead.length - numberOfProofObligation]+")");
 	}
 	/***
 	 * This method return one proof obligation without comments
@@ -189,8 +193,7 @@ public class POs {
 	 * @return
 	 */
 	public	String getCleanExpandedProofObligations(int numberOfProofObligation){
-		
-		return new String(expandedHypoThesis[numberOfProofObligation-1].replaceAll("\"(.*?)\"", "btrue")+"\n => "+expandedGoal[numberOfProofObligation-1]);
+		return new String(expandedHypoThesis[expandedHypoThesis.length - numberOfProofObligation].replaceAll("\"(.*?)\"", "btrue")+"\n => "+expandedGoal[posUnexpandedRead.length -numberOfProofObligation]);
 	}
 	
 	/***
@@ -200,7 +203,7 @@ public class POs {
 	 */
 	public String getHypoThesisOfCleanExpandedProofObligations(int numberOfProofObligation){
 		
-		return new String((expandedHypoThesis[numberOfProofObligation-1]).replaceAll("\"(.*?)\"", "btrue"));
+		return new String((expandedHypoThesis[expandedHypoThesis.length - numberOfProofObligation]).replaceAll("\"(.*?)\"", "btrue"));
 	}
 	
 	
@@ -211,7 +214,7 @@ public class POs {
 	 */
 	public String getGoalOfCleanExpandedProofObligations(int numberOfProofObligation){
 		
-		return (expandedGoal[numberOfProofObligation-1]).replaceAll("\"(.*?)\"", "btrue");
+		return (expandedGoal[expandedGoal.length - numberOfProofObligation]).replaceAll("\"(.*?)\"", "btrue");
 	}
 	
 	
@@ -228,26 +231,33 @@ public class POs {
 	public boolean isProvedTheProofState(int number){
 		return pOsStatus.isProvedTheProofState(number);
 	}
+	/**
+	 * @param number enumerating from 1 up to numbers of proof obligations
+	 * @return
+	 */
 	public String getProofState(int number){
-		
 			return pOsStatus.getProofState(number);
 	}
 
 	public String[] getStateAndNameOfProofObligations() {
-
 		if(proofListRead==null){
 			return new String[0];
-			
 		}else{
 			
 			String[] tmp = proofListRead.split(";");
-			String[] result = new String[tmp.length-1];
+			String[] result = new String[tmp.length];
 			
-			for(int i = result.length-1;i>=0;i--){
+			for(int i =0 ;i<result.length;i++){
 				
-				String namePartial = tmp[result.length - i].split(",")[0];
+				String namePartial = tmp[result.length - i-1].split(",")[0];
+				
+				/*String namePartial;
+				if(tmp[result.length - i-1].indexOf(",")>0)
+					namePartial = tmp[result.length - i-1].substring(tmp[result.length - i].indexOf(","));
+				else
+					namePartial = tmp[result.length - i-1];*/
 				//System.out.println(result.length -i + " R:"+result.length+ " "+ i);
-				result[i]= i+1+" - "+namePartial.substring(namePartial.lastIndexOf("&")+1) + " ("+getProofState(result.length -i)+" )";
+				result[i]= i+1+" - "+namePartial.substring(namePartial.lastIndexOf("&")+1) + " ("+getProofState(i+1)+" )";
 			}
 			
 			return result;

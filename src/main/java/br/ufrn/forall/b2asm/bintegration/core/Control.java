@@ -42,6 +42,7 @@ public class Control {
 	String componentExtension;
 	String goal; //
 	String hypothesis;
+	boolean isWD;
 	long total_time = 0;
 
 	final int indExpressionName = 0;
@@ -160,16 +161,23 @@ public class Control {
 			//TODO: To use the variable ${projectBdp}from AtelierB that contains the path to the bdp directory of the project.
 			pathBModuleInBdpFolderWithoutExtension =   modulePath.replace(moduleName+"."+componentExtension,"")+"bdp"+File.separator+moduleName;
 			//pathBModuleInBdpFolderWithExtension =   modulePath+moduleName;		
-			
-
 		} catch (Exception e) {
 
 			System.err.println("Error: you need specify the parameters");
-
 		}
 
-		
-
+	}
+	void setIsWD(boolean wd){
+		isWD = wd;
+		if(isWD){
+			pathBModuleInBdpFolderWithoutExtension = pathBModuleInBdpFolderWithoutExtension.replace("_wd","")+"_wd";
+			expressionsToEvaluate = new POs((pathBModuleInBdpFolderWithoutExtension.replace("_wd","")+"_wd"));
+			
+		}else{
+			pathBModuleInBdpFolderWithoutExtension = pathBModuleInBdpFolderWithoutExtension.replace("_wd","");
+			expressionsToEvaluate = new POs((pathBModuleInBdpFolderWithoutExtension.replace("_wd","")));
+			
+		}
 	}
 
 	void addRuleInPMMFile(boolean poTypedWD) {
@@ -535,7 +543,9 @@ public class Control {
 	public int getExitVal() {
 		return exitVal;
 	}
-
+	public int getNumberOfProofObligations(){
+		return expressionsToEvaluate.getNumberOfProofObligations();
+	}
 
 	public String[] getStateAndNameOfProofObligations(boolean isWD) {
 		
@@ -556,6 +566,24 @@ public class Control {
 		
 		return expressionsToEvaluate.isProvedTheProofState(number);
 		
+	}
+	/**
+	 * @param number enumerating from 1 up to numbers of proof obligations
+	 * @return
+	 */
+	
+	public String getCleanProofObligationsWithLocalHypotheses( int numberOfProofObligation){
+		return expressionsToEvaluate.getCleanProofObligationsWithLocalHypotheses(numberOfProofObligation);
+	}
+	
+	/***
+	 * This method return only the goal, in other words, one proof obligation without comments and without hypothesis
+	 * @param numberOfProofObligation  enumerating from 1 up to numbers of proof obligations
+	 * @return
+	 */
+	public String getGoalOfCleanExpandedProofObligations(int numberOfProofObligation){
+		
+		return expressionsToEvaluate.getGoalOfCleanExpandedProofObligations(numberOfProofObligation);
 	}
 
 }

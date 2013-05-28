@@ -9,10 +9,10 @@ import java.io.PrintWriter;
 
 
 /**
- * 
+ * This code was changed, its first version was created by Michael
  * @author Michael C. Daconta, JavaWorld.com, 12/29/00
  * @see http://www.javaworld.com/javaworld/jw-12-2000/jw-1229-traps.html?page=4 
- * The following code is public and licensed under BSD license:
+ * The following code is public and licensed under BSD license based on:
  * https://code.google.com/p/jmkvpropedit/source/browse/trunk/src/com/googlecode/jmkvpropedit/StreamGobbler.java?r=329df04f655dbd35ccbeda4336a6f7e3c1669a4d
  */
 

@@ -68,9 +68,9 @@ import br.ufrn.forall.b2asm.bintegration.core.Control;
 	
 	void printStates(){
 		int proveds=0;
-		for(int i=0;i<proofStateSplitted.length;i++){
-			if(proofStateSplitted[i].contains("Proved"))proveds++;
-			System.out.println(proofStateSplitted[i]);
+		for(int i=proofStateSplitted.length;i>0;i++){
+			if(proofStateSplitted[i-1].contains("Proved"))proveds++;
+			System.out.println(proofStateSplitted[i-1]);
 		}
 		
 		System.out.println("Total:"+proofStateSplitted.length+" and Proved:"+proveds);
@@ -83,7 +83,7 @@ import br.ufrn.forall.b2asm.bintegration.core.Control;
 	 */
 	boolean isProvedTheProofState(int number){
 		
-			return proofStateSplitted[number-1].contains( "Proved");
+			return proofStateSplitted[proofStateSplitted.length - number].contains( "Proved");
 		
 	}
 	/**
@@ -93,7 +93,7 @@ import br.ufrn.forall.b2asm.bintegration.core.Control;
 	 */
 	String getProofState(int number){
 		if(number >=1 & number <= proofStateSplitted.length ) 
-			return proofStateSplitted[number-1];
+			return proofStateSplitted[proofStateSplitted.length -number];
 		else return "";
 		
 	}
