@@ -12,6 +12,7 @@ Installation procedures
 * B-Integration is compatible with Mac Os and Linux.
 
 Steps:
+
 1. Donwload this file [BIntegration].
 
 2. Move the file `BIntegration.jar` to $AtelierBInstallationDirectory/AB/extensions (Mac Os) or $AtelierBInstallationDirectory/extensions (Linux).
