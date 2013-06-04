@@ -1,15 +1,21 @@
 [BIntegration]: https://www.dropbox.com/s/fvdozx39xaa3h92/BIntegration.jar
 [here]:https://github.com/ValerioMedeiros/BIntegration/blob/master/doc/Instructions.md
+[java]:http://java.com/en/download/index.jsp
+[eclipse]:http://www.eclipse.org/downloads/
+[WindowBuilder]:http://www.eclipse.org/windowbuilder/
+[Maven]:http://maven.apache.org/eclipse-plugin.html
+[Git]:http://www.eclipse.org/egit/
+[BIntegration]:https://github.com/ValerioMedeiros/BIntegration
 
 BIntegration
 ============
 
 
-Installation procedures
+Installation procedures for users
 ---------------------
 
 * Requires: AtelierB `4.1`, ProB `1.3.6` and Java `1.7`
-* B-Integration is compatible with Mac Os and Linux.
+* BIntegration is compatible with Mac Os and Linux.
 
 Steps:
 
@@ -45,7 +51,23 @@ Basically, the B integration take a B proof obligation in  B syntax from Atelier
 
 1. Use the shortcut (`Command+D` or `CRTL+D`) to call the B Integration with a current module selected.
 
-2. Define the parameters to evaluate the proof obligations.
+2. Define the parameters to evaluate the proof obligations and click on button "Eval".
 
 3. Wait and analyse the results in text area.
+
+
+Procedures for developers 
+---------------------
+
+* Requires: [Java] `1.7`, [Eclipse] Classic 4.2.2 and some plugins ([WindowBuilder] and [Maven])
+* BIntegration is compatible with Mac Os and Linux.
+
+Steps:
+
+1. Download the [Eclipse] and install your plugins ( [Git], [WindowBuilder] and [Maven]) in Eclipse.
+
+2. Create in Eclipse a maven project from Git hub using this link ([BIntegration]).
+
+3. Enjoy it!
+
 
