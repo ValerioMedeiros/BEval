@@ -11,6 +11,8 @@ BIntegration
 ============
 
 
+
+
 Installation procedures for users
 ---------------------
 
@@ -54,6 +56,10 @@ Basically, the B integration take a B proof obligation in  B syntax from Atelier
 2. Define the parameters to evaluate the proof obligations and click on button "Eval".
 
 3. Wait and analyse the results in text area.
+
+
+
+
 
 
 Procedures for developers 
