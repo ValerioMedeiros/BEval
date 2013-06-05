@@ -68,7 +68,7 @@ Procedures for developers
 * Requires: [Java] `1.7`, [Eclipse] Classic 4.2.2 and some plugins ([WindowBuilder] and [Maven])
 * BIntegration is compatible with Mac Os and Linux.
 
-Steps:
+Steps to use the IDE Eclipe:
 
 1. Download the [Eclipse] and after install your plugins ( [Git], [WindowBuilder] and [Maven]) in Eclipse.
 
@@ -91,6 +91,12 @@ Steps:
 
 5. Now enjoy it!
 
+
+Steps to use to run on Eclipse and create the file `BIntegration.jar`:
+
+1. In Eclipse, run the BIntegration selecting the class `Main.java` in package br.ufrn.forall.b2asm.bintegration.core and clicking in menu `Run` > `Run as` > `Java Application`.
+
+2. Select the BIntegration project, click `File` > `Export`, select `Runnable JAR file` and click `Next` follow the remaining procedures to create runnable jar file.
 
 
 
