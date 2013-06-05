@@ -32,7 +32,7 @@ public class Control {
 
 	Result result;
 	String currentPath, executablePath;
-	StringBuffer command;
+	String actualParameters;
 
 	String expressionName;
 	String moduleName;
@@ -57,55 +57,27 @@ public class Control {
 
 	}
 
+
+
 	/**
-	 * This method load from a file config.txt: the path of ProB; the time limit and others informations.
+	 * This method load config preferences the path of ProB; the time limit and others informations.
 	 * 
 	 */
 	void loadConfig() {
 
-		try {
-
-			command = new StringBuffer();
-			// currentPath = new java.io.File( "." ).getCanonicalPath();
-			currentPath = Control.class.getProtectionDomain().getCodeSource()
-					.getLocation().getPath()
-					.replaceAll(Installation.filenameJar, "");
-			System.out.println("CurrentPath:" + currentPath);
-			FileInputStream fstream = new FileInputStream(currentPath
-					+ File.separator + "Config.txt");
-
-			DataInputStream in = new DataInputStream(fstream);
-			BufferedReader br = new BufferedReader(new InputStreamReader(in));
-
-			String strLine;
-			boolean first = true;
-			while (((strLine = br.readLine()) != null)) {
-
-				if (!strLine.contains("#")) {
-
-					if (first) {
-						executablePath = strLine;
-						first = false;
-					} else
-						command.append(strLine + " \n");
-				}
-
-			}
-
-			in.close();
-
-		} catch (IOException e) {
-
-			System.err
-					.println("Error - B2asm: it is not possible find the current path.");
-
-			e.printStackTrace();
-		}
-
+			currentPath = Control.class.getProtectionDomain().getCodeSource().getLocation().getPath().replaceAll(Installation.filenameJar, "");
+			
+			executablePath = GeneralPreferences.getPathProbcli();
+			
+			actualParameters = GeneralPreferences.getActualParameters();
+			
 	}
 
+
 	public String getExecutablePath() {
+		
 		return executablePath;
+		
 	}
 
 	public void setIndividualArgs(String[] args) {
@@ -298,10 +270,10 @@ public class Control {
 
 			long initial_time = System.currentTimeMillis();
 			
-			//JOptionPane.showMessageDialog(null, this.getExecutablePath() + " "+ parameters.replace("\n", "") + " --eval_rule_file "+ tmpFileName);
+			//JOptionPane.showMessageDialog(null, this.getExecutablePath() + " "+ parameters.replace("\n", " ") + " --eval_rule_file "+ tmpFileName);
 			
 			Process proc = rt.exec(this.getExecutablePath() + " "
-					+ parameters.replace("\n", "") + " --eval_rule_file "
+					+ parameters.replace("\n", " ") + " --eval_rule_file "
 					+ tmpFileName);
 
 			// any error message?
@@ -484,8 +456,8 @@ public class Control {
 		return currentPath;
 	}
 
-	public StringBuffer getCommand() {
-		return command;
+	public String getCommand() {
+		return actualParameters;
 	}
 
 	public String getExpressionName() {

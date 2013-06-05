@@ -10,14 +10,20 @@ import javax.swing.JOptionPane;
 
 public class Installation {
 
-	public final static String softwareName = "B-Integration";
+	public final static String softwareName = "BIntegration";
 	public static String filenameJar = "BIntegration.jar";
 
 	protected static String pathProbCli;
+	
+	protected static String defaultParameters = new String("-p BOOL_AS_PREDICATE TRUE \n"+
+			  "-p CLPFD TRUE \n"+
+			  "-p MAXINT 65536 \n"+
+			  "-p MININT -65536 \n"+
+			  "-p TIME_OUT 50000 ");
 
 	protected static String currentPathExtensions;
 
-	protected static String configTxt =
+	/*protected static String configTxt =
 			"#This file contains some configurations about the calling of ProB Logic Calculator\n"+
 			"#Step 1 - copy the files BIntegrationGoal.etool BIntegration.jar, BIntegration.sh, b2asm.png to $AtelierB/AB/extensions\n"+
 			"#Step 2 - you must define below the path of probcli and parameters\n"+
@@ -27,7 +33,7 @@ public class Installation {
 			"-p CLPFD TRUE\n"+
 			"-p MAXINT 65536\n"+
 			"-p MININT -65536\n"+
-			"-p TIME_OUT 50000\n";
+			"-p TIME_OUT 50000\n";*/
 
 	protected static String bIntegrationGoalEtool = "<externalTool category=\"goal\"   name=\"ProB Logic Calculator\" icon=\"b2asm.png\" label=\"&amp;Call B-Integration (B2ASM) \"  shortcut=\"Ctrl+D\" >\n"
 			+ "<toolParameter name=\"editor\" type=\"tool\" configure=\"yes\"\n"
@@ -83,12 +89,12 @@ public class Installation {
 		
 		pathProbCli = new JOptionPane().showInputDialog("Type the path of binary file probcli, for example /Users/guest/Myprograms/ProB/probcli:");
 		
-		//TODO: Remove the config file and use only informations stored in Preferences
+		
 		
 		GeneralPreferences.updatePathProbcli(pathProbCli);
 		
-		Control.writeFile(currentPathExtensions + "Config.txt",
-				Installation.configTxt.replaceFirst("!pathProbCli!", pathProbCli));
+		//Control.writeFile(currentPathExtensions + "Config.txt",
+		//		Installation.configTxt.replaceFirst("!pathProbCli!", pathProbCli));
 		
 		try {
 			Runtime.getRuntime().exec("chmod +x "+currentPathExtensions + "BIntegration.sh");

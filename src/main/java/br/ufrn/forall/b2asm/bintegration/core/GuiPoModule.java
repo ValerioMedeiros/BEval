@@ -42,11 +42,11 @@ public class GuiPoModule extends JFrame {
 	final Control control;
 	private final JCheckBox chckbxPoWD = new JCheckBox("P.O. W. D.");
 	private final JButton btnEval = new JButton("Eval");
-	private final JTextArea configFile = new JTextArea();
-	private final JScrollPane scrollconfigFile = new JScrollPane(configFile);
+	private final JTextArea actualParameters = new JTextArea();
+	private final JScrollPane scrollActualParameters = new JScrollPane(actualParameters);
 
 	private final JLabel lblParametersOfFile = new JLabel(
-			"Parameters of file config");
+			"Parameters");
 	private final JLabel lblExpressionToEvaluate = new JLabel(
 			"Proof Obligations");
 	private  JList list ;
@@ -58,6 +58,7 @@ public class GuiPoModule extends JFrame {
 	private PrintStream ps;
 	private DefaultListModel listModel=new DefaultListModel();
 	private final JLabel label = new JLabel("Results");
+	private final JCheckBox ignoreHash = new JCheckBox("Ignore hash collisions");
 	
 	
 
@@ -133,9 +134,9 @@ public class GuiPoModule extends JFrame {
 
 		frame.getContentPane().add(lblParametersOfFile, "cell 1 0");
 
-		configFile.setLineWrap(true);
-		configFile.setText(control.getCommand().toString());
-		frame.getContentPane().add(scrollconfigFile, "cell 1 1 3 4,grow");
+		actualParameters.setLineWrap(true);
+		actualParameters.setText(control.getCommand().toString());
+		frame.getContentPane().add(scrollActualParameters, "cell 1 1 3 4,grow");
 
 		addEventsIncheckBox();
 		
@@ -144,11 +145,17 @@ public class GuiPoModule extends JFrame {
 		//Setting the output to TextArea        
         redirectSystemStreams();
 		
-		frame.getContentPane().add(checkBoxKokod, "cell 4 1");
+        //frame.getContentPane().add(ignoreHash, "cell 4 1");
+        
+        //frame.getContentPane().add(forgetStateSpace, "cell 4 1");
+        
+        frame.getContentPane().add(checkBoxKokod, "cell 4 1");
 		
 		frame.getContentPane().add(checkBoxSmt, "cell 4 2");
+		checkBoxInitialiseModule.setSelected(true);
 		
 		frame.getContentPane().add(checkBoxInitialiseModule, "cell 4 3");
+		checkBoxHypothesis.setSelected(true);
 		
 		frame.getContentPane().add(checkBoxHypothesis, "cell 4 4");
 
@@ -227,7 +234,7 @@ public class GuiPoModule extends JFrame {
 						else
 							proofObligation = control.getGoalOfCleanExpandedProofObligations(numberPo);
 						
-						int res = control.callProbLogicEvaluator(false,false, configFile.getText(),  proofObligation);
+						int res = control.callProbLogicEvaluator(false,false, actualParameters.getText(),  proofObligation);
 						
 						AutoDismiss.showMessageDialog(null, "Progress "+ countSelected+"/"+selectedItens.length+"\n"
 							+"The result is "+control.getResult()+"\n"
@@ -252,11 +259,11 @@ public class GuiPoModule extends JFrame {
 				String parameterToConfig = new String(" -p KODKOD TRUE \n");
 
 				if (((JCheckBox) e.getItem()).isSelected())
-					configFile.setText(parameterToConfig
-							+ configFile.getText().replaceAll(
+					actualParameters.setText(parameterToConfig
+							+ actualParameters.getText().replaceAll(
 									parameterToConfig, ""));
 				else {
-					configFile.setText(configFile.getText().replaceAll(
+					actualParameters.setText(actualParameters.getText().replaceAll(
 							parameterToConfig, ""));
 				}
 			}
@@ -268,11 +275,11 @@ public class GuiPoModule extends JFrame {
 						+ " -init ");
 
 				if (((JCheckBox) e.getItem()).isSelected())
-					configFile.setText(parameterToConfig
-							+ configFile.getText().replaceAll(
+					actualParameters.setText(parameterToConfig
+							+ actualParameters.getText().replaceAll(
 									parameterToConfig, ""));
 				else {
-					configFile.setText(configFile.getText().replaceAll(
+					actualParameters.setText(actualParameters.getText().replaceAll(
 							parameterToConfig, ""));
 				}
 			}
@@ -283,11 +290,11 @@ public class GuiPoModule extends JFrame {
 				String parameterToConfig = new String(" -p SMT TRUE ");
 
 				if (((JCheckBox) e.getItem()).isSelected())
-					configFile.setText(parameterToConfig
-							+ configFile.getText().replaceAll(
+					actualParameters.setText(parameterToConfig
+							+ actualParameters.getText().replaceAll(
 									parameterToConfig, ""));
 				else {
-					configFile.setText(configFile.getText().replaceAll(
+					actualParameters.setText(actualParameters.getText().replaceAll(
 							parameterToConfig, ""));
 				}
 			}

@@ -26,7 +26,7 @@ public class Main {
 
 
 		if (args.length ==0 ){
-			System.out.println("B integration solver version "+version);
+			System.out.println(Installation.softwareName+" version "+version);
 			System.out.println("__________________________________");
 			System.out.println("Installation instructions:");
 			System.out.println("1 - Move the file ("+Installation.filenameJar+") to $AtelierB_Directory/AB/extensions, after update the config files.");

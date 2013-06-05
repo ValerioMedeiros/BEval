@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 public class GeneralPreferences {
 
 	private static final Preferences PREFERENCES = Preferences.userRoot().node("Forall");
+
 	
 	/**
 	 * This class contains the preferences to verification:
@@ -29,15 +30,38 @@ public class GeneralPreferences {
 	}
 	
 	public static String getPathProbcli(){
+		
 		String res = GeneralPreferences.PREFERENCES.get("PathProbcli", null);
 		
-		if (res==null) {
-			res= JOptionPane.showInputDialog("Type the path of binary probcli:", "");
+		if (res==null || res.length()<=2) {
+			
+			res = JOptionPane.showInputDialog(res+"- Type the path of binary probcli:", "");
 			
 			updatePathProbcli(res);
 		}
 			
 		 return res; 
 	}
+	
+	
+	public static void updateActualParametersh(String actualParametersh){
+		 GeneralPreferences.PREFERENCES.put("ActualParameters", actualParametersh);
+	}
+	
+	public static String getActualParameters(){
+		String res = GeneralPreferences.PREFERENCES.get("ActualParameters", null);
+		
+		if (res==null) {
+			res= Installation.defaultParameters;
+			updateActualParametersh(res);
+		}
+			
+		 return res; 
+	}
+	
+	
+	
+	
+	
 
 }

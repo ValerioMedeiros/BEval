@@ -44,13 +44,13 @@ public class GuiPoIndividual extends JFrame {
 	private final JButton btnEval = new JButton("Eval");
 	private final JCheckBox chckbxAddRule = new JCheckBox(
 			"Add rule (when predicate is true)");
-	private final JTextArea configFile = new JTextArea();
-	private final JScrollPane scrollconfigFile = new JScrollPane(configFile);
+	private final JTextArea actualParameters = new JTextArea();
+	private final JScrollPane scrollActualParameters = new JScrollPane(actualParameters);
 
 	private final JTextArea expression = new JTextArea();
 	private final JScrollPane scrollExpression = new JScrollPane(expression);
 
-	private final JLabel lblParametersOfFile = new JLabel("Parameters of file config");
+	private final JLabel lblParametersOfFile = new JLabel("Parameters");
 	private final JLabel lblExpressionToEvaluate = new JLabel("Goal to evaluate");
 	private final JTextArea textHypothesis = new JTextArea();
 	private final JScrollPane scrollHypothesis = new JScrollPane(textHypothesis);
@@ -112,9 +112,9 @@ public class GuiPoIndividual extends JFrame {
 
 		frame.getContentPane().add(lblParametersOfFile, "cell 1 0");
 
-		configFile.setLineWrap(true);
-		configFile.setText(control.getCommand().toString());
-		frame.getContentPane().add(scrollconfigFile, "cell 1 1 1 4,grow");
+		actualParameters.setLineWrap(true);
+		actualParameters.setText(control.getCommand().toString());
+		frame.getContentPane().add(scrollActualParameters, "cell 1 1 1 4,grow");
 
 		frame.getContentPane().add(checkBoxKokod, "flowx,cell 2 1,aligny top");
 
@@ -129,6 +129,7 @@ public class GuiPoIndividual extends JFrame {
 		frame.getContentPane().add(scrollHypothesis, "cell 3 1 4 4,grow");
 
 		frame.getContentPane().add(checkBoxSmt, "cell 2 2");
+		checkBoxInitialiseModule.setSelected(true);
 
 		frame.getContentPane().add(checkBoxInitialiseModule, "cell 2 3");
 
@@ -144,6 +145,7 @@ public class GuiPoIndividual extends JFrame {
 
 		frame.getContentPane().add(chckbxPoWD,
 				"cell 1 16,alignx center,aligny center");
+		chckbxAddRule.setSelected(true);
 
 		frame.getContentPane().add(chckbxAddRule,
 				"cell 3 16,alignx center,aligny center");
@@ -153,7 +155,7 @@ public class GuiPoIndividual extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 
 				control.callProbLogicEvaluator(chckbxPoWD.isSelected(),
-						chckbxAddRule.isSelected(), configFile.getText(),
+						chckbxAddRule.isSelected(), actualParameters.getText(),
 						expression.getText());
 
 				frame.dispose();
@@ -191,11 +193,11 @@ public class GuiPoIndividual extends JFrame {
 				String parameterToConfig = new String(" -p KODKOD TRUE \n");
 
 				if (((JCheckBox) e.getItem()).isSelected())
-					configFile.setText(parameterToConfig
-							+ configFile.getText().replaceAll(
+					actualParameters.setText(parameterToConfig
+							+ actualParameters.getText().replaceAll(
 									parameterToConfig, ""));
 				else {
-					configFile.setText(configFile.getText().replaceAll(
+					actualParameters.setText(actualParameters.getText().replaceAll(
 							parameterToConfig, ""));
 				}
 			}
@@ -207,11 +209,11 @@ public class GuiPoIndividual extends JFrame {
 						+ " -init ");
 
 				if (((JCheckBox) e.getItem()).isSelected())
-					configFile.setText(parameterToConfig
-							+ configFile.getText().replaceAll(
+					actualParameters.setText(parameterToConfig
+							+ actualParameters.getText().replaceAll(
 									parameterToConfig, ""));
 				else {
-					configFile.setText(configFile.getText().replaceAll(
+					actualParameters.setText(actualParameters.getText().replaceAll(
 							parameterToConfig, ""));
 				}
 			}
@@ -222,11 +224,11 @@ public class GuiPoIndividual extends JFrame {
 				String parameterToConfig = new String(" -p SMT TRUE ");
 
 				if (((JCheckBox) e.getItem()).isSelected())
-					configFile.setText(parameterToConfig
-							+ configFile.getText().replaceAll(
+					actualParameters.setText(parameterToConfig
+							+ actualParameters.getText().replaceAll(
 									parameterToConfig, ""));
 				else {
-					configFile.setText(configFile.getText().replaceAll(
+					actualParameters.setText(actualParameters.getText().replaceAll(
 							parameterToConfig, ""));
 				}
 			}
