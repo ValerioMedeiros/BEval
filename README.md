@@ -74,11 +74,11 @@ Steps:
 
 2. Configure the Eclipse:
  * Click `Help` > `Install New Software`.
- * In field `Work with` select  `All Avaliable Site`.
+ * In field `Work with` select `All Avaliable Site`.
  * Type below the name of component software to search.
- * Follow the remaining installation procedures. These steps are repeated for each plugin (Git and Maven WindowBuilder) with the following software components: Eclipse EGit 2.2; Eclipse EGit Eclipse SDK 4.2; EGit Import Plug-in Support 2.2; Eclipse EGit m2e - Maven Integration for Eclipse 1.3.
+ * Follow the remaining installation procedures and reapet these steps for each plugin (Git and Maven WindowBuilder) with the following software components: Eclipse EGit 2.2; Eclipse EGit Eclipse SDK 4.2; EGit Import Plug-in Support 2.2; Eclipse EGit m2e - Maven Integration for Eclipse 1.3.
  WindowBuilder Core 1.5; WindowBuilder Core Documentation 1.5; Core WindowBuilder 1.5 IU; WindowBuilder GroupLayout Support 1.5.
-
+    
 3. Configure the repository git in Eclipse:
  * Click  `Window` > `Open Perspective` > `Open` and select `Git Repository Exploring`.
  * Click `Clone a Git Repository` then in field URI past `https://github.com/ValerioMedeiros/BIntegration.git` using HTTPS or `git@github.com:ValerioMedeiros/BIntegration.git` using SSH.
