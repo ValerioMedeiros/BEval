@@ -9,7 +9,9 @@ import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.UIManager;
 
-
+/*
+ * This class show a message box with auto dismiss.
+ */
 public class AutoDismiss implements Runnable, ActionListener
 {
     private JDialog dialog;
