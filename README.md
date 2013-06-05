@@ -65,7 +65,7 @@ Basically, the B integration take a B proof obligation in  B syntax from Atelier
 Procedures for developers 
 ---------------------
 
-* Requires: [Java] `1.7`, [Eclipse] Classic 4.2.2 and some plugins ([WindowBuilder] and [Maven])
+* Requires: [Java] `1.7`, [Eclipse] Classic 4.2.2 and some plugins ([Git](optional), [WindowBuilder] and [Maven])
 * BIntegration is compatible with Mac Os and Linux.
 
 Steps to use the IDE Eclipe:
