@@ -1,4 +1,4 @@
-[BIntegration]: https://www.dropbox.com/s/fvdozx39xaa3h92/BIntegration.jar
+[BIntegration.jar]:https://www.dropbox.com/s/yljtuc8csldq553/BIntegration.jar
 [here]:https://github.com/ValerioMedeiros/BIntegration/blob/master/doc/Instructions.md
 [java]:http://java.com/en/download/index.jsp
 [eclipse]:http://www.eclipse.org/downloads/
@@ -21,7 +21,7 @@ Installation procedures for users
 
 Steps:
 
-1. Donwload this file [BIntegration].
+1. Download this file [BIntegration.jar].
 
 2. Move the file `BIntegration.jar` to $AtelierBInstallationDirectory/AB/extensions (Mac Os) or $AtelierBInstallationDirectory/extensions (Linux).
 
@@ -55,7 +55,7 @@ Basically, the B integration take a B proof obligation in  B syntax from Atelier
 
 2. Define the parameters to evaluate the proof obligations and click on button "Eval".
 
-3. Wait and analyse the results in text area.
+3. Wait and analyse the results in the text area.
 
 
 
@@ -65,15 +65,40 @@ Basically, the B integration take a B proof obligation in  B syntax from Atelier
 Procedures for developers 
 ---------------------
 
-* Requires: [Java] `1.7`, [Eclipse] Classic 4.2.2 and some plugins ([WindowBuilder] and [Maven])
+* Requires: [Java] `1.7`, [Eclipse] Classic 4.2.2 and some plugins ([Git](optional), [WindowBuilder] and [Maven])
 * BIntegration is compatible with Mac Os and Linux.
 
-Steps:
+Steps to use the IDE Eclipe:
 
-1. Download the [Eclipse] and install your plugins ( [Git], [WindowBuilder] and [Maven]) in Eclipse.
+1. Download the [Eclipse] and after install your plugins ( [Git], [WindowBuilder] and [Maven]) in Eclipse.
 
-2. Create in Eclipse a maven project from Git hub using this link ([BIntegration]).
+2. Configure the Eclipse:
+ * Click `Help` > `Install New Software`.
+ * In field `Work with` select `All Avalable Site`.
+ * Type below the name of component software to search.
+ * Follow the remaining installation procedures and repeat these steps for each plugin (Git and Maven WindowBuilder) with the following software components:
+    - Eclipse EGit 2.2;  Eclipse EGit Eclipse SDK 4.2; EGit Import Plug-in Support 2.2;
+    - m2e - Maven Integration for Eclipse 1.3.
+    - WindowBuilder Core 1.5; WindowBuilder Core Documentation 1.5; Core WindowBuilder 1.5 UI; WindowBuilder GroupLayout Support 1.5.
+    
+3. Configure the repository git in Eclipse:
+ * Click  `Window` > `Open Perspective` > `Open` and select `Git Repository Exploring`.
+ * Click `Clone a Git Repository` then in field URI past `https://github.com/ValerioMedeiros/BIntegration.git` using HTTPS or `git@github.com:ValerioMedeiros/BIntegration.git` using SSH.
+ * Follow the remaining procedures to clone a local git repository.
 
-3. Enjoy it!
+4. Import the project as an existing maven project.
+ * Click `File` > `Import` then select `Maven` after `Existing Maven Project`.
+ * Click `Next` and in the field `Root Directory` past your git repository path, for example `/home/username/git/BIntegration`.
+ * Follow the remaining procedures to create the maven project.
+
+
+
+Steps to use to run on Eclipse and create the file `BIntegration.jar`:
+
+1. In Eclipse, run the BIntegration selecting the class `Main.java` in package br.ufrn.forall.b2asm.bintegration.core and clicking in menu `Run` > `Run as` > `Java Application`.
+
+2. Select the BIntegration project, click `File` > `Export`, select `Runnable JAR file` and click `Next` following the remaining procedures to create a runnable jar file.
+
+5. Now enjoy it!
 
 
