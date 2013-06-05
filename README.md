@@ -1,4 +1,4 @@
-[BIntegration]: https://www.dropbox.com/s/fvdozx39xaa3h92/BIntegration.jar
+[BIntegration.jar]:https://www.dropbox.com/s/yljtuc8csldq553/BIntegration.jar
 [here]:https://github.com/ValerioMedeiros/BIntegration/blob/master/doc/Instructions.md
 [java]:http://java.com/en/download/index.jsp
 [eclipse]:http://www.eclipse.org/downloads/
@@ -21,7 +21,7 @@ Installation procedures for users
 
 Steps:
 
-1. Donwload this file [BIntegration].
+1. Donwload this file [BIntegration.jar].
 
 2. Move the file `BIntegration.jar` to $AtelierBInstallationDirectory/AB/extensions (Mac Os) or $AtelierBInstallationDirectory/extensions (Linux).
 
