@@ -301,11 +301,16 @@ public class Control {
 			res_out = outputGobbler.getResult();
 			res_error = errorGobbler.getResult();
 
+			//It is used to identify when the evaluation is individual
+			String stateProB="";
+			if(numberPo!=0)
+				stateProB = expressionsToEvaluate.getProofState(numberPo);
+				
 			report.add(numberPo,
 					parameters,
 					POWD.Common,
 					PoGenerated.Full,
-					expressionsToEvaluate.getProofState(numberPo),
+					stateProB,
 					goalExpression,
 					res_out,
 					res_error,
