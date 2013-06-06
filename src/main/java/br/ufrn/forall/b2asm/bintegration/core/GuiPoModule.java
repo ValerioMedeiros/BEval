@@ -252,7 +252,7 @@ public class GuiPoModule extends JFrame {
 				}
 				//TODO: adjust to use the only the method for the module callProbLogicEvaluatorModule  
 				report.print( control.pathBModuleInBdpFolderWithoutExtension+"_report.csv");
-				
+				System.out.println("A report was generated in :"+control.pathBModuleInBdpFolderWithoutExtension+"_report.csv");
 			}
 		});
 
