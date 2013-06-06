@@ -254,7 +254,12 @@ public class Control {
 		return res.toString();
 	}
 
-	public int callProbLogicEvaluator(boolean poTypedWD, boolean addRule,
+	public int callProbLogicEvaluator(boolean poTypedWD, boolean addRule, String parameters, String goalExpression) {
+		
+		return callProbLogicEvaluator( poTypedWD,  addRule, new Report(),  0,
+				 parameters,  goalExpression);
+	}
+	public int callProbLogicEvaluator(boolean poTypedWD, boolean addRule, Report report, int numberPo,
 			String parameters, String goalExpression) {
 
 		exitVal = 0;
@@ -296,6 +301,16 @@ public class Control {
 			res_out = outputGobbler.getResult();
 			res_error = errorGobbler.getResult();
 
+			report.add(numberPo,
+					parameters,
+					POWD.Common,
+					PoGenerated.Full,
+					expressionsToEvaluate.getProofState(numberPo),
+					goalExpression,
+					res_out,
+					res_error,
+					total_time);
+			
 			if (res_out != Result.ERROR && res_error != Result.ERROR) {
 				printSuccessFullyMsg();
 				result = res_out;
@@ -311,6 +326,8 @@ public class Control {
 
 			System.out.println("Time spent: " + total_time);
 			System.out.println("Process exit value: " + exitVal);
+			
+			
 
 		} catch (Throwable t) {
 			t.printStackTrace();

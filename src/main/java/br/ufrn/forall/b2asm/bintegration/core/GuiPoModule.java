@@ -23,6 +23,9 @@ import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 
 import net.miginfocom.swing.MigLayout;
+import br.ufrn.forall.b2asm.bintegration.core.Report.POWD;
+import br.ufrn.forall.b2asm.bintegration.core.Report.PoGenerated;
+import br.ufrn.forall.b2asm.bintegration.core.StreamGobbler.Result;
 import br.ufrn.forall.b2asm.bintegration.pos.POs;
 import br.ufrn.forall.b2asm.utils.AutoDismiss;
 
@@ -216,7 +219,7 @@ public class GuiPoModule extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 
 				//TODO: add suport to write a report and open (?)
-				//Report reportTmp = new Report();
+				Report report = new Report();
 				
 				control.setIsWD(chckbxPoWD.isSelected());
 				
@@ -234,18 +237,22 @@ public class GuiPoModule extends JFrame {
 						else
 							proofObligation = control.getGoalOfCleanExpandedProofObligations(numberPo);
 						
-						int res = control.callProbLogicEvaluator(false,false, actualParameters.getText(),  proofObligation);
+						int res = control.callProbLogicEvaluator(false,false, report, numberPo , actualParameters.getText(),  proofObligation);
 						
 						AutoDismiss.showMessageDialog(null, "Progress "+ countSelected+"/"+selectedItens.length+"\n"
 							+"The result is "+control.getResult()+"\n"
 							+proofObligation  ,1000); 
-
+						
+						
 						System.out.println("\nThe result is "+ control.getResult()+" and progress "+ countSelected+"/"+selectedItens.length+"\n");
 						textArea.repaint();
 						frame.validate();
 						frame.repaint();
 					}
 				}
+				//TODO: adjust to use the only the method for the module callProbLogicEvaluatorModule  
+				report.print( control.pathBModuleInBdpFolderWithoutExtension+"_report.csv");
+				
 			}
 		});
 
