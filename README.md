@@ -93,7 +93,7 @@ Steps to use the IDE Eclipe:
 
 
 
-Steps to use to run on Eclipse and create the file `BIntegration.jar`:
+Steps to run in Eclipse and create the executable file `BIntegration.jar`:
 
 1. In Eclipse, run the BIntegration selecting the class `Main.java` in package br.ufrn.forall.b2asm.bintegration.core and clicking in menu `Run` > `Run as` > `Java Application`.
 
