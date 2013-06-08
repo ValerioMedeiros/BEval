@@ -10,7 +10,7 @@
 BIntegration
 ============
 
-License 
+BSD License 
 ---------------------
 
 Copyright (c) 2013,  Valério Medeiros, David Deharbe
