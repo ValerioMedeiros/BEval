@@ -53,7 +53,7 @@ Steps:
 
     `java -jar BIntegration.jar --install`
     
-4. Past the file path of binary probcli and press enter.
+4. Paste the file path of binary probcli and press enter.
 
 
 ### How B Integration works
@@ -92,7 +92,7 @@ Procedures for developers
 * Requires: [Java] `1.7`, [Eclipse] Classic 4.2.2 and some plugins ([Git](optional), [WindowBuilder] and [Maven])
 * BIntegration is compatible with Mac Os and Linux.
 
-Steps to use the IDE Eclipe:
+Steps to use the IDE Eclipse:
 
 1. Download the [Eclipse] and after install your plugins ( [Git], [WindowBuilder] and [Maven]) in Eclipse.
 
@@ -107,12 +107,12 @@ Steps to use the IDE Eclipe:
     
 3. Configure the repository git in Eclipse:
  * Click  `Window` > `Open Perspective` > `Open` and select `Git Repository Exploring`.
- * Click `Clone a Git Repository` then in field URI past `https://github.com/ValerioMedeiros/BIntegration.git` using HTTPS or `git@github.com:ValerioMedeiros/BIntegration.git` using SSH.
+ * Click `Clone a Git Repository` then in field URI paste `https://github.com/ValerioMedeiros/BIntegration.git` using HTTPS or `git@github.com:ValerioMedeiros/BIntegration.git` using SSH.
  * Follow the remaining procedures to clone a local git repository.
 
 4. Import the project as an existing maven project.
  * Click `File` > `Import` then select `Maven` after `Existing Maven Project`.
- * Click `Next` and in the field `Root Directory` past your git repository path, for example `/home/username/git/BIntegration`.
+ * Click `Next` and in the field `Root Directory` paste your git repository path, for example `/home/username/git/BIntegration`.
  * Follow the remaining procedures to create the maven project.
 
 
@@ -121,7 +121,7 @@ Steps to run in Eclipse and create the executable file `BIntegration.jar`:
 
 1. In Eclipse, run the BIntegration selecting the class `Main.java` in package br.ufrn.forall.b2asm.bintegration.core and clicking in menu `Run` > `Run as` > `Java Application`.
 
-2. Select the BIntegration project, click `File` > `Export`, select `Runnable JAR file` and click `Next` following the remaining procedures to create a runnable jar file.
+2. Select the BIntegration project, click `File` > `Export`; select `Runnable JAR file` and click `Next` following the remaining procedures to create a runnable jar file.
 
 5. Now enjoy it!
 
