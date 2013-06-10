@@ -13,7 +13,7 @@ BIntegration
 BSD License 
 ---------------------
 
-Copyright (c) 2013,  Valério Medeiros, David Deharbe
+Copyright (c) 2013,  Valério Medeiros, David Déharbe
 
 All rights reserved.
 
