@@ -94,7 +94,7 @@ Procedures for developers
 
 Steps to use the IDE Eclipse:
 
-1. Download the [Eclipse] and after install your plugins ( [Git], [WindowBuilder] and [Maven]) in Eclipse.
+1. Download the [Eclipse] and then install your plugins ( [Git], [WindowBuilder] and [Maven]) in Eclipse.
 
 2. Configure the Eclipse:
  * Click `Help` > `Install New Software`.
@@ -111,7 +111,7 @@ Steps to use the IDE Eclipse:
  * Follow the remaining procedures to clone a local git repository.
 
 4. Import the project as an existing maven project.
- * Click `File` > `Import` then select `Maven` after `Existing Maven Project`.
+ * Click `File` > `Import` then select `Maven` and `Existing Maven Project`.
  * Click `Next` and in the field `Root Directory` paste your git repository path, for example `/home/username/git/BIntegration`.
  * Follow the remaining procedures to create the maven project.
 
