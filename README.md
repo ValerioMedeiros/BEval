@@ -62,7 +62,7 @@ Steps:
 ### How BEval works
 
 BEval is a tool to systematize the verification of B expressions integrated with AtelierB using different parameters with ProB.
-Basically, the B integration take a B proof obligation in  B syntax from AtelierB and submit to ProB evaluate. When the proof obligation is ''true'', it is admitted as a B rule only in its specific module, the rule is precompiled and applied in proof obligation.
+Basically, the BEval takes a B proof obligation in  B syntax from AtelierB and submit to ProB evaluate. When the proof obligation is ''true'', it is admitted as a B rule only in its specific module, the rule is precompiled and applied in proof obligation.
 
 
 ### Evaluating one proof obligation with interactive prover of AtelierB:
@@ -122,7 +122,7 @@ Steps to use the IDE Eclipse:
 
 Steps to run in Eclipse and create the executable file `BEval.jar`:
 
-1. In Eclipse, run the BEval selecting the class `Main.java` in package br.ufrn.forall.b2asm.bintegration.core and clicking in menu `Run` > `Run as` > `Java Application`.
+1. In Eclipse, run the BEval selecting the class `Main.java` in package br.ufrn.forall.b2asm.beval.core and clicking in menu `Run` > `Run as` > `Java Application`.
 
 2. Select the BEval project, click `File` > `Export`; select `Runnable JAR file` and click `Next` following the remaining procedures to create a runnable jar file.
 
