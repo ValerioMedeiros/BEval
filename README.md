@@ -6,6 +6,9 @@
 [Maven]:http://maven.apache.org/eclipse-plugin.html
 [Git]:http://www.eclipse.org/egit/
 [BIntegration]:https://github.com/ValerioMedeiros/BIntegration
+[ProB]:http://www.stups.uni-duesseldorf.de/ProB/index.php5/Download
+[AtelierB]:http://www.atelierb.eu/en/download-atelier-b/
+[Java]:http://java.com/en/download/
 
 BIntegration
 ============
@@ -40,7 +43,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 Installation procedures for users
 ---------------------
 
-* Requires: AtelierB `4.1`, ProB `1.3.6` and Java `1.7`
+* Requires: [AtelierB] `4.1`, [ProB] `1.3.6` and [Java] `1.7`
 * BIntegration is compatible with Mac Os and Linux.
 
 Steps:
