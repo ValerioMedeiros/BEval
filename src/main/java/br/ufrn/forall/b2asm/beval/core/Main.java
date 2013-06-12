@@ -1,4 +1,4 @@
-package br.ufrn.forall.b2asm.bintegration.core;
+package br.ufrn.forall.b2asm.beval.core;
 
 import java.awt.EventQueue;
 import java.io.BufferedReader;
@@ -6,7 +6,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import br.ufrn.forall.b2asm.bintegration.core.StreamGobbler.Result;
+import br.ufrn.forall.b2asm.beval.core.StreamGobbler.Result;
 
 /**
  * This class just call call the ProB evaluator

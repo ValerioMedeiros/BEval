@@ -1,13 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	
 	<groupId>br.ufrn.forall.b2asm</groupId>
-	<artifactId>BIntegration</artifactId>
+	<artifactId>BEval</artifactId>
 	<version>0.1-SNAPSHOT</version>
-	<name>BIntegration</name>
+	<name>BEval</name>
 	<modelVersion>4.0.0</modelVersion>
 	<organization>
 		<name>UFRN - IFRN</name>
-		<url>https://github.com/ValerioMedeiros/BIntegration/</url>
+		<url>https://github.com/ValerioMedeiros/BEval/</url>
 	</organization>
 	<description>Project B2ASM</description>
 
@@ -161,7 +161,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.6</java.version>
-		<BIntegration.version>0.1-SNAPSHOT</BIntegration.version>
+		<BEval.version>0.1-SNAPSHOT</BEval.version>
 	</properties>
 
 	<dependencies>

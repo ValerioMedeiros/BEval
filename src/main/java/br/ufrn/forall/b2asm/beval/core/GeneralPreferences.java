@@ -1,7 +1,7 @@
 /**
  * 
  */
-package br.ufrn.forall.b2asm.bintegration.core;
+package br.ufrn.forall.b2asm.beval.core;
 
 import java.util.prefs.Preferences;
 

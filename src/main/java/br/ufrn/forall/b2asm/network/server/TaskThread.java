@@ -9,7 +9,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-import br.ufrn.forall.b2asm.bintegration.network.Requisition;
+import br.ufrn.forall.b2asm.beval.network.Requisition;
 
 public class TaskThread extends Thread {
 

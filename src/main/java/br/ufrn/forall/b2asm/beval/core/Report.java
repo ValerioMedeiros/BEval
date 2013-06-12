@@ -1,11 +1,11 @@
-package br.ufrn.forall.b2asm.bintegration.core;
+package br.ufrn.forall.b2asm.beval.core;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
 
-import br.ufrn.forall.b2asm.bintegration.core.StreamGobbler.Result;
+import br.ufrn.forall.b2asm.beval.core.StreamGobbler.Result;
 
 public class Report {
 	public enum POWD {Common, WD }

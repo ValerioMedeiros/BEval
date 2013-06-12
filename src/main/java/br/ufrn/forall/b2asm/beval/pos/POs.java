@@ -1,11 +1,11 @@
-package br.ufrn.forall.b2asm.bintegration.pos;
+package br.ufrn.forall.b2asm.beval.pos;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import br.ufrn.forall.b2asm.bintegration.core.Control;
+import br.ufrn.forall.b2asm.beval.core.Control;
 
 public class POs {
 	private String pathPOFileWithoutExtension;

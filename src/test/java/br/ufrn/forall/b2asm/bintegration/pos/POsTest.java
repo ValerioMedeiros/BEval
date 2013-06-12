@@ -11,9 +11,10 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.ufrn.forall.b2asm.bintegration.core.Control;
-import br.ufrn.forall.b2asm.bintegration.core.Report;
-import br.ufrn.forall.b2asm.bintegration.core.StreamGobbler.Result;
+import br.ufrn.forall.b2asm.beval.core.Control;
+import br.ufrn.forall.b2asm.beval.core.Report;
+import br.ufrn.forall.b2asm.beval.core.StreamGobbler.Result;
+import br.ufrn.forall.b2asm.beval.pos.POs;
 
 public class POsTest {
 	

@@ -1,4 +1,4 @@
-package br.ufrn.forall.b2asm.bintegration.core;
+package br.ufrn.forall.b2asm.beval.core;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -16,10 +16,10 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
-import br.ufrn.forall.b2asm.bintegration.core.Report.POWD;
-import br.ufrn.forall.b2asm.bintegration.core.Report.PoGenerated;
-import br.ufrn.forall.b2asm.bintegration.core.StreamGobbler.Result;
-import br.ufrn.forall.b2asm.bintegration.pos.POs;
+import br.ufrn.forall.b2asm.beval.core.Report.POWD;
+import br.ufrn.forall.b2asm.beval.core.Report.PoGenerated;
+import br.ufrn.forall.b2asm.beval.core.StreamGobbler.Result;
+import br.ufrn.forall.b2asm.beval.pos.POs;
 
 /**
  * This class contains the control elements to call the ProB evaluator

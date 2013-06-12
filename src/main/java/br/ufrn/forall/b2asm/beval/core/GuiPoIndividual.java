@@ -1,4 +1,4 @@
-package br.ufrn.forall.b2asm.bintegration.core;
+package br.ufrn.forall.b2asm.beval.core;
 
 import java.awt.EventQueue;
 import java.awt.Rectangle;
@@ -21,7 +21,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 
-import br.ufrn.forall.b2asm.bintegration.core.StreamGobbler.Result;
+import br.ufrn.forall.b2asm.beval.core.StreamGobbler.Result;
 
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;

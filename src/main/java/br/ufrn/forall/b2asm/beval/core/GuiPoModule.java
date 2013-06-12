@@ -1,4 +1,4 @@
-package br.ufrn.forall.b2asm.bintegration.core;
+package br.ufrn.forall.b2asm.beval.core;
 
 import java.awt.EventQueue;
 import java.awt.Rectangle;
@@ -23,10 +23,10 @@ import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 
 import net.miginfocom.swing.MigLayout;
-import br.ufrn.forall.b2asm.bintegration.core.Report.POWD;
-import br.ufrn.forall.b2asm.bintegration.core.Report.PoGenerated;
-import br.ufrn.forall.b2asm.bintegration.core.StreamGobbler.Result;
-import br.ufrn.forall.b2asm.bintegration.pos.POs;
+import br.ufrn.forall.b2asm.beval.core.Report.POWD;
+import br.ufrn.forall.b2asm.beval.core.Report.PoGenerated;
+import br.ufrn.forall.b2asm.beval.core.StreamGobbler.Result;
+import br.ufrn.forall.b2asm.beval.pos.POs;
 import br.ufrn.forall.b2asm.utils.AutoDismiss;
 
 import javax.swing.event.ChangeListener;

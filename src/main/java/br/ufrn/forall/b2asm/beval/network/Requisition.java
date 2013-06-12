@@ -1,4 +1,4 @@
-package br.ufrn.forall.b2asm.bintegration.network;
+package br.ufrn.forall.b2asm.beval.network;
 
 import java.io.Serializable;
 

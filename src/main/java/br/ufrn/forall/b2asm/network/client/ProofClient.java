@@ -11,8 +11,8 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 
-import br.ufrn.forall.b2asm.bintegration.core.Installation;
-import br.ufrn.forall.b2asm.bintegration.network.Requisition;
+import br.ufrn.forall.b2asm.beval.core.Installation;
+import br.ufrn.forall.b2asm.beval.network.Requisition;
 
 
 public class ProofClient  /*implements Runnable*/ {
