@@ -50,7 +50,7 @@ Steps:
 
 1. Download this file [BIntegration.jar].
 
-2. Move the file `BIntegration.jar` to $AtelierBInstallationDirectory/AB/extensions (Mac Os) or $AtelierBInstallationDirectory/extensions (Linux).
+2. Move the file `BIntegration.jar` to $AtelierBInstallationDirectory/AB/extensions (Mac Os) or $AtelierBInstallationDirectory/extensions (Linux). In general, $AtelierBInstallationDirectory is /Application/AtelierB.app/ (Mac Os) or /opt/AtelierB (Linux).
 
 3. In terminal, type:
 
