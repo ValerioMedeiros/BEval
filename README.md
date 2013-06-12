@@ -128,4 +128,3 @@ Steps to run in Eclipse and create the executable file `BIntegration.jar`:
 
 5. Now enjoy it!
 
-
