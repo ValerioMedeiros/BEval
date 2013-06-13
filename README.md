@@ -12,7 +12,7 @@
 
 BEval
 ============
-
+<img src="https://raw.github.com/ValerioMedeiros/BEval/master/b2asm.png" width="200" align="center">
 
 Installation procedures for users
 ---------------------
