@@ -10,7 +10,7 @@
 [AtelierB]:http://www.atelierb.eu/en/download-atelier-b/
 [Java]:http://java.com/en/download/
 
-BEval - <img src="https://raw.github.com/ValerioMedeiros/BEval/master/b2asm.png" width="20" align="center">
+BEval  <img src="https://raw.github.com/ValerioMedeiros/BEval/master/b2asm.png" width="50" align="right">
 ============
 
 Installation procedures for users
