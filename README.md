@@ -17,50 +17,54 @@ Installation procedures for users
 ---------------------
 
 * Requires: [AtelierB] `4.1`, [ProB] `1.3.6` and [Java] `1.7`
-* BEval is compatible with Mac Os and Linux.
+* BEval is compatible with OS X and Linux.
 
-Steps:
+Follow these steps:
 
-1. Download this file [BEval.jar].
-
-2. Move the file `BEval.jar` to $AtelierBInstallationDirectory/AB/extensions (Mac Os) or $AtelierBInstallationDirectory/extensions (Linux). In general, $AtelierBInstallationDirectory is /Application/AtelierB.app/ (Mac Os) or /opt/AtelierB (Linux).
-
-3. In extensions directory, type it unsing the terminal:
-
-    `java -jar BEval.jar --install`
-    
-4. Paste the file path of binary probcli and press enter.
-
+1. Find where AtelierB is installed on your system. Let $ABDIR denote this location (usually /Application/AtelierB.app/ on OS X; /opt/AtelierB on Linux). 
+2. Find where probcli (ProB Command Line Interface) is installed on your system. Let $PROBDIR denote this location.
+3. If you are using Linux, EXTDIR=$ABDIR/AB/extensions. If you are using OS X, EXTDIR=$ABDIR/extensions.
+4. Download file [BEval.jar] and install it in $EXTDIR.
+5. Open a terminal, and issue the following command:
+    `cd $EXTDIR; java -jar BEval.jar --install`
+    where $EXTDIR is as defined above.
+6. Paste the value of `$PROBDIR/probcli` and press enter.
 
 ### How BEval works
 
-BEval is a tool to systematize the verification of B expressions integrated with AtelierB using different parameters with ProB.
-Basically, the BEval takes a B proof obligation in  B syntax from AtelierB and submit to ProB evaluate. When the proof obligation is ''true'', it is admitted as a B rule only in its specific module, the rule is precompiled and applied in proof obligation.
+BEval is a tool that offers to the user the possibility to use ProB within AtelierB to evaluate proof obligations. BEval
+may be used in the interactive prover (we plan to integrate it to the components window in the future).
+When the proof obligation is ''true'', a rule is added to the pmm file corresponding to the B component under 
+verification. The user may then use the new rule to discharge the proof obligation within AtelierB. So, even when ProB
+finds that a goal is true, the proof obligation is *not* automatically discharged in AtelierB. The actions that the user
+must take are described below.
 
+### Using BEval in the interactive prover
 
-### Evaluating one proof obligation with interactive prover of AtelierB:
+In the interactive prover window:
 
-1. Use the shortcut (`Command+D` or `CRTL+D`) to call the BEval in AtelierB`s interactive prover with a current proof obligation.
+1. Use the shortcut (`Command+D` or `CRTL+D`) to call BEval on the current proof obligation.
 
-2. Load the rule created, type in interactive prover terminal `pc` to precompile the rule created.
+2. A pop-up window appears, with several elements. 
+    1. Parameters: located on the top-left of the window, it is an editable text where the user has access to the options 
+used to call ProB.
+    2. Main options: located on the top-middle of the window, three basic options are checkable: Kodkod indicates that
+ProB may use the tool of the same name; Smt indicates that ProB may use SMT-solvers; Initialise indicates that definitions
+from the B component shall be loaded. 
+    3. Hypothesis: located on the top-right of the window, it presents hypothesis that the user may want to add to the goal.
+Addition of such hypothesis shall be performed with copy-and-paste operations.
+    4. Goal to evaluate: is an editable text that contains the expression that will be sent to ProB.
+    5. Add rule: If that option is checked, whenever the goal evaluates to ''true'', a rule is generated.
+    6. P.O.W.D.: If that option is checked, then, whenever the goal evaluates to ''true'', the generated rule will be 
+added to the `wd_pmm` file, otherwise it is added to the `pmm` file.
+    7. Eval: This button provokes the call to ProB on the current goal with the given list of parameters.
 
-3. Apply the rule selecting the new rule in theory list and clicking in `mp(Tac(..))` 
+3. If the goal has been evaluated to ''true'' and a rule has been created, the user may use this rule to discharge the 
+proof obligation in AtelierB. In the interactive prover, the command `pc` loads and compiles the manual rules.
 
-* Parameters are explained in [here].
+3. Select the created rule in the theory list and click `mp(Tac(..))`.
 
-
-### Evaluating proof obligations from a module:
-
-1. Use the shortcut (`Command+D` or `CRTL+D`) to call the BEval with a current module selected.
-
-2. Define the parameters to evaluate the proof obligations and click on button "Eval".
-
-3. Wait and analyse the results in the text area.
-
-
-
-
-
+* Parameters are explained [here].
 
 Procedures for developers 
 ---------------------
