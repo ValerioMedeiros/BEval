@@ -46,18 +46,18 @@ In the interactive prover window:
 1. Use the shortcut (`Command+D` or `CRTL+D`) to call BEval on the current proof obligation.
 
 2. A pop-up window appears, with several elements. 
-    1. Parameters: located on the top-left of the window, it is an editable text where the user has access to the options 
+    * Parameters: located on the top-left of the window, it is an editable text where the user has access to the options 
 used to call ProB.
-    2. Main options: located on the top-middle of the window, three basic options are checkable: Kodkod indicates that
+    * Main options: located on the top-middle of the window, three basic options are checkable: Kodkod indicates that
 ProB may use the tool of the same name; Smt indicates that ProB may use SMT-solvers; Initialise indicates that definitions
 from the B component shall be loaded. 
-    3. Hypothesis: located on the top-right of the window, it presents hypothesis that the user may want to add to the goal.
+    * Hypothesis: located on the top-right of the window, it presents hypothesis that the user may want to add to the goal.
 Addition of such hypothesis shall be performed with copy-and-paste operations.
-    4. Goal to evaluate: is an editable text that contains the expression that will be sent to ProB.
-    5. Add rule: If that option is checked, whenever the goal evaluates to ''true'', a rule is generated.
-    6. P.O.W.D.: If that option is checked, then, whenever the goal evaluates to ''true'', the generated rule will be 
+    * Goal to evaluate: is an editable text that contains the expression that will be sent to ProB.
+    * Add rule: If that option is checked, whenever the goal evaluates to ''true'', a rule is generated.
+    * P.O.W.D.: If that option is checked, then, whenever the goal evaluates to ''true'', the generated rule will be 
 added to the `wd_pmm` file, otherwise it is added to the `pmm` file.
-    7. Eval: This button provokes the call to ProB on the current goal with the given list of parameters.
+    * Eval: This button provokes the call to ProB on the current goal with the given list of parameters.
 
 3. If the goal has been evaluated to ''true'' and a rule has been created, the user may use this rule to discharge the 
 proof obligation in AtelierB. In the interactive prover, the command `pc` loads and compiles the manual rules.
@@ -70,13 +70,13 @@ Procedures for developers
 ---------------------
 
 * Requires: [Java] `1.7`, [Eclipse] Classic 4.2.2 and some plugins ([Git](optional), [WindowBuilder] and [Maven])
-* BEval is compatible with Mac Os and Linux.
+* BEval is compatible with OS X and Linux.
 
 Steps to use the IDE Eclipse:
 
-1. Download the [Eclipse] and then install your plugins ( [Git], [WindowBuilder] and [Maven]) in Eclipse.
+1. Download [Eclipse].
 
-2. Configure the Eclipse:
+2. Install the plugins Git], [WindowBuilder] and [Maven]) in Eclipse:
  * Click `Help` > `Install New Software`.
  * In field `Work with` select `All Avalable Site`.
  * Type below the name of component software to search.
@@ -99,7 +99,7 @@ Steps to use the IDE Eclipse:
 
 Steps to run in Eclipse and create the executable file `BEval.jar`:
 
-1. In Eclipse, run the BEval selecting the class `Main.java` in package br.ufrn.forall.b2asm.beval.core and clicking in menu `Run` > `Run as` > `Java Application`.
+1. In Eclipse, run BEval by opening directory `src/main/java`, package `br.ufrn.forall.b2asm.beval.core`, class `Main.java` and right-click and select `Run` > `Run as` > `Java Application` in the menu.
 
 2. Select the BEval project, click `File` > `Export`; select `Runnable JAR file` and click `Next` following the remaining procedures to create a runnable jar file.
 
