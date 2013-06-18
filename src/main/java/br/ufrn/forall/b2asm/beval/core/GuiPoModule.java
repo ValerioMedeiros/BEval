@@ -43,7 +43,7 @@ public class GuiPoModule extends JFrame {
 
 	JFrame frame;
 	final Control control;
-	private final JCheckBox chckbxPoWD = new JCheckBox("P.O. W. D.");
+	private final JCheckBox chckbxPoWD = new JCheckBox("W. D. P. O.");
 	private final JButton btnEval = new JButton("Eval");
 	private final JTextArea actualParameters = new JTextArea();
 	private final JScrollPane scrollActualParameters = new JScrollPane(actualParameters);

@@ -40,7 +40,7 @@ public class GuiPoIndividual extends JFrame {
 
 	JFrame frame;
 	final Control control;
-	private final JCheckBox chckbxPoWD = new JCheckBox("P.O. W. D.");
+	private final JCheckBox chckbxPoWD = new JCheckBox("W. D. P. O.");
 	private final JButton btnEval = new JButton("Eval");
 	private final JCheckBox chckbxAddRule = new JCheckBox(
 			"Add rule (when predicate is true)");

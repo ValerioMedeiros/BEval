@@ -29,8 +29,8 @@ public class Main {
 			System.out.println(Installation.softwareName+" version "+version);
 			System.out.println("__________________________________");
 			System.out.println("Installation instructions:");
-			System.out.println("1 - Move the file ("+Installation.filenameJar+") to $AtelierB_Directory/AB/extensions, after update the config files.");
-			System.out.println("2 - For update the config files,execute in terminal:\n" +
+			System.out.println("1 - Move the file ("+Installation.filenameJar+") to $AtelierB_Directory/AB/extensions, after update the installation preferences.");
+			System.out.println("2 - For update the installation preferences, execute in terminal:\n" +
 					" #java -jar "+Installation.filenameJar+ " --install");
 			System.exit(0);
 		}
