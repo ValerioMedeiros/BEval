@@ -55,7 +55,7 @@ from the B component shall be loaded.
 Addition of such hypothesis shall be performed with copy-and-paste operations.
     * Goal to evaluate: is an editable text that contains the expression that will be sent to ProB.
     * Add rule: If that option is checked, whenever the goal evaluates to ''true'', a rule is generated.
-    * P.O.W.D.: If that option is checked, then, whenever the goal evaluates to ''true'', the generated rule will be 
+    * W.D.P.O.: If that option is checked, then, whenever the goal evaluates to ''true'', the generated rule will be 
 added to the `wd_pmm` file, otherwise it is added to the `pmm` file.
     * Eval: This button provokes the call to ProB on the current goal with the given list of parameters.
 
