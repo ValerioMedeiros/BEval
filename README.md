@@ -76,7 +76,7 @@ Steps to use the IDE Eclipse:
 
 1. Download [Eclipse].
 
-2. Install the plugins Git], [WindowBuilder] and [Maven]) in Eclipse:
+2. Install the plugins [Git], [WindowBuilder] and [Maven] in Eclipse:
  * Click `Help` > `Install New Software`.
  * In field `Work with` select `All Avalable Site`.
  * Type below the name of component software to search.
