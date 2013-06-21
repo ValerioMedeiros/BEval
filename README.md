@@ -49,13 +49,13 @@ In the interactive prover window:
     * Parameters: located on the top-left of the window, it is an editable text where the user has access to the options 
 used to call ProB.
     * Main options: located on the top-middle of the window, three basic options are checkable: Kodkod indicates that
-ProB may use the tool of the same name; Smt indicates that ProB may use SMT-solvers; Initialise indicates that definitions
+ProB may use the tool of the same name; Smt indicates that ProB to do more aggressive constraint solving; Initialise indicates that definitions
 from the B component shall be loaded. 
     * Hypothesis: located on the top-right of the window, it presents hypothesis that the user may want to add to the goal.
 Addition of such hypothesis shall be performed with copy-and-paste operations.
     * Goal to evaluate: is an editable text that contains the expression that will be sent to ProB.
     * Add rule: If that option is checked, whenever the goal evaluates to ''true'', a rule is generated.
-    * P.O.W.D.: If that option is checked, then, whenever the goal evaluates to ''true'', the generated rule will be 
+    * W.D.P.O.: If that option is checked, then, whenever the goal evaluates to ''true'', the generated rule will be 
 added to the `wd_pmm` file, otherwise it is added to the `pmm` file.
     * Eval: This button provokes the call to ProB on the current goal with the given list of parameters.
 
@@ -76,7 +76,7 @@ Steps to use the IDE Eclipse:
 
 1. Download [Eclipse].
 
-2. Install the plugins Git], [WindowBuilder] and [Maven]) in Eclipse:
+2. Install the plugins [Git], [WindowBuilder] and [Maven] in Eclipse:
  * Click `Help` > `Install New Software`.
  * In field `Work with` select `All Avalable Site`.
  * Type below the name of component software to search.
