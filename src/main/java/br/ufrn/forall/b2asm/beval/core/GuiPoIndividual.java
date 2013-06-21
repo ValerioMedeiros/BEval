@@ -54,7 +54,6 @@ public class GuiPoIndividual extends JFrame {
 	private final JLabel lblExpressionToEvaluate = new JLabel("Goal to evaluate");
 	private final JTextArea textHypothesis = new JTextArea();
 	private final JScrollPane scrollHypothesis = new JScrollPane(textHypothesis);
-	private final JCheckBox chckbxToAdd = new JCheckBox("Add hypothesis");
 	private final JCheckBox checkBoxKokod = new JCheckBox("Kodkod");
 	private final JCheckBox checkBoxSmt = new JCheckBox("Smt");
 	private final JCheckBox checkBoxInitialiseModule = new JCheckBox("Initialise");
@@ -180,9 +179,6 @@ public class GuiPoIndividual extends JFrame {
 		});
 
 		frame.getContentPane().add(btnEval, "cell 4 16,alignx right");
-		chckbxToAdd.setEnabled(false);
-
-		frame.getContentPane().add(chckbxToAdd, "cell 3 0");
 
 	}
 
