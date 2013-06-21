@@ -171,9 +171,23 @@ public class POs {
 	 */
 	public String getExpandedProofObligations(int numberOfProofObligation){
 
-		return expandedHypoThesis[numberOfProofObligation-1]+"\n => "+expandedGoal[numberOfProofObligation-1];
+		return expandedHypoThesis[posUnexpandedRead.length -numberOfProofObligation]+"\n => "+expandedGoal[posUnexpandedRead.length - numberOfProofObligation];
 	}
 
+	/***
+	 * This method return one proof obligation WITH comments and with only local hypotheses from proof obligation
+	 * @param numberOfProofObligation  enumerating from 1 up to numbers of proof obligations
+	 * @return 
+	 */
+	public	String getProofObligationsWithLocalHypotheses(int numberOfProofObligation){
+		
+		String tmp = this.posUnexpandedRead[posUnexpandedRead.length - numberOfProofObligation].split("=>")[0];
+		 
+		String basicHypotheses = getFormulaExpandedWithOnlyLocalHypothesis(tmp);
+		
+		return new String( basicHypotheses+"\n => "+expandedGoal[posUnexpandedRead.length - numberOfProofObligation]);
+	}
+	
 	/***
 	 * This method return one proof obligation without comments and with only local hypotheses from proof obligation
 	 * @param numberOfProofObligation  enumerating from 1 up to numbers of proof obligations
