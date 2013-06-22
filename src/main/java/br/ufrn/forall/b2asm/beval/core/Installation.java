@@ -56,7 +56,7 @@ public class Installation {
 			+ "<param>${componentPath}</param>\n"
 			+ "<param> ${componentExt}</param>\n"
 			+ "<param>${poGoal}</param>\n"
-			+ "<param> "+IdModule+"  Bacana${poHypothesis}</param>\n"
+			+ "<param> "+IdModule+"  ${poHypothesis}</param>\n"
 			+ "</externalTool>\n";
 
 	protected static String bEvalSh = "#!/bin/bash\n"

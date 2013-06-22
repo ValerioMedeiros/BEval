@@ -237,12 +237,16 @@ public class GuiPoModule extends JFrame {
 						else
 							proofObligation = control.getGoalOfCleanExpandedProofObligations(numberPo);
 						
-						int res = control.callProbLogicEvaluator(false,false, report, numberPo , actualParameters.getText(),  proofObligation);
+						int res = control.callProbLogicEvaluator(true, false,true, report, numberPo , actualParameters.getText(),  proofObligation);
 						
 						AutoDismiss.showMessageDialog(null, "Progress "+ countSelected+"/"+selectedItens.length+"\n"
 							+"The result is "+control.getResult()+"\n"
 							+proofObligation  ,1000); 
 						
+
+						
+						// This rule is used in  formal method.
+						//control.addRuleInPMMFile(control.getProofObligationsWithLocalHypotheses(numberPo))
 						
 						System.out.println("\nThe result is "+ control.getResult()+" and progress "+ countSelected+"/"+selectedItens.length+"\n");
 						textArea.repaint();

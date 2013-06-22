@@ -151,8 +151,8 @@ public class Control {
 			
 		}
 	}
-
-	void addRuleInPMMFile(boolean poTypedWD) {
+	//TODO: Move this method to a new class resposible for Pmms called Pmm??? or in POs
+	void addRuleInPMMFile(boolean poTypedWD, String rule) {
 		String fileNameToAddRule;
 		final String finalFile = new String("\nEND");
 
@@ -201,9 +201,9 @@ public class Control {
 				+ expressionName.replace(".", "_") + " IS \n\n"
 				+ "\n\t /* Expression from " + expressionName
 				+ ", it was added  in " + new Date()
-				+ "\n\t  verified with ProB in " + total_time + " milliseconds"
-				+ "\n\t  Module Path:" + modulePath + " */" + "\n\n\t " + goal
-				+ "==btrue\n");
+				+ "\n\t  evaluated with ProB in " + total_time + " milliseconds"
+				+ "\n\t  Module Path:" + modulePath + " */" + "\n\n\t " + rule );
+				//+ "==btrue\n");
 
 		String newRules = stringInitialFile + addedRule + finalFile;
 
@@ -256,10 +256,10 @@ public class Control {
 
 	public int callProbLogicEvaluator(boolean poTypedWD, boolean addRule, String parameters, String goalExpression) {
 		
-		return callProbLogicEvaluator( poTypedWD,  addRule, new Report(),  0,
+		return callProbLogicEvaluator(false, poTypedWD,  addRule, new Report(),  0,
 				 parameters,  goalExpression);
 	}
-	public int callProbLogicEvaluator(boolean poTypedWD, boolean addRule, Report report, int numberPo,
+	public int callProbLogicEvaluator(boolean addUserPass, boolean poTypedWD, boolean addRule, Report report, int numberPo,
 			String parameters, String goalExpression) {
 
 		exitVal = 0;
@@ -310,18 +310,27 @@ public class Control {
 					parameters,
 					POWD.Common,
 					PoGenerated.Full,
-					stateProB,
 					goalExpression,
-					res_out,
+					stateProB,
 					res_error,
+					res_out,
 					total_time);
+			
 			
 			if (res_out != Result.ERROR && res_error != Result.ERROR) {
 				printSuccessFullyMsg();
 				result = res_out;
 
 				if (result == Result.TRUE && addRule) {
-					addRuleInPMMFile(poTypedWD);
+					
+					if(!addUserPass){
+						addRuleInPMMFile(poTypedWD,goal+"==btrue");
+					}else{
+						// This rule is used to add true rules of component
+						addRuleInPMMFile(poTypedWD, this.getProofObligationsWithLocalHypotheses(numberPo));
+						// addUserPass ...
+
+					}
 				}
 
 			} else {
@@ -331,8 +340,6 @@ public class Control {
 
 			System.out.println("Time spent: " + total_time);
 			System.out.println("Process exit value: " + exitVal);
-			
-			
 
 		} catch (Throwable t) {
 			t.printStackTrace();
@@ -342,7 +349,7 @@ public class Control {
 	}
 
 	/**
-	 * This method was build to support evaluation of a set of proof obligations
+	 * This method was build to support evaluation of a set of proof obligations. It is temporally inactive. 
 	 * 
 	 * @param pathProBcli - It contains the path of Probcli
 	 * @param parameters - It contains the parameters to call Probcli
@@ -561,6 +568,16 @@ public class Control {
 		return expressionsToEvaluate.isProvedTheProofState(number);
 		
 	}
+	/**
+	 * @param number enumerating from 1 up to numbers of proof obligations
+	 * @return
+	 */
+	
+	public String getProofObligationsWithLocalHypotheses( int numberOfProofObligation){
+		return expressionsToEvaluate.getProofObligationsWithLocalHypotheses(numberOfProofObligation);
+	}
+	
+	
 	/**
 	 * @param number enumerating from 1 up to numbers of proof obligations
 	 * @return

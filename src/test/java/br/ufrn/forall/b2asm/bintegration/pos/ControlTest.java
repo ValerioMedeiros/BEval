@@ -19,7 +19,9 @@ import br.ufrn.forall.b2asm.beval.core.StreamGobbler.Result;
 
 public class ControlTest {
 	
-
+	/*TODO 
+	 * Update this tests to using with MAVEN after an update
+	 */
 
 	private String pathTestDirectory;
 	private String current;
