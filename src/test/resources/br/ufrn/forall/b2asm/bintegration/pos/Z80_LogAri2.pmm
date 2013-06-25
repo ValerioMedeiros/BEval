@@ -1,0 +1,61 @@
+THEORY User_Pass IS
+    
+    
+Pattern( dom(rgs8<+{a0|->uchar_byte(sum),update_flag_reg(negative,zero,half_carry,carry,0,carry)}) = id_reg_8 ) & ff(1) & dd & eh(update_flag_reg,_h,Goal) & ss & eh(dom(rgs8),_h,Goal) & ss & pr;
+       
+    
+Operation(AssertionLemmas) & Pattern(a<+b: c +-> d) & ff(0) & dd & pr(Tac(Update_flag)) & pp(rt.0); /* Prova as multiplas substituições*/
+
+Pattern(dom(a<+b) = c*d) & ff(0) & dd & ss & eh(dom(rgs8),_h,Goal) & eh(update_flag_reg,_h,Goal) & ss & pr;
+
+Operation(AssertionLemmas) & Pattern(dom(a) = id_reg_8) &  ff(0) & dd & ss & eh(dom(rgs8),_h,Goal) & ss & pr ; /* Remove assertions */
+
+
+/* prova para 4 - - Funcionou */
+    
+Pattern(l<+{x|->y,m|->b,p|->q,t(d,f,g,h,i,j)}: u +-> c) &
+ff(1) & dd & eh(update_flag_reg,_h,Goal) & ss & ph(x,y,m,b,p,q,f0,[j,i,h,1,g,1,f,d],!(xx,xxr,yy,yyr,zz,zzr,vv,vvr).(xx: id_reg_8 & xxr: BYTE & yy: id_reg_8 & yyr: BYTE & zz: id_reg_8 & zzr: BYTE & vv: id_reg_8 & vvr: BYTE & not(xx = yy) & not(xx = zz) & not(xx = vv) & not(yy = zz) & not(yy = vv) & not(zz = vv) => rgs8<+{xx|->xxr,yy|->yyr,zz|->zzr,vv|->vvr}: id_reg_8 +-> BYTE & (dom(rgs8<+{xx|->xxr,yy|->yyr,zz|->zzr,vv|->vvr}) = id_reg_8 & dom(rgs8<+{xx|->xxr,yy|->yyr,zz|->zzr,vv|->vvr}) = id_reg_8))) & ss & pr & pr & ss & pr & pr & ss & pr & ss & pr & ss & pr & ar(BIT_VECTOR) & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr ; 
+
+
+
+/* prova para 3 - Funcionou */
+Pattern(l<+{m|->b,p|->q,t(d,f,g,h,i,j)}: u +-> c) &
+ ff(1) & dd & eh(update_flag_reg,_h,Goal) & ss &
+
+ph(m,b,p,q,f0,[j,i,h,1,g,1,f,d],
+ !(xx,xxr,yy,yyr,zz,zzr).(xx: id_reg_8 & xxr: BYTE & yy: id_reg_8 & yyr: BYTE & zz: id_reg_8 & zzr: BYTE & not(xx = yy) & not(xx = zz) & not(yy = zz) => rgs8<+{xx|->xxr,yy|->yyr,zz|->zzr}: id_reg_8 +-> BYTE & (dom(rgs8<+{xx|->xxr,yy|->yyr,zz|->zzr}) = id_reg_8 & dom(rgs8<+{xx|->xxr,yy|->yyr,zz|->zzr}) = id_reg_8))) &
+
+ ss & pr & pr & ss & pr & ar(BIT_VECTOR.1,Once) & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr;
+
+
+/* prova para 2 - Funcionou */
+Pattern(l<+{m|->b,t(d,f,g,h,i,j)}: u +-> c) &
+ ff(1) & dd & eh(update_flag_reg,_h,Goal) & ss &
+
+ph(m,b,f0,[j,i,h,1,g,1,f,d],!(xx,xxr,yy,yyr).(xx: id_reg_8 & xxr: BYTE & yy: id_reg_8 & yyr: BYTE & not(xx = yy) => rgs8<+{xx|->xxr,yy|->yyr}: id_reg_8 +-> BYTE & (dom(rgs8)\/{xx,yy} = id_reg_8 & dom(rgs8)\/{xx,yy} = id_reg_8))) &
+
+ ss & pr & pr & ss & pr & ar(BIT_VECTOR.1,Once) & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr;
+
+/* prova para 1 - Funcionou */
+Pattern(l<+{t(d,f,g,h,i,j)}: u +-> c) &
+ ff(1) & dd & eh(update_flag_reg,_h,Goal) & ss &
+
+ph(f0,[j,i,h,1,g,1,f,d],!(xx,xxr).(xx: id_reg_8 & xxr: BYTE => rgs8<+{xx|->xxr}: id_reg_8 +-> BYTE & (dom(rgs8<+{xx|->xxr}) = id_reg_8 & dom(rgs8<+{xx|->xxr}) = id_reg_8)) ) &
+
+ ss & pr & pr & ss & pr & ar(BIT_VECTOR.1,Once) & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr;
+ 
+ 
+ 
+ /* prova para 2 com uchar_byte no inicio */
+Pattern( l<+{m|->uchar_byte(b),t(d,f,g,h,i,j)}: u +-> c) &
+ ff(1) & dd & eh(update_flag_reg,_h,Goal) & ss &
+
+ph(m,uchar_byte(b),f0,[j,i,h,1,g,1,f,d],!(xx,xxr,yy,yyr).(xx: id_reg_8 & xxr: BYTE & yy: id_reg_8 & yyr: BYTE & not(xx = yy) => rgs8<+{xx|->xxr,yy|->yyr}: id_reg_8 +-> BYTE & (dom(rgs8)\/{xx,yy} = id_reg_8 & dom(rgs8)\/{xx,yy} = id_reg_8))) &
+
+ ss & pr & ah(ran(uchar_byte) = BYTE) & pp(rt.0) & ss & pr & ar(BIT_VECTOR) & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr
+
+
+ 
+
+ 
+END

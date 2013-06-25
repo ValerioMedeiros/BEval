@@ -1,0 +1,16 @@
+THEORY User_Pass IS
+Operation(AssertionLemmas) & Pattern(a : b) & ff(0) & pr;
+Operation(AssertionLemmas) & Pattern(a = b) & ff(0) & eh(sshort_bv16,_h,Goal) & eh(SSHORT,_h,Goal) & dd & mp(Tac(RulesProBAssertionLemmas_3));
+Operation(AssertionLemmas) & Pattern(a = b) & ff(0) & pr
+END
+&
+THEORY RulesProBAssertionLemmas_3 IS 
+
+
+	 /* Expression from AssertionLemmas.3, it was added  in Mon Jan 07 19:51:58 BRT 2013
+	  verified with ProB in 15709 milliseconds
+	  Module Path:/media/B_Resources/Z80_ProB/SSHORT_DEFINITION.mch */
+
+	  card(%v0.(v0: -32768..32767 & 0<=v0 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128,v0 mod 512/256,v0 mod 1024/512,v0 mod 2048/1024,v0 mod 4096/2048,v0 mod 8192/4096,v0 mod 16384/8192,v0 mod 32768/16384,v0 mod 65536/32768])\/%v0.(v0: -32768..32767 & not(0<=v0) | [(v0+65535+1) mod 2/1,(v0+65535+1) mod 4/2,(v0+65535+1) mod 8/4,(v0+65535+1) mod 16/8,(v0+65535+1) mod 32/16,(v0+65535+1) mod 64/32,(v0+65535+1) mod 128/64,(v0+65535+1) mod 256/128,(v0+65535+1) mod 512/256,(v0+65535+1) mod 1024/512,(v0+65535+1) mod 2048/1024,(v0+65535+1) mod 4096/2048,(v0+65535+1) mod 8192/4096,(v0+65535+1) mod 16384/8192,(v0+65535+1) mod 32768/16384,(v0+65535+1) mod 65536/32768])) = 65536==btrue
+
+END

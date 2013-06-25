@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<db_xml>
+    <atelierb version="3_7_ubuntu-cvs" />
+    <project decomp_dir="/media/B_Resources/Z80_ProB/bdp/expand_src" old_decomp_dir="/media/B_Resources/Z80_ProB/bdp/src">
+        <!-- Definition directory list -->
+        <!-- Component file list -->
+        <component_file path="/media/B_Resources/Z80_ProB" name="ALU" suffix="mch" user="valerio">
+            <component name="ALU" type="specification" />
+        </component_file>
+        <component_file path="/media/B_Resources/Z80_ProB" name="BIT_DEFINITION" suffix="mch" user="valerio">
+            <component name="BIT_DEFINITION" type="specification" />
+        </component_file>
+        <component_file path="/media/B_Resources/Z80_ProB" name="BV16_DEFINITION" suffix="mch" user="valerio">
+            <component name="BV16_DEFINITION" type="specification" />
+        </component_file>
+        <component_file path="/media/B_Resources/Z80_ProB" name="BYTE_DEFINITION" suffix="mch" user="valerio">
+            <component name="BYTE_DEFINITION" type="specification" />
+        </component_file>
+        <component_file path="/media/B_Resources/Z80_ProB" name="MEMORY" suffix="mch" user="valerio">
+            <component name="MEMORY" type="specification" />
+        </component_file>
+        <component_file path="/media/B_Resources/Z80_ProB" name="POWER" suffix="mch" user="valerio">
+            <component name="POWER" type="specification" />
+        </component_file>
+        <component_file path="/media/B_Resources/Z80_ProB" name="POWER2" suffix="mch" user="valerio">
+            <component name="POWER2" type="specification" />
+        </component_file>
+        <component_file path="/media/B_Resources/Z80_ProB" name="SCHAR_DEFINITION" suffix="mch" user="valerio">
+            <component name="SCHAR_DEFINITION" type="specification" />
+        </component_file>
+        <component_file path="/media/B_Resources/Z80_ProB" name="SSHORT_DEFINITION" suffix="mch" user="valerio">
+            <component name="SSHORT_DEFINITION" type="specification" />
+        </component_file>
+        <component_file path="/media/B_Resources/Z80_ProB" name="TYPES" suffix="mch" user="valerio">
+            <component name="TYPES" type="specification" />
+        </component_file>
+        <component_file path="/media/B_Resources/Z80_ProB" name="TestCalcwbasm_Pro" suffix="imp" user="valerio">
+            <component name="TestCalcwbasm_Pro" type="implementation" />
+        </component_file>
+        <component_file path="/media/B_Resources/Z80_ProB" name="Test_Pro" suffix="mch" user="valerio">
+            <component name="Test_Pro" type="specification" />
+        </component_file>
+        <component_file path="/media/B_Resources/Z80_ProB" name="Test_inv" suffix="mch" user="valerio">
+            <component name="Test_inv" type="specification" />
+        </component_file>
+        <component_file path="/media/B_Resources/Z80_ProB" name="UCHAR_DEFINITION" suffix="mch" user="valerio">
+            <component name="UCHAR_DEFINITION" type="specification" />
+        </component_file>
+        <component_file path="/media/B_Resources/Z80_ProB" name="USHORT_DEFINITION" suffix="mch" user="valerio">
+            <component name="USHORT_DEFINITION" type="specification" />
+        </component_file>
+        <component_file path="/media/B_Resources/Z80_ProB" name="Z80" suffix="mch" user="valerio">
+            <component name="Z80" type="specification" />
+        </component_file>
+        <component_file path="/media/B_Resources/Z80_ProB" name="Z80_IO" suffix="mch" user="valerio">
+            <component name="Z80_IO" type="specification" />
+        </component_file>
+        <component_file path="/media/B_Resources/Z80_ProB" name="Z80_LogAri" suffix="mch" user="valerio">
+            <component name="Z80_LogAri" type="specification" />
+        </component_file>
+        <component_file path="/media/B_Resources/Z80_ProB" name="Z80_LogAri2" suffix="mch" user="valerio">
+            <component name="Z80_LogAri2" type="specification" />
+        </component_file>
+        <component_file path="/media/B_Resources/Z80_ProB" name="Z80_Man_bitControl" suffix="mch" user="valerio">
+            <component name="Z80_Man_bitControl" type="specification" />
+        </component_file>
+        <component_file path="/media/B_Resources/Z80_ProB" name="Z80_extern" suffix="mch" user="valerio">
+            <component name="Z80_extern" type="specification" />
+        </component_file>
+        <component_file path="/media/B_Resources/Z80_ProB" name="Z80_general" suffix="mch" user="valerio">
+            <component name="Z80_general" type="specification" />
+        </component_file>
+        <component_file path="/media/B_Resources/Z80_ProB" name="Z80_general2" suffix="mch" user="valerio">
+            <component name="Z80_general2" type="specification" />
+        </component_file>
+        <component_file path="/media/B_Resources/Z80_ProB" name="Z80_header" suffix="mch" user="valerio">
+            <component name="Z80_header" type="specification" />
+        </component_file>
+    </project>
+</db_xml>

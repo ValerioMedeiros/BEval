@@ -1,0 +1,65 @@
+THEORY User_Pass IS
+    /* Test using only 2 seconds */
+    ff(0) & dd & ss & eh(update_flag_reg,_h,Goal) & ss & eh(dom(rgs8),_h,Goal) & pr ;
+    
+Operation(AssertionLemmas) & Pattern(a<+({b|->c}\/{d|->e}): (f..g)*{h} +-> i) & ff(0) & pp(rt.0);
+Operation(AssertionLemmas) & Pattern(a<+{b|->c}: (d..e)*{f} +-> g) & ff(0) & pp(rt.0);
+Operation(AssertionLemmas) & Pattern(a<+b: (c..d)*{e} +-> f) & ff(0) & pp(rt.0);
+Operation(RST_p) & Pattern(a*b: c) & ff(0) & dd & ss & eh(USHORT,_h,Goal) & ah(pp: 0..7) & pp(rt.0);
+Operation(AssertionLemmas) & Pattern(a<+({b|->c}\/{d|->e}\/{f|->g}\/{h|->i}\/{j|->k}\/{l|->m}\/{n|->o}): (p..q)*{r} +-> s) & ff(0) & dd & pr(Tac(Update_flag));
+Operation(AssertionLemmas) & Pattern(a<+({b|->c}\/{d|->e}\/{f|->g}\/{h|->i}\/{j|->k}\/{l|->m}): (n..o)*{p} +-> q) & ff(0) & dd & pr(Tac(Update_flag));
+Operation(AssertionLemmas) & Pattern(a<+({b|->c}\/{d|->e}\/{f|->g}\/{h|->i}\/{j|->k}): (l..m)*{n} +-> o) & ff(0) & dd & pr(Tac(Update_flag));
+Operation(AssertionLemmas) & Pattern(a<+({b|->c}\/{d|->e}\/{f|->g}\/{h|->i}): (j..k)*{l} +-> m) & ff(0) & dd & pr(Tac(Update_flag));
+Operation(AssertionLemmas) & Pattern(a<+({b|->c}\/{d|->e}\/{f|->g}): (h..i)*{j} +-> k) & ff(0) & dd & pr(Tac(Update_flag));
+Operation(RST_p) & Pattern(dom({a(b(c,d(e),f))|->g}\/{a(b(c,d(e),h))|->i}) = j) & ff(1) & dd & ss & mp;
+Operation(SRA_9IY_d0) & Pattern(a(b,c): d) & ff(0) & dd & ss & pr;
+Operation(SRA_9IY_d0) & Pattern(a(b(c,d)): e) & ff(0) & dd & ss & pr;
+Operation(CALL_cc_nn) & Pattern(a(b): c) & ff(0) & dd & ss & pr;
+Operation(AssertionLemmas) & Pattern(dom(a<+({b|->c}\/{d|->e}\/{f|->g}\/{h|->i}\/{j|->k}\/{l|->m}\/{n|->o})) = (p..q)*{r}) & ff(0) & dd & ss & eh(dom(rgs8),_h,Goal) & ss & pr;
+Operation(AssertionLemmas) & Pattern(dom(a<+({b|->c}\/{d|->e}\/{f|->g}\/{h|->i}\/{j|->k}\/{l|->m})) = (n..o)*{p}) & ff(0) & dd & ss & eh(dom(rgs8),_h,Goal) & ss & pr;
+Operation(AssertionLemmas) & Pattern(dom(a<+({b|->c}\/{d|->e}\/{f|->g}\/{h|->i}\/{j|->k})) = (l..m)*{n}) & ff(0) & dd & ss & eh(dom(rgs8),_h,Goal) & ss & pr;
+Operation(AssertionLemmas) & Pattern(dom(a<+({b|->c}\/{d|->e}\/{f|->g}\/{h|->i})) = (j..k)*{l}) & ff(0) & dd & ss & eh(dom(rgs8),_h,Goal) & ss & pr;
+Operation(AssertionLemmas) & Pattern(dom(a<+({b|->c}\/{d|->e}\/{f|->g})) = (h..i)*{j}) & ff(0) & dd & ss & eh(dom(rgs8),_h,Goal) & ss & pr;
+Operation(AssertionLemmas) & Pattern(dom(a<+({b|->c}\/{d|->e})) = (f..g)*{h}) & ff(0) & dd & ss & eh(dom(rgs8),_h,Goal) & ss & pr;
+Operation(AssertionLemmas) & Pattern(dom(a<+{b|->c}) = (d..e)*{f}) & ff(0) & dd & ss & eh(dom(rgs8),_h,Goal) & ss & pr;
+Operation(AssertionLemmas) & Pattern(dom(a<+b) = (c..d)*{e}) & ff(0) & dd & ss & eh(dom(rgs8),_h,Goal) & ss & pr;
+Operation(RLA) & Pattern(a<+({b|->c|->(d(a(b|->c))<+{b|->e(a(f|->c),g)})}\/{h(e(a(f|->c),i),e(a(f|->c),j),g,e(a(f|->c),f),g,e(a(b|->c),i))}): (b..k)*{c} +-> l) & ff(1) & dd & eh(update_flag_reg,_h,Goal) & ss & pr;
+Operation(RRA) & Pattern(a<+({b|->c|->(d(a(b|->c))<+{e|->f(a(g|->c),h)})}\/{i(f(a(g|->c),j),f(a(g|->c),k),h,f(a(g|->c),g),h,f(a(b|->c),h))}): (b..l)*{c} +-> m) & ff(1) & dd & eh(update_flag_reg,_h,Goal) & ss & pr;
+Operation(RRA) & Pattern(dom(a<+({b|->c|->(d(a(b|->c))<+{e|->f(a(g|->c),h)})}\/{i(f(a(g|->c),j),f(a(g|->c),k),h,f(a(g|->c),g),h,f(a(b|->c),h))})) = (b..l)*{c}) & ff(1) & ss & dd & eh(dom(rgs8),_h,Goal) & eh(update_flag_reg,_h,Goal) & ss & pr;
+Operation(RLC_9HL0) & Pattern(dom(a<+{b(c(d),e(d),f,g(d),f,h(i(j(a(k|->l),a(m|->l))),n))}) = (o..p)*{l}) & ff(1) & dd & eh(update_flag_reg,_h,Goal) & ss & eh(dom(rgs8),_h,Goal) & pr;
+Operation(RLC_9IX_d0) & Pattern(a<+{b(c(d),e(d),f,g(d),f,h(i(j,k,l),m))}: (n..o)*{p} +-> q) & ff(1) & dd & eh(update_flag_reg,_h,Goal) & ss & pr;
+Operation(RLC_9IY_d0) & Pattern(a<+{b(c(d),e(d),f,g(d),f,h(i(j,k,l),m))}: (n..o)*{p} +-> q) & ff(1) & dd & eh(update_flag_reg,_h,Goal) & ss & pr;
+Operation(RL_9HL) & Pattern(a<+{b(c(d),e(d),f,g(d),f,h(i(j(a(k|->l),a(m|->l))),n))}: (o..p)*{l} +-> q) & ff(1) & dd & eh(update_flag_reg,_h,Goal) & ss & pr;
+Operation(RL_9IX_d0) & Pattern(a<+{b(c(d),e(d),f,g(d),f,h(i(j,k,l),m))}: (n..o)*{p} +-> q) & ff(1) & dd & eh(update_flag_reg,_h,Goal) & ss & pr;
+Operation(RL_9IY_d0) & Pattern(a<+{b(c(d),e(d),f,g(d),f,h(i(j,k,l),m))}: (n..o)*{p} +-> q) & ff(1) & dd & eh(update_flag_reg,_h,Goal) & ss & pr;
+Operation(RRC_9IX_d0) & Pattern(a<+{b(c(d),e(d),f,g(d),f,h(i(j,k,l),f))}: (m..n)*{o} +-> p) & ff(1) & dd & eh(update_flag_reg,_h,Goal) & ss & pr;
+Operation(RRC_9IY_d0) & Pattern(a<+{b(c(d),e(d),f,g(d),f,h(i(j,k,l),f))}: (m..n)*{o} +-> p) & ff(1) & dd & eh(update_flag_reg,_h,Goal) & ss & pr;
+Operation(RR_9IX_d0) & Pattern(a<+{b(c(d),e(d),f,g(d),f,h(i(j,k,l),f))}: (m..n)*{o} +-> p) & ff(1) & dd & eh(update_flag_reg,_h,Goal) & ss & pr;
+Operation(RR_9IY_d0) & Pattern(a<+{b(c(d),e(d),f,g(d),f,h(i(j,k,l),f))}: (m..n)*{o} +-> p) & ff(1) & dd & eh(update_flag_reg,_h,Goal) & ss & pr;
+Operation(SRA_9IX_d0) & Pattern(a<+{b(c(d),e(d),f,g(d),f,h(i(j,k,l),f))}: (m..n)*{o} +-> p) & ff(1) & dd & eh(update_flag_reg,_h,Goal) & ss & pr;
+Operation(SRA_9IY_d0) & Pattern(a<+{b(c(d),e(d),f,g(d),f,h(i(j,k,l),f))}: (m..n)*{o} +-> p) & ff(1) & dd & eh(update_flag_reg,_h,Goal) & ss & pr;
+Operation(SRL_9IX_d0) & Pattern(a<+{b(c,d(e),c,f(e),c,g(h(i,j,k),c))}: (l..m)*{n} +-> o) & ff(1) & dd & eh(update_flag_reg,_h,Goal) & ss & pr;
+Operation(SRL_9IY_d0) & Pattern(a<+{b(c,d(e),c,f(e),c,g(h(i,j,k),c))}: (l..m)*{n} +-> o) & ff(1) & dd & eh(update_flag_reg,_h,Goal) & ss & pr;
+Operation(DJNZ_e) & Pattern(a<+{b|->c|->d(a(b|->c))}: (e..f)*{c} +-> g) & ff(1) & dd & ss & pr;
+Operation(CALL_nn) & Pattern(dom({a(b(c,d(e),f))|->g}\/{a(b(c,d(e),h))|->i}) = j) & ff(1) & dd & ss & pr;
+Operation(RET) & Pattern(a(b(c(d(e(f,a(g),h))),c(g))): i) & ff(1) & dd & ss & pr;
+Operation(RET_cc) & Pattern(a(b(c(d(e(f,a(g),h))),c(g))): i) & ff(1) & dd & ss & pr;
+Operation(RETI) & Pattern(a(b(c(d(e(f,a(g),h))),c(g))): i) & ff(1) & dd & ss & pr;
+Operation(RETN) & Pattern(a(b(c(d(e(f,a(g),h))),c(g))): i) & ff(1) & dd & ss & pr;
+Operation(RST_p) & Pattern(a(b): c) & ff(1) & dd & ss & pr;
+Operation(RLC_r) & Pattern(dom(a<+({b|->c}\/{d(e(c),f(c),g,h(c),g,i(a(b),j))})) = (k..l)*{m}) & ff(1) & eh(update_flag_reg,_h,Goal) & ss & eh(dom(rgs8),_h,Goal) & ss & pr;
+Operation(RLC_9IX_d0) & Pattern(dom(a<+{b(c(d),e(d),f,g(d),f,h(i(j,k,l),m))}) = (n..o)*{p}) & ff(1) & dd & ss & eh(dom(rgs8),_h,Goal) & eh(update_flag_reg,_h,Goal) & ss & pr;
+Operation(RLC_9IY_d0) & Pattern(dom(a<+{b(c(d),e(d),f,g(d),f,h(i(j,k,l),m))}) = (n..o)*{p}) & ff(1) & dd & ss & eh(dom(rgs8),_h,Goal) & eh(update_flag_reg,_h,Goal) & ss & pr;
+Operation(RL_9HL) & Pattern(dom(a<+{b(c(d),e(d),f,g(d),f,h(i(j(a(k|->l),a(m|->l))),n))}) = (o..p)*{l}) & ff(1) & dd & ss & eh(dom(rgs8),_h,Goal) & eh(update_flag_reg,_h,Goal) & ss & pr;
+Operation(RL_9IX_d0) & Pattern(dom(a<+{b(c(d),e(d),f,g(d),f,h(i(j,k,l),m))}) = (n..o)*{p}) & ff(1) & dd & ss & eh(update_flag_reg,_h,Goal) & eh(dom(rgs8),_h,Goal) & ss & pr;
+Operation(RL_9IY_d0) & Pattern(dom(a<+{b(c(d),e(d),f,g(d),f,h(i(j,k,l),m))}) = (n..o)*{p}) & ff(1) & dd & ss & eh(update_flag_reg,_h,Goal) & eh(dom(rgs8),_h,Goal) & ss & pr;
+Operation(DJNZ_e) & Pattern(dom(a<+{b|->c|->d(a(b|->c))}) = (e..f)*{c}) & ff(1) & dd & ss & eh(dom(rgs8),_h,Goal) & ss & pr;
+Operation(RLA) & Pattern(dom(a<+({b|->c|->(d(a(b|->c))<+{b|->e(a(f|->c),g)})}\/{h(e(a(f|->c),i),e(a(f|->c),j),g,e(a(f|->c),f),g,e(a(b|->c),i))})) = (b..k)*{c}) & ff(1) & dd & ss & eh(update_flag_reg,_h,Goal) & ss & eh(dom(rgs8),_h,Goal) & ss & pr;
+Operation(SRA_9IY_d0) & Pattern(dom(a<+{b(c(d),e(d),f,g(d),f,h(i(j,k,l),f))}) = (m..n)*{o}) & ff(1) & dd & ss & eh(dom(rgs8),_h,Goal) & ss & eh(update_flag_reg,_h,Goal) & ss & pr;
+Operation(CALL_nn) & Pattern({a(b(c,d(e),f))|->g}\/{a(b(c,d(e),h))|->i}: j +-> k) & ff(0) & dd & ah(ushort_bv16(sub16USHORT(0,bv16_ushort(sp),1)): BV16 & ushort_bv16(sub16USHORT(0,bv16_ushort(sp),2)): BV16 & ushort_bv16(sub16USHORT(0,bv16_ushort(sp),1))/=ushort_bv16(sub16USHORT(0,bv16_ushort(sp),2)) & low: BYTE & high: BYTE) & pr & pr & pr & pr & pr & pp(rt.0);
+Operation(AssertionLemmas) & Pattern(a(b,c,d,e,f,g): {h|->i}*j) & ff(0) & dd & eh(update_flag_reg,_h,Goal) & ss & ar(BIT_VECTOR.1,Once) & pr & pr & pr & pr & pr & pr & pr & pr;
+Operation(RST_p) & Pattern({a(b(c,d(e),f))|->g}\/{a(b(c,d(e),h))|->i}: j +-> k) & ff(0) & dd & ah(ushort_bv16(sub16USHORT(0,bv16_ushort(sp),1)): BV16 & ushort_bv16(sub16USHORT(0,bv16_ushort(sp),2)): BV16 & ushort_bv16(sub16USHORT(0,bv16_ushort(sp),1))/=ushort_bv16(sub16USHORT(0,bv16_ushort(sp),2)) & pc_l: BYTE & pc_h: BYTE) & pr & pr & ar(Arithmetic.2,Once) & pr & pr & pr & pr & pr & pr & pr & pp(rt.0);
+Operation(CALL_cc_nn) & Pattern({a(b(c,d(e),f))|->g}\/{a(b(c,d(e),h))|->i}: j +-> k) & ff(0) & dd & ah(ushort_bv16(sub16USHORT(0,bv16_ushort(sp),1)): BV16 & ushort_bv16(sub16USHORT(0,bv16_ushort(sp),2)): BV16 & ushort_bv16(sub16USHORT(0,bv16_ushort(sp),1))/=ushort_bv16(sub16USHORT(0,bv16_ushort(sp),2)) & low: BYTE & high: BYTE) & ss & pr & ss & pr & ar(Arithmetic.2,Once) & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & pr & pr & pp(rt.0);
+Operation(RLC_9HL0) & Pattern(a<+{b(c(d),e(d),f,g(d),f,h(i(j(a(k|->l),a(m|->l))),n))}: (o..p)*{l} +-> q) & ff(1) & dd & eh(update_flag_reg,_h,Goal) & ss & ph(f0,[bitget(mem(byte_bv16(rgs8(h0),rgs8(l0))),7),0,parity_even(res),1,0,1,is_zero(res),is_negative(res)],!(xx,xxr).(xx: id_reg_8 & xxr: BYTE => rgs8<+{xx|->xxr}: id_reg_8 +-> BYTE & (dom(rgs8)\/{xx} = id_reg_8 & dom(rgs8)\/{xx} = id_reg_8))) & ss & pr & ar(BIT_VECTOR) & ss & pr & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr;
+Operation(RLC_r) & Pattern(a<+({b|->c}\/{d(e(c),f(c),g,h(c),g,i(a(b),j))}): (k..l)*{m} +-> n) & ff(1) & dd & eh(update_flag_reg,_h,Goal) & ss & ph(rr,res,f0,[bitget(rgs8(rr),7),0,parity_even(res),1,0,1,is_zero(res),is_negative(res)],!(xx,xxr,yy,yyr).(xx: id_reg_8 & xxr: BYTE & yy: id_reg_8 & yyr: BYTE & not(xx = yy) => rgs8<+{xx|->xxr,yy|->yyr}: id_reg_8 +-> BYTE & (dom(rgs8)\/{xx,yy} = id_reg_8 & dom(rgs8)\/{xx,yy} = id_reg_8))) & pr & pr & ss & pr & ar(BIT_VECTOR.1,Once) & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & pr
+END

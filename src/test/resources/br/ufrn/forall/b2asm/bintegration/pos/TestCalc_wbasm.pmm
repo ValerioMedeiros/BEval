@@ -1,0 +1,65 @@
+THEORY User_Pass IS
+Operation(update_level) & Pattern(a-b: c) & ff(0) & dd & ah(local_pc$0: 0..9) & pp(rt.0);
+Operation(update_level) & Pattern(a<=b-c) & ff(0) & dd & ah(local_pc$0: 0..9) & pp(rt.0);
+Operation(update_level) & Pattern(a: dom(b)) & ff(0) & dd & eh(dom(uchar_schar),_h,Goal) & pp(rt.0);
+Operation(Initialisation) & Pattern(a: dom(b)) & ff(0) & dd & eh(dom(uchar_schar),_h,Goal) & eh(UCHAR,_h,Goal) & ss & pr;
+Operation(Initialisation) & Pattern(a: b) & ff(0) & dd & eh(UCHAR,_h,Goal) & ss & pr;
+Operation(Initialisation) & Pattern(a(b): c) & ff(0) & dd & ss & pr;
+Operation(update_level) & Pattern(a: b) & ff(0) & dd & eh(USHORT,_h,Goal) & ss & pr;
+Operation(update_level) & Pattern(a: a..b) & ff(0) & dd & ss & pr;
+Operation(update_level) & Pattern(a(b) = c) & ff(0) & dd & eh(instruction_next,_h,Goal) & ss & pr;
+Operation(update_level) & Pattern(a: b) & ff(0) & dd & eh(UCHAR,_h,Goal) & ss & pr;
+Operation(update_level) & Pattern(a(b): c) & ff(0) & dd & ss & pr;
+Operation(update_level) & Pattern(a: dom(b)) & ff(0) & dd & ss & pr;
+Operation(Initialisation) & Pattern(a((b<+{c(d)|->e(f(g))}<+{c(h)|->e(f(g))})(c(h))) = g) & ff(0) & dd & ss & ar(Conversion) & ss & pr;
+Operation(Initialisation) & Pattern(a((b<+{c(d)|->e(f(g))}<+{c(h)|->e(f(g))})(c(d))) = g) & ff(0) & dd & ss & ar(Conversion) & ah((io_ports$0<+({uchar_byte(2)|->uchar_byte(0)}<+{uchar_byte(3)|->uchar_byte(0)}))(uchar_byte(2)) = uchar_byte(0)) & ah(uchar_byte(2): BYTE) & ah(2: UCHAR) & eh(UCHAR,_h,Goal) & ss & pr & pp(rt.0) & ah(uchar_byte(3): BYTE & uchar_byte(0): BYTE) & ah(3: UCHAR & 0: UCHAR) & eh(UCHAR,_h,Goal) & ss & pr & eh(UCHAR,_h,Goal) & ss & pr & pp(rt.0) & ah(0: UCHAR) & eh(UCHAR,_h,Goal) & ss & pr & pp(rt.0) & dd & eh((io_ports$0<+({uchar_byte(2)|->uchar_byte(0)}<+{uchar_byte(3)|->uchar_byte(0)}))(uchar_byte(2)),_h,Goal) & ar(Conversion) & ss & pr
+END
+    &
+THEORY SimplifyRelOverXY_ASM IS
+
+    c : dom(b)
+=>  (a <+ b)(c) == b(c);
+
+c /: dom(b) &  c : dom(a)
+=>  (a <+ b)(c) == a(c)
+    
+END
+    &
+THEORY BIT_VECTOR IS
+
+
+a : BIT & b: BIT & c: BIT & d: BIT & e: BIT & f: BIT & g: BIT & h : BIT
+=>    [a,b,c,d,e,f,g,h] : BYTE ;
+
+a : BIT & b: BIT & c: BIT & d: BIT & e: BIT & f: BIT & g: BIT & h : BIT &
+i: BIT & j: BIT & l: BIT & m : BIT & n: BIT & o: BIT & p: BIT & q : BIT 
+=>    [a,b,c,d,e,f,g,h,i,j,l,m,n,o,p,q] : BV16
+
+END
+&
+
+THEORY Conversion IS
+   
+
+schar_byte(uchar_schar(x))== uchar_byte(x);
+
+
+uchar_schar(byte_uchar(x))== byte_schar(x);
+
+byte_schar(uchar_byte(x)) == uchar_schar(x);
+
+byte_uchar(schar_byte(x)) == schar_uchar(x);
+
+
+byte_schar(b) = uchar_schar(d) == byte_uchar(b) = d;
+byte_schar(b) = uchar_schar(d) => byte_uchar(b) = d
+
+END
+
+ &
+THEORY Types IS
+    
+    not(x = y)
+=> not(uchar_byte(x)  = uchar_byte(y))
+    
+END

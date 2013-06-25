@@ -1,0 +1,8 @@
+/* MEMORY
+ * Author: 
+ * Creation date: 6/18/13
+ */
+
+THEORY todoT IS
+     btrue
+END

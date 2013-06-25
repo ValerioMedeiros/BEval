@@ -1,0 +1,185 @@
+THEORY Rules IS
+    
+/**
+* @ sshort_ushort : SSHORT >->> USHORT &
+**/
+%v1.(v1: -32768..32767 & 0<=v1 | v1)\/%v1.(v1: -32768..32767 & not(0<=v1) | v1+65535+1): -32768..32767 >->> 0..65535==btrue;
+    
+/**
+* @  ushort_sshort : USHORT >->> SSHORT &
+**/
+ %v1.(v1: 0..65535 & v1<=32767 | v1)\/%v1.(v1: 0..65535 & not(v1<=32767) | v1-65535+1): 0..65535 >->> -32768..32767 ==btrue;
+/*
+This rule checks the inverse functions  sshort_ushort = (ushort_short~)
+*/ 
+ %v1.(v1: -32768..32767 & 0<=v1 | v1)\/%v1.(v1: -32768..32767 & not(0<=v1) | 65536+v1) = (%v1.(v1: 0..65535 & v1<=32767 | v1))~\/(%v1.(v1: 0..65535 & not(v1<=32767) | -65534+v1))~ ==btrue;
+
+    
+    
+
+/**
+* @ uchar_ushort: UCHAR*UCHAR +-> USHORT 
+**/     
+ %(w1,w2).(w1: 0..255 & w2: 0..255 | bv16_ushort(byte_bv16(uchar_byte(w1),uchar_byte(w2)))): (0..255)*(0..255) >->> 0..65535== btrue;    
+/**
+* @ schar_sshort: SCHAR*SCHAR >->> SSHORT
+**/ 
+ %(w1,w2).(w1: -128..127 & w2: -128..127 | bv16_sshort(byte_bv16(schar_byte(w1),schar_byte(w2)))): (-128..127)*(-128..127) >->> -32768..32767==btrue;
+ 
+/* the inversion function is not used */ 
+
+
+ 
+/**
+* @ sshort_bv16: SSHORT >->> BV16
+**/     
+%v0.(v0: -32768..32767 & 0<=v0 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128,v0 mod 512/256,v0 mod 1024/512,v0 mod 2048/1024,v0 mod 4096/2048,v0 mod 8192/4096,v0 mod 16384/8192,v0 mod 32768/16384,v0 mod 65536/32768])\/%v0.(v0: -32768..32767 & not(0<=v0) | [(v0+65535+1) mod 2/1,(v0+65535+1) mod 4/2,(v0+65535+1) mod 8/4,(v0+65535+1) mod 16/8,(v0+65535+1) mod 32/16,(v0+65535+1) mod 64/32,(v0+65535+1) mod 128/64,(v0+65535+1) mod 256/128,(v0+65535+1) mod 512/256,(v0+65535+1) mod 1024/512,(v0+65535+1) mod 2048/1024,(v0+65535+1) mod 4096/2048,(v0+65535+1) mod 8192/4096,(v0+65535+1) mod 16384/8192,(v0+65535+1) mod 32768/16384,(v0+65535+1) mod 65536/32768]): -32768..32767 >->> (1..16 --> {0,1})== btrue;
+
+/**
+* @ bv16_sshort: BV16 >->> SSHORT
+**/    
+%v0.(v0: 1..16 --> {0,1} | (-32768)*v0(16)+16384*v0(15)+8192*v0(14)+4096*v0(13)+2048*v0(12)+1024*v0(11)+512*v0(10)+256*v0(9)+128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+v0(1)): 1..16 --> {0,1} >->> -32768..32767== btrue;
+
+/*
+This rule checks the inverse functions   bv16_sshort = sshort_bv16~ 
+*/
+ %v0.(v0: 1..16 --> {0,1} | (-32768)*v0(16)+16384*v0(15)+8192*v0(14)+4096*v0(13)+2048*v0(12)+1024*v0(11)+512*v0(10)+256*v0(9)+128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+v0(1)) = (%v0.(v0: -32768..32767 & 0<=v0 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128,v0 mod 512/256,v0 mod 1024/512,v0 mod 2048/1024,v0 mod 4096/2048,v0 mod 8192/4096,v0 mod 16384/8192,v0 mod 32768/16384,v0 mod 65536/32768])\/%v0.(v0: -32768..32767 & not(0<=v0) | [(v0+65535+1) mod 2/1,(v0+65535+1) mod 4/2,(v0+65535+1) mod 8/4,(v0+65535+1) mod 16/8,(v0+65535+1) mod 32/16,(v0+65535+1) mod 64/32,(v0+65535+1) mod 128/64,(v0+65535+1) mod 256/128,(v0+65535+1) mod 512/256,(v0+65535+1) mod 1024/512,(v0+65535+1) mod 2048/1024,(v0+65535+1) mod 4096/2048,(v0+65535+1) mod 8192/4096,(v0+65535+1) mod 16384/8192,(v0+65535+1) mod 32768/16384,(v0+65535+1) mod 65536/32768]))~== btrue;
+
+
+
+/**
+* @ ushort_bv16: USHORT >->> BV16
+**/      
+%v0.(v0: 0..65535 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128,v0 mod 512/256,v0 mod 1024/512,v0 mod 2048/1024,v0 mod 4096/2048,v0 mod 8192/4096,v0 mod 16384/8192,v0 mod 32768/16384,v0 mod 65536/32768]): 0..65535 >->> (1..16 --> {0,1})== btrue;    
+
+
+/**
+* @ bv16_ushort: BV16 >->> USHORT
+**/
+%v0.(v0: 1..16 --> {0,1} | 32768*v0(16)+16384*v0(15)+8192*v0(14)+4096*v0(13)+2048*v0(12)+1024*v0(11)+512*v0(10)+256*v0(9)+128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)): 1..16 --> {0,1} >->> 0..65535== btrue;    
+/*
+This rule checks the inverse functions  bv16_ushort = ushort_bv16~
+*/
+%v0.(v0: 1..16 +-> {0,1} & dom(v0) = 1..16 | 32768*v0(16)+16384*v0(15)+8192*v0(14)+4096*v0(13)+2048*v0(12)+1024*v0(11)+512*v0(10)+256*v0(9)+128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)) = (%v0.(v0: 0..65535 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128,v0 mod 512/256,v0 mod 1024/512,v0 mod 2048/1024,v0 mod 4096/2048,v0 mod 8192/4096,v0 mod 16384/8192,v0 mod 32768/16384,v0 mod 65536/32768]))~== btrue;    
+
+
+
+/*
+This rule checks the function  byte_bv16: BYTE*BYTE >->> BV16
+*/
+%(bv1,bv2).(bv1: 1..8 --> {0,1} & bv2: 1..8 --> {0,1} | {16|->bv1(8),15|->bv1(7),14|->bv1(6),13|->bv1(5),12|->bv1(4),11|->bv1(3),10|->bv1(2),9|->bv1(1),8|->bv2(8),7|->bv2(7),6|->bv2(6),5|->bv2(5),4|->bv2(4),3|->bv2(3),2|->bv2(2),1|->bv2(1)}): (1..8 --> {0,1})*(1..8 --> {0,1}) >->> (1..16 --> {0,1})== btrue;  
+
+/*
+This rule checks the function  bv16_byte: BV16 >->> BYTE*BYTE
+*/
+%bv.(bv: 1..16 --> {0,1} | {8|->bv(16),7|->bv(15),6|->bv(14),5|->bv(13),4|->bv(12),3|->bv(11),2|->bv(10),1|->bv(9)},{8|->bv(8),7|->bv(7),6|->bv(6),5|->bv(5),4|->bv(4),3|->bv(3),2|->bv(2),1|->bv(1)}): 1..16 --> {0,1} >->> (1..8 --> {0,1})*(1..8 --> {0,1})== btrue;  
+
+/*
+It was not need
+This rule checks the inverse functions (bv16_byte = byte_bv16~ )
+*/
+
+
+/**
+* @ schar_byte: SCHAR >->> BYTE
+* */
+%v0.(v0: -128..127 & 0<=v0 | [v0 mod 2,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128])\/%v0.(v0: -128..127 & not(0<=v0) | [(256+v0) mod 2,(256+v0) mod 4/2,(256+v0) mod 8/4,(256+v0) mod 16/8,(256+v0) mod 32/16,(256+v0) mod 64/32,(256+v0) mod 128/64,(256+v0) mod 256/128]): -128..127 >->> (1..8 --> {0,1})== btrue;    
+ 
+   
+/**
+* @ byte_schar: BYTE >->> SCHAR 
+* */     
+%v0.(v0: 1..8 --> {0,1} | -(128*v0(8))+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+v0(1)): 1..8 --> {0,1} >->> -128..127== btrue;    
+
+/*
+This rule checks the inverse functions  byte_schar = schar_byte~
+*/
+%v0.(v0: {1,2,3,4,5,6,7,8} +-> {0,1} & dom(v0) = {1,2,3,4,5,6,7,8} | -(128*v0(8))+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+v0(1)) = (%v0.(v0: -128..127 & 0<=v0 | [v0 mod 2,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128]))~\/(%v0.(v0: -128..127 & not(0<=v0) | [(256+v0) mod 2,(256+v0) mod 4/2,(256+v0) mod 8/4,(256+v0) mod 16/8,(256+v0) mod 32/16,(256+v0) mod 64/32,(256+v0) mod 128/64,(256+v0) mod 256/128]))~ == btrue;
+
+/*
+ 	It was not need
+	schar_uchar : SCHAR >->> UCHAR
+	uchar_schar : UCHAR >->> SCHAR
+*/
+
+
+/*
+This rule checks the inverse functions  - schar_uchar = uchar_schar~
+*/
+ %v1.(v1: 0..127 | v1)\/%v1.(v1: -128.. -1 | v1+256) = (%v1.(v1: UCHAR & v1<=127 | v1)\/%v1.(v1: UCHAR & not(v1<=127) | v1-256))~== btrue;
+ 
+ 
+/**
+* @ uchar_byte : UCHAR >->> BYTE
+**/
+%v0.(v0: 0..255 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128]): 0..255 >->> (1..8 --> {0,1}) == btrue;
+/*
+byte_uchar : BYTE >->> UCHAR
+*/
+%v0.(v0: 1..8 --> {0,1} | 128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)): (1..8 --> {0,1}) >->> 0..255 == btrue;
+/*
+This rule checks the inverse functions byte_uchar = uchar_byte~
+*/
+%v0.(v0: 1..8 --> {0,1} | 128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)) = 
+(%v0.(v0: 0..255 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128]))~ == btrue
+
+
+END &
+    
+THEORY Finite_Rules IS
+/**
+* @ Suggested by David
+**/
+a: b >->> c & b: FIN(b)
+=>
+a: FIN(a);
+
+    
+/*    f : x >->> y & x : FIN(x) == f : FIN( f );*/
+    
+    a..b : FIN( a..b )
+    
+    
+/*
+This rule checks  ushort_bv16: FIN(ushort_bv16)
+
+%v0.(v0: 0..65535 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128,v0 mod 512/256,v0 mod 1024/512,v0 mod 2048/1024,v0 mod 4096/2048,v0 mod 8192/4096,v0 mod 16384/8192,v0 mod 32768/16384,v0 mod 65536/32768]): FIN(%v0.(v0: 0..65535 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128,v0 mod 512/256,v0 mod 1024/512,v0 mod 2048/1024,v0 mod 4096/2048,v0 mod 8192/4096,v0 mod 16384/8192,v0 mod 32768/16384,v0 mod 65536/32768]))== btrue;
+  */   
+
+    
+    
+/*
+This rule checks   bv16_ushort: FIN(bv16_ushort)
+
+%v0.(v0: 1..16 --> {0,1} | 32768*v0(16)+16384*v0(15)+8192*v0(14)+4096*v0(13)+2048*v0(12)+1024*v0(11)+512*v0(10)+256*v0(9)+128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)): FIN(%v0.(v0: 1..16 --> {0,1} | 32768*v0(16)+16384*v0(15)+8192*v0(14)+4096*v0(13)+2048*v0(12)+1024*v0(11)+512*v0(10)+256*v0(9)+128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)))== btrue;
+*/    
+    
+    
+/*
+This rule checks  uchar_byte: FIN(uchar_byte)
+
+%v0.(v0: 0..255 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128]): FIN(%v0.(v0: 0..255 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128])) == btrue;
+*/
+        
+/*
+This rule checks byte_uchar: FIN(byte_uchar)
+
+%v0.(v0: 1..8 --> {0,1} | 128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)): FIN(%v0.(v0: 1..8 --> {0,1} | 128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1))) == btrue
+*/  
+    
+END &
+
+THEORY User_Pass IS
+Pattern(8: dom(v0)) & ff(0) & pr;
+Pattern(7: dom(v0)) & ff(0) & pr;
+Pattern(6: dom(v0)) & ff(0) & pr;
+Pattern(5: dom(v0)) & ff(0) & pr;
+Pattern(4: dom(v0)) & ff(0) & pr;
+Pattern(3: dom(v0)) & ff(0) & pr;
+Pattern(2: dom(v0)) & ff(0) & pr;
+Pattern(1: dom(v0)) & ff(0) & pr;
+Pattern(0<=v0) & ff(0) & pr;
+Pattern(v0: dom(v0) +-> ran(v0)) & ff(0) & dd & pr;
+Pattern(byte_uchar: FIN(byte_uchar)) & ff(0) & dd & eh(byte_uchar,_h,Goal) & eh(BYTE,_h,Goal) & pr(Tac(Finite_Rules));
+Pattern(uchar_byte: FIN(uchar_byte)) & ff(0) & dd & eh(uchar_byte,_h,Goal) & eh(UCHAR,_h,Goal) & pr(Tac(Finite_Rules))
+END 

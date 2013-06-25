@@ -1,0 +1,3 @@
+THEORY User_Pass IS
+Pattern(a: dom(b)) & ff(0) & dd & eh(dom(b),_h,Goal) & ss & pr
+END

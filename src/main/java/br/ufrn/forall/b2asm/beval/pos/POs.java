@@ -1,5 +1,6 @@
 package br.ufrn.forall.b2asm.beval.pos;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -21,6 +22,8 @@ public class POs {
 	private String [] expandedHypoThesis;
 	private String [] expandedGoal;
 	private POsStatus pOsStatus;
+	private PMM pmm;
+	private boolean isWDPO;
 	
 	
 	/**
@@ -28,13 +31,28 @@ public class POs {
 	 * @param pathPOFileWithoutExtension - file ".po" located in bdp
 	 */
 	
-	public POs (String pathPOFileWithoutExtension){
+	public POs (String pathPOFileWithoutExtension, boolean isWDPO) throws Exception {
 		
 		this.pathPOFileWithoutExtension = pathPOFileWithoutExtension;
-
-		original = Control.readFile(pathPOFileWithoutExtension+".po");
+		this.isWDPO = isWDPO;
 		
-		pOsStatus = new POsStatus(pathPOFileWithoutExtension+".pmi" );
+		String moduleName = pathPOFileWithoutExtension.substring(pathPOFileWithoutExtension.lastIndexOf(File.separator) + 1);
+		String pathProject = pathPOFileWithoutExtension.substring(0,pathPOFileWithoutExtension.lastIndexOf(File.separator));
+		
+		if (!isWDPO)
+			original = Control.readFile(pathProject+File.separator+"bdp"+File.separator+moduleName+".po");
+		else
+			original = Control.readFile(pathProject+File.separator+"bdp"+File.separator+moduleName+"_wd.po");
+		
+		if (!isWDPO)
+			pOsStatus = new POsStatus(pathProject+File.separator+"bdp"+File.separator+moduleName+".pmi" );
+		else
+			pOsStatus = new POsStatus(pathProject+File.separator+"bdp"+File.separator+moduleName+"_wd.pmi" );
+		
+		if (!isWDPO)
+			pmm = new PMM(pathPOFileWithoutExtension+".pmm");
+		else
+			pmm = new PMM(pathPOFileWithoutExtension+"_wd.pmm");
 		
 		load();
 		
@@ -101,6 +119,10 @@ public class POs {
 		
 	}
 	
+	public void addOneRuleInPMMFile(boolean poTypedWD, String rule,String expressionName, Long total_time ) {
+		pmm.addWriteRuleInPMMFile(poTypedWD, rule, expressionName, total_time);
+	}
+	
 	String getFormulaExpanded(String originalFormula){
 	 	StringBuffer expandedFormula= new StringBuffer();
 	 	//get the list of formulas on goal
@@ -129,7 +151,7 @@ public class POs {
 		 	//get the list of formulas on goal
 			List<String> listGoal = getAllMatches(originalFormula,"[_][f]\\([0-9]*\\)");
 
-			for(int i=listGoal.size()-2;i<listGoal.size() ;i++){
+			for(int i=listGoal.size()-1;i<listGoal.size() ;i++){
 				
 				if(listGoal.get(i)==null)break;
 				

@@ -1,0 +1,398 @@
+Normalised(
+THEORY MagicNumberX IS
+  MagicNumber(Machine(Z80_general2))==(3.5)
+END
+&
+THEORY UpperLevelX IS
+  First_Level(Machine(Z80_general2))==(Machine(Z80_general2));
+  Level(Machine(Z80_general2))==(0)
+END
+&
+THEORY LoadedStructureX IS
+  Machine(Z80_general2)
+END
+&
+THEORY ListSeesX IS
+  List_Sees(Machine(Z80_general2))==(ALU,TYPES,BIT_DEFINITION,BYTE_DEFINITION,BV16_DEFINITION,UCHAR_DEFINITION,SCHAR_DEFINITION,SSHORT_DEFINITION,USHORT_DEFINITION,POWER2)
+END
+&
+THEORY ListUsesX IS
+  List_Uses(Machine(Z80_general2))==(?)
+END
+&
+THEORY ListIncludesX IS
+  Inherited_List_Includes(Machine(Z80_general2))==(MEMORY);
+  List_Includes(Machine(Z80_general2))==(MEMORY)
+END
+&
+THEORY ListPromotesX IS
+  List_Promotes(Machine(Z80_general2))==(?)
+END
+&
+THEORY ListExtendsX IS
+  List_Extends(Machine(Z80_general2))==(?)
+END
+&
+THEORY ListVariablesX IS
+  External_Context_List_Variables(Machine(Z80_general2))==(?);
+  Context_List_Variables(Machine(Z80_general2))==(?);
+  Abstract_List_Variables(Machine(Z80_general2))==(?);
+  Local_List_Variables(Machine(Z80_general2))==(io_ports,im,iff2,iff1,r_,i_,iy,ix,sp,pc,rgs8);
+  List_Variables(Machine(Z80_general2))==(io_ports,im,iff2,iff1,r_,i_,iy,ix,sp,pc,rgs8,mem);
+  External_List_Variables(Machine(Z80_general2))==(io_ports,im,iff2,iff1,r_,i_,iy,ix,sp,pc,rgs8,mem)
+END
+&
+THEORY ListVisibleVariablesX IS
+  Inherited_List_VisibleVariables(Machine(Z80_general2))==(?);
+  Abstract_List_VisibleVariables(Machine(Z80_general2))==(?);
+  External_List_VisibleVariables(Machine(Z80_general2))==(?);
+  Expanded_List_VisibleVariables(Machine(Z80_general2))==(?);
+  List_VisibleVariables(Machine(Z80_general2))==(?);
+  Internal_List_VisibleVariables(Machine(Z80_general2))==(?)
+END
+&
+THEORY ListInvariantX IS
+  Gluing_Seen_List_Invariant(Machine(Z80_general2))==(btrue);
+  Gluing_List_Invariant(Machine(Z80_general2))==(btrue);
+  Abstract_List_Invariant(Machine(Z80_general2))==(btrue);
+  Expanded_List_Invariant(Machine(Z80_general2))==(mem: BV16 --> BYTE);
+  Context_List_Invariant(Machine(Z80_general2))==(btrue);
+  List_Invariant(Machine(Z80_general2))==(rgs8: id_reg_8 --> BYTE & pc: USHORT & sp: BV16 & ix: BV16 & iy: BV16 & i_: BYTE & r_: BYTE & iff1: BIT & iff2: BIT & im: BIT*BIT & io_ports: BYTE --> BYTE)
+END
+&
+THEORY ListAssertionsX IS
+  Abstract_List_Assertions(Machine(Z80_general2))==(btrue);
+  Expanded_List_Assertions(Machine(Z80_general2))==(ran(mem) <: BYTE & dom(mem) = BV16 & !(address,value).(address: BV16 & value: BYTE => mem<+{address|->value}: BV16 --> BYTE));
+  Context_List_Assertions(Machine(Z80_general2))==(is_zero16USHORT: USHORT --> BIT & is_negative: BYTE --> BIT & half8UCHAR: UCHAR --> UCHAR & inc: BYTE --> BYTE & dec: BYTE --> BYTE & simple_add8UCHAR: UCHAR*UCHAR --> UCHAR & add16USHORT: BIT*USHORT*USHORT --> USHORT & substract8UCHAR: BIT*UCHAR*UCHAR --> UCHAR*BIT*BIT*BIT*BIT & add_carryUSHORT: BIT*USHORT*USHORT --> BIT & sub16USHORT: BIT*USHORT*USHORT --> USHORT & sub_carryUSHORT: BIT*USHORT*USHORT --> BIT & inc_BV16: BV16 --> BV16 & dec_BV16: BV16 --> BV16 & update_refresh_reg: BYTE --> BYTE & instruction_next: USHORT --> USHORT & instruction_jump: USHORT*(-126..129) --> USHORT & dom(is_zero16USHORT) = USHORT & ran(is_zero16USHORT) = BIT & dom(is_negative) = BYTE & ran(is_negative) = BIT & dom(half8UCHAR) = UCHAR & ran(half8UCHAR) <: UCHAR & dom(inc) = BYTE & ran(inc) = BYTE & dom(dec) = BYTE & ran(dec) = BYTE & dom(simple_add8UCHAR) = UCHAR*UCHAR & ran(simple_add8UCHAR) = UCHAR & dom(add8UCHAR) = BIT*UCHAR*UCHAR & ran(add8UCHAR): POW(UCHAR*BIT*BIT*BIT*BIT) & dom(substract8UCHAR) = BIT*UCHAR*UCHAR & ran(substract8UCHAR): POW(UCHAR*BIT*BIT*BIT*BIT) & dom(add16USHORT) = BIT*USHORT*USHORT & ran(add16USHORT) = USHORT & dom(add_carryUSHORT) = BIT*USHORT*USHORT & ran(add_carryUSHORT) = BIT & dom(sub16USHORT) = BIT*USHORT*USHORT & ran(sub16USHORT) = USHORT & dom(sub_carryUSHORT) = BIT*USHORT*USHORT & ran(sub_carryUSHORT) = BIT & dom(inc_BV16) = BV16 & ran(inc_BV16) = BV16 & dom(dec_BV16) = BV16 & ran(dec_BV16) = BV16 & dom(update_refresh_reg) = BYTE & ran(update_refresh_reg) = BYTE & dom(instruction_next) = USHORT & ran(instruction_next) = USHORT & dom(instruction_jump) = USHORT*(-126..129) & ran(instruction_jump) = USHORT & 0 = schar_sshort(0,0) & 1 = 2**0 & 2 = 2**1 & 4 = 2**2 & 8 = 2**3 & 16 = 2**4 & 32 = 2**5 & 64 = 2**6 & 128 = 2**7 & 256 = 2**8 & 512 = 2**9 & 1024 = 2**10 & 2048 = 2**11 & 4096 = 2**12 & 8192 = 2**13 & 16384 = 2**14 & 32768 = 2**15 & 65536 = 2**16 & byte_uchar: BYTE >->> UCHAR & uchar_byte: UCHAR >->> BYTE & byte_uchar = uchar_byte~ & schar_uchar: SCHAR >->> UCHAR & uchar_schar: UCHAR >->> SCHAR & schar_uchar = uchar_schar~ & byte_schar: BYTE >->> SCHAR & schar_byte: SCHAR >->> BYTE & byte_schar = schar_byte~ & bv16_byte: BV16 >->> BYTE*BYTE & byte_bv16: BYTE*BYTE >->> BV16 & bv16_byte = byte_bv16~ & bv16_ushort: BV16 >->> USHORT & ushort_bv16: USHORT >->> BV16 & bv16_ushort = ushort_bv16~ & uchar_ushort: UCHAR*UCHAR >->> USHORT & bv16_sshort: BV16 >->> SSHORT & sshort_bv16: SSHORT >->> BV16 & bv16_sshort = sshort_bv16~ & schar_sshort: SCHAR*SCHAR >->> SSHORT & sshort_ushort: SSHORT >->> USHORT & ushort_sshort: USHORT >->> SSHORT & sshort_ushort = ushort_sshort~ & !bb.(bb: BIT => bit_not(bb) = 1-bb) & dom(bit_and) = BIT*BIT & ran(bit_not) = BIT & bit_not(0) = 1 & bit_not(1) = 0 & !bb.(bb: BIT => bit_not(bit_not(bb)) = bb) & dom(bit_and) = BIT*BIT & ran(bit_and) = BIT & bit_and(0,0) = 0 & bit_and(0,1) = 0 & bit_and(1,0) = 0 & bit_and(1,1) = 1 & !(b1,b2).(b1: BIT & b2: BIT => bit_and(b1,b2) = bit_and(b2,b1)) & !(b1,b2).(b1: BIT & b2: BIT & bit_and(b1,b2) = 1 => bit_and(b2,b1) = 1) & !(b1,b2).(b1: BIT & b2: BIT & bit_and(b1,b2) = 0 => bit_and(b2,b1) = 0) & !(b1,b2,b3).(b1: BIT & b2: BIT & b3: BIT => bit_and(b1,bit_and(b2,b3)) = bit_and(bit_and(b1,b2),b3)) & !b1.(b1: BIT => bit_and(b1,1) = b1) & !b1.(b1: BIT => bit_and(b1,0) = 0) & dom(bit_or) = BIT*BIT & ran(bit_or) = BIT & bit_or(0,0) = 0 & bit_or(0,1) = 1 & bit_or(1,0) = 1 & bit_or(1,1) = 1 & !(b1,b2).(b1: BIT & b2: BIT => bit_or(b1,b2) = bit_or(b2,b1)) & !(b1,b2).(b1: BIT & b2: BIT & bit_or(b1,b2) = 1 => bit_or(b2,b1) = 1) & !(b1,b2).(b1: BIT & b2: BIT & bit_or(b1,b2) = 0 => bit_or(b2,b1) = 0) & !(b1,b2).(b1: BIT & b2: BIT & bit_or(b1,0) = 1 => b1 = 1) & !(b1,b2).(b1: BIT & b2: BIT & bit_or(b1,0) = 0 => b1 = 0) & !(b1,b2,b3).(b1: BIT & b2: BIT & b3: BIT => bit_or(b1,bit_or(b2,b3)) = bit_or(bit_or(b1,b2),b3)) & !(b1,b2,b3).(b1: BIT & b2: BIT & b3: BIT & bit_or(b1,b2) = 1 => bit_or(b1,bit_or(b2,b3)) = 1) & !(b1,b2,b3).(b1: BIT & b2: BIT & b3: BIT & bit_or(b1,b2) = 1 => bit_or(b1,bit_or(b2,b3)) = bit_or(1,b3)) & !b1.(b1: BIT => bit_or(b1,1) = 1) & !b1.(b1: BIT => bit_or(b1,0) = b1) & !b1.(b1: BIT => bit_or(1,b1) = 1) & !b1.(b1: BIT => bit_or(0,b1) = b1) & dom(bit_xor) = BIT*BIT & ran(bit_xor) = BIT & bit_xor(0,0) = 0 & bit_xor(0,1) = 1 & bit_xor(1,0) = 1 & bit_xor(1,1) = 0 & !(b1,b2).(b1: BIT & b2: BIT => bit_xor(b1,b2) = bit_xor(b2,b1)) & !(b1,b2).(b1: BIT & b2: BIT & bit_xor(b1,b2) = 1 => bit_xor(b2,b1) = 1) & !(b1,b2).(b1: BIT & b2: BIT & bit_xor(b1,b2) = 0 => bit_xor(b2,b1) = 0) & !(b1,b2,b3).(b1: BIT & b2: BIT & b3: BIT => bit_xor(b1,bit_xor(b2,b3)) = bit_xor(bit_xor(b1,b2),b3)) & !(b1,b2,b3).(b1: BIT & b2: BIT & b3: BIT & bit_xor(b1,b2) = 1 => bit_xor(b1,bit_xor(b2,b3)) = bit_xor(1,b3)) & !bb.(bb: BIT => bit_xor(bb,bb) = 0) & dom(bool_bit) = BOOL & ran(bit_xor) = BIT & bool_bit(TRUE) = 1 & bool_bit(FALSE) = 0 & !bb.(bb: BIT => bb = 0 or bb = 1) & !bb.(bb: BIT & not(bb = 0) => bb = 1) & !bb.(bb: BIT & not(bb = 1) => bb = 0) & (card(BYTE) = 256 & is_zero: BYTE --> BIT;parity_even: BYTE --> BIT;bv8_and: BYTE*BYTE --> BYTE;bv8_or: BYTE*BYTE --> BYTE;bv8_xor: BYTE*BYTE --> BYTE;complement: BYTE --> BYTE;swap: BYTE --> BYTE;rotateleft: BYTE --> BYTE;rotateright: BYTE --> BYTE;!bt.(bt: BYTE => size(bt) = 8);8: NATURAL;dom(is_zero) = BYTE;ran(is_zero) <: BIT;dom(parity_even) = BYTE;ran(parity_even) <: BIT;bv8_and: BYTE*BYTE --> BYTE;dom(complement) = BYTE;ran(complement) <: BYTE;dom(swap) = BYTE;ran(swap) <: BYTE;dom(rotateleft) = BYTE;ran(rotateleft) <: BYTE;dom(rotateright) = BYTE;ran(rotateright) <: BYTE;dom(get_upper_digit) = BYTE;ran(get_upper_digit) <: 0..16-1;dom(get_lower_digit) = BYTE;ran(get_lower_digit) <: 0..16-1;[1,1,1,1,1,1,1,1]: BYTE & [0,0,0,0,0,0,0,0]: BYTE & 1 = 2**0 & 2 = 2**1 & 4 = 2**2 & 8 = 2**3 & 16 = 2**4 & 32 = 2**5 & 64 = 2**6 & 128 = 2**7 & 256 = 2**8 & 512 = 2**9 & 1024 = 2**10 & 2048 = 2**11 & 4096 = 2**12 & 8192 = 2**13 & 16384 = 2**14 & 32768 = 2**15 & 65536 = 2**16) & card(BV16) = 65536 & complement16: BV16 --> BV16 & byte_bv16 = bv16_byte~ & [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]: BV16 & [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]: BV16 & card(byte_uchar) = 256 & card(uchar_byte) = 256 & UCHAR_MAX: INTEGER & UCHAR_MIN: INTEGER & 1 = 2**0 & 2 = 2**1 & 4 = 2**2 & 8 = 2**3 & 16 = 2**4 & 32 = 2**5 & 64 = 2**6 & 128 = 2**7 & 256 = 2**8 & card(byte_schar) = 256 & card(schar_byte) = 256 & SCHAR_MAX: INTEGER & SCHAR_MIN: INTEGER & 1 = 2**0 & 2 = 2**1 & 4 = 2**2 & 8 = 2**3 & 16 = 2**4 & 32 = 2**5 & 64 = 2**6 & 128 = 2**7 & 256 = 2**8 & card(bv16_sshort) = 65536 & card(sshort_bv16) = 65536 & SSHORT_MIN: SSHORT & SSHORT_MAX: SSHORT & 1 = 2**0 & 2 = 2**1 & 4 = 2**2 & 8 = 2**3 & 16 = 2**4 & 32 = 2**5 & 64 = 2**6 & 128 = 2**7 & 256 = 2**8 & 512 = 2**9 & 1024 = 2**10 & 2048 = 2**11 & 4096 = 2**12 & 8192 = 2**13 & 16384 = 2**14 & 32768 = 2**15 & 65536 = 2**16 & card(bv16_ushort) = 65536 & card(ushort_bv16) = 65536 & USHORT_MAX: INTEGER & USHORT_MIN: INTEGER & 1 = 2**0 & 2 = 2**1 & 4 = 2**2 & 8 = 2**3 & 16 = 2**4 & 32 = 2**5 & 64 = 2**6 & 128 = 2**7 & 256 = 2**8 & 512 = 2**9 & 1024 = 2**10 & 2048 = 2**11 & 4096 = 2**12 & 8192 = 2**13 & 16384 = 2**14 & 32768 = 2**15 & 65536 = 2**16 & (2**0 = 1;2**1 = 2;2**2 = 4;2**3 = 8;2**4 = 16;2**5 = 32;2**6 = 64;2**7 = 128;(-2)**7 = -128;2**8 = 256;2**9 = 512;2**10 = 1024;2**11 = 2048;2**12 = 4096;2**13 = 8192;2**14 = 16384;2**15 = 32768;2**16 = 65536));
+  List_Assertions(Machine(Z80_general2))==(card(REG16_TO_REG8) = 5 & card(update_flag_reg) = 64 & get_bv_reg16: BV16*(id_reg_8 --> BYTE)*id_reg_16 +-> BV16 & cc_get: (id_reg_8 --> BYTE)*(0..8) +-> BIT & ran(mem) <: BYTE & dom(mem) = BV16 & ran(rgs8) <: BYTE & dom(rgs8) = id_reg_8 & instruction_next(pc): USHORT & mem(byte_bv16(rgs8(b0),rgs8(c0))): BYTE & mem(byte_bv16(schar_byte(0),mem(byte_bv16(rgs8(b0),rgs8(c0))))): BYTE & mem(byte_bv16(rgs8(d0),rgs8(e0))): BYTE & mem(byte_bv16(schar_byte(0),mem(byte_bv16(rgs8(d0),rgs8(e0))))): BYTE & mem(byte_bv16(rgs8(h0),rgs8(l0))): BYTE & mem(byte_bv16(schar_byte(0),mem(byte_bv16(rgs8(h0),rgs8(l0))))): BYTE & mem(byte_bv16(rgs8(a0),rgs8(f0))): BYTE & mem(byte_bv16(schar_byte(0),mem(byte_bv16(rgs8(a0),rgs8(f0))))): BYTE & mem(sp): BYTE & mem(ix): BYTE & mem(iy): BYTE & update_refresh_reg(r_): BYTE & dom(update_flag_reg) = BIT*BIT*BIT*BIT*BIT*BIT & ran(update_flag_reg): POW({f0}*BYTE) & !(b1,b2,b3,b4,b5,b6).(b1: BIT & b2: BIT & b3: BIT & b4: BIT & b5: BIT & b6: BIT => update_flag_reg(b1,b2,b3,b4,b5,b6): {f0}*BYTE) & !xx.(xx: id_reg_8 --> BYTE => rgs8<+xx: id_reg_8 --> BYTE) & !(xx,xxr).(xx: id_reg_8 & xxr: BYTE => rgs8<+{xx|->xxr}: id_reg_8 --> BYTE) & !(xx,xxr,yy,yyr).(xx: id_reg_8 & xxr: BYTE & yy: id_reg_8 & yyr: BYTE & not(xx = yy) => rgs8<+{xx|->xxr,yy|->yyr}: id_reg_8 --> BYTE) & !(xx,xxr,yy,yyr,zz,zzr).(xx: id_reg_8 & xxr: BYTE & yy: id_reg_8 & yyr: BYTE & zz: id_reg_8 & zzr: BYTE & not(xx = yy) & not(xx = zz) & not(yy = zz) => rgs8<+{xx|->xxr,yy|->yyr,zz|->zzr}: id_reg_8 --> BYTE) & !(xx,xxr,yy,yyr,zz,zzr,vv,vvr).(xx: id_reg_8 & xxr: BYTE & yy: id_reg_8 & yyr: BYTE & zz: id_reg_8 & zzr: BYTE & vv: id_reg_8 & vvr: BYTE & not(xx = yy) & not(xx = zz) & not(xx = vv) & not(yy = zz) & not(yy = vv) & not(zz = vv) => rgs8<+{xx|->xxr,yy|->yyr,zz|->zzr,vv|->vvr}: id_reg_8 --> BYTE) & !(xx,xxr,yy,yyr,zz,zzr,vv,vvr,ww,wwr).(xx: id_reg_8 & xxr: BYTE & yy: id_reg_8 & yyr: BYTE & zz: id_reg_8 & zzr: BYTE & vv: id_reg_8 & vvr: BYTE & ww: id_reg_8 & wwr: BYTE & not(xx = yy) & not(xx = zz) & not(xx = vv) & not(xx = ww) & not(yy = zz) & not(yy = vv) & not(yy = ww) & not(zz = vv) & not(zz = ww) & not(vv = ww) => rgs8<+{xx|->xxr,yy|->yyr,zz|->zzr,vv|->vvr,ww|->wwr}: id_reg_8 --> BYTE) & !(xx,xxr,yy,yyr,zz,zzr,vv,vvr,ww,wwr,aa,aar).(xx: id_reg_8 & xxr: BYTE & yy: id_reg_8 & yyr: BYTE & zz: id_reg_8 & zzr: BYTE & vv: id_reg_8 & vvr: BYTE & ww: id_reg_8 & wwr: BYTE & aa: id_reg_8 & aar: BYTE & not(xx = yy) & not(xx = zz) & not(xx = vv) & not(xx = ww) & not(xx = aa) & not(yy = zz) & not(yy = vv) & not(yy = ww) & not(yy = aa) & not(zz = vv) & not(zz = ww) & not(zz = aa) & not(vv = ww) & not(vv = aa) & not(ww = aa) => rgs8<+{xx|->xxr,yy|->yyr,zz|->zzr,vv|->vvr,ww|->wwr,aa|->aar}: id_reg_8 --> BYTE) & !(xx,xxr,yy,yyr,zz,zzr,vv,vvr,ww,wwr,aa,aar,bb,bbr).(xx: id_reg_8 & xxr: BYTE & yy: id_reg_8 & yyr: BYTE & zz: id_reg_8 & zzr: BYTE & vv: id_reg_8 & vvr: BYTE & ww: id_reg_8 & wwr: BYTE & aa: id_reg_8 & aar: BYTE & bb: id_reg_8 & bbr: BYTE & not(xx = yy) & not(xx = zz) & not(xx = vv) & not(xx = ww) & not(xx = aa) & not(xx = bb) & not(yy = zz) & not(yy = vv) & not(yy = ww) & not(yy = aa) & not(yy = bb) & not(zz = vv) & not(zz = ww) & not(zz = aa) & not(zz = bb) & not(vv = ww) & not(vv = aa) & not(vv = bb) & not(ww = aa) & not(ww = bb) & not(aa = bb) => rgs8<+{xx|->xxr,yy|->yyr,zz|->zzr,vv|->vvr,ww|->wwr,aa|->aar,bb|->bbr}: id_reg_8 --> BYTE) & byte_bv16(rgs8(b0),rgs8(c0)): BV16 & byte_bv16(rgs8(h0),rgs8(l0)): BV16 & byte_bv16(rgs8(d0),rgs8(e0)): BV16 & byte_bv16(rgs8(a0),rgs8(f0)): BV16 & mem(byte_bv16(rgs8(b0),rgs8(c0))): BYTE & mem(byte_bv16(rgs8(d0),rgs8(e0))): BYTE & mem(byte_bv16(rgs8(h0),rgs8(l0))): BYTE & mem(byte_bv16(rgs8(a0),rgs8(f0))): BYTE & mem(sp): BYTE & mem(ix): BYTE & mem(iy): BYTE & dec_BV16(byte_bv16(rgs8(b0),rgs8(c0))): BV16 & inc_BV16(byte_bv16(rgs8(b0),rgs8(c0))): BV16 & dec_BV16(byte_bv16(rgs8(d0),rgs8(e0))): BV16 & inc_BV16(byte_bv16(rgs8(d0),rgs8(e0))): BV16 & inc_BV16(byte_bv16(rgs8(h0),rgs8(l0))): BV16 & dec_BV16(byte_bv16(rgs8(h0),rgs8(l0))): BV16 & ushort_bv16(add16USHORT(0,bv16_ushort(sp),1)): BV16 & ushort_bv16(add16USHORT(0,bv16_ushort(sp),2)): BV16 & ushort_bv16(sub16USHORT(0,bv16_ushort(sp),1)): BV16 & ushort_bv16(sub16USHORT(0,bv16_ushort(sp),2)): BV16 & bv8get(rgs8(f0),7): BIT & bv8get(rgs8(f0),6): BIT & bv8get(rgs8(f0),5): BIT & bv8get(rgs8(f0),4): BIT & bv8get(rgs8(f0),3): BIT & bv8get(rgs8(f0),2): BIT & bv8get(rgs8(f0),1): BIT & bv8get(rgs8(f0),0): BIT & io_ports(rgs8(c0)): BYTE & dec(rgs8(b0)): BYTE)
+END
+&
+THEORY ListInitialisationX IS
+  Expanded_List_Initialisation(Machine(Z80_general2))==(mem:=%xx.(xx: BV16 | [0,0,0,0,0,0,0,0]);(rgs8,pc,sp,ix,iy,i_,r_:={a0|->[1,1,1,1,1,1,1,1],f0|->[1,1,1,1,1,1,1,1],f_0|->[1,1,1,1,1,1,1,1],a_0|->[1,1,1,1,1,1,1,1],b0|->[1,1,1,1,1,1,1,1],c0|->[1,1,1,1,1,1,1,1],b_0|->[1,1,1,1,1,1,1,1],c_0|->[1,1,1,1,1,1,1,1],d0|->[1,1,1,1,1,1,1,1],e0|->[1,1,1,1,1,1,1,1],d_0|->[1,1,1,1,1,1,1,1],e_0|->[1,1,1,1,1,1,1,1],h0|->[1,1,1,1,1,1,1,1],l0|->[1,1,1,1,1,1,1,1],h_0|->[1,1,1,1,1,1,1,1],l_0|->[1,1,1,1,1,1,1,1]},0,[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0] || @(io_ports$0).(io_ports$0: BYTE --> {[0,0,0,0,0,0,0,0]} ==> io_ports:=io_ports$0) || iff1:=0 || iff2:=0 || im:=0|->0));
+  Context_List_Initialisation(Machine(Z80_general2))==(skip);
+  List_Initialisation(Machine(Z80_general2))==(rgs8:={a0|->[1,1,1,1,1,1,1,1],f0|->[1,1,1,1,1,1,1,1],f_0|->[1,1,1,1,1,1,1,1],a_0|->[1,1,1,1,1,1,1,1],b0|->[1,1,1,1,1,1,1,1],c0|->[1,1,1,1,1,1,1,1],b_0|->[1,1,1,1,1,1,1,1],c_0|->[1,1,1,1,1,1,1,1],d0|->[1,1,1,1,1,1,1,1],e0|->[1,1,1,1,1,1,1,1],d_0|->[1,1,1,1,1,1,1,1],e_0|->[1,1,1,1,1,1,1,1],h0|->[1,1,1,1,1,1,1,1],l0|->[1,1,1,1,1,1,1,1],h_0|->[1,1,1,1,1,1,1,1],l_0|->[1,1,1,1,1,1,1,1]} || pc:=0 || sp:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1] || ix:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1] || iy:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1] || i_:=[0,0,0,0,0,0,0,0] || r_:=[0,0,0,0,0,0,0,0] || io_ports:: BYTE --> {[0,0,0,0,0,0,0,0]} || iff1:=0 || iff2:=0 || im:=0|->0)
+END
+&
+THEORY ListParametersX IS
+  List_Parameters(Machine(Z80_general2))==(?)
+END
+&
+THEORY ListInstanciatedParametersX IS
+  List_Instanciated_Parameters(Machine(Z80_general2),Machine(MEMORY))==(?);
+  List_Instanciated_Parameters(Machine(Z80_general2),Machine(ALU))==(?);
+  List_Instanciated_Parameters(Machine(Z80_general2),Machine(TYPES))==(?);
+  List_Instanciated_Parameters(Machine(Z80_general2),Machine(BIT_DEFINITION))==(?);
+  List_Instanciated_Parameters(Machine(Z80_general2),Machine(BYTE_DEFINITION))==(?);
+  List_Instanciated_Parameters(Machine(Z80_general2),Machine(BV16_DEFINITION))==(?);
+  List_Instanciated_Parameters(Machine(Z80_general2),Machine(UCHAR_DEFINITION))==(?);
+  List_Instanciated_Parameters(Machine(Z80_general2),Machine(SCHAR_DEFINITION))==(?);
+  List_Instanciated_Parameters(Machine(Z80_general2),Machine(SSHORT_DEFINITION))==(?);
+  List_Instanciated_Parameters(Machine(Z80_general2),Machine(USHORT_DEFINITION))==(?);
+  List_Instanciated_Parameters(Machine(Z80_general2),Machine(POWER2))==(?)
+END
+&
+THEORY ListConstraintsX IS
+  List_Constraints(Machine(Z80_general2),Machine(MEMORY))==(btrue);
+  List_Context_Constraints(Machine(Z80_general2))==(btrue);
+  List_Constraints(Machine(Z80_general2))==(btrue)
+END
+&
+THEORY ListOperationsX IS
+  Internal_List_Operations(Machine(Z80_general2))==(CPI,CPIR,CPD,CPDR,CPL,NEG,CCF,SCF,NOP,HALT,DI,EI,IM0,IM1,IM2);
+  List_Operations(Machine(Z80_general2))==(CPI,CPIR,CPD,CPDR,CPL,NEG,CCF,SCF,NOP,HALT,DI,EI,IM0,IM1,IM2)
+END
+&
+THEORY ListInputX IS
+  List_Input(Machine(Z80_general2),CPI)==(?);
+  List_Input(Machine(Z80_general2),CPIR)==(?);
+  List_Input(Machine(Z80_general2),CPD)==(?);
+  List_Input(Machine(Z80_general2),CPDR)==(?);
+  List_Input(Machine(Z80_general2),CPL)==(?);
+  List_Input(Machine(Z80_general2),NEG)==(?);
+  List_Input(Machine(Z80_general2),CCF)==(?);
+  List_Input(Machine(Z80_general2),SCF)==(?);
+  List_Input(Machine(Z80_general2),NOP)==(?);
+  List_Input(Machine(Z80_general2),HALT)==(?);
+  List_Input(Machine(Z80_general2),DI)==(?);
+  List_Input(Machine(Z80_general2),EI)==(?);
+  List_Input(Machine(Z80_general2),IM0)==(?);
+  List_Input(Machine(Z80_general2),IM1)==(?);
+  List_Input(Machine(Z80_general2),IM2)==(?)
+END
+&
+THEORY ListOutputX IS
+  List_Output(Machine(Z80_general2),CPI)==(?);
+  List_Output(Machine(Z80_general2),CPIR)==(?);
+  List_Output(Machine(Z80_general2),CPD)==(?);
+  List_Output(Machine(Z80_general2),CPDR)==(?);
+  List_Output(Machine(Z80_general2),CPL)==(?);
+  List_Output(Machine(Z80_general2),NEG)==(?);
+  List_Output(Machine(Z80_general2),CCF)==(?);
+  List_Output(Machine(Z80_general2),SCF)==(?);
+  List_Output(Machine(Z80_general2),NOP)==(?);
+  List_Output(Machine(Z80_general2),HALT)==(?);
+  List_Output(Machine(Z80_general2),DI)==(?);
+  List_Output(Machine(Z80_general2),EI)==(?);
+  List_Output(Machine(Z80_general2),IM0)==(?);
+  List_Output(Machine(Z80_general2),IM1)==(?);
+  List_Output(Machine(Z80_general2),IM2)==(?)
+END
+&
+THEORY ListHeaderX IS
+  List_Header(Machine(Z80_general2),CPI)==(CPI);
+  List_Header(Machine(Z80_general2),CPIR)==(CPIR);
+  List_Header(Machine(Z80_general2),CPD)==(CPD);
+  List_Header(Machine(Z80_general2),CPDR)==(CPDR);
+  List_Header(Machine(Z80_general2),CPL)==(CPL);
+  List_Header(Machine(Z80_general2),NEG)==(NEG);
+  List_Header(Machine(Z80_general2),CCF)==(CCF);
+  List_Header(Machine(Z80_general2),SCF)==(SCF);
+  List_Header(Machine(Z80_general2),NOP)==(NOP);
+  List_Header(Machine(Z80_general2),HALT)==(HALT);
+  List_Header(Machine(Z80_general2),DI)==(DI);
+  List_Header(Machine(Z80_general2),EI)==(EI);
+  List_Header(Machine(Z80_general2),IM0)==(IM0);
+  List_Header(Machine(Z80_general2),IM1)==(IM1);
+  List_Header(Machine(Z80_general2),IM2)==(IM2)
+END
+&
+THEORY ListOperationGuardX END
+&
+THEORY ListPreconditionX IS
+  List_Precondition(Machine(Z80_general2),CPI)==(btrue);
+  List_Precondition(Machine(Z80_general2),CPIR)==(btrue);
+  List_Precondition(Machine(Z80_general2),CPD)==(btrue);
+  List_Precondition(Machine(Z80_general2),CPDR)==(btrue);
+  List_Precondition(Machine(Z80_general2),CPL)==(btrue);
+  List_Precondition(Machine(Z80_general2),NEG)==(btrue);
+  List_Precondition(Machine(Z80_general2),CCF)==(btrue);
+  List_Precondition(Machine(Z80_general2),SCF)==(btrue);
+  List_Precondition(Machine(Z80_general2),NOP)==(btrue);
+  List_Precondition(Machine(Z80_general2),HALT)==(btrue);
+  List_Precondition(Machine(Z80_general2),DI)==(btrue);
+  List_Precondition(Machine(Z80_general2),EI)==(btrue);
+  List_Precondition(Machine(Z80_general2),IM0)==(btrue);
+  List_Precondition(Machine(Z80_general2),IM1)==(btrue);
+  List_Precondition(Machine(Z80_general2),IM2)==(btrue)
+END
+&
+THEORY ListSubstitutionX IS
+  Expanded_List_Substitution(Machine(Z80_general2),IM2)==(btrue | im,pc,r_:=1|->1,instruction_next(pc),update_refresh_reg(r_));
+  Expanded_List_Substitution(Machine(Z80_general2),IM1)==(btrue | im,pc,r_:=0|->1,instruction_next(pc),update_refresh_reg(r_));
+  Expanded_List_Substitution(Machine(Z80_general2),IM0)==(btrue | im,pc,r_:=0|->0,instruction_next(pc),update_refresh_reg(r_));
+  Expanded_List_Substitution(Machine(Z80_general2),EI)==(btrue | iff1,iff2,pc,r_:=1,1,instruction_next(pc),update_refresh_reg(r_));
+  Expanded_List_Substitution(Machine(Z80_general2),DI)==(btrue | iff1,iff2,pc,r_:=0,0,instruction_next(pc),update_refresh_reg(r_));
+  Expanded_List_Substitution(Machine(Z80_general2),HALT)==(btrue | r_:=update_refresh_reg(r_));
+  Expanded_List_Substitution(Machine(Z80_general2),NOP)==(btrue | pc,r_:=instruction_next(pc),update_refresh_reg(r_));
+  Expanded_List_Substitution(Machine(Z80_general2),SCF)==(btrue | rgs8,pc,r_:=rgs8<+{update_flag_reg(bv8get(rgs8(f0),7),bv8get(rgs8(f0),6),bv8get(rgs8(f0),4),bv8get(rgs8(f0),2),0,1)},instruction_next(pc),update_refresh_reg(r_));
+  Expanded_List_Substitution(Machine(Z80_general2),CCF)==(btrue | rgs8,pc,r_:=rgs8<+{update_flag_reg(bv8get(rgs8(f0),7),bv8get(rgs8(f0),6),bv8get(rgs8(f0),4),bv8get(rgs8(f0),2),0,bit_not(bv8get(rgs8(f0),0)))},instruction_next(pc),update_refresh_reg(r_));
+  Expanded_List_Substitution(Machine(Z80_general2),NEG)==(btrue | @(sum,negative,carry,half_carry,zero).(sum: UCHAR & negative: BIT & carry: BIT & half_carry: BIT & zero: BIT & sum,negative,carry,half_carry,zero = substract8UCHAR(0,0,byte_uchar(rgs8(a0))) ==> rgs8,pc,r_:=rgs8<+{a0|->uchar_byte(sum),update_flag_reg(negative,zero,half_carry,carry,1,carry)},instruction_next(pc),update_refresh_reg(r_)));
+  Expanded_List_Substitution(Machine(Z80_general2),CPL)==(btrue | @result.(result: BYTE & result = complement(rgs8(a0)) ==> rgs8,pc,r_:=rgs8<+{a0|->result,update_flag_reg(bv8get(rgs8(f0),7),bv8get(rgs8(f0),6),1,bv8get(rgs8(f0),2),1,bv8get(rgs8(f0),0))},instruction_next(pc),update_refresh_reg(r_)));
+  Expanded_List_Substitution(Machine(Z80_general2),CPDR)==(btrue | @(sum,negative,carry,half_carry,zero,hvn,lvn,bvn,cvn).(sum: UCHAR & negative: BIT & carry: BIT & half_carry: BIT & zero: BIT & hvn: BYTE & lvn: BYTE & bvn: BYTE & cvn: BYTE & substract8UCHAR(0,byte_uchar(rgs8(a0)),byte_uchar(mem(byte_bv16(rgs8(h0),rgs8(l0))))) = sum,negative,carry,half_carry,zero & hvn,lvn = bv16_byte(dec_BV16(byte_bv16(rgs8(h0),rgs8(l0)))) & bvn,cvn = bv16_byte(dec_BV16(byte_bv16(rgs8(b0),rgs8(c0)))) ==> (zero = 1 ==> rgs8:=rgs8<+{h0|->hvn,l0|->lvn,b0|->bvn,c0|->cvn,update_flag_reg(negative,zero,half_carry,bit_not(is_zero16USHORT(bv16_ushort(dec_BV16(byte_bv16(rgs8(b0),rgs8(c0)))))),1,bv8get(rgs8(f0),0))} [] not(zero = 1) ==> skip || (is_zero16USHORT(bv16_ushort(dec_BV16(byte_bv16(rgs8(b0),rgs8(c0))))) = 0 or zero = 1 ==> pc:=instruction_next(pc) [] not(is_zero16USHORT(bv16_ushort(dec_BV16(byte_bv16(rgs8(b0),rgs8(c0))))) = 0 or zero = 1) ==> skip) || r_:=update_refresh_reg(r_))));
+  Expanded_List_Substitution(Machine(Z80_general2),CPD)==(btrue | @(sum,negative,carry,half_carry,zero,hvn,lvn,bvn,cvn).(sum: UCHAR & negative: BIT & carry: BIT & half_carry: BIT & zero: BIT & hvn: BYTE & lvn: BYTE & bvn: BYTE & cvn: BYTE & substract8UCHAR(0,byte_uchar(rgs8(a0)),byte_uchar(mem(byte_bv16(rgs8(h0),rgs8(l0))))) = sum,negative,carry,half_carry,zero & hvn,lvn = bv16_byte(dec_BV16(byte_bv16(rgs8(h0),rgs8(l0)))) & bvn,cvn = bv16_byte(dec_BV16(byte_bv16(rgs8(b0),rgs8(c0)))) ==> (zero = 1 ==> rgs8:=rgs8<+{h0|->hvn,l0|->lvn,b0|->bvn,c0|->cvn,update_flag_reg(negative,zero,half_carry,bit_not(is_zero16USHORT(bv16_ushort(dec_BV16(byte_bv16(rgs8(b0),rgs8(c0)))))),1,bv8get(rgs8(f0),0))} [] not(zero = 1) ==> skip || pc:=instruction_next(pc) || r_:=update_refresh_reg(r_))));
+  Expanded_List_Substitution(Machine(Z80_general2),CPIR)==(btrue | @(sum,negative,carry,half_carry,zero,hvn,lvn,bvn,cvn).(sum: UCHAR & negative: BIT & carry: BIT & half_carry: BIT & zero: BIT & hvn: BYTE & lvn: BYTE & bvn: BYTE & cvn: BYTE & substract8UCHAR(0,byte_uchar(rgs8(a0)),byte_uchar(mem(byte_bv16(rgs8(h0),rgs8(l0))))) = sum,negative,carry,half_carry,zero & hvn,lvn = bv16_byte(inc_BV16(byte_bv16(rgs8(h0),rgs8(l0)))) & bvn,cvn = bv16_byte(dec_BV16(byte_bv16(rgs8(b0),rgs8(c0)))) ==> (zero = 1 ==> rgs8:=rgs8<+{h0|->hvn,l0|->lvn,b0|->bvn,c0|->cvn,update_flag_reg(negative,zero,half_carry,bit_not(is_zero16USHORT(bv16_ushort(dec_BV16(byte_bv16(rgs8(b0),rgs8(c0)))))),1,bv8get(rgs8(f0),0))} [] not(zero = 1) ==> skip || r_:=update_refresh_reg(r_) || (is_zero16USHORT(bv16_ushort(dec_BV16(byte_bv16(rgs8(b0),rgs8(c0))))) = 0 or zero = 1 ==> pc:=instruction_next(pc) [] not(is_zero16USHORT(bv16_ushort(dec_BV16(byte_bv16(rgs8(b0),rgs8(c0))))) = 0 or zero = 1) ==> skip))));
+  Expanded_List_Substitution(Machine(Z80_general2),CPI)==(btrue | @(sum,negative,carry,half_carry,zero,hvn,lvn,bvn,cvn).(sum: UCHAR & negative: BIT & carry: BIT & half_carry: BIT & zero: BIT & hvn: BYTE & lvn: BYTE & bvn: BYTE & cvn: BYTE & substract8UCHAR(0,byte_uchar(rgs8(a0)),byte_uchar(mem(byte_bv16(rgs8(h0),rgs8(l0))))) = sum,negative,carry,half_carry,zero & hvn,lvn = bv16_byte(inc_BV16(byte_bv16(rgs8(h0),rgs8(l0)))) & bvn,cvn = bv16_byte(dec_BV16(byte_bv16(rgs8(b0),rgs8(c0)))) ==> (zero = 1 ==> rgs8:=rgs8<+{h0|->hvn,l0|->lvn,b0|->bvn,c0|->cvn,update_flag_reg(negative,zero,half_carry,bit_not(is_zero16USHORT(bv16_ushort(dec_BV16(byte_bv16(rgs8(b0),rgs8(c0)))))),1,bv8get(rgs8(f0),0))} [] not(zero = 1) ==> skip || pc:=instruction_next(pc) || r_:=update_refresh_reg(r_))));
+  List_Substitution(Machine(Z80_general2),CPI)==(ANY sum,negative,carry,half_carry,zero,hvn,lvn,bvn,cvn WHERE sum: UCHAR & negative: BIT & carry: BIT & half_carry: BIT & zero: BIT & hvn: BYTE & lvn: BYTE & bvn: BYTE & cvn: BYTE & substract8UCHAR(0,byte_uchar(rgs8(a0)),byte_uchar(mem(byte_bv16(rgs8(h0),rgs8(l0))))) = sum,negative,carry,half_carry,zero & hvn,lvn = bv16_byte(inc_BV16(byte_bv16(rgs8(h0),rgs8(l0)))) & bvn,cvn = bv16_byte(dec_BV16(byte_bv16(rgs8(b0),rgs8(c0)))) THEN IF zero = 1 THEN rgs8:=rgs8<+{h0|->hvn,l0|->lvn,b0|->bvn,c0|->cvn,update_flag_reg(negative,zero,half_carry,bit_not(is_zero16USHORT(bv16_ushort(dec_BV16(byte_bv16(rgs8(b0),rgs8(c0)))))),1,bv8get(rgs8(f0),0))} END || pc:=instruction_next(pc) || r_:=update_refresh_reg(r_) END);
+  List_Substitution(Machine(Z80_general2),CPIR)==(ANY sum,negative,carry,half_carry,zero,hvn,lvn,bvn,cvn WHERE sum: UCHAR & negative: BIT & carry: BIT & half_carry: BIT & zero: BIT & hvn: BYTE & lvn: BYTE & bvn: BYTE & cvn: BYTE & substract8UCHAR(0,byte_uchar(rgs8(a0)),byte_uchar(mem(byte_bv16(rgs8(h0),rgs8(l0))))) = sum,negative,carry,half_carry,zero & hvn,lvn = bv16_byte(inc_BV16(byte_bv16(rgs8(h0),rgs8(l0)))) & bvn,cvn = bv16_byte(dec_BV16(byte_bv16(rgs8(b0),rgs8(c0)))) THEN IF zero = 1 THEN rgs8:=rgs8<+{h0|->hvn,l0|->lvn,b0|->bvn,c0|->cvn,update_flag_reg(negative,zero,half_carry,bit_not(is_zero16USHORT(bv16_ushort(dec_BV16(byte_bv16(rgs8(b0),rgs8(c0)))))),1,bv8get(rgs8(f0),0))} END || r_:=update_refresh_reg(r_) || IF is_zero16USHORT(bv16_ushort(dec_BV16(byte_bv16(rgs8(b0),rgs8(c0))))) = 0 or zero = 1 THEN pc:=instruction_next(pc) END END);
+  List_Substitution(Machine(Z80_general2),CPD)==(ANY sum,negative,carry,half_carry,zero,hvn,lvn,bvn,cvn WHERE sum: UCHAR & negative: BIT & carry: BIT & half_carry: BIT & zero: BIT & hvn: BYTE & lvn: BYTE & bvn: BYTE & cvn: BYTE & substract8UCHAR(0,byte_uchar(rgs8(a0)),byte_uchar(mem(byte_bv16(rgs8(h0),rgs8(l0))))) = sum,negative,carry,half_carry,zero & hvn,lvn = bv16_byte(dec_BV16(byte_bv16(rgs8(h0),rgs8(l0)))) & bvn,cvn = bv16_byte(dec_BV16(byte_bv16(rgs8(b0),rgs8(c0)))) THEN IF zero = 1 THEN rgs8:=rgs8<+{h0|->hvn,l0|->lvn,b0|->bvn,c0|->cvn,update_flag_reg(negative,zero,half_carry,bit_not(is_zero16USHORT(bv16_ushort(dec_BV16(byte_bv16(rgs8(b0),rgs8(c0)))))),1,bv8get(rgs8(f0),0))} END || pc:=instruction_next(pc) || r_:=update_refresh_reg(r_) END);
+  List_Substitution(Machine(Z80_general2),CPDR)==(ANY sum,negative,carry,half_carry,zero,hvn,lvn,bvn,cvn WHERE sum: UCHAR & negative: BIT & carry: BIT & half_carry: BIT & zero: BIT & hvn: BYTE & lvn: BYTE & bvn: BYTE & cvn: BYTE & substract8UCHAR(0,byte_uchar(rgs8(a0)),byte_uchar(mem(byte_bv16(rgs8(h0),rgs8(l0))))) = sum,negative,carry,half_carry,zero & hvn,lvn = bv16_byte(dec_BV16(byte_bv16(rgs8(h0),rgs8(l0)))) & bvn,cvn = bv16_byte(dec_BV16(byte_bv16(rgs8(b0),rgs8(c0)))) THEN IF zero = 1 THEN rgs8:=rgs8<+{h0|->hvn,l0|->lvn,b0|->bvn,c0|->cvn,update_flag_reg(negative,zero,half_carry,bit_not(is_zero16USHORT(bv16_ushort(dec_BV16(byte_bv16(rgs8(b0),rgs8(c0)))))),1,bv8get(rgs8(f0),0))} END || IF is_zero16USHORT(bv16_ushort(dec_BV16(byte_bv16(rgs8(b0),rgs8(c0))))) = 0 or zero = 1 THEN pc:=instruction_next(pc) END || r_:=update_refresh_reg(r_) END);
+  List_Substitution(Machine(Z80_general2),CPL)==(ANY result WHERE result: BYTE & result = complement(rgs8(a0)) THEN rgs8:=rgs8<+{a0|->result,update_flag_reg(bv8get(rgs8(f0),7),bv8get(rgs8(f0),6),1,bv8get(rgs8(f0),2),1,bv8get(rgs8(f0),0))} || pc:=instruction_next(pc) || r_:=update_refresh_reg(r_) END);
+  List_Substitution(Machine(Z80_general2),NEG)==(ANY sum,negative,carry,half_carry,zero WHERE sum: UCHAR & negative: BIT & carry: BIT & half_carry: BIT & zero: BIT & sum,negative,carry,half_carry,zero = substract8UCHAR(0,0,byte_uchar(rgs8(a0))) THEN rgs8:=rgs8<+{a0|->uchar_byte(sum),update_flag_reg(negative,zero,half_carry,carry,1,carry)} || pc:=instruction_next(pc) || r_:=update_refresh_reg(r_) END);
+  List_Substitution(Machine(Z80_general2),CCF)==(rgs8:=rgs8<+{update_flag_reg(bv8get(rgs8(f0),7),bv8get(rgs8(f0),6),bv8get(rgs8(f0),4),bv8get(rgs8(f0),2),0,bit_not(bv8get(rgs8(f0),0)))} || pc:=instruction_next(pc) || r_:=update_refresh_reg(r_));
+  List_Substitution(Machine(Z80_general2),SCF)==(rgs8:=rgs8<+{update_flag_reg(bv8get(rgs8(f0),7),bv8get(rgs8(f0),6),bv8get(rgs8(f0),4),bv8get(rgs8(f0),2),0,1)} || pc:=instruction_next(pc) || r_:=update_refresh_reg(r_));
+  List_Substitution(Machine(Z80_general2),NOP)==(pc:=instruction_next(pc) || r_:=update_refresh_reg(r_));
+  List_Substitution(Machine(Z80_general2),HALT)==(r_:=update_refresh_reg(r_));
+  List_Substitution(Machine(Z80_general2),DI)==(iff1:=0 || iff2:=0 || pc:=instruction_next(pc) || r_:=update_refresh_reg(r_));
+  List_Substitution(Machine(Z80_general2),EI)==(iff1:=1 || iff2:=1 || pc:=instruction_next(pc) || r_:=update_refresh_reg(r_));
+  List_Substitution(Machine(Z80_general2),IM0)==(im:=0|->0 || pc:=instruction_next(pc) || r_:=update_refresh_reg(r_));
+  List_Substitution(Machine(Z80_general2),IM1)==(im:=0|->1 || pc:=instruction_next(pc) || r_:=update_refresh_reg(r_));
+  List_Substitution(Machine(Z80_general2),IM2)==(im:=1|->1 || pc:=instruction_next(pc) || r_:=update_refresh_reg(r_))
+END
+&
+THEORY ListConstantsX IS
+  List_Valuable_Constants(Machine(Z80_general2))==(PROGRAM_R_ADR,DATA_R_ADR,STACK_R_ADR,get_bv_reg16,REG16_TO_REG8,REG8_TO_REG16,update_flag_reg,cc_get);
+  Inherited_List_Constants(Machine(Z80_general2))==(PROGRAM_R_ADR,DATA_R_ADR,STACK_R_ADR);
+  List_Constants(Machine(Z80_general2))==(get_bv_reg16,REG16_TO_REG8,REG8_TO_REG16,update_flag_reg,cc_get)
+END
+&
+THEORY ListSetsX IS
+  Set_Definition(Machine(Z80_general2),id_reg_8)==({a0,f0,f_0,a_0,b0,c0,b_0,c_0,d0,e0,d_0,e_0,h0,l0,h_0,l_0});
+  Context_List_Enumerated(Machine(Z80_general2))==(?);
+  Context_List_Defered(Machine(Z80_general2))==(?);
+  Context_List_Sets(Machine(Z80_general2))==(?);
+  List_Valuable_Sets(Machine(Z80_general2))==(?);
+  Inherited_List_Enumerated(Machine(Z80_general2))==(?);
+  Inherited_List_Defered(Machine(Z80_general2))==(?);
+  Inherited_List_Sets(Machine(Z80_general2))==(?);
+  List_Enumerated(Machine(Z80_general2))==(id_reg_8,id_reg_16);
+  List_Defered(Machine(Z80_general2))==(?);
+  List_Sets(Machine(Z80_general2))==(id_reg_8,id_reg_16);
+  Set_Definition(Machine(Z80_general2),id_reg_16)==({BC,DE,HL,SP,AF})
+END
+&
+THEORY ListHiddenConstantsX IS
+  Abstract_List_HiddenConstants(Machine(Z80_general2))==(?);
+  Expanded_List_HiddenConstants(Machine(Z80_general2))==(?);
+  List_HiddenConstants(Machine(Z80_general2))==(?);
+  External_List_HiddenConstants(Machine(Z80_general2))==(?)
+END
+&
+THEORY ListPropertiesX IS
+  Abstract_List_Properties(Machine(Z80_general2))==(btrue);
+  Context_List_Properties(Machine(Z80_general2))==(is_zero16USHORT = %nat1.(nat1: USHORT | bool_bit(bool(nat1 = 0))) & is_negative = %w1.(w1: BYTE | w1(7)) & half8UCHAR = %ww.(ww: UCHAR | ww mod 16) & inc = %w1.(w1: BYTE | uchar_byte((byte_uchar(w1)+1) mod 256)) & dec = %w1.(w1: BYTE | uchar_byte((byte_uchar(w1)+255) mod 256)) & simple_add8UCHAR = %(w1,w2).(w1: UCHAR & w2: UCHAR | (w1+w2) mod 256) & add8UCHAR = %(carry,w1,w2).(carry: BIT & w1: UCHAR & w2: UCHAR | (carry+w1+w2) mod 256,bool_bit(bool(carry+uchar_schar(w1)+uchar_schar(w2)<0)),bool_bit(bool(carry+w1+w2>UCHAR_MAX)),bool_bit(bool(carry+half8UCHAR(w1)+half8UCHAR(w2)>=16)),bool_bit(bool((carry+w1+w2) mod 256 = 0))) & substract8UCHAR = %(carry,w1,w2).(carry: BIT & w1: UCHAR & w2: UCHAR | (carry+w1+(256-w2)) mod 256,bool_bit(bool(carry+uchar_schar(w1)-uchar_schar(w2)<0)),bool_bit(bool(carry+w1-w2>UCHAR_MAX)),bool_bit(bool(carry+half8UCHAR(w1)-half8UCHAR(w2)>=16)),bool_bit(bool((carry+w1+(256-w2)) mod 256 = 0))) & add16USHORT = %(b1,w1,w2).(b1: BIT & w1: USHORT & w2: USHORT | (b1+w1+w2) mod 65536) & add_carryUSHORT = %(b1,w1,w2).(b1: BIT & w1: USHORT & w2: USHORT | bool_bit(bool(b1+w1+w2>=65536))) & add_halfcarryUSHORT = %(b1,w1,w2).(b1: BIT & w1: USHORT & w2: USHORT | bool_bit(bool(b1+w1 mod 4096+w2 mod 4096>4096))) & sub16USHORT = %(b1,w1,w2).(b1: BIT & w1: USHORT & w2: USHORT | (b1+w1+(65536-w2)) mod 65536) & sub_carryUSHORT = %(b1,w1,w2).(b1: BIT & w1: USHORT & w2: USHORT | bool_bit(bool(w1+w2-b1>65536))) & sub_halfcarryUSHORT = %(b1,w1,w2).(b1: BIT & w1: USHORT & w2: USHORT | bool_bit(bool(w1 mod 4096+w2 mod 4096-b1>4096))) & inc_BV16 = %w1.(w1: BV16 | ushort_bv16((bv16_ushort(w1)+1) mod 65536)) & dec_BV16 = %w1.(w1: BV16 | ushort_bv16((bv16_ushort(w1)+65536-1) mod 65536)) & update_refresh_reg = %v0.(v0: BYTE | uchar_byte(128*v0(8)+(64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+v0(1)) mod 128)) & instruction_next = %w1.(w1: USHORT | (w1+1) mod 65536) & instruction_jump = %(p0,e0).(p0: USHORT & e0: -126..129 | (p0+e0+65536) mod 65536) & BIT = {0,1} & bit_not: BIT >->> BIT & bit_not = {0|->1}\/{1|->0} & bit_and: BIT*BIT --> BIT & bit_and = {(0,0)|->0}\/{(0,1)|->0}\/{(1,0)|->0}\/{(1,1)|->1} & bit_or: BIT*BIT --> BIT & bit_or = {(0,0)|->0}\/{(0,1)|->1}\/{(1,0)|->1}\/{(1,1)|->1} & bit_xor: BIT*BIT --> BIT & bit_xor = {(0,0)|->0}\/{(0,1)|->1}\/{(1,0)|->1}\/{(1,1)|->0} & bool_bit = {TRUE|->1,FALSE|->0} & BYTE_INDEX = 1..8 & PHYS_BYTE_INDEX = 0..8-1 & BYTE = BYTE_INDEX --> BIT & !b1.(b1: BYTE => size(b1) = 8 & b1: seq1(BIT)) & is_zero: BYTE --> BIT & is_zero = %w1.(w1: BYTE | bool_bit(bool(w1(1) = w1(2) & w1(2) = w1(3) & w1(3) = w1(4) & w1(4) = w1(5) & w1(5) = w1(6) & w1(6) = w1(7) & w1(7) = w1(8) & w1(8) = 0))) & parity_even: BYTE --> BIT & parity_even = %bv.(bv: BYTE | 1-(bv(1)+bv(2)+bv(3)+bv(4)+bv(5)+bv(6)+bv(7)+bv(8)) mod 2) & bv8_and = %(bt1,bt2).(bt1: BYTE & bt2: BYTE | %idx.(idx: 1..8 | bit_and(bt1(idx),bt2(idx)))) & bv8_or = %(bt1,bt2).(bt1: BYTE & bt2: BYTE | %idx.(idx: 1..8 | bit_or(bt1(idx),bt2(idx)))) & bv8_xor = %(bt1,bt2).(bt1: BYTE & bt2: BYTE | %idx.(idx: 1..8 | bit_xor(bt1(idx),bt2(idx)))) & bv8get: BYTE*PHYS_BYTE_INDEX --> BIT & bv8get = %(bt1,ii).(bt1: BYTE & ii: PHYS_BYTE_INDEX | bt1(ii+1)) & bitset: BYTE*PHYS_BYTE_INDEX --> BYTE & bitset = %(bt1,ii).(bt1: BYTE & ii: PHYS_BYTE_INDEX | bt1<+{ii+1|->1}) & bitclear: BYTE*PHYS_BYTE_INDEX --> BYTE & bitclear = %(bt1,ii).(bt1: BYTE & ii: PHYS_BYTE_INDEX | bt1<+{ii+1|->0}) & complement: BYTE --> BYTE & complement = %bt.(bt: BYTE | %idx.(idx: 1..8 | bit_not(bt(idx)))) & swap: BYTE --> BYTE & swap = %bt.(bt: BYTE | {1|->bt(5),2|->bt(6),3|->bt(7),4|->bt(8),5|->bt(1),6|->bt(2),7|->bt(3),8|->bt(4)}) & rotateleft: BYTE --> BYTE & rotateleft = %bv.(bv: BYTE | {1|->bv(8),2|->bv(1),3|->bv(2),4|->bv(3),5|->bv(4),6|->bv(5),7|->bv(6),8|->bv(7)}) & rotateright: BYTE --> BYTE & rotateright = %bv.(bv: BYTE | {1|->bv(2),2|->bv(3),3|->bv(4),4|->bv(5),5|->bv(6),6|->bv(7),7|->bv(8),8|->bv(1)}) & get_upper_digit: BYTE --> 0..15 & get_upper_digit = %by.(by: BYTE | 8*by(8)+4*by(7)+2*by(6)+by(5)) & get_lower_digit: BYTE --> 0..15 & get_lower_digit = %by.(by: BYTE | 8*by(4)+4*by(3)+2*by(2)+by(1)) & BV16_INDX = 1..16 & PHYS_BV16_INDEX = 0..16-1 & BV16 = BV16_INDX --> BIT & !b1.(b1: BV16 => size(b1) = 16 & b1: seq1(BIT)) & complement16 = %bt.(bt: BV16 | %idx.(idx: 1..16 | bit_not(bt(idx)))) & bv16_byte = %bv.(bv: BV16 | {8|->bv(16),7|->bv(15),6|->bv(14),5|->bv(13),4|->bv(12),3|->bv(11),2|->bv(10),1|->bv(9)},{8|->bv(8),7|->bv(7),6|->bv(6),5|->bv(5),4|->bv(4),3|->bv(3),2|->bv(2),1|->bv(1)}) & byte_bv16 = %(bv1,bv2).(bv1: BYTE & bv2: BYTE | {16|->bv1(8),15|->bv1(7),14|->bv1(6),13|->bv1(5),12|->bv1(4),11|->bv1(3),10|->bv1(2),9|->bv1(1),8|->bv2(8),7|->bv2(7),6|->bv2(6),5|->bv2(5),4|->bv2(4),3|->bv2(3),2|->bv2(2),1|->bv2(1)}) & UCHAR_MAX = 256-1 & UCHAR_MIN = 0 & UCHAR = UCHAR_MIN..UCHAR_MAX & byte_uchar = %v0.(v0: BYTE | 128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)) & uchar_byte = %v0.(v0: UCHAR | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128]) & SCHAR_MAX = 128-1 & SCHAR_MIN = -128 & SCHAR = SCHAR_MIN..SCHAR_MAX & byte_schar = %v0.(v0: BYTE | (-128)*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+v0(1)) & schar_byte = %v0.(v0: SCHAR & v0>=0 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128])\/%v0.(v0: SCHAR & not(v0>=0) | [(v0+256) mod 2/1,(v0+256) mod 4/2,(v0+256) mod 8/4,(v0+256) mod 16/8,(v0+256) mod 32/16,(v0+256) mod 64/32,(v0+256) mod 128/64,(v0+256) mod 256/128]) & uchar_schar = %v1.(v1: UCHAR & v1<=SCHAR_MAX | v1)\/%v1.(v1: UCHAR & not(v1<=SCHAR_MAX) | v1-256) & schar_uchar = %v1.(v1: 0..127 | v1)\/%v1.(v1: -128.. -1 | v1+256) & SSHORT_MIN = -32768 & SSHORT_MAX = 32768-1 & SSHORT = SSHORT_MIN..SSHORT_MAX & bv16_sshort = %v0.(v0: BV16 | (-32768)*v0(16)+16384*v0(15)+8192*v0(14)+4096*v0(13)+2048*v0(12)+1024*v0(11)+512*v0(10)+256*v0(9)+128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+v0(1)) & sshort_bv16 = %v0.(v0: SSHORT & v0>=0 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128,v0 mod 512/256,v0 mod 1024/512,v0 mod 2048/1024,v0 mod 4096/2048,v0 mod 8192/4096,v0 mod 16384/8192,v0 mod 32768/16384,v0 mod 65536/32768])\/%v0.(v0: SSHORT & not(v0>=0) | [(v0+USHORT_MAX+1) mod 2/1,(v0+USHORT_MAX+1) mod 4/2,(v0+USHORT_MAX+1) mod 8/4,(v0+USHORT_MAX+1) mod 16/8,(v0+USHORT_MAX+1) mod 32/16,(v0+USHORT_MAX+1) mod 64/32,(v0+USHORT_MAX+1) mod 128/64,(v0+USHORT_MAX+1) mod 256/128,(v0+USHORT_MAX+1) mod 512/256,(v0+USHORT_MAX+1) mod 1024/512,(v0+USHORT_MAX+1) mod 2048/1024,(v0+USHORT_MAX+1) mod 4096/2048,(v0+USHORT_MAX+1) mod 8192/4096,(v0+USHORT_MAX+1) mod 16384/8192,(v0+USHORT_MAX+1) mod 32768/16384,(v0+USHORT_MAX+1) mod 65536/32768]) & ushort_sshort = %v1.(v1: USHORT & v1<=SSHORT_MAX | v1)\/%v1.(v1: USHORT & not(v1<=SSHORT_MAX) | v1-USHORT_MAX-1) & sshort_ushort = %v1.(v1: SSHORT & v1>=0 | v1)\/%v1.(v1: SSHORT & not(v1>=0) | v1+USHORT_MAX+1) & schar_sshort = %(w1,w2).(w1: SCHAR & w2: SCHAR | bv16_sshort(byte_bv16(schar_byte(w1),schar_byte(w2)))) & USHORT_MAX = 65536-1 & USHORT_MIN = 0 & USHORT = USHORT_MIN..USHORT_MAX & bv16_ushort = %v0.(v0: BV16 | 32768*v0(16)+16384*v0(15)+8192*v0(14)+4096*v0(13)+2048*v0(12)+1024*v0(11)+512*v0(10)+256*v0(9)+128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)) & ushort_bv16 = %v0.(v0: USHORT | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128,v0 mod 512/256,v0 mod 1024/512,v0 mod 2048/1024,v0 mod 4096/2048,v0 mod 8192/4096,v0 mod 16384/8192,v0 mod 32768/16384,v0 mod 65536/32768]) & uchar_ushort = %(w1,w2).(w1: UCHAR & w2: UCHAR | bv16_ushort(byte_bv16(uchar_byte(w1),uchar_byte(w2)))));
+  Inherited_List_Properties(Machine(Z80_general2))==(PROGRAM_R_ADR = USHORT & DATA_R_ADR = USHORT & STACK_R_ADR = USHORT);
+  List_Properties(Machine(Z80_general2))==(REG16_TO_REG8: id_reg_16 +-> id_reg_8*id_reg_8 & REG16_TO_REG8 = %idf.(idf: id_reg_16 & idf = BC | b0,c0)\/%idf.(idf: id_reg_16 & idf = DE | d0,e0)\/%idf.(idf: id_reg_16 & idf = HL | h0,l0)\/%idf.(idf: id_reg_16 & idf = AF | a0,f0) & REG8_TO_REG16: id_reg_8*id_reg_8 +-> id_reg_16 & REG8_TO_REG16 = %(idf1,idf2).(idf1: id_reg_8 & idf2: id_reg_8 & idf1 = b0 & idf2 = c0 | BC)\/%(idf1,idf2).(idf1: id_reg_8 & idf2: id_reg_8 & idf1 = d0 & idf2 = e0 | DE)\/%(idf1,idf2).(idf1: id_reg_8 & idf2: id_reg_8 & idf1 = h0 & idf2 = l0 | HL)\/%(idf1,idf2).(idf1: id_reg_8 & idf2: id_reg_8 & idf1 = a0 & idf2 = f0 | AF) & update_flag_reg = %(s7,z6,h4,pv2,n_add_sub,c0).(s7: BIT & z6: BIT & h4: BIT & pv2: BIT & n_add_sub: BIT & c0: BIT | f0|->[c0,n_add_sub,pv2,1,h4,1,z6,s7]) & cc_get = %(rgs8_,ind).(rgs8_: id_reg_8 --> BYTE & ind = 0 | 1-bv8get(rgs8_(f0),6))\/%(rgs8_,ind).(rgs8_: id_reg_8 --> BYTE & ind = 1 | bv8get(rgs8_(f0),6))\/%(rgs8_,ind).(rgs8_: id_reg_8 --> BYTE & ind = 2 | 1-bv8get(rgs8_(f0),0))\/%(rgs8_,ind).(rgs8_: id_reg_8 --> BYTE & ind = 3 | bv8get(rgs8_(f0),0))\/%(rgs8_,ind).(rgs8_: id_reg_8 --> BYTE & ind = 4 | 1-bv8get(rgs8_(f0),2))\/%(rgs8_,ind).(rgs8_: id_reg_8 --> BYTE & ind = 5 | bv8get(rgs8_(f0),2))\/%(rgs8_,ind).(rgs8_: id_reg_8 --> BYTE & ind = 6 | 1-bv8get(rgs8_(f0),7))\/%(rgs8_,ind).(rgs8_: id_reg_8 --> BYTE & ind = 7 | bv8get(rgs8_(f0),7)) & get_bv_reg16 = %(sp_,rgs8_,r1).(sp_: BV16 & rgs8_: id_reg_8 --> BYTE & r1 = BC | byte_bv16(rgs8_(b0),rgs8_(c0)))\/%(sp_,rgs8_,r1).(sp_: BV16 & rgs8_: id_reg_8 --> BYTE & r1 = DE | byte_bv16(rgs8_(d0),rgs8_(e0)))\/%(sp_,rgs8_,r1).(sp_: BV16 & rgs8_: id_reg_8 --> BYTE & r1 = HL | byte_bv16(rgs8_(h0),rgs8_(l0)))\/%(sp_,rgs8_,r1).(sp_: BV16 & rgs8_: id_reg_8 --> BYTE & r1 = SP | sp_)\/%(sp_,rgs8_,r1).(sp_: BV16 & rgs8_: id_reg_8 --> BYTE & r1 = AF | byte_bv16(rgs8_(a0),rgs8_(f0))) & id_reg_8: FIN(INTEGER) & not(id_reg_8 = {}) & id_reg_16: FIN(INTEGER) & not(id_reg_16 = {}))
+END
+&
+THEORY ListSeenInfoX IS
+  Seen_Internal_List_Operations(Machine(Z80_general2),Machine(POWER2))==(?);
+  Seen_Context_List_Enumerated(Machine(Z80_general2))==(?);
+  Seen_Context_List_Invariant(Machine(Z80_general2))==(btrue);
+  Seen_Context_List_Assertions(Machine(Z80_general2))==(byte_uchar: BYTE >->> UCHAR & uchar_byte: UCHAR >->> BYTE & byte_uchar = uchar_byte~ & schar_uchar: SCHAR >->> UCHAR & uchar_schar: UCHAR >->> SCHAR & schar_uchar = uchar_schar~ & byte_schar: BYTE >->> SCHAR & schar_byte: SCHAR >->> BYTE & byte_schar = schar_byte~ & bv16_byte: BV16 >->> BYTE*BYTE & byte_bv16: BYTE*BYTE >->> BV16 & bv16_byte = byte_bv16~ & bv16_ushort: BV16 >->> USHORT & ushort_bv16: USHORT >->> BV16 & bv16_ushort = ushort_bv16~ & uchar_ushort: UCHAR*UCHAR >->> USHORT & bv16_sshort: BV16 >->> SSHORT & sshort_bv16: SSHORT >->> BV16 & bv16_sshort = sshort_bv16~ & schar_sshort: SCHAR*SCHAR >->> SSHORT & sshort_ushort: SSHORT >->> USHORT & ushort_sshort: USHORT >->> SSHORT & sshort_ushort = ushort_sshort~ & !bb.(bb: BIT => bit_not(bb) = 1-bb) & dom(bit_and) = BIT*BIT & ran(bit_not) = BIT & bit_not(0) = 1 & bit_not(1) = 0 & !bb.(bb: BIT => bit_not(bit_not(bb)) = bb) & dom(bit_and) = BIT*BIT & ran(bit_and) = BIT & bit_and(0,0) = 0 & bit_and(0,1) = 0 & bit_and(1,0) = 0 & bit_and(1,1) = 1 & !(b1,b2).(b1: BIT & b2: BIT => bit_and(b1,b2) = bit_and(b2,b1)) & !(b1,b2).(b1: BIT & b2: BIT & bit_and(b1,b2) = 1 => bit_and(b2,b1) = 1) & !(b1,b2).(b1: BIT & b2: BIT & bit_and(b1,b2) = 0 => bit_and(b2,b1) = 0) & !(b1,b2,b3).(b1: BIT & b2: BIT & b3: BIT => bit_and(b1,bit_and(b2,b3)) = bit_and(bit_and(b1,b2),b3)) & !b1.(b1: BIT => bit_and(b1,1) = b1) & !b1.(b1: BIT => bit_and(b1,0) = 0) & dom(bit_or) = BIT*BIT & ran(bit_or) = BIT & bit_or(0,0) = 0 & bit_or(0,1) = 1 & bit_or(1,0) = 1 & bit_or(1,1) = 1 & !(b1,b2).(b1: BIT & b2: BIT => bit_or(b1,b2) = bit_or(b2,b1)) & !(b1,b2).(b1: BIT & b2: BIT & bit_or(b1,b2) = 1 => bit_or(b2,b1) = 1) & !(b1,b2).(b1: BIT & b2: BIT & bit_or(b1,b2) = 0 => bit_or(b2,b1) = 0) & !(b1,b2).(b1: BIT & b2: BIT & bit_or(b1,0) = 1 => b1 = 1) & !(b1,b2).(b1: BIT & b2: BIT & bit_or(b1,0) = 0 => b1 = 0) & !(b1,b2,b3).(b1: BIT & b2: BIT & b3: BIT => bit_or(b1,bit_or(b2,b3)) = bit_or(bit_or(b1,b2),b3)) & !(b1,b2,b3).(b1: BIT & b2: BIT & b3: BIT & bit_or(b1,b2) = 1 => bit_or(b1,bit_or(b2,b3)) = 1) & !(b1,b2,b3).(b1: BIT & b2: BIT & b3: BIT & bit_or(b1,b2) = 1 => bit_or(b1,bit_or(b2,b3)) = bit_or(1,b3)) & !b1.(b1: BIT => bit_or(b1,1) = 1) & !b1.(b1: BIT => bit_or(b1,0) = b1) & !b1.(b1: BIT => bit_or(1,b1) = 1) & !b1.(b1: BIT => bit_or(0,b1) = b1) & dom(bit_xor) = BIT*BIT & ran(bit_xor) = BIT & bit_xor(0,0) = 0 & bit_xor(0,1) = 1 & bit_xor(1,0) = 1 & bit_xor(1,1) = 0 & !(b1,b2).(b1: BIT & b2: BIT => bit_xor(b1,b2) = bit_xor(b2,b1)) & !(b1,b2).(b1: BIT & b2: BIT & bit_xor(b1,b2) = 1 => bit_xor(b2,b1) = 1) & !(b1,b2).(b1: BIT & b2: BIT & bit_xor(b1,b2) = 0 => bit_xor(b2,b1) = 0) & !(b1,b2,b3).(b1: BIT & b2: BIT & b3: BIT => bit_xor(b1,bit_xor(b2,b3)) = bit_xor(bit_xor(b1,b2),b3)) & !(b1,b2,b3).(b1: BIT & b2: BIT & b3: BIT & bit_xor(b1,b2) = 1 => bit_xor(b1,bit_xor(b2,b3)) = bit_xor(1,b3)) & !bb.(bb: BIT => bit_xor(bb,bb) = 0) & dom(bool_bit) = BOOL & ran(bit_xor) = BIT & bool_bit(TRUE) = 1 & bool_bit(FALSE) = 0 & !bb.(bb: BIT => bb = 0 or bb = 1) & !bb.(bb: BIT & not(bb = 0) => bb = 1) & !bb.(bb: BIT & not(bb = 1) => bb = 0) & (card(BYTE) = 256 & is_zero: BYTE --> BIT;parity_even: BYTE --> BIT;bv8_and: BYTE*BYTE --> BYTE;bv8_or: BYTE*BYTE --> BYTE;bv8_xor: BYTE*BYTE --> BYTE;complement: BYTE --> BYTE;swap: BYTE --> BYTE;rotateleft: BYTE --> BYTE;rotateright: BYTE --> BYTE;!bt.(bt: BYTE => size(bt) = 8);8: NATURAL;dom(is_zero) = BYTE;ran(is_zero) <: BIT;dom(parity_even) = BYTE;ran(parity_even) <: BIT;bv8_and: BYTE*BYTE --> BYTE;dom(complement) = BYTE;ran(complement) <: BYTE;dom(swap) = BYTE;ran(swap) <: BYTE;dom(rotateleft) = BYTE;ran(rotateleft) <: BYTE;dom(rotateright) = BYTE;ran(rotateright) <: BYTE;dom(get_upper_digit) = BYTE;ran(get_upper_digit) <: 0..16-1;dom(get_lower_digit) = BYTE;ran(get_lower_digit) <: 0..16-1;[1,1,1,1,1,1,1,1]: BYTE & [0,0,0,0,0,0,0,0]: BYTE & 1 = 2**0 & 2 = 2**1 & 4 = 2**2 & 8 = 2**3 & 16 = 2**4 & 32 = 2**5 & 64 = 2**6 & 128 = 2**7 & 256 = 2**8 & 512 = 2**9 & 1024 = 2**10 & 2048 = 2**11 & 4096 = 2**12 & 8192 = 2**13 & 16384 = 2**14 & 32768 = 2**15 & 65536 = 2**16) & card(BV16) = 65536 & complement16: BV16 --> BV16 & byte_bv16 = bv16_byte~ & [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]: BV16 & [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]: BV16 & card(byte_uchar) = 256 & card(uchar_byte) = 256 & UCHAR_MAX: INTEGER & UCHAR_MIN: INTEGER & 1 = 2**0 & 2 = 2**1 & 4 = 2**2 & 8 = 2**3 & 16 = 2**4 & 32 = 2**5 & 64 = 2**6 & 128 = 2**7 & 256 = 2**8 & card(byte_schar) = 256 & card(schar_byte) = 256 & SCHAR_MAX: INTEGER & SCHAR_MIN: INTEGER & 1 = 2**0 & 2 = 2**1 & 4 = 2**2 & 8 = 2**3 & 16 = 2**4 & 32 = 2**5 & 64 = 2**6 & 128 = 2**7 & 256 = 2**8 & card(bv16_sshort) = 65536 & card(sshort_bv16) = 65536 & SSHORT_MIN: SSHORT & SSHORT_MAX: SSHORT & 1 = 2**0 & 2 = 2**1 & 4 = 2**2 & 8 = 2**3 & 16 = 2**4 & 32 = 2**5 & 64 = 2**6 & 128 = 2**7 & 256 = 2**8 & 512 = 2**9 & 1024 = 2**10 & 2048 = 2**11 & 4096 = 2**12 & 8192 = 2**13 & 16384 = 2**14 & 32768 = 2**15 & 65536 = 2**16 & card(bv16_ushort) = 65536 & card(ushort_bv16) = 65536 & USHORT_MAX: INTEGER & USHORT_MIN: INTEGER & 1 = 2**0 & 2 = 2**1 & 4 = 2**2 & 8 = 2**3 & 16 = 2**4 & 32 = 2**5 & 64 = 2**6 & 128 = 2**7 & 256 = 2**8 & 512 = 2**9 & 1024 = 2**10 & 2048 = 2**11 & 4096 = 2**12 & 8192 = 2**13 & 16384 = 2**14 & 32768 = 2**15 & 65536 = 2**16 & (2**0 = 1;2**1 = 2;2**2 = 4;2**3 = 8;2**4 = 16;2**5 = 32;2**6 = 64;2**7 = 128;(-2)**7 = -128;2**8 = 256;2**9 = 512;2**10 = 1024;2**11 = 2048;2**12 = 4096;2**13 = 8192;2**14 = 16384;2**15 = 32768;2**16 = 65536) & !(nn,pp).(nn: NATURAL1 & pp: NAT => (pp = 0 => nn**pp = 1) & (pp = 1 => nn**pp = nn) & (pp>1 => nn**pp = nn*nn**(pp-1))));
+  Seen_Context_List_Properties(Machine(Z80_general2))==(BIT = {0,1} & bit_not: BIT >->> BIT & bit_not = {0|->1}\/{1|->0} & bit_and: BIT*BIT --> BIT & bit_and = {(0,0)|->0}\/{(0,1)|->0}\/{(1,0)|->0}\/{(1,1)|->1} & bit_or: BIT*BIT --> BIT & bit_or = {(0,0)|->0}\/{(0,1)|->1}\/{(1,0)|->1}\/{(1,1)|->1} & bit_xor: BIT*BIT --> BIT & bit_xor = {(0,0)|->0}\/{(0,1)|->1}\/{(1,0)|->1}\/{(1,1)|->0} & bool_bit = {TRUE|->1,FALSE|->0} & BYTE_INDEX = 1..8 & PHYS_BYTE_INDEX = 0..8-1 & BYTE = BYTE_INDEX --> BIT & !b1.(b1: BYTE => size(b1) = 8 & b1: seq1(BIT)) & is_zero: BYTE --> BIT & is_zero = %w1.(w1: BYTE | bool_bit(bool(w1(1) = w1(2) & w1(2) = w1(3) & w1(3) = w1(4) & w1(4) = w1(5) & w1(5) = w1(6) & w1(6) = w1(7) & w1(7) = w1(8) & w1(8) = 0))) & parity_even: BYTE --> BIT & parity_even = %bv.(bv: BYTE | 1-(bv(1)+bv(2)+bv(3)+bv(4)+bv(5)+bv(6)+bv(7)+bv(8)) mod 2) & bv8_and = %(bt1,bt2).(bt1: BYTE & bt2: BYTE | %idx.(idx: 1..8 | bit_and(bt1(idx),bt2(idx)))) & bv8_or = %(bt1,bt2).(bt1: BYTE & bt2: BYTE | %idx.(idx: 1..8 | bit_or(bt1(idx),bt2(idx)))) & bv8_xor = %(bt1,bt2).(bt1: BYTE & bt2: BYTE | %idx.(idx: 1..8 | bit_xor(bt1(idx),bt2(idx)))) & bv8get: BYTE*PHYS_BYTE_INDEX --> BIT & bv8get = %(bt1,ii).(bt1: BYTE & ii: PHYS_BYTE_INDEX | bt1(ii+1)) & bitset: BYTE*PHYS_BYTE_INDEX --> BYTE & bitset = %(bt1,ii).(bt1: BYTE & ii: PHYS_BYTE_INDEX | bt1<+{ii+1|->1}) & bitclear: BYTE*PHYS_BYTE_INDEX --> BYTE & bitclear = %(bt1,ii).(bt1: BYTE & ii: PHYS_BYTE_INDEX | bt1<+{ii+1|->0}) & complement: BYTE --> BYTE & complement = %bt.(bt: BYTE | %idx.(idx: 1..8 | bit_not(bt(idx)))) & swap: BYTE --> BYTE & swap = %bt.(bt: BYTE | {1|->bt(5),2|->bt(6),3|->bt(7),4|->bt(8),5|->bt(1),6|->bt(2),7|->bt(3),8|->bt(4)}) & rotateleft: BYTE --> BYTE & rotateleft = %bv.(bv: BYTE | {1|->bv(8),2|->bv(1),3|->bv(2),4|->bv(3),5|->bv(4),6|->bv(5),7|->bv(6),8|->bv(7)}) & rotateright: BYTE --> BYTE & rotateright = %bv.(bv: BYTE | {1|->bv(2),2|->bv(3),3|->bv(4),4|->bv(5),5|->bv(6),6|->bv(7),7|->bv(8),8|->bv(1)}) & get_upper_digit: BYTE --> 0..15 & get_upper_digit = %by.(by: BYTE | 8*by(8)+4*by(7)+2*by(6)+by(5)) & get_lower_digit: BYTE --> 0..15 & get_lower_digit = %by.(by: BYTE | 8*by(4)+4*by(3)+2*by(2)+by(1)) & BV16_INDX = 1..16 & PHYS_BV16_INDEX = 0..16-1 & BV16 = BV16_INDX --> BIT & !b1.(b1: BV16 => size(b1) = 16 & b1: seq1(BIT)) & complement16 = %bt.(bt: BV16 | %idx.(idx: 1..16 | bit_not(bt(idx)))) & bv16_byte = %bv.(bv: BV16 | {8|->bv(16),7|->bv(15),6|->bv(14),5|->bv(13),4|->bv(12),3|->bv(11),2|->bv(10),1|->bv(9)},{8|->bv(8),7|->bv(7),6|->bv(6),5|->bv(5),4|->bv(4),3|->bv(3),2|->bv(2),1|->bv(1)}) & byte_bv16 = %(bv1,bv2).(bv1: BYTE & bv2: BYTE | {16|->bv1(8),15|->bv1(7),14|->bv1(6),13|->bv1(5),12|->bv1(4),11|->bv1(3),10|->bv1(2),9|->bv1(1),8|->bv2(8),7|->bv2(7),6|->bv2(6),5|->bv2(5),4|->bv2(4),3|->bv2(3),2|->bv2(2),1|->bv2(1)}) & UCHAR_MAX = 256-1 & UCHAR_MIN = 0 & UCHAR = UCHAR_MIN..UCHAR_MAX & byte_uchar = %v0.(v0: BYTE | 128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)) & uchar_byte = %v0.(v0: UCHAR | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128]) & SCHAR_MAX = 128-1 & SCHAR_MIN = -128 & SCHAR = SCHAR_MIN..SCHAR_MAX & byte_schar = %v0.(v0: BYTE | (-128)*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+v0(1)) & schar_byte = %v0.(v0: SCHAR & v0>=0 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128])\/%v0.(v0: SCHAR & not(v0>=0) | [(v0+256) mod 2/1,(v0+256) mod 4/2,(v0+256) mod 8/4,(v0+256) mod 16/8,(v0+256) mod 32/16,(v0+256) mod 64/32,(v0+256) mod 128/64,(v0+256) mod 256/128]) & uchar_schar = %v1.(v1: UCHAR & v1<=SCHAR_MAX | v1)\/%v1.(v1: UCHAR & not(v1<=SCHAR_MAX) | v1-256) & schar_uchar = %v1.(v1: 0..127 | v1)\/%v1.(v1: -128.. -1 | v1+256) & SSHORT_MIN = -32768 & SSHORT_MAX = 32768-1 & SSHORT = SSHORT_MIN..SSHORT_MAX & bv16_sshort = %v0.(v0: BV16 | (-32768)*v0(16)+16384*v0(15)+8192*v0(14)+4096*v0(13)+2048*v0(12)+1024*v0(11)+512*v0(10)+256*v0(9)+128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+v0(1)) & sshort_bv16 = %v0.(v0: SSHORT & v0>=0 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128,v0 mod 512/256,v0 mod 1024/512,v0 mod 2048/1024,v0 mod 4096/2048,v0 mod 8192/4096,v0 mod 16384/8192,v0 mod 32768/16384,v0 mod 65536/32768])\/%v0.(v0: SSHORT & not(v0>=0) | [(v0+USHORT_MAX+1) mod 2/1,(v0+USHORT_MAX+1) mod 4/2,(v0+USHORT_MAX+1) mod 8/4,(v0+USHORT_MAX+1) mod 16/8,(v0+USHORT_MAX+1) mod 32/16,(v0+USHORT_MAX+1) mod 64/32,(v0+USHORT_MAX+1) mod 128/64,(v0+USHORT_MAX+1) mod 256/128,(v0+USHORT_MAX+1) mod 512/256,(v0+USHORT_MAX+1) mod 1024/512,(v0+USHORT_MAX+1) mod 2048/1024,(v0+USHORT_MAX+1) mod 4096/2048,(v0+USHORT_MAX+1) mod 8192/4096,(v0+USHORT_MAX+1) mod 16384/8192,(v0+USHORT_MAX+1) mod 32768/16384,(v0+USHORT_MAX+1) mod 65536/32768]) & ushort_sshort = %v1.(v1: USHORT & v1<=SSHORT_MAX | v1)\/%v1.(v1: USHORT & not(v1<=SSHORT_MAX) | v1-USHORT_MAX-1) & sshort_ushort = %v1.(v1: SSHORT & v1>=0 | v1)\/%v1.(v1: SSHORT & not(v1>=0) | v1+USHORT_MAX+1) & schar_sshort = %(w1,w2).(w1: SCHAR & w2: SCHAR | bv16_sshort(byte_bv16(schar_byte(w1),schar_byte(w2)))) & USHORT_MAX = 65536-1 & USHORT_MIN = 0 & USHORT = USHORT_MIN..USHORT_MAX & bv16_ushort = %v0.(v0: BV16 | 32768*v0(16)+16384*v0(15)+8192*v0(14)+4096*v0(13)+2048*v0(12)+1024*v0(11)+512*v0(10)+256*v0(9)+128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)) & ushort_bv16 = %v0.(v0: USHORT | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128,v0 mod 512/256,v0 mod 1024/512,v0 mod 2048/1024,v0 mod 4096/2048,v0 mod 8192/4096,v0 mod 16384/8192,v0 mod 32768/16384,v0 mod 65536/32768]) & uchar_ushort = %(w1,w2).(w1: UCHAR & w2: UCHAR | bv16_ushort(byte_bv16(uchar_byte(w1),uchar_byte(w2)))));
+  Seen_List_Constraints(Machine(Z80_general2))==(btrue);
+  Seen_List_Operations(Machine(Z80_general2),Machine(POWER2))==(?);
+  Seen_Expanded_List_Invariant(Machine(Z80_general2),Machine(POWER2))==(btrue);
+  Seen_Internal_List_Operations(Machine(Z80_general2),Machine(USHORT_DEFINITION))==(?);
+  Seen_List_Operations(Machine(Z80_general2),Machine(USHORT_DEFINITION))==(?);
+  Seen_Expanded_List_Invariant(Machine(Z80_general2),Machine(USHORT_DEFINITION))==(btrue);
+  Seen_Internal_List_Operations(Machine(Z80_general2),Machine(SSHORT_DEFINITION))==(?);
+  Seen_List_Operations(Machine(Z80_general2),Machine(SSHORT_DEFINITION))==(?);
+  Seen_Expanded_List_Invariant(Machine(Z80_general2),Machine(SSHORT_DEFINITION))==(btrue);
+  Seen_Internal_List_Operations(Machine(Z80_general2),Machine(SCHAR_DEFINITION))==(?);
+  Seen_List_Operations(Machine(Z80_general2),Machine(SCHAR_DEFINITION))==(?);
+  Seen_Expanded_List_Invariant(Machine(Z80_general2),Machine(SCHAR_DEFINITION))==(btrue);
+  Seen_Internal_List_Operations(Machine(Z80_general2),Machine(UCHAR_DEFINITION))==(?);
+  Seen_List_Operations(Machine(Z80_general2),Machine(UCHAR_DEFINITION))==(?);
+  Seen_Expanded_List_Invariant(Machine(Z80_general2),Machine(UCHAR_DEFINITION))==(btrue);
+  Seen_Internal_List_Operations(Machine(Z80_general2),Machine(BV16_DEFINITION))==(?);
+  Seen_List_Operations(Machine(Z80_general2),Machine(BV16_DEFINITION))==(?);
+  Seen_Expanded_List_Invariant(Machine(Z80_general2),Machine(BV16_DEFINITION))==(btrue);
+  Seen_Internal_List_Operations(Machine(Z80_general2),Machine(BYTE_DEFINITION))==(?);
+  Seen_List_Operations(Machine(Z80_general2),Machine(BYTE_DEFINITION))==(?);
+  Seen_Expanded_List_Invariant(Machine(Z80_general2),Machine(BYTE_DEFINITION))==(btrue);
+  Seen_Internal_List_Operations(Machine(Z80_general2),Machine(BIT_DEFINITION))==(?);
+  Seen_List_Operations(Machine(Z80_general2),Machine(BIT_DEFINITION))==(?);
+  Seen_Expanded_List_Invariant(Machine(Z80_general2),Machine(BIT_DEFINITION))==(btrue);
+  Seen_Internal_List_Operations(Machine(Z80_general2),Machine(TYPES))==(?);
+  Seen_List_Operations(Machine(Z80_general2),Machine(TYPES))==(?);
+  Seen_Expanded_List_Invariant(Machine(Z80_general2),Machine(TYPES))==(btrue);
+  Seen_Internal_List_Operations(Machine(Z80_general2),Machine(ALU))==(?);
+  Seen_List_Operations(Machine(Z80_general2),Machine(ALU))==(?);
+  Seen_Expanded_List_Invariant(Machine(Z80_general2),Machine(ALU))==(btrue)
+END
+&
+THEORY ListANYVarX IS
+  List_ANY_Var(Machine(Z80_general2),CPI)==((Var(sum) == btype(INTEGER,?,?)),(Var(negative) == btype(INTEGER,?,?)),(Var(carry) == btype(INTEGER,?,?)),(Var(half_carry) == btype(INTEGER,?,?)),(Var(zero) == btype(INTEGER,?,?)),(Var(hvn) == SetOf(btype(INTEGER,"[BYTE_INDEX","]BYTE_INDEX")*btype(INTEGER,"[BIT","]BIT"))),(Var(lvn) == SetOf(btype(INTEGER,"[BYTE_INDEX","]BYTE_INDEX")*btype(INTEGER,"[BIT","]BIT"))),(Var(bvn) == SetOf(btype(INTEGER,"[BYTE_INDEX","]BYTE_INDEX")*btype(INTEGER,"[BIT","]BIT"))),(Var(cvn) == SetOf(btype(INTEGER,"[BYTE_INDEX","]BYTE_INDEX")*btype(INTEGER,"[BIT","]BIT"))));
+  List_ANY_Var(Machine(Z80_general2),CPIR)==((Var(sum) == btype(INTEGER,?,?)),(Var(negative) == btype(INTEGER,?,?)),(Var(carry) == btype(INTEGER,?,?)),(Var(half_carry) == btype(INTEGER,?,?)),(Var(zero) == btype(INTEGER,?,?)),(Var(hvn) == SetOf(btype(INTEGER,"[BYTE_INDEX","]BYTE_INDEX")*btype(INTEGER,"[BIT","]BIT"))),(Var(lvn) == SetOf(btype(INTEGER,"[BYTE_INDEX","]BYTE_INDEX")*btype(INTEGER,"[BIT","]BIT"))),(Var(bvn) == SetOf(btype(INTEGER,"[BYTE_INDEX","]BYTE_INDEX")*btype(INTEGER,"[BIT","]BIT"))),(Var(cvn) == SetOf(btype(INTEGER,"[BYTE_INDEX","]BYTE_INDEX")*btype(INTEGER,"[BIT","]BIT"))));
+  List_ANY_Var(Machine(Z80_general2),CPD)==((Var(sum) == btype(INTEGER,?,?)),(Var(negative) == btype(INTEGER,?,?)),(Var(carry) == btype(INTEGER,?,?)),(Var(half_carry) == btype(INTEGER,?,?)),(Var(zero) == btype(INTEGER,?,?)),(Var(hvn) == SetOf(btype(INTEGER,"[BYTE_INDEX","]BYTE_INDEX")*btype(INTEGER,"[BIT","]BIT"))),(Var(lvn) == SetOf(btype(INTEGER,"[BYTE_INDEX","]BYTE_INDEX")*btype(INTEGER,"[BIT","]BIT"))),(Var(bvn) == SetOf(btype(INTEGER,"[BYTE_INDEX","]BYTE_INDEX")*btype(INTEGER,"[BIT","]BIT"))),(Var(cvn) == SetOf(btype(INTEGER,"[BYTE_INDEX","]BYTE_INDEX")*btype(INTEGER,"[BIT","]BIT"))));
+  List_ANY_Var(Machine(Z80_general2),CPDR)==((Var(sum) == btype(INTEGER,?,?)),(Var(negative) == btype(INTEGER,?,?)),(Var(carry) == btype(INTEGER,?,?)),(Var(half_carry) == btype(INTEGER,?,?)),(Var(zero) == btype(INTEGER,?,?)),(Var(hvn) == SetOf(btype(INTEGER,"[BYTE_INDEX","]BYTE_INDEX")*btype(INTEGER,"[BIT","]BIT"))),(Var(lvn) == SetOf(btype(INTEGER,"[BYTE_INDEX","]BYTE_INDEX")*btype(INTEGER,"[BIT","]BIT"))),(Var(bvn) == SetOf(btype(INTEGER,"[BYTE_INDEX","]BYTE_INDEX")*btype(INTEGER,"[BIT","]BIT"))),(Var(cvn) == SetOf(btype(INTEGER,"[BYTE_INDEX","]BYTE_INDEX")*btype(INTEGER,"[BIT","]BIT"))));
+  List_ANY_Var(Machine(Z80_general2),CPL)==(Var(result) == SetOf(btype(INTEGER,"[BYTE_INDEX","]BYTE_INDEX")*btype(INTEGER,"[BIT","]BIT")));
+  List_ANY_Var(Machine(Z80_general2),NEG)==((Var(sum) == btype(INTEGER,?,?)),(Var(negative) == btype(INTEGER,?,?)),(Var(carry) == btype(INTEGER,?,?)),(Var(half_carry) == btype(INTEGER,?,?)),(Var(zero) == btype(INTEGER,?,?)));
+  List_ANY_Var(Machine(Z80_general2),CCF)==(?);
+  List_ANY_Var(Machine(Z80_general2),SCF)==(?);
+  List_ANY_Var(Machine(Z80_general2),NOP)==(?);
+  List_ANY_Var(Machine(Z80_general2),HALT)==(?);
+  List_ANY_Var(Machine(Z80_general2),DI)==(?);
+  List_ANY_Var(Machine(Z80_general2),EI)==(?);
+  List_ANY_Var(Machine(Z80_general2),IM0)==(?);
+  List_ANY_Var(Machine(Z80_general2),IM1)==(?);
+  List_ANY_Var(Machine(Z80_general2),IM2)==(?);
+  List_ANY_Var(Machine(Z80_general2),?)==(?)
+END
+&
+THEORY ListOfIdsX IS
+  List_Of_Ids(Machine(Z80_general2)) == (get_bv_reg16,REG16_TO_REG8,REG8_TO_REG16,update_flag_reg,cc_get,id_reg_8,id_reg_16,a0,f0,f_0,a_0,b0,c0,b_0,c_0,d0,e0,d_0,e_0,h0,l0,h_0,l_0,BC,DE,HL,SP,AF | PROGRAM_R_ADR,DATA_R_ADR,STACK_R_ADR | io_ports,im,iff2,iff1,r_,i_,iy,ix,sp,pc,rgs8 | mem | CPI,CPIR,CPD,CPDR,CPL,NEG,CCF,SCF,NOP,HALT,DI,EI,IM0,IM1,IM2 | ? | seen(Machine(ALU)),seen(Machine(TYPES)),seen(Machine(BIT_DEFINITION)),seen(Machine(BYTE_DEFINITION)),seen(Machine(BV16_DEFINITION)),seen(Machine(UCHAR_DEFINITION)),seen(Machine(SCHAR_DEFINITION)),seen(Machine(SSHORT_DEFINITION)),seen(Machine(USHORT_DEFINITION)),seen(Machine(POWER2)),included(Machine(MEMORY)) | ? | Z80_general2);
+  List_Of_HiddenCst_Ids(Machine(Z80_general2)) == (? | ?);
+  List_Of_VisibleCst_Ids(Machine(Z80_general2)) == (get_bv_reg16,REG16_TO_REG8,REG8_TO_REG16,update_flag_reg,cc_get,PROGRAM_R_ADR,DATA_R_ADR,STACK_R_ADR);
+  List_Of_VisibleVar_Ids(Machine(Z80_general2)) == (? | ?);
+  List_Of_Ids_SeenBNU(Machine(Z80_general2)) == (seen(Machine(ALU)): (is_zero16USHORT,is_negative,half8UCHAR,inc,dec,simple_add8UCHAR,add8UCHAR,substract8UCHAR,add16USHORT,add_carryUSHORT,add_halfcarryUSHORT,sub16USHORT,sub_carryUSHORT,sub_halfcarryUSHORT,inc_BV16,dec_BV16,update_refresh_reg,instruction_next,instruction_jump | ? | ? | ? | ? | ? | ? | ? | ?) | seen(Machine(BIT_DEFINITION)): (BIT,bit_not,bit_and,bit_or,bit_xor,bool_bit | ? | ? | ? | ? | ? | ? | ? | ?) | seen(Machine(BYTE_DEFINITION)): (BYTE,BYTE_INDEX,PHYS_BYTE_INDEX,is_zero,parity_even,bv8_and,bv8_or,bv8_xor,bitclear,bitset,bv8get,complement,swap,rotateleft,rotateright,get_upper_digit,get_lower_digit | ? | ? | ? | ? | ? | ? | ? | ?) | seen(Machine(BV16_DEFINITION)): (BV16_INDX,PHYS_BV16_INDEX,BV16,bv16_byte,byte_bv16,complement16 | ? | ? | ? | ? | ? | ? | ? | ?) | seen(Machine(UCHAR_DEFINITION)): (UCHAR_MAX,UCHAR_MIN,UCHAR,uchar_byte,byte_uchar | ? | ? | ? | ? | ? | ? | ? | ?) | seen(Machine(SCHAR_DEFINITION)): (SCHAR_MAX,SCHAR_MIN,SCHAR,byte_schar,schar_byte,uchar_schar,schar_uchar | ? | ? | ? | ? | ? | ? | ? | ?) | seen(Machine(SSHORT_DEFINITION)): (SSHORT_MIN,SSHORT_MAX,SSHORT,bv16_sshort,sshort_bv16,schar_sshort,ushort_sshort,sshort_ushort | ? | ? | ? | ? | ? | ? | ? | ?) | seen(Machine(USHORT_DEFINITION)): (USHORT_MAX,USHORT_MIN,USHORT,bv16_ushort,ushort_bv16,uchar_ushort | ? | ? | ? | ? | ? | ? | ? | ?) | seen(Machine(POWER2)): (? | ? | ? | ? | ? | ? | ? | ? | ?));
+  List_Of_Ids(Machine(MEMORY)) == (PROGRAM_R_ADR,DATA_R_ADR,STACK_R_ADR | ? | mem | ? | updateMem,updateAddressMem,updateStack,updateAddressStack | ? | seen(Machine(ALU)),seen(Machine(BIT_DEFINITION)),seen(Machine(BYTE_DEFINITION)),seen(Machine(BV16_DEFINITION)),seen(Machine(UCHAR_DEFINITION)),seen(Machine(SCHAR_DEFINITION)),seen(Machine(SSHORT_DEFINITION)),seen(Machine(USHORT_DEFINITION)),seen(Machine(POWER2)) | ? | MEMORY);
+  List_Of_HiddenCst_Ids(Machine(MEMORY)) == (? | ?);
+  List_Of_VisibleCst_Ids(Machine(MEMORY)) == (PROGRAM_R_ADR,DATA_R_ADR,STACK_R_ADR);
+  List_Of_VisibleVar_Ids(Machine(MEMORY)) == (? | ?);
+  List_Of_Ids_SeenBNU(Machine(MEMORY)) == (?: ?);
+  List_Of_Ids(Machine(POWER2)) == (? | ? | ? | ? | ? | ? | seen(Machine(POWER)) | ? | POWER2);
+  List_Of_HiddenCst_Ids(Machine(POWER2)) == (? | ?);
+  List_Of_VisibleCst_Ids(Machine(POWER2)) == (?);
+  List_Of_VisibleVar_Ids(Machine(POWER2)) == (? | ?);
+  List_Of_Ids_SeenBNU(Machine(POWER2)) == (?: ?);
+  List_Of_Ids(Machine(POWER)) == (? | ? | ? | ? | ? | ? | ? | ? | POWER);
+  List_Of_HiddenCst_Ids(Machine(POWER)) == (? | ?);
+  List_Of_VisibleCst_Ids(Machine(POWER)) == (?);
+  List_Of_VisibleVar_Ids(Machine(POWER)) == (? | ?);
+  List_Of_Ids_SeenBNU(Machine(POWER)) == (?: ?);
+  List_Of_Ids(Machine(USHORT_DEFINITION)) == (USHORT_MAX,USHORT_MIN,USHORT,bv16_ushort,ushort_bv16,uchar_ushort | ? | ? | ? | ? | ? | seen(Machine(BIT_DEFINITION)),seen(Machine(BYTE_DEFINITION)),seen(Machine(BV16_DEFINITION)),seen(Machine(UCHAR_DEFINITION)),seen(Machine(POWER2)) | ? | USHORT_DEFINITION);
+  List_Of_HiddenCst_Ids(Machine(USHORT_DEFINITION)) == (? | ?);
+  List_Of_VisibleCst_Ids(Machine(USHORT_DEFINITION)) == (USHORT_MAX,USHORT_MIN,USHORT,bv16_ushort,ushort_bv16,uchar_ushort);
+  List_Of_VisibleVar_Ids(Machine(USHORT_DEFINITION)) == (? | ?);
+  List_Of_Ids_SeenBNU(Machine(USHORT_DEFINITION)) == (?: ?);
+  List_Of_Ids(Machine(UCHAR_DEFINITION)) == (UCHAR_MAX,UCHAR_MIN,UCHAR,uchar_byte,byte_uchar | ? | ? | ? | ? | ? | seen(Machine(BIT_DEFINITION)),seen(Machine(BYTE_DEFINITION)),seen(Machine(POWER2)) | ? | UCHAR_DEFINITION);
+  List_Of_HiddenCst_Ids(Machine(UCHAR_DEFINITION)) == (? | ?);
+  List_Of_VisibleCst_Ids(Machine(UCHAR_DEFINITION)) == (UCHAR_MAX,UCHAR_MIN,UCHAR,uchar_byte,byte_uchar);
+  List_Of_VisibleVar_Ids(Machine(UCHAR_DEFINITION)) == (? | ?);
+  List_Of_Ids_SeenBNU(Machine(UCHAR_DEFINITION)) == (?: ?);
+  List_Of_Ids(Machine(BYTE_DEFINITION)) == (BYTE,BYTE_INDEX,PHYS_BYTE_INDEX,is_zero,parity_even,bv8_and,bv8_or,bv8_xor,bitclear,bitset,bv8get,complement,swap,rotateleft,rotateright,get_upper_digit,get_lower_digit | ? | ? | ? | ? | ? | seen(Machine(BIT_DEFINITION)),seen(Machine(POWER2)) | ? | BYTE_DEFINITION);
+  List_Of_HiddenCst_Ids(Machine(BYTE_DEFINITION)) == (? | ?);
+  List_Of_VisibleCst_Ids(Machine(BYTE_DEFINITION)) == (BYTE,BYTE_INDEX,PHYS_BYTE_INDEX,is_zero,parity_even,bv8_and,bv8_or,bv8_xor,bitclear,bitset,bv8get,complement,swap,rotateleft,rotateright,get_upper_digit,get_lower_digit);
+  List_Of_VisibleVar_Ids(Machine(BYTE_DEFINITION)) == (? | ?);
+  List_Of_Ids_SeenBNU(Machine(BYTE_DEFINITION)) == (?: ?);
+  List_Of_Ids(Machine(BIT_DEFINITION)) == (BIT,bit_not,bit_and,bit_or,bit_xor,bool_bit | ? | ? | ? | ? | ? | ? | ? | BIT_DEFINITION);
+  List_Of_HiddenCst_Ids(Machine(BIT_DEFINITION)) == (? | ?);
+  List_Of_VisibleCst_Ids(Machine(BIT_DEFINITION)) == (BIT,bit_not,bit_and,bit_or,bit_xor,bool_bit);
+  List_Of_VisibleVar_Ids(Machine(BIT_DEFINITION)) == (? | ?);
+  List_Of_Ids_SeenBNU(Machine(BIT_DEFINITION)) == (?: ?);
+  List_Of_Ids(Machine(BV16_DEFINITION)) == (BV16_INDX,PHYS_BV16_INDEX,BV16,bv16_byte,byte_bv16,complement16 | ? | ? | ? | ? | ? | seen(Machine(BIT_DEFINITION)),seen(Machine(BYTE_DEFINITION)) | ? | BV16_DEFINITION);
+  List_Of_HiddenCst_Ids(Machine(BV16_DEFINITION)) == (? | ?);
+  List_Of_VisibleCst_Ids(Machine(BV16_DEFINITION)) == (BV16_INDX,PHYS_BV16_INDEX,BV16,bv16_byte,byte_bv16,complement16);
+  List_Of_VisibleVar_Ids(Machine(BV16_DEFINITION)) == (? | ?);
+  List_Of_Ids_SeenBNU(Machine(BV16_DEFINITION)) == (?: ?);
+  List_Of_Ids(Machine(SSHORT_DEFINITION)) == (SSHORT_MIN,SSHORT_MAX,SSHORT,bv16_sshort,sshort_bv16,schar_sshort,ushort_sshort,sshort_ushort | ? | ? | ? | ? | ? | seen(Machine(BIT_DEFINITION)),seen(Machine(BYTE_DEFINITION)),seen(Machine(BV16_DEFINITION)),seen(Machine(SCHAR_DEFINITION)),seen(Machine(USHORT_DEFINITION)),seen(Machine(POWER2)) | ? | SSHORT_DEFINITION);
+  List_Of_HiddenCst_Ids(Machine(SSHORT_DEFINITION)) == (? | ?);
+  List_Of_VisibleCst_Ids(Machine(SSHORT_DEFINITION)) == (SSHORT_MIN,SSHORT_MAX,SSHORT,bv16_sshort,sshort_bv16,schar_sshort,ushort_sshort,sshort_ushort);
+  List_Of_VisibleVar_Ids(Machine(SSHORT_DEFINITION)) == (? | ?);
+  List_Of_Ids_SeenBNU(Machine(SSHORT_DEFINITION)) == (?: ?);
+  List_Of_Ids(Machine(SCHAR_DEFINITION)) == (SCHAR_MAX,SCHAR_MIN,SCHAR,byte_schar,schar_byte,uchar_schar,schar_uchar | ? | ? | ? | ? | ? | seen(Machine(BIT_DEFINITION)),seen(Machine(BYTE_DEFINITION)),seen(Machine(UCHAR_DEFINITION)),seen(Machine(POWER2)) | ? | SCHAR_DEFINITION);
+  List_Of_HiddenCst_Ids(Machine(SCHAR_DEFINITION)) == (? | ?);
+  List_Of_VisibleCst_Ids(Machine(SCHAR_DEFINITION)) == (SCHAR_MAX,SCHAR_MIN,SCHAR,byte_schar,schar_byte,uchar_schar,schar_uchar);
+  List_Of_VisibleVar_Ids(Machine(SCHAR_DEFINITION)) == (? | ?);
+  List_Of_Ids_SeenBNU(Machine(SCHAR_DEFINITION)) == (?: ?);
+  List_Of_Ids(Machine(ALU)) == (is_zero16USHORT,is_negative,half8UCHAR,inc,dec,simple_add8UCHAR,add8UCHAR,substract8UCHAR,add16USHORT,add_carryUSHORT,add_halfcarryUSHORT,sub16USHORT,sub_carryUSHORT,sub_halfcarryUSHORT,inc_BV16,dec_BV16,update_refresh_reg,instruction_next,instruction_jump | ? | ? | ? | ? | ? | seen(Machine(TYPES)),seen(Machine(BIT_DEFINITION)),seen(Machine(BYTE_DEFINITION)),seen(Machine(BV16_DEFINITION)),seen(Machine(UCHAR_DEFINITION)),seen(Machine(SCHAR_DEFINITION)),seen(Machine(SSHORT_DEFINITION)),seen(Machine(USHORT_DEFINITION)),seen(Machine(POWER2)) | ? | ALU);
+  List_Of_HiddenCst_Ids(Machine(ALU)) == (? | ?);
+  List_Of_VisibleCst_Ids(Machine(ALU)) == (is_zero16USHORT,is_negative,half8UCHAR,inc,dec,simple_add8UCHAR,add8UCHAR,substract8UCHAR,add16USHORT,add_carryUSHORT,add_halfcarryUSHORT,sub16USHORT,sub_carryUSHORT,sub_halfcarryUSHORT,inc_BV16,dec_BV16,update_refresh_reg,instruction_next,instruction_jump);
+  List_Of_VisibleVar_Ids(Machine(ALU)) == (? | ?);
+  List_Of_Ids_SeenBNU(Machine(ALU)) == (?: ?);
+  List_Of_Ids(Machine(TYPES)) == (? | ? | ? | ? | ? | ? | seen(Machine(UCHAR_DEFINITION)),seen(Machine(SCHAR_DEFINITION)),seen(Machine(USHORT_DEFINITION)),seen(Machine(SSHORT_DEFINITION)),seen(Machine(BYTE_DEFINITION)),seen(Machine(BV16_DEFINITION)),seen(Machine(BIT_DEFINITION)) | ? | TYPES);
+  List_Of_HiddenCst_Ids(Machine(TYPES)) == (? | ?);
+  List_Of_VisibleCst_Ids(Machine(TYPES)) == (?);
+  List_Of_VisibleVar_Ids(Machine(TYPES)) == (? | ?);
+  List_Of_Ids_SeenBNU(Machine(TYPES)) == (?: ?)
+END
+&
+THEORY SetsEnvX IS
+  Sets(Machine(Z80_general2)) == (Type(id_reg_8) == Cst(SetOf(etype(id_reg_8,0,15)));Type(id_reg_16) == Cst(SetOf(etype(id_reg_16,0,4))))
+END
+&
+THEORY ConstantsEnvX IS
+  Constants(Machine(Z80_general2)) == (Type(STACK_R_ADR) == Cst(SetOf(btype(INTEGER,"[STACK_R_ADR","]STACK_R_ADR")));Type(DATA_R_ADR) == Cst(SetOf(btype(INTEGER,"[DATA_R_ADR","]DATA_R_ADR")));Type(PROGRAM_R_ADR) == Cst(SetOf(btype(INTEGER,"[PROGRAM_R_ADR","]PROGRAM_R_ADR")));Type(a0) == Cst(etype(id_reg_8,0,15));Type(f0) == Cst(etype(id_reg_8,0,15));Type(f_0) == Cst(etype(id_reg_8,0,15));Type(a_0) == Cst(etype(id_reg_8,0,15));Type(b0) == Cst(etype(id_reg_8,0,15));Type(c0) == Cst(etype(id_reg_8,0,15));Type(b_0) == Cst(etype(id_reg_8,0,15));Type(c_0) == Cst(etype(id_reg_8,0,15));Type(d0) == Cst(etype(id_reg_8,0,15));Type(e0) == Cst(etype(id_reg_8,0,15));Type(d_0) == Cst(etype(id_reg_8,0,15));Type(e_0) == Cst(etype(id_reg_8,0,15));Type(h0) == Cst(etype(id_reg_8,0,15));Type(l0) == Cst(etype(id_reg_8,0,15));Type(h_0) == Cst(etype(id_reg_8,0,15));Type(l_0) == Cst(etype(id_reg_8,0,15));Type(BC) == Cst(etype(id_reg_16,0,4));Type(DE) == Cst(etype(id_reg_16,0,4));Type(HL) == Cst(etype(id_reg_16,0,4));Type(SP) == Cst(etype(id_reg_16,0,4));Type(AF) == Cst(etype(id_reg_16,0,4));Type(get_bv_reg16) == Cst(SetOf(SetOf(btype(INTEGER,?,?)*btype(INTEGER,?,?))*SetOf(etype(id_reg_8,?,?)*SetOf(btype(INTEGER,?,?)*btype(INTEGER,?,?)))*etype(id_reg_16,?,?)*SetOf(btype(INTEGER,?,?)*btype(INTEGER,?,?))));Type(REG16_TO_REG8) == Cst(SetOf(etype(id_reg_16,?,?)*(etype(id_reg_8,?,?)*etype(id_reg_8,?,?))));Type(REG8_TO_REG16) == Cst(SetOf(etype(id_reg_8,?,?)*etype(id_reg_8,?,?)*etype(id_reg_16,?,?)));Type(update_flag_reg) == Cst(SetOf(btype(INTEGER,?,?)*btype(INTEGER,?,?)*btype(INTEGER,?,?)*btype(INTEGER,?,?)*btype(INTEGER,?,?)*btype(INTEGER,?,?)*(etype(id_reg_8,?,?)*SetOf(btype(INTEGER,?,?)*btype(INTEGER,?,?)))));Type(cc_get) == Cst(SetOf(SetOf(etype(id_reg_8,?,?)*SetOf(btype(INTEGER,?,?)*btype(INTEGER,?,?)))*btype(INTEGER,?,?)*btype(INTEGER,?,?))))
+END
+&
+THEORY VariablesEnvX IS
+  Variables(Machine(Z80_general2)) == (Type(mem) == Mvl(SetOf(SetOf(btype(INTEGER,"[BV16_INDX","]BV16_INDX")*btype(INTEGER,"[BIT","]BIT"))*SetOf(btype(INTEGER,"[BYTE_INDEX","]BYTE_INDEX")*btype(INTEGER,"[BIT","]BIT"))));Type(io_ports) == Mvl(SetOf(SetOf(btype(INTEGER,"[BYTE_INDEX","]BYTE_INDEX")*btype(INTEGER,"[BIT","]BIT"))*SetOf(btype(INTEGER,"[BYTE_INDEX","]BYTE_INDEX")*btype(INTEGER,"[BIT","]BIT"))));Type(im) == Mvl(btype(INTEGER,?,?)*btype(INTEGER,?,?));Type(iff2) == Mvl(btype(INTEGER,?,?));Type(iff1) == Mvl(btype(INTEGER,?,?));Type(r_) == Mvl(SetOf(btype(INTEGER,"[BYTE_INDEX","]BYTE_INDEX")*btype(INTEGER,"[BIT","]BIT")));Type(i_) == Mvl(SetOf(btype(INTEGER,"[BYTE_INDEX","]BYTE_INDEX")*btype(INTEGER,"[BIT","]BIT")));Type(iy) == Mvl(SetOf(btype(INTEGER,"[BV16_INDX","]BV16_INDX")*btype(INTEGER,"[BIT","]BIT")));Type(ix) == Mvl(SetOf(btype(INTEGER,"[BV16_INDX","]BV16_INDX")*btype(INTEGER,"[BIT","]BIT")));Type(sp) == Mvl(SetOf(btype(INTEGER,"[BV16_INDX","]BV16_INDX")*btype(INTEGER,"[BIT","]BIT")));Type(pc) == Mvl(btype(INTEGER,?,?));Type(rgs8) == Mvl(SetOf(etype(id_reg_8,0,15)*SetOf(btype(INTEGER,"[BYTE_INDEX","]BYTE_INDEX")*btype(INTEGER,"[BIT","]BIT")))))
+END
+&
+THEORY OperationsEnvX IS
+  Operations(Machine(Z80_general2)) == (Type(IM2) == Cst(No_type,No_type);Type(IM1) == Cst(No_type,No_type);Type(IM0) == Cst(No_type,No_type);Type(EI) == Cst(No_type,No_type);Type(DI) == Cst(No_type,No_type);Type(HALT) == Cst(No_type,No_type);Type(NOP) == Cst(No_type,No_type);Type(SCF) == Cst(No_type,No_type);Type(CCF) == Cst(No_type,No_type);Type(NEG) == Cst(No_type,No_type);Type(CPL) == Cst(No_type,No_type);Type(CPDR) == Cst(No_type,No_type);Type(CPD) == Cst(No_type,No_type);Type(CPIR) == Cst(No_type,No_type);Type(CPI) == Cst(No_type,No_type))
+END
+&
+THEORY TCIntRdX IS
+  predB0 == OK;
+  extended_sees == KO;
+  B0check_tab == KO;
+  local_op == OK;
+  abstract_constants_visible_in_values == KO;
+  event_b_project == KO;
+  event_b_deadlockfreeness == KO;
+  variant_clause_mandatory == KO
+END
+)

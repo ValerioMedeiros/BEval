@@ -1,0 +1,12 @@
+THEORY User_Pass IS
+Pattern(8: dom(v0)) & ff(0) & pr;
+Pattern(7: dom(v0)) & ff(0) & pr;
+Pattern(6: dom(v0)) & ff(0) & pr;
+Pattern(5: dom(v0)) & ff(0) & pr;
+Pattern(4: dom(v0)) & ff(0) & pr;
+Pattern(3: dom(v0)) & ff(0) & pr;
+Pattern(2: dom(v0)) & ff(0) & pr;
+Pattern(1: dom(v0)) & ff(0) & pr;
+Pattern(0<=v0+256) & ff(0) & pr;
+Pattern(v0: dom(v0) +-> ran(v0)) & ff(0) & dd & pr
+END

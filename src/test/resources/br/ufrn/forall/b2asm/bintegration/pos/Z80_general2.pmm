@@ -1,0 +1,55 @@
+THEORY User_Pass IS
+
+Pattern(a<+b: c +-> d) & ff(0) & dd & pr(Tac(Update_flag)) & pp(rt.0);
+
+Pattern(rgs8<+{a|->b,update_flag_reg(c,d,e,f,g,h) }: id_reg_8 +-> BYTE) & dd & eh(update_flag_reg,_h,Goal) & ss &
+ph(a,b,f0,[h,g,f,1,e,1,d,c], !(xx,xxr,yy,yyr).(xx: id_reg_8 & xxr: BYTE & yy: id_reg_8 & yyr: BYTE & not(xx = yy) => rgs8<+{xx|->xxr,yy|->yyr}: id_reg_8 +-> BYTE & (dom(rgs8<+{xx|->xxr,yy|->yyr}) = id_reg_8 & dom(rgs8<+{xx|->xxr,yy|->yyr}) = id_reg_8))); /* Prova o básica para 2  */
+
+Pattern ([a,b,c,d,e,f,g,h] : BYTE) & ar(BIT_VECTOR.1,Once);
+
+Pattern(bv16_ushort(a): b) & ff(1) & eh(PROGRAM_R_ADR,_h,Goal) & dd & ah(ran(bv16_ushort) = USHORT) & ss & pr;
+
+Pattern(dom(a<+b) = c*d) & ff(0) & dd & ss & eh(dom(rgs8),_h,Goal) & eh(update_flag_reg,_h,Goal) & ss & pr;
+
+Pattern(a : id_reg_8) & ff(0) & eh(id_reg_8,_h,Goal) & ss & pr; /* Algo pertence a id_reg_8 */
+Pattern(rgs8<+{update_flag_reg(x)}: id_reg_8 +-> BYTE) & ff(0) & dd & eh(update_flag_reg,_h,Goal) & ss; /* Simplifica os update_reg_flag*/
+Pattern(rgs8<+{x,update_flag_reg(x)}: id_reg_8 +-> BYTE) & ff(0) & dd & eh(update_flag_reg,_h,Goal) & ss; /* Simplifica os update_reg_flag*/
+Pattern(rgs8<+{x,y, update_flag_reg(x)}: id_reg_8 +-> BYTE) & ff(0) & dd & eh(update_flag_reg,_h,Goal) & ss; /* Simplifica os update_reg_flag*/
+Pattern(rgs8<+{x,y,z, update_flag_reg(x)}: id_reg_8 +-> BYTE) & ff(0) & dd & eh(update_flag_reg,_h,Goal) & ss; /* Simplifica os update_reg_flag*/
+Pattern(rgs8<+{x,y,z,v, update_flag_reg(x)}: id_reg_8 +-> BYTE) & ff(0) & dd & eh(update_flag_reg,_h,Goal) & ss; /* Simplifica os update_reg_flag*/
+Pattern(rgs8<+{x,y,z,v,w, update_flag_reg(x)}: id_reg_8 +-> BYTE) & ff(0) & dd & eh(update_flag_reg,_h,Goal) & ss /* Simplifica os update_reg_flag*/
+
+END
+
+    
+    &
+    
+THEORY Update_flag IS
+	btest( not(u=dom(b)) )
+	=>
+	q<+{u|->i,b}: m +-> j == q<+{u|->i}: m +-> j & q<+{b}: m +-> j;
+	
+	
+	not(u = dom(e))
+	=>
+	q<+{u|->U,e}: m +-> j == q<+{u|->U}: m +-> j & q<+{e}: m +-> j; /* No such rule */
+
+	
+/*	not(u = b)
+	=>
+	q<+{u|->U,b|->B,c|->C,d|->D,e}: m +-> j == q<+{u|->U}: m +-> j & q<+{e}: m +-> j;  No such rule */
+
+
+    binhyp( s : BIT  )&
+    binhyp( z : BIT  )&
+    binhyp( h : BIT  )&
+    binhyp( p : BIT  )&
+    binhyp( n : BIT  )&
+    binhyp( c : BIT )
+=>
+update_flag_reg( s , z , h , p , n , c) == f0 |->[c, n, p, 1, h, 1, z, s] 
+
+
+/*rgs8<+{a0|->uchar_byte(sum),update_flag_reg(negative,zero,half_carry,carry,1,carry)}: id_reg_8 +-> BYTE */
+ 
+END

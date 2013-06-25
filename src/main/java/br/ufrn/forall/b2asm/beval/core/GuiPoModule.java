@@ -75,7 +75,7 @@ public class GuiPoModule extends JFrame {
 
 		final Control control = new Control();
 
-		control.setIndividualArgs(args);
+		control.setModuleArgs(args);
 
 		control.loadConfig();
 
@@ -100,13 +100,19 @@ public class GuiPoModule extends JFrame {
 	public GuiPoModule(Control control) {
 
 		this.control = control;
-		initialize();
+		try {
+			initialize();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @throws Exception 
 	 */
-	private void initialize() {
+	private void initialize() throws Exception {
 		
 		frame = new JFrame(Installation.softwareName);
 		frame.setTitle(" ("+control.getModuleName()+") "+Installation.softwareName+" - Project B2ASM ");
@@ -117,7 +123,9 @@ public class GuiPoModule extends JFrame {
 		
 		//TODO: Move part of this commands to Control
 		// Create some items to add to the list
-		String	listData [] = control.getStateAndNameOfProofObligations(false);
+		control.setIsWD(chckbxPoWD.isSelected()); //TODO: Its is really needed here ?
+		
+		String	listData [] = control.getStateAndNameOfProofObligations();
 		int indicesSelected [] = new int [listData.length];
 		//Initialise
 		for(int i = 0; i < indicesSelected.length; ++i)indicesSelected[i] = -1;
@@ -173,9 +181,17 @@ public class GuiPoModule extends JFrame {
 		chckbxPoWD.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
 				
-				if(chckbxPoWD.isSelected()){
+			 
+					try {
+						control.setIsWD(chckbxPoWD.isSelected());
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				 
+				
 					// Create some items to add to the list
-					String	listData [] = control.getStateAndNameOfProofObligations(true);
+					String	listData [] = control.getStateAndNameOfProofObligations();
 					listModel.removeAllElements();
 					//Initialise
 					int indicesSelected [] = new int [listData.length];
@@ -188,21 +204,7 @@ public class GuiPoModule extends JFrame {
 					}
 					list.setSelectedIndices(indicesSelected);
 					
-				}else{
-					// Create some items to add to the list
-					String	listData [] = control.getStateAndNameOfProofObligations(false);
-					listModel.removeAllElements();
-					//Initialise
-					int indicesSelected [] = new int [listData.length];
-					for(int i = 0; i < indicesSelected.length; ++i)indicesSelected[i] = -1;
-					for (int i=0; i<listData.length; i++) {
-						listModel.addElement(listData[i]);
-						if(!control.isProvedTheProofState(i+1)){
-							indicesSelected[i]=i;
-						}
-					}
-					list.setSelectedIndices(indicesSelected);
-				}
+				 
 			
 			}
 		});
@@ -218,10 +220,7 @@ public class GuiPoModule extends JFrame {
 
 			public void actionPerformed(ActionEvent arg0) {
 
-				//TODO: add suport to write a report and open (?)
 				Report report = new Report();
-				
-				control.setIsWD(chckbxPoWD.isSelected());
 				
 				int numberOftotalPOs = control.getNumberOfProofObligations();
 				
@@ -237,7 +236,7 @@ public class GuiPoModule extends JFrame {
 						else
 							proofObligation = control.getGoalOfCleanExpandedProofObligations(numberPo);
 						
-						int res = control.callProbLogicEvaluator(true, false,true, report, numberPo , actualParameters.getText(),  proofObligation);
+						int res = control.callProbLogicEvaluator(true, false, report, numberPo , actualParameters.getText(),  proofObligation);
 						
 						AutoDismiss.showMessageDialog(null, "Progress "+ countSelected+"/"+selectedItens.length+"\n"
 							+"The result is "+control.getResult()+"\n"

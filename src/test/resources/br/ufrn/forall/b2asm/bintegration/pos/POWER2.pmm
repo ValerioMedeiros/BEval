@@ -1,0 +1,41 @@
+THEORY User_Pass IS
+Pattern( -2**7 =  -128) & ff(0) & ar(SimplifyIntPower) & ss & ar(SimplifyIntPower) & ss & ar(SimplifyIntPower) & ss & ar(SimplifyIntPower) & ss & ar(SimplifyIntPower) & ss & ar(SimplifyIntPower) & ss & pr;
+Pattern(2**2 = 4) & ff(0) & ph(2,2,!(nn,pp).(nn : INTEGER & 0<=nn & not(nn = 0) & (pp : INTEGER & 0<=pp & pp<=2147483647) => (pp = 0 => nn**pp = 1 & nn**pp = 1) & (pp = 1 => nn**pp = nn & nn**pp = nn) & (2<=pp => nn**pp = nn*nn**( -1+pp) & nn**pp = nn*nn**(pp-1)))) & pr & pr & pr & pr & pr & pr & pr;
+Pattern(2**3 = 8) & ff(0) & ph(2,3,!(nn,pp).(nn : INTEGER & 0<=nn & not(nn = 0) & (pp : INTEGER & 0<=pp & pp<=2147483647) => (pp = 0 => nn**pp = 1 & nn**pp = 1) & (pp = 1 => nn**pp = nn & nn**pp = nn) & (2<=pp => nn**pp = nn*nn**( -1+pp) & nn**pp = nn*nn**(pp-1)))) & pr & pr & pr & pr & pr & pr & pr;
+Pattern(2**4 = 16) & ff(0) & ph(2,4,!(nn,pp).(nn : INTEGER & 0<=nn & not(nn = 0) & (pp : INTEGER & 0<=pp & pp<=2147483647) => (pp = 0 => nn**pp = 1 & nn**pp = 1) & (pp = 1 => nn**pp = nn & nn**pp = nn) & (2<=pp => nn**pp = nn*nn**( -1+pp) & nn**pp = nn*nn**(pp-1)))) & pr & pr & pr & pr & pr & pr & pr;
+Pattern(2**5 = 32) & ff(0) & ph(2,5,!(nn,pp).(nn : INTEGER & 0<=nn & not(nn = 0) & (pp : INTEGER & 0<=pp & pp<=2147483647) => (pp = 0 => nn**pp = 1 & nn**pp = 1) & (pp = 1 => nn**pp = nn & nn**pp = nn) & (2<=pp => nn**pp = nn*nn**( -1+pp) & nn**pp = nn*nn**(pp-1)))) & pr & pr & pr & pr & pr & pr & pr;
+Pattern(2**6 = 64) & ff(0) & ph(2,6,!(nn,pp).(nn : INTEGER & 0<=nn & not(nn = 0) & (pp : INTEGER & 0<=pp & pp<=2147483647) => (pp = 0 => nn**pp = 1 & nn**pp = 1) & (pp = 1 => nn**pp = nn & nn**pp = nn) & (2<=pp => nn**pp = nn*nn**( -1+pp) & nn**pp = nn*nn**(pp-1)))) & pr & pr & pr & pr & pr & pr & pr;
+Pattern(2**7 = 128) & ff(0) & ph(2,7,!(nn,pp).(nn : INTEGER & 0<=nn & not(nn = 0) & (pp : INTEGER & 0<=pp & pp<=2147483647) => (pp = 0 => nn**pp = 1 & nn**pp = 1) & (pp = 1 => nn**pp = nn & nn**pp = nn) & (2<=pp => nn**pp = nn*nn**( -1+pp) & nn**pp = nn*nn**(pp-1)))) & pr & pr & pr & pr & pr & pr & pr;
+Pattern(2**8 = 256) & ff(0) & ph(2,8,!(nn,pp).(nn : INTEGER & 0<=nn & not(nn = 0) & (pp : INTEGER & 0<=pp & pp<=2147483647) => (pp = 0 => nn**pp = 1 & nn**pp = 1) & (pp = 1 => nn**pp = nn & nn**pp = nn) & (2<=pp => nn**pp = nn*nn**( -1+pp) & nn**pp = nn*nn**(pp-1)))) & pr & pr & pr & pr & pr & pr & pr;
+Pattern(2**9 = 512) & ff(0) & ph(2,9,!(nn,pp).(nn : INTEGER & 0<=nn & not(nn = 0) & (pp : INTEGER & 0<=pp & pp<=2147483647) => (pp = 0 => nn**pp = 1 & nn**pp = 1) & (pp = 1 => nn**pp = nn & nn**pp = nn) & (2<=pp => nn**pp = nn*nn**( -1+pp) & nn**pp = nn*nn**(pp-1)))) & pr & pr & pr & pr & pr & pr & pr;
+Pattern(2**10 = 1024) & ff(0) & ph(2,10,!(nn,pp).(nn : INTEGER & 0<=nn & not(nn = 0) & (pp : INTEGER & 0<=pp & pp<=2147483647) => (pp = 0 => nn**pp = 1 & nn**pp = 1) & (pp = 1 => nn**pp = nn & nn**pp = nn) & (2<=pp => nn**pp = nn*nn**( -1+pp) & nn**pp = nn*nn**(pp-1)))) & pr & pr & pr & pr & pr & pr & pr;
+Pattern(2**11 = 2048) & ff(0) & ph(2,11,!(nn,pp).(nn : INTEGER & 0<=nn & not(nn = 0) & (pp : INTEGER & 0<=pp & pp<=2147483647) => (pp = 0 => nn**pp = 1 & nn**pp = 1) & (pp = 1 => nn**pp = nn & nn**pp = nn) & (2<=pp => nn**pp = nn*nn**( -1+pp) & nn**pp = nn*nn**(pp-1)))) & pr & pr & pr & pr & pr & pr & pr;
+Pattern(2**13 = 8192) & ff(0) & ph(2,13,!(nn,pp).(nn : INTEGER & 0<=nn & not(nn = 0) & (pp : INTEGER & 0<=pp & pp<=2147483647) => (pp = 0 => nn**pp = 1 & nn**pp = 1) & (pp = 1 => nn**pp = nn & nn**pp = nn) & (2<=pp => nn**pp = nn*nn**( -1+pp) & nn**pp = nn*nn**(pp-1)))) & pr & pr & pr & pr & pr & pr & pr;
+Pattern(2**14 = 16384) & ff(0) & ph(2,14,!(nn,pp).(nn : INTEGER & 0<=nn & not(nn = 0) & (pp : INTEGER & 0<=pp & pp<=2147483647) => (pp = 0 => nn**pp = 1 & nn**pp = 1) & (pp = 1 => nn**pp = nn & nn**pp = nn) & (2<=pp => nn**pp = nn*nn**( -1+pp) & nn**pp = nn*nn**(pp-1)))) & pr & pr & pr & pr & pr & pr & pr;
+Pattern(2**15 = 32768) & ff(0) & ph(2,15,!(nn,pp).(nn : INTEGER & 0<=nn & not(nn = 0) & (pp : INTEGER & 0<=pp & pp<=2147483647) => (pp = 0 => nn**pp = 1 & nn**pp = 1) & (pp = 1 => nn**pp = nn & nn**pp = nn) & (2<=pp => nn**pp = nn*nn**( -1+pp) & nn**pp = nn*nn**(pp-1)))) & pr & pr & pr & pr & pr & pr & pr;
+Pattern(2**16 = 65536) & ff(0) & ph(2,16,!(nn,pp).(nn : INTEGER & 0<=nn & not(nn = 0) & (pp : INTEGER & 0<=pp & pp<=2147483647) => (pp = 0 => nn**pp = 1 & nn**pp = 1) & (pp = 1 => nn**pp = nn & nn**pp = nn) & (2<=pp => nn**pp = nn*nn**( -1+pp) & nn**pp = nn*nn**(pp-1)))) & pr & pr & pr & pr & pr & pr & pr;
+Pattern(2**12 = 4096) & ff(0) & ph(2,11,!(nn,pp).(nn : INTEGER & 0<=nn & not(nn = 0) & (pp : INTEGER & 0<=pp & pp<=2147483647) => (pp = 0 => nn**pp = 1 & nn**pp = 1) & (pp = 1 => nn**pp = nn & nn**pp = nn) & (2<=pp => nn**pp = nn*nn**( -1+pp) & nn**pp = nn*nn**(pp-1)))) & pr & pr & pr & pr & pr & pr & pr & ph(2,12,!(nn,pp).(nn : INTEGER & 0<=nn & not(nn = 0) & (pp : INTEGER & 0<=pp & pp<=2147483647) => (pp = 0 => nn**pp = 1 & nn**pp = 1) & (pp = 1 => nn**pp = nn & nn**pp = nn) & (2<=pp => nn**pp = nn*nn**( -1+pp) & nn**pp = nn*nn**(pp-1)))) & pr & pr & pr & pr & pr & pr & pr
+END
+    &
+    
+THEORY SimplifyIntPower IS
+
+
+      /* rule SimplifyIntPower.1 */
+  binhyp (2 <= p)     &
+  blvar(Q) &
+  Q\(2 <= p)
+  =>
+  n ** p == n * (n ** (-1+p));
+
+  
+  
+    
+  /* rule SimplifyIntPower.2 */
+  btest (2 <= p)
+  =>
+  n ** p == n * (n ** (-1+p)) 
+  
+
+
+END

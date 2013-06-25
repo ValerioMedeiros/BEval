@@ -1,0 +1,42 @@
+THEORY SimplifyBV16 IS
+	 /* Expression from AssertionLemmas.1, it was added  in Mon Jan 14 13:18:10 BRT 2013
+	  verified with ProB in 821 milliseconds
+	  Module Path:/media/B_Resources/Z80_ProB/BV16_DEFINITION.mch */
+
+	  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]: 1..16 --> {0,1}==btrue;
+	  
+	 /* Expression from AssertionLemmas.1, it was added  in Mon Jan 14 13:18:10 BRT 2013
+	  verified with ProB in 821 milliseconds
+	  Module Path:/media/B_Resources/Z80_ProB/BV16_DEFINITION.mch */
+
+	  [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]: 1..16 --> {0,1}==btrue
+	  
+END 
+&
+THEORY User_Pass IS
+Operation(AssertionLemmas) & ff(1) & pr(Tac(SimplifyBV16));
+Operation(AssertionLemmas) & ff(1) & eh(byte_bv16,_h,Goal) & eh(BYTE,_h,Goal) & eh(bv16_byte,_h,Goal) & dd & eh(BV16,_h,Goal) & mp(Tac(RulesProBAssertionLemmas_3));
+Operation(AssertionLemmas) & ff(0) & eh(BV16,_h,Goal) & dd & pr & mp(Tac(RulesProBAssertionLemmas_6))
+END
+&
+THEORY RulesProBAssertionLemmas_3 IS 
+
+
+	 /* Expression from AssertionLemmas.3, it was added  in Mon Jan 14 13:23:45 BRT 2013
+	  verified with ProB in 34807 milliseconds
+	  Module Path:/media/B_Resources/Z80_ProB/BV16_DEFINITION.mch */
+
+	  %(bv1,bv2).(bv1: 1..8 --> {0,1} & bv2: 1..8 --> {0,1} | {16|->bv1(8),15|->bv1(7),14|->bv1(6),13|->bv1(5),12|->bv1(4),11|->bv1(3),10|->bv1(2),9|->bv1(1),8|->bv2(8),7|->bv2(7),6|->bv2(6),5|->bv2(5),4|->bv2(4),3|->bv2(3),2|->bv2(2),1|->bv2(1)}) = (%bv.(bv: 1..16 --> {0,1} | {8|->bv(16),7|->bv(15),6|->bv(14),5|->bv(13),4|->bv(12),3|->bv(11),2|->bv(10),1|->bv(9)},{8|->bv(8),7|->bv(7),6|->bv(6),5|->bv(5),4|->bv(4),3|->bv(3),2|->bv(2),1|->bv(1)}))~==btrue
+
+END
+&
+THEORY RulesProBAssertionLemmas_6 IS 
+
+
+	 /* Expression from AssertionLemmas.6, it was added  in Mon Jan 14 13:24:51 BRT 2013
+	  verified with ProB in 778 milliseconds
+	  Module Path:/media/B_Resources/Z80_ProB/BV16_DEFINITION.mch */
+
+	  card(1..16 --> {0,1}) = 65536==btrue
+
+END

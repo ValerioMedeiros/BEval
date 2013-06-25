@@ -1,0 +1,28 @@
+THEORY User_Pass IS
+Operation(AssertionLemmas) & Pattern(a<+({b|->c}\/{d|->e}): (f..g)*{h} +-> i) & ff(0) & pp(rt.0);
+Operation(AssertionLemmas) & Pattern(a<+{b|->c}: (d..e)*{f} +-> g) & ff(0) & pp(rt.0);
+Operation(AssertionLemmas) & Pattern(a<+b: (c..d)*{e} +-> f) & ff(0) & pp(rt.0);
+Operation(AssertionLemmas) & Pattern(a<+({b|->c}\/{d|->e}\/{f|->g}\/{h|->i}\/{j|->k}\/{l|->m}\/{n|->o}): (p..q)*{r} +-> s) & ff(0) & dd & pr(Tac(Update_flag));
+Operation(AssertionLemmas) & Pattern(a<+({b|->c}\/{d|->e}\/{f|->g}\/{h|->i}\/{j|->k}\/{l|->m}): (n..o)*{p} +-> q) & ff(0) & dd & pr(Tac(Update_flag));
+Operation(AssertionLemmas) & Pattern(a<+({b|->c}\/{d|->e}\/{f|->g}\/{h|->i}\/{j|->k}): (l..m)*{n} +-> o) & ff(0) & dd & pr(Tac(Update_flag));
+Operation(AssertionLemmas) & Pattern(a<+({b|->c}\/{d|->e}\/{f|->g}\/{h|->i}): (j..k)*{l} +-> m) & ff(0) & dd & pr(Tac(Update_flag));
+Operation(AssertionLemmas) & Pattern(a<+({b|->c}\/{d|->e}\/{f|->g}): (h..i)*{j} +-> k) & ff(0) & dd & pr(Tac(Update_flag));
+Operation(ext_NMI) & Pattern(a(b): c) & ff(0) & dd & eh(STACK_R_ADR,_h,Goal) & ss & pr;
+Operation(AssertionLemmas) & Pattern(dom(a<+({b|->c}\/{d|->e}\/{f|->g}\/{h|->i}\/{j|->k}\/{l|->m}\/{n|->o})) = (p..q)*{r}) & ff(0) & dd & ss & eh(dom(rgs8),_h,Goal) & ss & pr;
+Operation(AssertionLemmas) & Pattern(dom(a<+({b|->c}\/{d|->e}\/{f|->g}\/{h|->i}\/{j|->k}\/{l|->m})) = (n..o)*{p}) & ff(0) & dd & ss & eh(dom(rgs8),_h,Goal) & ss & pr;
+Operation(AssertionLemmas) & Pattern(dom(a<+({b|->c}\/{d|->e}\/{f|->g}\/{h|->i}\/{j|->k})) = (l..m)*{n}) & ff(0) & dd & ss & eh(dom(rgs8),_h,Goal) & ss & pr;
+Operation(AssertionLemmas) & Pattern(dom(a<+({b|->c}\/{d|->e}\/{f|->g}\/{h|->i})) = (j..k)*{l}) & ff(0) & dd & ss & eh(dom(rgs8),_h,Goal) & ss & pr;
+Operation(AssertionLemmas) & Pattern(dom(a<+({b|->c}\/{d|->e}\/{f|->g})) = (h..i)*{j}) & ff(0) & dd & ss & eh(dom(rgs8),_h,Goal) & ss & pr;
+Operation(AssertionLemmas) & Pattern(dom(a<+({b|->c}\/{d|->e})) = (f..g)*{h}) & ff(0) & dd & ss & eh(dom(rgs8),_h,Goal) & ss & pr;
+Operation(AssertionLemmas) & Pattern(dom(a<+{b|->c}) = (d..e)*{f}) & ff(0) & dd & ss & eh(dom(rgs8),_h,Goal) & ss & pr;
+Operation(AssertionLemmas) & Pattern(dom(a<+b) = (c..d)*{e}) & ff(0) & dd & ss & eh(dom(rgs8),_h,Goal) & ss & pr;
+Operation(ext_RESET) & Pattern(dom(a<+({b|->c|->d(e)}\/{f|->c|->d(e)})) = (b..g)*{c}) & ff(0) & dd & ss & eh(dom(rgs8),_h,Goal) & ss & pr;
+Operation(ext_NMI) & Pattern(a: b) & ff(1) & eh(USHORT,_h,Goal) & ss & pr;
+Operation(ext_INT) & Pattern(a-b: c) & ff(1) & dd & eh(byte_bus,_h,Goal) & eh(USHORT,_h,Goal) & ss & pr;
+Operation(ext_INT) & Pattern(a-b: c) & ff(1) & dd & ah(byte_bus = 199 or byte_bus = 207 or byte_bus = 215 or byte_bus = 223 or byte_bus = 231 or byte_bus = 239 or byte_bus = 247) & pr & eh(USHORT,_h,Goal) & ss & pr;
+Operation(ext_NMI) & Pattern(dom({a(b(c,d(e),f))|->g}\/{a(b(c,d(e),h))|->i}) = j) & ff(1) & dd & ah(ran(ushort_bv16) = BV16 & dom(ushort_bv16) = USHORT) & pr & pr & pr;
+Operation(ext_INT) & Pattern(dom({a(b(c,d(e),f))|->g}\/{a(b(c,d(e),h))|->i}) = j) & ff(1) & dd & ah(ran(ushort_bv16) = BV16 & dom(ushort_bv16) = USHORT) & pr & pr & pr;
+Operation(AssertionLemmas) & Pattern(a(b,c,d,e,f,g): {h|->i}*j) & ff(1) & dd & ah(instruction_next: USHORT +-> USHORT & ran(instruction_next) = USHORT & pc: USHORT) & pr & pr & pr & pr;
+Operation(ext_NMI) & Pattern({a(b(c,d(e),f))|->g}\/{a(b(c,d(e),h))|->i}: j +-> k) & ff(0) & dd & ah(not(ushort_bv16(sub16USHORT(0,bv16_ushort(sp),2)) = ushort_bv16(sub16USHORT(0,bv16_ushort(sp),1)))) & ar(Arithmetic) & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & dd & ah(ushort_bv16(sub16USHORT(0,bv16_ushort(sp),2)): BV16 & ushort_bv16(sub16USHORT(0,bv16_ushort(sp),1)): BV16 & pc_low: BYTE & pc_high: BYTE & not(ushort_bv16(sub16USHORT(0,bv16_ushort(sp),2)) = ushort_bv16(sub16USHORT(0,bv16_ushort(sp),1)))) & pr & ss & pr & pr & pr & pr & pp(rt.0);
+Operation(ext_INT) & Pattern({a(b(c,d(e),f))|->g}\/{a(b(c,d(e),h))|->i}: j +-> k) & ff(0) & dd & ah(not(ushort_bv16(sub16USHORT(0,bv16_ushort(sp),2)) = ushort_bv16(sub16USHORT(0,bv16_ushort(sp),1)))) & ar(Arithmetic) & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & dd & ah(ushort_bv16(sub16USHORT(0,bv16_ushort(sp),2)): BV16 & ushort_bv16(sub16USHORT(0,bv16_ushort(sp),1)): BV16 & pc_low: BYTE & pc_high: BYTE & not(ushort_bv16(sub16USHORT(0,bv16_ushort(sp),2)) = ushort_bv16(sub16USHORT(0,bv16_ushort(sp),1)))) & pr & ss & pr & pr & pr & pr & pp(rt.0)
+END

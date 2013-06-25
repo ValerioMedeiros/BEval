@@ -1,0 +1,214 @@
+THEORY User_Pass IS
+    
+    
+
+/* Especific pass  
+
+Pattern(0<=bv16_ushort(ix_iy)+desloc ) & ff(0) & dd & ah(bv16_ushort(ix_iy): USHORT & desloc: USHORT) & pr & pr & pr ;
+
+
+Pattern( (bv16_ushort(ix_iy)+desloc) mod 65536: dom(ushort_bv16) ) & ff(0) & dd & eh(dom(ushort_bv16),_h,Goal) & eh(USHORT,_h,Goal) & ah(bv16_ushort(ix_iy): USHORT) & pr & ah(desloc: USHORT) & pr & mp & ah(desloc: USHORT & bv16_ushort(ix_iy): USHORT) & pr & pr & eh(USHORT,_h,Goal) & mp & ah(desloc: 0..65535 & bv16_ushort(ix_iy): 0..65535) & pr & pr & ss & pp(rt.0);
+
+Pattern( rgs8(x): dom(dec)) & ff(0) & dd & eh(dom(dec),_h,Goal) & ss & pr;
+
+Pattern(7: dom(bv_9ireg_plus_d0(mem,iy,desloc))) & ff(0) & dd & ah(dom(bv_9ireg_plus_d0(mem,iy,desloc)) = 1..8) & ss & eh(bv_9ireg_plus_d0,_h,Goal) & ss & ah(mem(bv_ireg_plus_d(iy,desloc)): BYTE) & ah(bv_ireg_plus_d(iy,desloc): BV16) & pp(rt.0) & dd & ah(mem(bv_ireg_plus_d(iy,desloc)): BYTE) & eh(BYTE,_h,Goal) & eh(BIT_VECTOR,_h,Goal) & eh(bv_size,_h,Goal) & ss & pp(rt.0) & ss & pp(rt.0) & pr;
+
+Pattern( bv_9ireg_plus_d0(mem,iy,desloc): dom(bv_9ireg_plus_d0(mem,iy,desloc)) +-> ran(bv_9ireg_plus_d0(mem,iy,desloc))) & ff(0) & dd & ae(bv_9ireg_plus_d0(mem,iy,desloc),aa) & dd & ah(aa: BYTE) & eh(aa,_h,Goal) & pr & eh(BYTE,_h,Goal) & eh(BIT_VECTOR,_h,Goal) & eh(bv_size,_h,Goal) & eh(BIT_VECTOR,_h,Goal) & ss & pp(rt.0) ;
+
+Pattern(  1<=2**16 ) & ff(0) & eh(2**16,_h,Goal) & pr;
+Pattern( rgs8,cc: dom(cc_get) ) &ff(0) & dd & eh(dom(cc_get),_h,Goal) & ss & eh(dom(rgs8),_h,Goal) & ss & pr;
+*/
+
+
+/* Pass more general */    
+
+
+
+Pattern( b,c,d,e,f,g : dom(update_flag_reg) ) & ff(0) & dd & eh(dom(update_flag_reg),_h,Goal) & ss & pr;
+Pattern( x , y : dom(bv_ireg_plus_d) ) & ff(0) & dd & eh(dom(bv_ireg_plus_d)) & ss & pr ;
+Pattern( j , x, y: dom(bv_9ireg_plus_d0) ) & ff(0) & dd & eh(dom(bv_9ireg_plus_d0)) & ss & pr ;
+
+Pattern( x , y : dom(bitget) ) & ff(0) & dd & eh(dom(bitget)) & ss & pr;
+
+Pattern(k(r),k(s): dom(byte_bv16)) &  ff(0) & dd & eh(dom(byte_bv16)) & ss & pr;
+
+Pattern(a,b,c: dom(add8UCHAR))&ff(0) & eh(dom(add8UCHAR)) & dd & ss & eh(UCHAR,_h,Goal) & ss & pr;
+Pattern(a,b,c: dom(substract8UCHAR))&ff(0) & eh(dom(substract8UCHAR)) & dd & ss & eh(UCHAR,_h,Goal) & ss & pr;
+Pattern(bv16_ushort(a): dom(is_zero16USHORT))  & ff(0) & dd & eh(dom(is_zero16USHORT)) & ss & pr;
+Pattern(m,bv16_ushort(x),y: dom(add16USHORT))& ff(0) & dd & eh(dom(add16USHORT)) & ss & eh(USHORT) & ss & pr;
+Pattern(m,bv16_ushort(x),y: dom(sub16USHORT))& ff(0) & dd & eh(dom(sub16USHORT)) & ss & eh(USHORT) & ss & pr;
+Pattern(m,x,y: dom(sub16USHORT))& ff(0) & dd & eh(dom(sub16USHORT)) & eh(USHORT) & ss  & ss & pr;
+Pattern(m,x,y: dom(add16USHORT))& ff(0) & dd & eh(dom(add16USHORT)) & eh(USHORT) & ss  & ss & pr;
+
+/* TYPES */
+Pattern(j , i : dom(and)) & ff(0) & dd & eh(dom(and)) & ss & pr;
+Pattern(j , i : dom(ior)) & ff(0) & dd & eh(dom(ior)) & ss & pr;
+Pattern(j , i : dom(xor)) & ff(0) & dd & eh(dom(xor)) & ss & pr;
+
+
+
+/* ALU FUNCTIONS */
+Pattern(j: dom(inc_BV16))& ff(0) & dd & eh(dom(inc_BV16)) & ss & pr;
+Pattern(j: dom(dec_BV16))& ff(0) & dd & eh(dom(dec_BV16)) & ss & pr;
+Pattern(j: dom(daa_function)) & ff(0) & dd & eh(dom(daa_function)) & ss & pr;
+Pattern(j: dom(complement))& ff(0) & dd & eh(dom(complement)) & ss & pr;
+/* Hardware FUNCTIONS */
+Pattern(j: dom(bool_bit)) & ff(0) & dd & eh(dom(bool_bit)) & ss & pr;
+Pattern(j: dom(bit_xor)) & ff(0) & dd & eh(dom(bit_xor)) & ss & pr;
+Pattern(j: dom(bit_or)) & ff(0) & dd & eh(dom(bit_or)) & ss & pr;
+Pattern(j: dom(bit_and)) & ff(0) & dd & eh(dom(bit_and)) & ss & pr;
+Pattern(j: dom(bit_not)) & ff(0) & dd & eh(dom(bit_not)) & ss & pr;
+Pattern(j: dom(bitset)) & ff(0) & dd & eh(dom(bitset)) & ss & pr;
+Pattern(j: dom(bitclear)) & ff(0) & dd & eh(dom(bitclear)) & ss & pr;
+Pattern(j: dom(rotateleft)) & ff(0) & dd & eh(dom(rotateleft)) & ss & pr;
+Pattern(j: dom(rotateright)) & ff(0) & dd & eh(dom(rotateright)) & ss & pr;
+
+
+/* Main Z80 */
+Pattern(j: dom(mem)) & ff(0) & dd & eh(dom(mem)) & ss & pr;
+Pattern(j: dom(rgs8)) & ff(0) & dd & eh(dom(rgs8)) & ss & pr;
+Pattern(j: dom(io_ports)) & ff(0) & dd & eh(dom(io_ports)) & ss & pr;
+
+/* Basic Types */
+Pattern(j: dom(byte_schar)) & ff(0) & dd & eh(dom(byte_schar))  & eh(BYTE) & ss & pr;
+Pattern(j: dom(schar_byte)) & ff(0) & dd & eh(dom(schar_byte))  & eh(SCHAR) & ss & pr;
+Pattern(j: dom(byte_uchar)) & ff(0) & dd & eh(dom(byte_uchar)) & ss & pr;
+Pattern(k: dom(uchar_byte)) &  ff(0) & dd & eh(dom(uchar_byte)) & eh(UCHAR) & ss & pr;
+
+
+
+Pattern(j: dom(bv16_sshort)) & ff(0) & dd & eh(dom(bv16_sshort)) & ss & pr;
+Pattern(j: dom(sshort_bv16)) & ff(0) & dd & eh(dom(sshort_bv16)) & ss & pr;
+
+Pattern(j: dom(ushort_bv16)) & ff(0) & dd & eh(dom(ushort_bv16)) & ss & pr;
+Pattern(j: dom(bv16_ushort)) & ff(0) & dd & eh(dom(bv16_ushort)) & ss & pr;
+
+Pattern(a,b : dom(byte_bv16)) &  ff(0) & dd & eh(dom(byte_bv16)) & ss & pr;
+Pattern(k: dom(bv16_byte)) &  ff(0) & dd & eh(dom(bv16_byte)) & eh(UCHAR) & ss & pr;
+
+
+
+
+/* Pass general */
+Pattern( x : dom(y) ) & ff(0) & dd & eh(dom(y)) & ss & pr
+
+
+
+
+END
+
+
+
+&
+
+THEORY Arithmetic IS
+
+not(d = e ) & d < 65536 & e < 65536 & d >= 0 & e >= 0 
+=> not(ushort_bv16(add16USHORT(f,c,d)) = ushort_bv16(add16USHORT(f,c,e)));
+
+not(d = e ) & d < 65536 & e < 65536 & d >= 0 & e >= 0 
+=> not(ushort_bv16(sub16USHORT(f,c,d)) = ushort_bv16(sub16USHORT(f,c,e)));
+
+
+c : BIT &
+e : BV16 &
+f : USHORT &
+not(c + f = 0)
+=>	not( ushort_bv16( add16USHORT(c,bv16_ushort(e),f) ) = e );
+
+
+c : BIT &
+e : USHORT &
+f : USHORT &
+not(c + f = 0)
+=>	not( ushort_bv16( add16USHORT(c,e,f) ) = ushort_bv16(e) )
+
+
+
+END
+
+&
+
+THEORY Add16USHORT IS
+
+a : BIT  &
+b : USHORT & 
+c : USHORT
+
+=>  add16USHORT(a,b,c) : USHORT 
+
+END
+
+&
+
+THEORY BIT_VECTOR IS
+
+
+a : BIT & b: BIT & c: BIT & d: BIT & e: BIT & f: BIT & g: BIT & h : BIT
+=>    [a,b,c,d,e,f,g,h] : BYTE ;
+
+a : BIT & b: BIT & c: BIT & d: BIT & e: BIT & f: BIT & g: BIT & h : BIT &
+i: BIT & j: BIT & l: BIT & m : BIT & n: BIT & o: BIT & p: BIT & q : BIT 
+=>    [a,b,c,d,e,f,g,h,i,j,l,m,n,o,p,q] : BV16
+
+END
+
+&
+
+THEORY Update_flag IS
+
+
+
+a:BIT & b:BIT & c:BIT & d:BIT & e:BIT & f:BIT 
+=> update_flag_reg(a,b,c,d,e,f): {f0}*BYTE ;
+
+/**
+* @Unproved
+**/
+b: id_reg_8 & d: BYTE & f: id_reg_8 & g: BYTE & h: id_reg_8 & i: BYTE & not(b = f) & not(b = h) & not(f = h) 
+=>
+k<+{b|->d,f|->g,h|->i}: id_reg_8 +-> BYTE; /* Para 3 elementos */
+
+
+
+
+/**
+* @Unproved
+**/
+b: id_reg_8 & d: BYTE & f: id_reg_8 & g: BYTE & h: id_reg_8 & i: BYTE & j: id_reg_8 & k: BYTE & not(b = f) & not(b = h) & not(b = j) & not(f = h) & not(f = j) & not(h = j) 
+=>
+m<+{b|->d,f|->g,h|->i,j|->k}: id_reg_8 +-> BYTE ; /* Para 4 elementos */
+
+
+/**
+* @Unproved
+**/
+b: id_reg_8 & d: BYTE & f: id_reg_8 & g: BYTE & h: id_reg_8 & i: BYTE & j: id_reg_8 & k: BYTE & l: id_reg_8 & m: BYTE & not(b = f) & not(b = h) & not(b = j) & not(b = l) & not(f = h) & not(f = j) & not(f = l) & not(h = j) & not(h = l) & not(j = l) 
+=>
+o<+{b|->d,f|->g,h|->i,j|->k,l|->m}: id_reg_8 +-> BYTE;/* Para 5 elementos */
+
+
+
+
+/**
+* @Unproved 
+**/
+b: id_reg_8 & d: BYTE & f: id_reg_8 & g: BYTE & h: id_reg_8 & i: BYTE & j: id_reg_8 & k: BYTE & l: id_reg_8 & m: BYTE & n: id_reg_8 & o: BYTE & not(b = f) & not(b = h) & not(b = j) & not(b = l) & not(b = n) & not(f = h) & not(f = j) & not(f = l) & not(f = n) & not(h = j) & not(h = l) & not(h = n) & not(j = l) & not(j = n) & not(l = n) 
+=>
+q<+{b|->d,f|->g,h|->i,j|->k,l|->m,n|->o}: id_reg_8 +-> BYTE; /* Para 6 elementos */
+
+
+
+/**
+* @Unproved 
+**/
+
+b: id_reg_8 & d: BYTE & f: id_reg_8 & g: BYTE & h: id_reg_8 & i: BYTE & j: id_reg_8 & k: BYTE & l: id_reg_8 & m: BYTE & n: id_reg_8 & o: BYTE & p: id_reg_8 & q: BYTE & not(b = f) & not(b = h) & not(b = j) & not(b = l) & not(b = n) & not(b = p) & not(f = h) & not(f = j) & not(f = l) & not(f = n) & not(f = p) & not(h = j) & not(h = l) & not(h = n) & not(h = p) & not(j = l) & not(j = n) & not(j = p) & not(l = n) & not(l = p) & not(n = p) 
+=>
+s<+{b|->d,f|->g,h|->i,j|->k,l|->m,n|->o,p|->q}: id_reg_8 +-> BYTE  /* Para 7 elementos */
+
+
+
+
+
+END

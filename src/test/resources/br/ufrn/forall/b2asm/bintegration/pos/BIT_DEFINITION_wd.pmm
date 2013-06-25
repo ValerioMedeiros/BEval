@@ -1,0 +1,55 @@
+THEORY User_Pass IS
+Pattern(0: dom(bit_not)) & ff(0) & pr;
+Pattern(1: dom(bit_not)) & ff(0) & pr;
+Pattern(bit_not(bb): dom(bit_not)) & ff(0) & pr;
+Pattern(0,0: dom(bit_and)) & ff(0) & pr;
+Pattern(0,1: dom(bit_and)) & ff(0) & pr;
+Pattern(1,0: dom(bit_and)) & ff(0) & pr;
+Pattern(1,1: dom(bit_and)) & ff(0) & pr;
+Pattern(b1,b2: dom(bit_and)) & ff(0) & dd & ah(dom(bit_and) = BIT*BIT) & eh(BIT,_h,Goal) & eh(bit_and,_h,Goal) & pp(rp.0) & dd & eh(dom(bit_and),_h,Goal) & pp(rt.0);
+Pattern(b2,b1: dom(bit_and)) & ff(0) & dd & ah(dom(bit_and) = BIT*BIT) & eh(BIT,_h,Goal) & eh(bit_and,_h,Goal) & pp(rp.0) & dd & eh(dom(bit_and),_h,Goal) & pp(rt.0);
+Pattern(b2,b3: dom(bit_and)) & ff(0) & dd & ah(dom(bit_and) = BIT*BIT) & eh(BIT,_h,Goal) & eh(bit_and,_h,Goal) & pp(rp.0) & dd & eh(dom(bit_and),_h,Goal) & pp(rt.0);
+Pattern(b1,1: dom(bit_and)) & ff(0) & pr;
+Pattern(b1,0: dom(bit_and)) & ff(0) & pr;
+Pattern(0,0: dom(bit_or)) & ff(0) & pr;
+Pattern(0,1: dom(bit_or)) & ff(0) & pr;
+Pattern(1,0: dom(bit_or)) & ff(0) & pr;
+Pattern(1,1: dom(bit_or)) & ff(0) & pr;
+Pattern(b1,b2: dom(bit_or)) & ff(0) & dd & ah(dom(bit_or) = BIT*BIT) & eh(BIT,_h,Goal) & eh(bit_or,_h,Goal) & pp(rp.0) & dd & eh(dom(bit_or),_h,Goal) & pp(rt.0);
+Pattern(b2,b1: dom(bit_or)) & ff(0) & dd & ah(dom(bit_or) = BIT*BIT) & eh(BIT,_h,Goal) & eh(bit_or,_h,Goal) & pp(rp.0) & dd & eh(dom(bit_or),_h,Goal) & pp(rt.0);
+Pattern(b1,0: dom(bit_or)) & ff(0) & pr;
+Pattern(b2,b3: dom(bit_or)) & ff(0) & dd & ah(dom(bit_or) = BIT*BIT) & eh(BIT,_h,Goal) & eh(bit_or,_h,Goal) & pp(rp.0) & dd & eh(dom(bit_or),_h,Goal) & pp(rt.0);
+Pattern(1,b3: dom(bit_or)) & ff(0) & pr;
+Pattern(b1,1: dom(bit_or)) & ff(0) & pr;
+Pattern(1,b1: dom(bit_or)) & ff(0) & pr;
+Pattern(0,b1: dom(bit_or)) & ff(0) & pr;
+Pattern(0,0: dom(bit_xor)) & ff(0) & pr;
+Pattern(0,1: dom(bit_xor)) & ff(0) & pr;
+Pattern(1,0: dom(bit_xor)) & ff(0) & pr;
+Pattern(1,1: dom(bit_xor)) & ff(0) & pr;
+Pattern(b1,b2: dom(bit_xor)) & ff(0) & dd & ah(dom(bit_xor) = BIT*BIT) & eh(BIT,_h,Goal) & eh(bit_xor,_h,Goal) & pp(rp.0) & dd & eh(dom(bit_xor),_h,Goal) & pp(rt.0);
+Pattern(b2,b1: dom(bit_xor)) & ff(0) & dd & ah(dom(bit_xor) = BIT*BIT) & eh(BIT,_h,Goal) & eh(bit_xor,_h,Goal) & pp(rp.0) & dd & eh(dom(bit_xor),_h,Goal) & pp(rt.0);
+Pattern(b2,b3: dom(bit_xor)) & ff(0) & dd & ah(dom(bit_xor) = BIT*BIT) & eh(BIT,_h,Goal) & eh(bit_xor,_h,Goal) & pp(rp.0) & dd & eh(dom(bit_xor),_h,Goal) & pp(rt.0);
+Pattern(1,b3: dom(bit_xor)) & ff(0) & pr;
+Pattern(bb,bb: dom(bit_xor)) & ff(0) & pr;
+Pattern(TRUE: dom(bool_bit)) & ff(0) & pr;
+Pattern(bool_bit: dom(bool_bit) +-> ran(bool_bit)) & ff(0) & pr;
+Pattern(FALSE: dom(bool_bit)) & ff(0) & pr;
+Pattern(b1,bit_and(b2,b3): dom(bit_and)) & ff(0) & dd & ah(dom(bit_and) = BIT*BIT) & eh(BIT,_h,Goal) & eh(bit_and,_h,Goal) & pp(rp.0) & dd & eh(dom(bit_and),_h,Goal) & eh(bit_and,_h,Goal) & ss & pr;
+Pattern(bit_and(b1,b2),b3: dom(bit_and)) & ff(0) & dd & ah(dom(bit_and) = BIT*BIT) & eh(BIT,_h,Goal) & eh(bit_and,_h,Goal) & pp(rp.0) & dd & eh(dom(bit_and),_h,Goal) & eh(bit_and,_h,Goal) & ss & pr;
+Pattern(b1,bit_or(b2,b3): dom(bit_or)) & ff(0) & dd & ah(dom(bit_and) = BIT*BIT) & eh(BIT,_h,Goal) & eh(bit_and,_h,Goal) & pp(rp.0) & dd & ss & pr;
+Pattern(bit_or(b1,b2),b3: dom(bit_or)) & ff(0) & dd & ah(dom(bit_or) = BIT*BIT) & eh(BIT,_h,Goal) & eh(bit_or,_h,Goal) & pp(rp.0) & dd & eh(dom(bit_or),_h,Goal) & eh(bit_or,_h,Goal) & ss & pr;
+Pattern(b1,bit_xor(b2,b3): dom(bit_xor)) & ff(0) & dd & ah(dom(bit_and) = BIT*BIT) & eh(BIT,_h,Goal) & eh(bit_and,_h,Goal) & pp(rp.0) & dd & ss & pr;
+Pattern(bit_xor(b1,b2),b3: dom(bit_xor)) & ff(0) & dd & ah(dom(bit_xor) = BIT*BIT) & eh(BIT,_h,Goal) & eh(bit_xor,_h,Goal) & pp(rp.0) & dd & eh(dom(bit_xor),_h,Goal) & eh(bit_xor,_h,Goal) & ss & pr
+END
+    /*
+    Pattern(a,b: dom(c)) & ff(0) & dd & ah(dom(bit_and) = BIT*BIT) & eh(BIT,_h,Goal) & eh(bit_and,_h,Goal) & pp(rp.0) & dd & eh(dom(bit_and),_h,Goal) & pp(rt.0);
+Pattern(a,b: dom(c)) & ff(0) & dd & ah(dom(bit_or) = BIT*BIT) & eh(BIT,_h,Goal) & eh(bit_or,_h,Goal) & pp(rp.0) & dd & eh(dom(bit_or),_h,Goal) & pp(rt.0);
+Pattern(a,b: dom(c)) & ff(0) & dd & ah(dom(bit_xor) = BIT*BIT) & eh(BIT,_h,Goal) & eh(bit_xor,_h,Goal) & pp(rp.0) & dd & eh(dom(bit_xor),_h,Goal) & pp(rt.0);
+Pattern(a,b(c,d): dom(b)) & ff(0) & dd & ah(dom(bit_and) = BIT*BIT) & eh(BIT,_h,Goal) & eh(bit_and,_h,Goal) & pp(rp.0) & dd & eh(dom(bit_and),_h,Goal) & eh(bit_and,_h,Goal) & ss & pr;
+Pattern(a(b,c),d: dom(a)) & ff(0) & dd & ah(dom(bit_and) = BIT*BIT) & eh(BIT,_h,Goal) & eh(bit_and,_h,Goal) & pp(rp.0) & dd & eh(dom(bit_and),_h,Goal) & eh(bit_and,_h,Goal) & ss & pr;
+Pattern(a,b(c,d): dom(b)) & ff(0) & dd & ah(dom(bit_and) = BIT*BIT) & eh(BIT,_h,Goal) & eh(bit_and,_h,Goal) & pp(rp.0) & dd & ss & pr;
+Pattern(a(b,c),d: dom(a)) & ff(0) & dd & ah(dom(bit_or) = BIT*BIT) & eh(BIT,_h,Goal) & eh(bit_or,_h,Goal) & pp(rp.0) & dd & eh(dom(bit_or),_h,Goal) & eh(bit_or,_h,Goal) & ss & pr;
+Pattern(a(b,c),d: dom(a)) & ff(0) & dd & ah(dom(bit_xor) = BIT*BIT) & eh(BIT,_h,Goal) & eh(bit_xor,_h,Goal) & pp(rp.0) & dd & eh(dom(bit_xor),_h,Goal) & eh(bit_xor,_h,Goal) & ss & pr
+
+*/

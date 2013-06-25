@@ -1,0 +1,6 @@
+THEORY User_Pass IS
+Pattern(USHORT_MIN: INTEGER) & ff(0) & pr;
+Pattern(USHORT_MAX: INTEGER) & ff(0) & pr;
+Pattern(card(ushort_bv16) = 65536) & ff(0) & pr;
+Pattern(card(bv16_ushort) = 65536) & ff(0) & pr
+END

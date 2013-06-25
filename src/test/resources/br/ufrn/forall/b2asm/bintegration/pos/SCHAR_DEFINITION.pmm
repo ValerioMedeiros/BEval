@@ -1,0 +1,13 @@
+THEORY User_Pass IS
+Pattern(SCHAR_MIN: INTEGER) & ff(0) & pr;
+Pattern(SCHAR_MAX: INTEGER) & ff(0) & pr
+END
+    
+    
+    /*Generic
+    
+    
+Pattern(dom(uchar_schar) = UCHAR) & ff(0) & dd & eh(uchar_schar,_h,Goal) & eh(UCHAR,_h,Goal) & eh(SCHAR,_h,Goal) & pp(rt.0);
+Pattern(ran(uchar_schar) = SCHAR) & ff(0) & dd & eh(uchar_schar,_h,Goal) & eh(SCHAR,_h,Goal) & eh(UCHAR,_h,Goal) & ss & pp(rt.0)
+    
+    */

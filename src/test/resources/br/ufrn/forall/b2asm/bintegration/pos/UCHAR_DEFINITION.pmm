@@ -1,0 +1,6 @@
+THEORY User_Pass IS
+Pattern(UCHAR_MIN: INTEGER) & ff(0) & pr;
+Pattern(UCHAR_MAX: INTEGER) & ff(0) & pr;
+Pattern(card(uchar_byte) = 256) & ff(0) & pr;
+Pattern(card(byte_uchar) = 256) & ff(0) & pr
+END 

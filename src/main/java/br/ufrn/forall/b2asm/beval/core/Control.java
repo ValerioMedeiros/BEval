@@ -51,7 +51,7 @@ public class Control {
 	final int indComponentExtension = 3;
 	final int indGoal = 4; //
 	private int exitVal;
-	private POs expressionsToEvaluate;
+	private POs posManager;
 
 	public Control() {
 
@@ -71,6 +71,8 @@ public class Control {
 			
 			actualParameters = GeneralPreferences.getActualParameters();
 			
+			
+			
 	}
 
 
@@ -89,6 +91,10 @@ public class Control {
 			moduleName = args[indModuleName];
 			modulePath = args[indModulePath];
 			componentExtension = args[indComponentExtension];
+			//TODO: To use the variable ${projectBdp}from AtelierB that contains the path to the bdp directory of the project.
+			//pathBModuleInBdpFolderWithoutExtension =   modulePath.replace(moduleName+"."+componentExtension,"")+"bdp"+File.separator+moduleName;
+			pathBModuleInBdpFolderWithoutExtension =   modulePath.replace("."+componentExtension, "");
+			setIsWD(false);
 
 		} catch (Exception e) {
 
@@ -131,85 +137,23 @@ public class Control {
 			componentExtension = args[indComponentExtension];
 			
 			//TODO: To use the variable ${projectBdp}from AtelierB that contains the path to the bdp directory of the project.
-			pathBModuleInBdpFolderWithoutExtension =   modulePath.replace(moduleName+"."+componentExtension,"")+"bdp"+File.separator+moduleName;
-			//pathBModuleInBdpFolderWithExtension =   modulePath+moduleName;		
+			//pathBModuleInBdpFolderWithoutExtension =   modulePath.replace(moduleName+"."+componentExtension,"")+"bdp"+File.separator+moduleName;
+			pathBModuleInBdpFolderWithoutExtension =   modulePath.replace("."+componentExtension, "");		
 		} catch (Exception e) {
 
 			System.err.println("Error: you need specify the parameters");
 		}
 
 	}
-	void setIsWD(boolean wd){
+ 
+	void setIsWD(boolean wd) throws Exception{
 		isWD = wd;
-		if(isWD){
-			pathBModuleInBdpFolderWithoutExtension = pathBModuleInBdpFolderWithoutExtension.replace("_wd","")+"_wd";
-			expressionsToEvaluate = new POs((pathBModuleInBdpFolderWithoutExtension.replace("_wd","")+"_wd"));
-			
-		}else{
-			pathBModuleInBdpFolderWithoutExtension = pathBModuleInBdpFolderWithoutExtension.replace("_wd","");
-			expressionsToEvaluate = new POs((pathBModuleInBdpFolderWithoutExtension.replace("_wd","")));
-			
-		}
+		//JOptionPane.showMessageDialog(null,pathBModuleInBdpFolderWithoutExtension);
+		
+		posManager = new POs(pathBModuleInBdpFolderWithoutExtension,isWD);
+		
 	}
-	//TODO: Move this method to a new class resposible for Pmms called Pmm??? or in POs
-	void addRuleInPMMFile(boolean poTypedWD, String rule) {
-		String fileNameToAddRule;
-		final String finalFile = new String("\nEND");
-
-		// if WD add WD else the normal name
-		if (poTypedWD)
-			fileNameToAddRule = new String(modulePath.substring(0,
-					modulePath.length() - 4)
-					+ "_wd.pmm");
-		else
-			fileNameToAddRule = new String(modulePath.substring(0,
-					modulePath.length() - 3)
-					+ "pmm");
-
-		String fulltext = readFile(fileNameToAddRule);
-
-		String[] theoriesSplitted = fulltext.split("END");
-
-		// count the number of theories
-		int numberTheories;
-		if (theoriesSplitted[theoriesSplitted.length - 1].contains("THEORY"))
-			numberTheories = theoriesSplitted.length;
-		else
-			numberTheories = theoriesSplitted.length - 1;
-
-		StringBuffer stringInitialFile = new StringBuffer();
-		for (int i = 0; i < numberTheories; i++) {
-
-			// if(i!=numberTheories-1){ // the last
-			stringInitialFile.append(theoriesSplitted[i] + "END");
-			/*
-			 * } else{ stringB.append(theoriesSplitted[i]); }
-			 */
-		}
-
-		// if there is just one rule so add one ";" before the new rule
-		String separator;
-		if (theoriesSplitted[numberTheories - 1].contains("THEORY")) {
-			separator = new String("\n&\n");
-		}
-		// else if(theoriesSplitted[numberTheories-1].contains("==") ) separator
-		// = ";";
-		else
-			separator = "";
-
-		String addedRule = new String(separator + "THEORY RulesProB"
-				+ expressionName.replace(".", "_") + " IS \n\n"
-				+ "\n\t /* Expression from " + expressionName
-				+ ", it was added  in " + new Date()
-				+ "\n\t  evaluated with ProB in " + total_time + " milliseconds"
-				+ "\n\t  Module Path:" + modulePath + " */" + "\n\n\t " + rule );
-				//+ "==btrue\n");
-
-		String newRules = stringInitialFile + addedRule + finalFile;
-
-		writeFile(fileNameToAddRule, newRules);
-		// close the END
-	}
+	
 
 	public static void writeFile(String pathName, String content) {
 		PrintWriter pwr;
@@ -254,12 +198,8 @@ public class Control {
 		return res.toString();
 	}
 
-	public int callProbLogicEvaluator(boolean poTypedWD, boolean addRule, String parameters, String goalExpression) {
-		
-		return callProbLogicEvaluator(false, poTypedWD,  addRule, new Report(),  0,
-				 parameters,  goalExpression);
-	}
-	public int callProbLogicEvaluator(boolean addUserPass, boolean poTypedWD, boolean addRule, Report report, int numberPo,
+	
+	public int callProbLogicEvaluator(boolean addRules, boolean poTypedWD, Report report, int numberPo,
 			String parameters, String goalExpression) {
 
 		exitVal = 0;
@@ -304,7 +244,7 @@ public class Control {
 			//It is used to identify when the evaluation is individual
 			String stateProB="";
 			if(numberPo!=0)
-				stateProB = expressionsToEvaluate.getProofState(numberPo);
+				stateProB = posManager.getProofState(numberPo);
 				
 			report.add(numberPo,
 					parameters,
@@ -321,13 +261,13 @@ public class Control {
 				printSuccessFullyMsg();
 				result = res_out;
 
-				if (result == Result.TRUE && addRule) {
+				if (result == Result.TRUE && addRules) {
 					
-					if(!addUserPass){
-						addRuleInPMMFile(poTypedWD,goal+"==btrue");
+					if(numberPo==0){
+						posManager.addOneRuleInPMMFile(poTypedWD,goal+"==btrue",expressionName,total_time);
 					}else{
 						// This rule is used to add true rules of component
-						addRuleInPMMFile(poTypedWD, this.getProofObligationsWithLocalHypotheses(numberPo));
+						posManager.addOneRuleInPMMFile(poTypedWD, this.getProofObligationsWithLocalHypotheses(numberPo),expressionName,total_time);
 						// addUserPass ...
 
 					}
@@ -360,7 +300,7 @@ public class Control {
 	 */
 	public  Report callProbLogicEvaluatorModule(JFrame frame, JTextArea jTextArea , String pathProBcli,
 			String parameters,  boolean isFullProofObligation,
-			Report report, String fileNameOut) {
+			Report report, String fileNameOut,boolean isWD) {
 
 		int localExitVal = 0;
 		long localTotalTime;
@@ -368,12 +308,14 @@ public class Control {
 		Result resultIndividual = Result.ERROR;
 		
 		//TODO: It is not needed the use the pathBModule
-		POs expressionsToEvaluate = new POs((pathBModuleInBdpFolderWithoutExtension));
+		//
+		//	posManager = new POs((pathBModuleInBdpFolderWithoutExtension),isWD);
+
 		
-		//POs expressionsToEvaluate = new POs((pathBModuleInBdpFolderWithExtension.substring(0,
+		//POs posManager = new POs((pathBModuleInBdpFolderWithExtension.substring(0,
 		//		pathBModuleInBdpFolderWithExtension.length() - 3) + "po"));
 		
-		int numberOftotalPOs = expressionsToEvaluate
+		int numberOftotalPOs = posManager
 				.getNumberOfProofObligations();
 
 		StringBuffer proofObligations = new StringBuffer();
@@ -386,11 +328,11 @@ public class Control {
 						+ System.currentTimeMillis() + ".expanded.PO";
 
 				if (isFullProofObligation) {
-					proofObligation = expressionsToEvaluate
+					proofObligation = posManager
 							.getCleanExpandedProofObligations(numberPo);
 					writeFile(tmpFileName,proofObligation							);
 				} else {
-					proofObligation = expressionsToEvaluate
+					proofObligation = posManager
 							//.getGoalOfCleanExpandedProofObligations(numberPo);
 							.getCleanProofObligationsWithLocalHypotheses(numberPo);
 					writeFile(tmpFileName,proofObligation	);
@@ -450,7 +392,7 @@ public class Control {
 						parameters,
 						POWD.Common,
 						PoGenerated.Full,
-						expressionsToEvaluate.getProofState(numberPo),
+						posManager.getProofState(numberPo),
 						proofObligation,
 						Result.INITIAL,
 						resultIndividual,
@@ -545,17 +487,19 @@ public class Control {
 		return exitVal;
 	}
 	public int getNumberOfProofObligations(){
-		return expressionsToEvaluate.getNumberOfProofObligations();
+		return posManager.getNumberOfProofObligations();
 	}
 
-	public String[] getStateAndNameOfProofObligations(boolean isWD) {
-		
-		if(isWD){
-			expressionsToEvaluate = new POs((pathBModuleInBdpFolderWithoutExtension+"_wd"));
-		} else{
-			expressionsToEvaluate = new POs((pathBModuleInBdpFolderWithoutExtension));
+	public String[] getStateAndNameOfProofObligations() {
+		try {
+			return posManager.getStateAndNameOfProofObligations();	
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
 		}
-		return expressionsToEvaluate.getStateAndNameOfProofObligations();
+		
+		
 	}
 
 	/**
@@ -565,7 +509,7 @@ public class Control {
 	 */
 	public boolean isProvedTheProofState(int number){
 		
-		return expressionsToEvaluate.isProvedTheProofState(number);
+		return posManager.isProvedTheProofState(number);
 		
 	}
 	/**
@@ -574,7 +518,7 @@ public class Control {
 	 */
 	
 	public String getProofObligationsWithLocalHypotheses( int numberOfProofObligation){
-		return expressionsToEvaluate.getProofObligationsWithLocalHypotheses(numberOfProofObligation);
+		return posManager.getProofObligationsWithLocalHypotheses(numberOfProofObligation);
 	}
 	
 	
@@ -584,7 +528,7 @@ public class Control {
 	 */
 	
 	public String getCleanProofObligationsWithLocalHypotheses( int numberOfProofObligation){
-		return expressionsToEvaluate.getCleanProofObligationsWithLocalHypotheses(numberOfProofObligation);
+		return posManager.getCleanProofObligationsWithLocalHypotheses(numberOfProofObligation);
 	}
 	
 	/***
@@ -594,7 +538,7 @@ public class Control {
 	 */
 	public String getGoalOfCleanExpandedProofObligations(int numberOfProofObligation){
 		
-		return expressionsToEvaluate.getGoalOfCleanExpandedProofObligations(numberOfProofObligation);
+		return posManager.getGoalOfCleanExpandedProofObligations(numberOfProofObligation);
 	}
 
 }

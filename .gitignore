@@ -13,3 +13,4 @@ target
 *.csv
 *.EPOs
 *.prob
+*.lock

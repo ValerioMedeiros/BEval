@@ -1,0 +1,35 @@
+THEORY User_Pass IS
+Pattern(bv8_and: BYTE*BYTE +-> BYTE) & ff(0) & pr;
+Pattern(dom(bv8_and) = BYTE*BYTE) & ff(0) & dd & eh(bv8_and,_h,Goal) & ar(SimplifyRelDomXY.5,Goal) & pp(rt.0);
+Pattern(bv8_or: BYTE*BYTE +-> BYTE) & ff(0) & pr;
+Pattern(dom(bv8_or) = BYTE*BYTE) & ff(0) & dd & eh(bv8_or,_h,Goal) & ar(SimplifyRelDomXY.5,Goal) & pp(rt.0);
+Pattern(bv8_xor: BYTE*BYTE +-> BYTE) & ff(0) & pr;
+Pattern(dom(bv8_xor) = BYTE*BYTE) & ff(0) & dd & eh(bv8_xor,_h,Goal) & ar(SimplifyRelDomXY.5,Goal) & pp(rt.0);
+Pattern(size(bt) = 8) & ff(0) & pr;
+Pattern(ran(is_zero): POW(BIT)) & ff(0) & pr;
+Pattern(ran(parity_even): POW(BIT)) & ff(0) & pr;
+Pattern(ran(complement): POW(BYTE)) & ff(0) & pr;
+Pattern(ran(swap): POW(BYTE)) & ff(0) & pr;
+Pattern(ran(rotateleft): POW(BYTE)) & ff(0) & pr;
+Pattern(ran(rotateright): POW(BYTE)) & ff(0) & pr;
+Pattern(ran(get_upper_digit): POW(0..15)) & ff(0) & pr;
+Pattern(ran(get_lower_digit): POW(0..15)) & ff(0) & pr;
+Pattern([1,1,1,1,1,1,1,1]: BYTE) & ff(0) & dd & eh(BYTE,_h,Goal) & pp(rt.0);
+Pattern([0,0,0,0,0,0,0,0]: BYTE) & ff(0) & dd & eh(BYTE,_h,Goal) & pp(rt.0)
+END
+    /* Generic
+    
+        Pattern(dom(bv8_or) = b*b) & ff(0) & dd & eh(bv8_or,_h,Goal) & ar(SimplifyRelDomXY.5,Goal) & pp(rt.0);
+    
+    Pattern(dom(bv8_xor) = b*b) & ff(0) & dd & eh(bv8_xor,_h,Goal) & ar(SimplifyRelDomXY.5,Goal) & pp(rt.0);
+    
+    Pattern(dom(a) = b*b) & ff(0) & dd & eh(bv8_and,_h,Goal) & ar(SimplifyRelDomXY.5,Goal) & pp(rt.0);
+    
+    Pattern(ran(a) = b..c) & ff(0) & dd & eh(get_lower_digit,_h,Goal) & eh(BYTE,_h,Goal);
+    
+  
+    Pattern([a,a,a,a,a,a,a,a]: BYTE) & ff(0) & dd & eh(BYTE,_h,Goal) & pp(rt.0)
+    
+
+    
+    */

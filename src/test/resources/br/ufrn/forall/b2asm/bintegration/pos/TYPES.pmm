@@ -1,0 +1,290 @@
+THEORY User_Pass IS
+btrue
+/*
+Operation(AssertionLemmas) & ff(0) & dd & eh(sshort_ushort,_h,Goal) & eh(ushort_sshort,_h,Goal) & eh(SSHORT,_h,Goal) & eh(USHORT,_h,Goal) & mp(Tac(RulesProBAssertionLemmas_1));
+Operation(AssertionLemmas) & ff(0) & eh(ushort_sshort,_h,Goal) & eh(USHORT,_h,Goal) & dd & eh(SSHORT,_h,Goal) & pp(rt.0);
+Operation(AssertionLemmas) & ff(0) & eh(SSHORT,_h,Goal) & eh(USHORT,_h,Goal) & dd & eh(ushort_sshort,_h,Goal) & eh(USHORT,_h,Goal) & mp(Tac(RulesProBAssertionLemmas_3));
+Operation(AssertionLemmas) & ff(0) & dd & eh(ushort_sshort,_h,Goal) & eh(USHORT,_h,Goal) & eh(SSHORT,_h,Goal) & mp(Tac(RulesProBAssertionLemmas_5));
+Operation(AssertionLemmas) & ff(0) & dd & eh(sshort_ushort,_h,Goal) & eh(SSHORT,_h,Goal) & pp(rt.0);
+Operation(AssertionLemmas) & ff(0) & dd & eh(uchar_ushort,_h,Goal) & pp(rt.0);
+Operation(AssertionLemmas) & ff(0) & dd & eh(uchar_ushort,_h,Goal) & eh(bv16_ushort,_h,Goal) & eh(byte_bv16,%(bv1,bv2).(bv1 : BYTE & bv2 : BYTE | {16|->bv1(8),15|->bv1(7),14|->bv1(6),13|->bv1(5),12|->bv1(4),11|->bv1(3),10|->bv1(2),9|->bv1(1),8|->bv2(8),7|->bv2(7),6|->bv2(6),5|->bv2(5),4|->bv2(4),3|->bv2(3),2|->bv2(2),1|->bv2(1)}),Goal) & eh(uchar_byte,%v0.(v0 : UCHAR | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128]),Goal) & eh(BYTE,_h,Goal) & eh(UCHAR,_h,Goal) & eh(USHORT,_h,Goal) & eh(BV16,_h,Goal);
+Operation(AssertionLemmas) & ff(0) & dd & eh(schar_uchar,_h,Goal) & eh(uchar_schar,_h,Goal) & eh(UCHAR,_h,Goal) & mp(Tac(RulesProBAssertionLemmas_1)) & mp(Tac(RulesProBAssertionLemmas_54));
+Operation(AssertionLemmas) & ff(0) & eh(uchar_schar,_h,Goal) & eh(UCHAR,_h,Goal) & eh(SCHAR,_h,Goal) & pp(rt.0);
+Operation(AssertionLemmas) & ff(0) & dd & eh(uchar_schar,_h,Goal) & eh(UCHAR,_h,Goal) & pp(rt.0);
+Operation(AssertionLemmas) & ff(0) & dd & eh(uchar_schar,_h,Goal) & eh(UCHAR,_h,Goal) & eh(SCHAR,_h,Goal) & pp(rt.0);
+Operation(AssertionLemmas) & ff(0) & dd & eh(schar_uchar,_h,Goal) & eh(UCHAR,_h,Goal) & ah(ran({yy,xx | xx : 0..255 & yy : SCHAR & xx<=127 & yy = xx}) = 0..127 & ran({yy,xx | xx : 0..255 & yy : SCHAR & 128<=xx & (0 = -256+xx-yy & yy = xx-256)}) = 128..255) & eh(SCHAR,_h,Goal) & pp(rp.0) & eh(SCHAR,_h,Goal) & pp(rp.0) & pp(rp.0);
+Operation(AssertionLemmas) & ff(0) & dd & eh(byte_uchar,_h,Goal) & eh(BYTE,_h,Goal) & eh(UCHAR,_h,Goal) & mp(Tac(RulesProBAssertionLemmas_71));
+Operation(AssertionLemmas) & ff(0) & dd & eh(sshort_ushort,_h,Goal) & eh(SSHORT,_h,Goal) & eh(USHORT,_h,Goal) & ss & pp(rt.0);
+Operation(AssertionLemmas) & ff(0) & dd & eh(sshort_bv16,_h,Goal) & ss & pp(rt.0);
+Operation(AssertionLemmas) & ff(0) & dd & eh(byte_bv16,%(bv1,bv2).(bv1 : BYTE & bv2 : BYTE | {16|->bv1(8),15|->bv1(7),14|->bv1(6),13|->bv1(5),12|->bv1(4),11|->bv1(3),10|->bv1(2),9|->bv1(1),8|->bv2(8),7|->bv2(7),6|->bv2(6),5|->bv2(5),4|->bv2(4),3|->bv2(3),2|->bv2(2),1|->bv2(1)}),Goal) & ss & pp(rt.0);
+Operation(AssertionLemmas) & ff(0) & dd & eh(schar_byte,_h,Goal) & eh(SCHAR,_h,Goal) & ss & pp(rt.0);
+Operation(AssertionLemmas) & ff(0) & dd & eh(schar_uchar,_h,Goal) & eh(SCHAR,_h,Goal) & eh(UCHAR,_h,Goal) & ss & pp(rt.0);
+Operation(AssertionLemmas) & ff(0) & dd & eh(schar_uchar,_h,Goal) & eh(SCHAR,_h,Goal) & ss & pp(rt.0);
+Operation(AssertionLemmas) & ff(0) & dd & eh(schar_sshort,_h,Goal) & eh(SCHAR,_h,Goal) & eh(SSHORT,_h,Goal) & ah(%(w1,w2).(w1 : -128..127 & w2 : -128..127 | bv16_sshort(byte_bv16(schar_byte(w1),schar_byte(w2)))) : ( -128..127)*( -128..127) >->> -32768..32767) & pr(Tac(Rules)) & ar(SimplifyX.46,Goal);
+Operation(AssertionLemmas) & ff(0) & dd & pr & pp(rt.0);
+Operation(AssertionLemmas) & ff(0) & dd & eh(bv16_sshort,_h,Goal) & eh(BV16,_h,Goal) & eh(sshort_bv16,_h,Goal) & eh(SSHORT,_h,Goal) & pr(Tac(Rules));
+Operation(AssertionLemmas) & ff(0) & dd & ah(%v0.(v0 : -32768..32767 & 0<=v0 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128,v0 mod 512/256,v0 mod 1024/512,v0 mod 2048/1024,v0 mod 4096/2048,v0 mod 8192/4096,v0 mod 16384/8192,v0 mod 32768/16384,v0 mod 65536/32768])\/%v0.(v0 : -32768..32767 & not(0<=v0) | [(v0+65535+1) mod 2/1,(v0+65535+1) mod 4/2,(v0+65535+1) mod 8/4,(v0+65535+1) mod 16/8,(v0+65535+1) mod 32/16,(v0+65535+1) mod 64/32,(v0+65535+1) mod 128/64,(v0+65535+1) mod 256/128,(v0+65535+1) mod 512/256,(v0+65535+1) mod 1024/512,(v0+65535+1) mod 2048/1024,(v0+65535+1) mod 4096/2048,(v0+65535+1) mod 8192/4096,(v0+65535+1) mod 16384/8192,(v0+65535+1) mod 32768/16384,(v0+65535+1) mod 65536/32768]) : -32768..32767 >->> (1..16 --> {0,1})) & pr(Tac(Rules)) & eh(sshort_bv16,_h,Goal) & eh(BV16,_h,Goal) & eh(SSHORT,_h,Goal) & ar(SimplifyX.46,Goal);
+Operation(AssertionLemmas) & ff(0) & dd & ah(%v0.(v0 : 1..16 --> {0,1} | -32768*v0(16)+16384*v0(15)+8192*v0(14)+4096*v0(13)+2048*v0(12)+1024*v0(11)+512*v0(10)+256*v0(9)+128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+v0(1)) : 1..16 --> {0,1} >->> -32768..32767) & pr(Tac(Rules)) & eh(bv16_sshort,_h,Goal) & eh(BV16,_h,Goal) & eh(SSHORT,_h,Goal) & ar(SimplifyX.46,Goal);
+Operation(AssertionLemmas) & ff(0) & dd & eh(bv16_ushort,_h,Goal) & eh(ushort_bv16,_h,Goal) & eh(BV16,_h,Goal) & eh(USHORT,_h,Goal) & pr(Tac(Rules));
+Operation(AssertionLemmas) & ff(0) & dd & eh(ushort_bv16,_h,Goal) & eh(BV16,_h,Goal) & eh(USHORT,_h,Goal) & ah(%v0.(v0 : 0..65535 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128,v0 mod 512/256,v0 mod 1024/512,v0 mod 2048/1024,v0 mod 4096/2048,v0 mod 8192/4096,v0 mod 16384/8192,v0 mod 32768/16384,v0 mod 65536/32768]) : 0..65535 >->> (1..16 --> {0,1})) & pr(Tac(Rules)) & ar(SimplifyX.46,Goal);
+Operation(AssertionLemmas) & ff(0) & dd & eh(bv16_ushort,_h,Goal) & eh(USHORT,_h,Goal) & eh(BV16,_h,Goal) & ah(%v0.(v0 : 1..16 --> {0,1} | 32768*v0(16)+16384*v0(15)+8192*v0(14)+4096*v0(13)+2048*v0(12)+1024*v0(11)+512*v0(10)+256*v0(9)+128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)) : 1..16 --> {0,1} >->> 0..65535) & pr(Tac(Rules)) & ar(SimplifyX.46,Goal);
+Operation(AssertionLemmas) & ff(0) & dd & eh(byte_bv16,%(bv1,bv2).(bv1 : BYTE & bv2 : BYTE | {16|->bv1(8),15|->bv1(7),14|->bv1(6),13|->bv1(5),12|->bv1(4),11|->bv1(3),10|->bv1(2),9|->bv1(1),8|->bv2(8),7|->bv2(7),6|->bv2(6),5|->bv2(5),4|->bv2(4),3|->bv2(3),2|->bv2(2),1|->bv2(1)}),Goal) & eh(BYTE,_h,Goal) & eh(BV16,_h,Goal) & ah(%(bv1,bv2).(bv1 : 1..8 --> {0,1} & bv2 : 1..8 --> {0,1} | {16|->bv1(8),15|->bv1(7),14|->bv1(6),13|->bv1(5),12|->bv1(4),11|->bv1(3),10|->bv1(2),9|->bv1(1),8|->bv2(8),7|->bv2(7),6|->bv2(6),5|->bv2(5),4|->bv2(4),3|->bv2(3),2|->bv2(2),1|->bv2(1)}) : (1..8 --> {0,1})*(1..8 --> {0,1}) >->> (1..16 --> {0,1})) & pr(Tac(Rules)) & ar(SimplifyX.46,Goal);
+Operation(AssertionLemmas) & ff(0) & dd & eh(bv16_byte,_h,Goal) & eh(BV16,_h,Goal) & eh(BYTE,_h,Goal) & ah(%bv.(bv : 1..16 --> {0,1} | {8|->bv(16),7|->bv(15),6|->bv(14),5|->bv(13),4|->bv(12),3|->bv(11),2|->bv(10),1|->bv(9)},{8|->bv(8),7|->bv(7),6|->bv(6),5|->bv(5),4|->bv(4),3|->bv(3),2|->bv(2),1|->bv(1)}) : 1..16 --> {0,1} >->> (1..8 --> {0,1})*(1..8 --> {0,1})) & pr(Tac(Rules)) & ar(SimplifyX.46,Goal);
+Operation(AssertionLemmas) & ff(0) & dd & eh(byte_uchar,_h,Goal) & eh(uchar_byte,_h,Goal) & eh(BYTE,_h,Goal) & eh(UCHAR,_h,Goal) & pr(Tac(Rules));
+Operation(AssertionLemmas) & ff(0) & dd & eh(byte_uchar,_h,Goal) & eh(BYTE,_h,Goal) & pr;
+Operation(AssertionLemmas) & ff(0) & dd & eh(ushort_sshort,_h,Goal) & eh(USHORT,_h,Goal) & ss & pr & pp(rt.0);
+Operation(AssertionLemmas) & ff(0) & eh(sshort_ushort,_h,Goal) & eh(SSHORT,_h,Goal) & eh(USHORT,_h,Goal) & ss & pr & pp(rt.0);
+Operation(AssertionLemmas) & ff(0) & dd & eh(byte_schar,_h,Goal) & eh(schar_byte,_h,Goal) & eh(BYTE,_h,Goal) & eh(SCHAR,_h,Goal) & ss & pr(Tac(Rules));
+Operation(AssertionLemmas) & ff(0) & dd & eh(uchar_byte,%v0.(v0 : UCHAR | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128]),Goal) & ss & pr;
+Operation(AssertionLemmas) & ff(0) & eh(USHORT,_h,Goal) & eh(uchar_ushort,_h,Goal) & eh(UCHAR,_h,Goal) & ah(%(w1,w2).(w1 : 0..255 & w2 : 0..255 | bv16_ushort(byte_bv16(uchar_byte(w1),uchar_byte(w2)))) : (0..255)*(0..255) >->> 0..65535) & pr(Tac(Rules)) & ar(SimplifyX.46,Goal) & pr;
+Operation(AssertionLemmas) & ff(0) & dd & eh(uchar_byte,%v0.(v0 : UCHAR | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128]),Goal) & eh(UCHAR,_h,Goal) & eh(BYTE,_h,Goal) & ah(%v0.(v0 : 0..255 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128]) : 0..255 >->> (1..8 --> {0,1})) & pr(Tac(Rules)) & pr(Tac(SimplifyX));
+Operation(AssertionLemmas) & ff(0) & dd & eh(byte_uchar,_h,Goal) & eh(BYTE,_h,Goal) & eh(UCHAR,_h,Goal) & ah(%v0.(v0 : 1..8 --> {0,1} | 128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)) : 1..8 --> {0,1} >->> 0..255) & pr(Tac(Rules)) & pr;
+Operation(AssertionLemmas) & ff(0) & ah(%v0.(v0 : 0..255 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128]) : 0..255 >->> (1..8 --> {0,1})) & pr(Tac(Rules)) & eh(uchar_byte,_h,Goal) & eh(UCHAR,_h,Goal) & eh(BYTE,_h,Goal) & ar(SimplifyX.46,Goal) & ss & pr;
+Operation(AssertionLemmas) & ff(3) & eh(schar_byte,_h,Goal) & dd & ah(%v0.(v0 : -128..127 & 0<=v0 | [v0 mod 2,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128])\/%v0.(v0 : -128..127 & not(0<=v0) | [(256+v0) mod 2,(256+v0) mod 4/2,(256+v0) mod 8/4,(256+v0) mod 16/8,(256+v0) mod 32/16,(256+v0) mod 64/32,(256+v0) mod 128/64,(256+v0) mod 256/128]) : -128..127 >->> (1..8 --> {0,1})) & pr(Tac(Rules)) & eh(BYTE,_h,Goal) & eh(SCHAR,_h,Goal) & ar(SimplifyX.46,Goal);
+Operation(AssertionLemmas) & ff(3) & eh(byte_schar,_h,Goal) & dd & ah(%v0.(v0 : 1..8 --> {0,1} | -(128*v0(8))+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+v0(1)) : 1..8 --> {0,1} >->> -128..127) & pr(Tac(Rules)) & eh(BYTE,_h,Goal) & eh(SCHAR,_h,Goal) & ar(SimplifyX.46,Goal);
+Operation(AssertionLemmas) & ff(3) & eh(byte_schar,_h,Goal) & dd & ah(%v0.(v0 : 1..8 --> {0,1} | -(128*v0(8))+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+v0(1)) : 1..8 --> {0,1} >->> -128..127) & pr(Tac(Rules)) & pr(Tac(SimplifyX))*/
+END
+&
+
+
+THEORY Rules IS
+
+/**
+Test applying a lot of proof obligations.
+
+*/
+
+
+/**
+* @ schar_byte: SCHAR >->> BYTE - verified by Eval (ProB)
+* */
+%v0.(v0: -128..127 & 0<=v0 | [v0 mod 2,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128])\/%v0.(v0: -128..127 & not(0<=v0) | [(256+v0) mod 2,(256+v0) mod 4/2,(256+v0) mod 8/4,(256+v0) mod 16/8,(256+v0) mod 32/16,(256+v0) mod 64/32,(256+v0) mod 128/64,(256+v0) mod 256/128]): -128..127 >->> (1..8 --> {0,1})== btrue;    
+ 
+   
+/**
+* @ byte_schar: BYTE >->> SCHAR - verified by Eval (ProB)
+* */     
+%v0.(v0: 1..8 --> {0,1} | -(128*v0(8))+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+v0(1)): 1..8 --> {0,1} >->> -128..127== btrue;    
+
+/*
+This rule checks the inverse functions  byte_schar = schar_byte~ - verified by Eval (ProB)
+*/
+%v0.(v0: {1,2,3,4,5,6,7,8} +-> {0,1} & dom(v0) = {1,2,3,4,5,6,7,8} | -(128*v0(8))+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+v0(1)) = (%v0.(v0: -128..127 & 0<=v0 | [v0 mod 2,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128]))~\/(%v0.(v0: -128..127 & not(0<=v0) | [(256+v0) mod 2,(256+v0) mod 4/2,(256+v0) mod 8/4,(256+v0) mod 16/8,(256+v0) mod 32/16,(256+v0) mod 64/32,(256+v0) mod 128/64,(256+v0) mod 256/128]))~ == btrue;
+
+/*
+ 	It was not need
+	schar_uchar : SCHAR >->> UCHAR
+	uchar_schar : UCHAR >->> SCHAR
+*/
+
+
+/*
+This rule checks the inverse functions  - schar_uchar = uchar_schar~ - verified by Eval (ProB)
+*/
+%v1.(v1: 0..127 | v1)\/%v1.(v1: -128.. -1 | v1+256) = (%v1.(v1: 0..255 & v1<=127 | v1) \/ %v1.(v1: 0..255 & not(v1<=127) | v1-256))~== btrue;
+ 
+ 
+/**
+* @ uchar_byte : UCHAR >->> BYTE - verified by Eval (ProB)
+**/
+%v0.(v0: 0..255 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128]): 0..255 >->> (1..8 --> {0,1}) == btrue;
+/*
+byte_uchar : BYTE >->> UCHAR - verified by Eval (ProB)
+*/
+%v0.(v0: 1..8 --> {0,1} | 128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)): (1..8 --> {0,1}) >->> 0..255 == btrue;
+/*
+This rule checks the inverse functions byte_uchar = uchar_byte~ - verified by Eval (ProB)
+*/
+%v0.(v0: 1..8 --> {0,1} | 128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)) = (%v0.(v0: 0..255 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128]))~ == btrue
+
+
+END &
+    
+THEORY Finite_Rules IS
+    
+/*
+This rule checks  ushort_bv16: FIN(ushort_bv16) - verified by Eval (ProB)
+*/ 
+%v0.(v0: 0..65535 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128,v0 mod 512/256,v0 mod 1024/512,v0 mod 2048/1024,v0 mod 4096/2048,v0 mod 8192/4096,v0 mod 16384/8192,v0 mod 32768/16384,v0 mod 65536/32768]): FIN(%v0.(v0: 0..65535 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128,v0 mod 512/256,v0 mod 1024/512,v0 mod 2048/1024,v0 mod 4096/2048,v0 mod 8192/4096,v0 mod 16384/8192,v0 mod 32768/16384,v0 mod 65536/32768]))== btrue;
+    
+
+    
+    
+/*
+This rule checks   bv16_ushort: FIN(bv16_ushort) - verified by Eval (ProB)
+*/
+%v0.(v0: 1..16 --> {0,1} | 32768*v0(16)+16384*v0(15)+8192*v0(14)+4096*v0(13)+2048*v0(12)+1024*v0(11)+512*v0(10)+256*v0(9)+128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)): FIN(%v0.(v0: 1..16 --> {0,1} | 32768*v0(16)+16384*v0(15)+8192*v0(14)+4096*v0(13)+2048*v0(12)+1024*v0(11)+512*v0(10)+256*v0(9)+128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)))== btrue;
+    
+    
+    
+/*
+This rule checks  uchar_byte: FIN(uchar_byte) - verified by Eval (ProB)
+*/
+%v0.(v0: 0..255 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128]): FIN(%v0.(v0: 0..255 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128])) == btrue;
+
+        
+/*
+This rule checks byte_uchar: FIN(byte_uchar) - verified by Eval (ProB)
+*/
+%v0.(v0: 1..8 --> {0,1} | 128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)): FIN(%v0.(v0: 1..8 --> {0,1} | 128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1))) == btrue
+  
+    
+END  &
+
+THEORY User_Pass IS
+Pattern(a = (b)~) & ff(0) & dd & eh(sshort_ushort,_h,Goal) & eh(ushort_sshort,_h,Goal) & eh(SSHORT,_h,Goal) & eh(USHORT,_h,Goal) & mp(Tac(RulesProBAssertionLemmas_1));
+Pattern(a: b +-> c) & ff(0) & eh(ushort_sshort,_h,Goal) & eh(USHORT,_h,Goal) & dd & eh(SSHORT,_h,Goal) & pp(rt.0);
+Pattern((a)~: b +-> c) & ff(0) & eh(SSHORT,_h,Goal) & eh(USHORT,_h,Goal) & dd & eh(ushort_sshort,_h,Goal) & eh(USHORT,_h,Goal) & mp(Tac(RulesProBAssertionLemmas_3));
+Pattern(ran(a) = b) & ff(0) & dd & eh(ushort_sshort,_h,Goal) & eh(USHORT,_h,Goal) & eh(SSHORT,_h,Goal) & mp(Tac(RulesProBAssertionLemmas_5));
+Pattern(dom(a) = b) & ff(0) & dd & eh(sshort_ushort,_h,Goal) & eh(SSHORT,_h,Goal) & pp(rt.0);
+Pattern(dom(a) = b) & ff(0) & pr;
+Pattern(dom(a) = b*b) & ff(0) & dd & eh(uchar_ushort,_h,Goal) & pp(rt.0);
+Pattern(a = (b)~) & ff(0) & pr;
+Pattern(ran(a) = b) & ff(0) & pr;
+Pattern(a = (b)~) & ff(0) & dd & eh(schar_uchar,_h,Goal) & eh(uchar_schar,_h,Goal) & eh(UCHAR,_h,Goal) & mp(Tac(RulesProBAssertionLemmas_1)) & mp(Tac(RulesProBAssertionLemmas_54));
+Pattern(a: b +-> c) & ff(0) & eh(uchar_schar,_h,Goal) & eh(UCHAR,_h,Goal) & eh(SCHAR,_h,Goal) & pp(rt.0);
+Pattern((a)~: b +-> c) & ff(0) & eh(uchar_schar,_h,Goal) & eh(UCHAR,_h,Goal) & eh(SCHAR,_h,Goal) & pp(rt.0);
+Pattern(dom(a) = b) & ff(0) & dd & eh(uchar_schar,_h,Goal) & eh(UCHAR,_h,Goal) & pp(rt.0);
+Pattern(ran(a) = b) & ff(0) & dd & eh(uchar_schar,_h,Goal) & eh(UCHAR,_h,Goal) & eh(SCHAR,_h,Goal) & pp(rt.0);
+Pattern(ran(a) = b) & ff(0) & dd & eh(schar_uchar,_h,Goal) & eh(UCHAR,_h,Goal) & ah(ran({yy,xx | xx: 0..255 & yy: SCHAR & xx<=127 & yy = xx}) = 0..127 & ran({yy,xx | xx: 0..255 & yy: SCHAR & 128<=xx & (0 = -(256)+xx-yy & yy = xx-256)}) = 128..255) & eh(SCHAR,_h,Goal) & pp(rp.0) & eh(SCHAR,_h,Goal) & pp(rp.0) & pp(rp.0);
+Pattern(ran(a) = b) & ff(0) & dd & eh(byte_uchar,_h,Goal) & eh(BYTE,_h,Goal) & eh(UCHAR,_h,Goal) & mp(Tac(RulesProBAssertionLemmas_71));
+Pattern(a: b +-> c) & ff(0) & dd & eh(sshort_ushort,_h,Goal) & eh(SSHORT,_h,Goal) & eh(USHORT,_h,Goal) & ss & pp(rt.0);
+Pattern((a)~: b +-> c) & ff(0) & dd & eh(sshort_ushort,_h,Goal) & eh(SSHORT,_h,Goal) & eh(USHORT,_h,Goal) & ss & pp(rt.0);
+Pattern(dom(a) = b) & ff(0) & dd & eh(sshort_bv16,_h,Goal) & ss & pp(rt.0);
+Pattern(dom(a) = b*b) & ff(0) & dd & eh(byte_bv16,%(bv1,bv2).(bv1: BYTE & bv2: BYTE | {16|->bv1(8),15|->bv1(7),14|->bv1(6),13|->bv1(5),12|->bv1(4),11|->bv1(3),10|->bv1(2),9|->bv1(1),8|->bv2(8),7|->bv2(7),6|->bv2(6),5|->bv2(5),4|->bv2(4),3|->bv2(3),2|->bv2(2),1|->bv2(1)}),Goal) & ss & pp(rt.0);
+Pattern(dom(a) = b) & ff(0) & dd & eh(schar_byte,_h,Goal) & eh(SCHAR,_h,Goal) & ss & pp(rt.0);
+Pattern(a: b +-> c) & ff(0) & dd & eh(schar_uchar,_h,Goal) & eh(SCHAR,_h,Goal) & eh(UCHAR,_h,Goal) & ss & pp(rt.0);
+Pattern((a)~: b +-> c) & ff(0) & dd & eh(schar_uchar,_h,Goal) & eh(SCHAR,_h,Goal) & eh(UCHAR,_h,Goal) & ss & pp(rt.0);
+Pattern(dom(a) = b) & ff(0) & dd & eh(schar_uchar,_h,Goal) & eh(SCHAR,_h,Goal) & ss & pp(rt.0);
+Pattern(a: b*b +-> c) & ff(0) & dd & eh(schar_sshort,_h,Goal) & eh(SCHAR,_h,Goal) & eh(SSHORT,_h,Goal) & ah(%(w1,w2).(w1: -(128)..127 & w2: -(128)..127 | bv16_sshort(byte_bv16(schar_byte(w1),schar_byte(w2)))): (-(128)..127)*(-(128)..127) >->> -(32768)..32767) & pr(Tac(Rules)) & ar(SimplifyX.46,Goal);
+Pattern((a)~: b +-> c*c) & ff(0) & dd & eh(schar_sshort,_h,Goal) & eh(SCHAR,_h,Goal) & eh(SSHORT,_h,Goal) & ah(%(w1,w2).(w1: -(128)..127 & w2: -(128)..127 | bv16_sshort(byte_bv16(schar_byte(w1),schar_byte(w2)))): (-(128)..127)*(-(128)..127) >->> -(32768)..32767) & pr(Tac(Rules)) & ar(SimplifyX.46,Goal);
+Pattern(dom(a) = b*b) & ff(0) & dd & pr & pp(rt.0);
+Pattern(ran(a) = b) & ff(0) & dd & eh(schar_sshort,_h,Goal) & eh(SCHAR,_h,Goal) & eh(SSHORT,_h,Goal) & ah(%(w1,w2).(w1: -(128)..127 & w2: -(128)..127 | bv16_sshort(byte_bv16(schar_byte(w1),schar_byte(w2)))): (-(128)..127)*(-(128)..127) >->> -(32768)..32767) & pr(Tac(Rules)) & ar(SimplifyX.46,Goal);
+Pattern(a = (b)~) & ff(0) & dd & eh(bv16_sshort,_h,Goal) & eh(BV16,_h,Goal) & eh(sshort_bv16,_h,Goal) & eh(SSHORT,_h,Goal) & pr(Tac(Rules));
+Pattern(a: b +-> c) & ff(0) & dd & ah(%v0.(v0: -(32768)..32767 & 0<=v0 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128,v0 mod 512/256,v0 mod 1024/512,v0 mod 2048/1024,v0 mod 4096/2048,v0 mod 8192/4096,v0 mod 16384/8192,v0 mod 32768/16384,v0 mod 65536/32768])\/%v0.(v0: -(32768)..32767 & not(0<=v0) | [(v0+65535+1) mod 2/1,(v0+65535+1) mod 4/2,(v0+65535+1) mod 8/4,(v0+65535+1) mod 16/8,(v0+65535+1) mod 32/16,(v0+65535+1) mod 64/32,(v0+65535+1) mod 128/64,(v0+65535+1) mod 256/128,(v0+65535+1) mod 512/256,(v0+65535+1) mod 1024/512,(v0+65535+1) mod 2048/1024,(v0+65535+1) mod 4096/2048,(v0+65535+1) mod 8192/4096,(v0+65535+1) mod 16384/8192,(v0+65535+1) mod 32768/16384,(v0+65535+1) mod 65536/32768]): -(32768)..32767 >->> (1..16 --> {0,1})) & pr(Tac(Rules)) & eh(sshort_bv16,_h,Goal) & eh(BV16,_h,Goal) & eh(SSHORT,_h,Goal) & ar(SimplifyX.46,Goal);
+Pattern((a)~: b +-> c) & ff(0) & dd & ah(%v0.(v0: -(32768)..32767 & 0<=v0 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128,v0 mod 512/256,v0 mod 1024/512,v0 mod 2048/1024,v0 mod 4096/2048,v0 mod 8192/4096,v0 mod 16384/8192,v0 mod 32768/16384,v0 mod 65536/32768])\/%v0.(v0: -(32768)..32767 & not(0<=v0) | [(v0+65535+1) mod 2/1,(v0+65535+1) mod 4/2,(v0+65535+1) mod 8/4,(v0+65535+1) mod 16/8,(v0+65535+1) mod 32/16,(v0+65535+1) mod 64/32,(v0+65535+1) mod 128/64,(v0+65535+1) mod 256/128,(v0+65535+1) mod 512/256,(v0+65535+1) mod 1024/512,(v0+65535+1) mod 2048/1024,(v0+65535+1) mod 4096/2048,(v0+65535+1) mod 8192/4096,(v0+65535+1) mod 16384/8192,(v0+65535+1) mod 32768/16384,(v0+65535+1) mod 65536/32768]): -(32768)..32767 >->> (1..16 --> {0,1})) & pr(Tac(Rules)) & eh(sshort_bv16,_h,Goal) & eh(BV16,_h,Goal) & eh(SSHORT,_h,Goal) & ar(SimplifyX.46,Goal);
+Pattern(ran(a) = b) & ff(0) & dd & ah(%v0.(v0: -(32768)..32767 & 0<=v0 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128,v0 mod 512/256,v0 mod 1024/512,v0 mod 2048/1024,v0 mod 4096/2048,v0 mod 8192/4096,v0 mod 16384/8192,v0 mod 32768/16384,v0 mod 65536/32768])\/%v0.(v0: -(32768)..32767 & not(0<=v0) | [(v0+65535+1) mod 2/1,(v0+65535+1) mod 4/2,(v0+65535+1) mod 8/4,(v0+65535+1) mod 16/8,(v0+65535+1) mod 32/16,(v0+65535+1) mod 64/32,(v0+65535+1) mod 128/64,(v0+65535+1) mod 256/128,(v0+65535+1) mod 512/256,(v0+65535+1) mod 1024/512,(v0+65535+1) mod 2048/1024,(v0+65535+1) mod 4096/2048,(v0+65535+1) mod 8192/4096,(v0+65535+1) mod 16384/8192,(v0+65535+1) mod 32768/16384,(v0+65535+1) mod 65536/32768]): -(32768)..32767 >->> (1..16 --> {0,1})) & pr(Tac(Rules)) & eh(sshort_bv16,_h,Goal) & eh(BV16,_h,Goal) & eh(SSHORT,_h,Goal) & ar(SimplifyX.46,Goal);
+Pattern(a: b +-> c) & ff(0) & dd & ah(%v0.(v0: 1..16 --> {0,1} | -(32768)*v0(16)+16384*v0(15)+8192*v0(14)+4096*v0(13)+2048*v0(12)+1024*v0(11)+512*v0(10)+256*v0(9)+128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+v0(1)): 1..16 --> {0,1} >->> -(32768)..32767) & pr(Tac(Rules)) & eh(bv16_sshort,_h,Goal) & eh(BV16,_h,Goal) & eh(SSHORT,_h,Goal) & ar(SimplifyX.46,Goal);
+Pattern((a)~: b +-> c) & ff(0) & dd & ah(%v0.(v0: 1..16 --> {0,1} | -(32768)*v0(16)+16384*v0(15)+8192*v0(14)+4096*v0(13)+2048*v0(12)+1024*v0(11)+512*v0(10)+256*v0(9)+128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+v0(1)): 1..16 --> {0,1} >->> -(32768)..32767) & pr(Tac(Rules)) & eh(bv16_sshort,_h,Goal) & eh(BV16,_h,Goal) & eh(SSHORT,_h,Goal) & ar(SimplifyX.46,Goal);
+Pattern(ran(a) = b) & ff(0) & dd & ah(%v0.(v0: 1..16 --> {0,1} | -(32768)*v0(16)+16384*v0(15)+8192*v0(14)+4096*v0(13)+2048*v0(12)+1024*v0(11)+512*v0(10)+256*v0(9)+128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+v0(1)): 1..16 --> {0,1} >->> -(32768)..32767) & pr(Tac(Rules)) & eh(bv16_sshort,_h,Goal) & eh(BV16,_h,Goal) & eh(SSHORT,_h,Goal) & ar(SimplifyX.46,Goal);
+Pattern(a = (b)~) & ff(0) & dd & eh(bv16_ushort,_h,Goal) & eh(ushort_bv16,_h,Goal) & eh(BV16,_h,Goal) & eh(USHORT,_h,Goal) & pr(Tac(Rules));
+Pattern(a: b +-> c) & ff(0) & dd & eh(ushort_bv16,_h,Goal) & eh(BV16,_h,Goal) & eh(USHORT,_h,Goal) & ah(%v0.(v0: 0..65535 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128,v0 mod 512/256,v0 mod 1024/512,v0 mod 2048/1024,v0 mod 4096/2048,v0 mod 8192/4096,v0 mod 16384/8192,v0 mod 32768/16384,v0 mod 65536/32768]): 0..65535 >->> (1..16 --> {0,1})) & pr(Tac(Rules)) & ar(SimplifyX.46,Goal);
+Pattern((a)~: b +-> c) & ff(0) & dd & eh(ushort_bv16,_h,Goal) & eh(BV16,_h,Goal) & eh(USHORT,_h,Goal) & ah(%v0.(v0: 0..65535 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128,v0 mod 512/256,v0 mod 1024/512,v0 mod 2048/1024,v0 mod 4096/2048,v0 mod 8192/4096,v0 mod 16384/8192,v0 mod 32768/16384,v0 mod 65536/32768]): 0..65535 >->> (1..16 --> {0,1})) & pr(Tac(Rules)) & ar(SimplifyX.46,Goal);
+Pattern(ran(a) = b) & ff(0) & dd & eh(ushort_bv16,_h,Goal) & eh(BV16,_h,Goal) & eh(USHORT,_h,Goal) & ah(%v0.(v0: 0..65535 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128,v0 mod 512/256,v0 mod 1024/512,v0 mod 2048/1024,v0 mod 4096/2048,v0 mod 8192/4096,v0 mod 16384/8192,v0 mod 32768/16384,v0 mod 65536/32768]): 0..65535 >->> (1..16 --> {0,1})) & pr(Tac(Rules)) & ar(SimplifyX.46,Goal);
+Pattern(a: b +-> c) & ff(0) & dd & eh(bv16_ushort,_h,Goal) & eh(USHORT,_h,Goal) & eh(BV16,_h,Goal) & ah(%v0.(v0: 1..16 --> {0,1} | 32768*v0(16)+16384*v0(15)+8192*v0(14)+4096*v0(13)+2048*v0(12)+1024*v0(11)+512*v0(10)+256*v0(9)+128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)): 1..16 --> {0,1} >->> 0..65535) & pr(Tac(Rules)) & ar(SimplifyX.46,Goal);
+Pattern((a)~: b +-> c) & ff(0) & dd & eh(bv16_ushort,_h,Goal) & eh(USHORT,_h,Goal) & eh(BV16,_h,Goal) & ah(%v0.(v0: 1..16 --> {0,1} | 32768*v0(16)+16384*v0(15)+8192*v0(14)+4096*v0(13)+2048*v0(12)+1024*v0(11)+512*v0(10)+256*v0(9)+128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)): 1..16 --> {0,1} >->> 0..65535) & pr(Tac(Rules)) & ar(SimplifyX.46,Goal);
+Pattern(ran(a) = b) & ff(0) & dd & eh(bv16_ushort,_h,Goal) & eh(USHORT,_h,Goal) & eh(BV16,_h,Goal) & ah(%v0.(v0: 1..16 --> {0,1} | 32768*v0(16)+16384*v0(15)+8192*v0(14)+4096*v0(13)+2048*v0(12)+1024*v0(11)+512*v0(10)+256*v0(9)+128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)): 1..16 --> {0,1} >->> 0..65535) & pr(Tac(Rules)) & ar(SimplifyX.46,Goal);
+Pattern(a: b*b +-> c) & ff(0) & dd & eh(byte_bv16,%(bv1,bv2).(bv1: BYTE & bv2: BYTE | {16|->bv1(8),15|->bv1(7),14|->bv1(6),13|->bv1(5),12|->bv1(4),11|->bv1(3),10|->bv1(2),9|->bv1(1),8|->bv2(8),7|->bv2(7),6|->bv2(6),5|->bv2(5),4|->bv2(4),3|->bv2(3),2|->bv2(2),1|->bv2(1)}),Goal) & eh(BYTE,_h,Goal) & eh(BV16,_h,Goal) & ah(%(bv1,bv2).(bv1: 1..8 --> {0,1} & bv2: 1..8 --> {0,1} | {16|->bv1(8),15|->bv1(7),14|->bv1(6),13|->bv1(5),12|->bv1(4),11|->bv1(3),10|->bv1(2),9|->bv1(1),8|->bv2(8),7|->bv2(7),6|->bv2(6),5|->bv2(5),4|->bv2(4),3|->bv2(3),2|->bv2(2),1|->bv2(1)}): (1..8 --> {0,1})*(1..8 --> {0,1}) >->> (1..16 --> {0,1})) & pr(Tac(Rules)) & ar(SimplifyX.46,Goal);
+Pattern((a)~: b +-> c*c) & ff(0) & dd & eh(byte_bv16,%(bv1,bv2).(bv1: BYTE & bv2: BYTE | {16|->bv1(8),15|->bv1(7),14|->bv1(6),13|->bv1(5),12|->bv1(4),11|->bv1(3),10|->bv1(2),9|->bv1(1),8|->bv2(8),7|->bv2(7),6|->bv2(6),5|->bv2(5),4|->bv2(4),3|->bv2(3),2|->bv2(2),1|->bv2(1)}),Goal) & eh(BYTE,_h,Goal) & eh(BV16,_h,Goal) & ah(%(bv1,bv2).(bv1: 1..8 --> {0,1} & bv2: 1..8 --> {0,1} | {16|->bv1(8),15|->bv1(7),14|->bv1(6),13|->bv1(5),12|->bv1(4),11|->bv1(3),10|->bv1(2),9|->bv1(1),8|->bv2(8),7|->bv2(7),6|->bv2(6),5|->bv2(5),4|->bv2(4),3|->bv2(3),2|->bv2(2),1|->bv2(1)}): (1..8 --> {0,1})*(1..8 --> {0,1}) >->> (1..16 --> {0,1})) & pr(Tac(Rules)) & ar(SimplifyX.46,Goal);
+Pattern(a: b +-> c*c) & ff(0) & dd & eh(bv16_byte,_h,Goal) & eh(BV16,_h,Goal) & eh(BYTE,_h,Goal) & ah(%bv.(bv: 1..16 --> {0,1} | {8|->bv(16),7|->bv(15),6|->bv(14),5|->bv(13),4|->bv(12),3|->bv(11),2|->bv(10),1|->bv(9)},{8|->bv(8),7|->bv(7),6|->bv(6),5|->bv(5),4|->bv(4),3|->bv(3),2|->bv(2),1|->bv(1)}): 1..16 --> {0,1} >->> (1..8 --> {0,1})*(1..8 --> {0,1})) & pr(Tac(Rules)) & ar(SimplifyX.46,Goal);
+Pattern((a)~: b*b +-> c) & ff(0) & dd & eh(bv16_byte,_h,Goal) & eh(BV16,_h,Goal) & eh(BYTE,_h,Goal) & ah(%bv.(bv: 1..16 --> {0,1} | {8|->bv(16),7|->bv(15),6|->bv(14),5|->bv(13),4|->bv(12),3|->bv(11),2|->bv(10),1|->bv(9)},{8|->bv(8),7|->bv(7),6|->bv(6),5|->bv(5),4|->bv(4),3|->bv(3),2|->bv(2),1|->bv(1)}): 1..16 --> {0,1} >->> (1..8 --> {0,1})*(1..8 --> {0,1})) & pr(Tac(Rules)) & ar(SimplifyX.46,Goal);
+Pattern(ran(a) = b*b) & ff(0) & dd & eh(bv16_byte,_h,Goal) & eh(BV16,_h,Goal) & eh(BYTE,_h,Goal) & ah(%bv.(bv: 1..16 --> {0,1} | {8|->bv(16),7|->bv(15),6|->bv(14),5|->bv(13),4|->bv(12),3|->bv(11),2|->bv(10),1|->bv(9)},{8|->bv(8),7|->bv(7),6|->bv(6),5|->bv(5),4|->bv(4),3|->bv(3),2|->bv(2),1|->bv(1)}): 1..16 --> {0,1} >->> (1..8 --> {0,1})*(1..8 --> {0,1})) & pr(Tac(Rules)) & ar(SimplifyX.46,Goal);
+Pattern(a = (b)~) & ff(0) & dd & eh(byte_uchar,_h,Goal) & eh(uchar_byte,_h,Goal) & eh(BYTE,_h,Goal) & eh(UCHAR,_h,Goal) & pr(Tac(Rules));
+Pattern(dom(a) = b) & ff(0) & dd & eh(byte_uchar,_h,Goal) & eh(BYTE,_h,Goal) & pr;
+Pattern(dom(a) = b) & ff(0) & dd & eh(ushort_sshort,_h,Goal) & eh(USHORT,_h,Goal) & ss & pr & pp(rt.0);
+Pattern(ran(a) = b) & ff(0) & eh(sshort_ushort,_h,Goal) & eh(SSHORT,_h,Goal) & eh(USHORT,_h,Goal) & ss & pr & pp(rt.0);
+Pattern(a = (b)~) & ff(0) & dd & eh(byte_schar,_h,Goal) & eh(schar_byte,_h,Goal) & eh(BYTE,_h,Goal) & eh(SCHAR,_h,Goal) & ss & pr(Tac(Rules));
+Pattern(dom(a) = b) & ff(0) & dd & eh(uchar_byte,%v0.(v0: UCHAR | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128]),Goal) & ss & pr;
+Pattern(a: b*b +-> c) & ff(0) & eh(USHORT,_h,Goal) & eh(uchar_ushort,_h,Goal) & eh(UCHAR,_h,Goal) & ah(%(w1,w2).(w1: 0..255 & w2: 0..255 | bv16_ushort(byte_bv16(uchar_byte(w1),uchar_byte(w2)))): (0..255)*(0..255) >->> 0..65535) & pr(Tac(Rules)) & ar(SimplifyX.46,Goal) & pr;
+Pattern((a)~: b +-> c*c) & ff(0) & eh(USHORT,_h,Goal) & eh(uchar_ushort,_h,Goal) & eh(UCHAR,_h,Goal) & ah(%(w1,w2).(w1: 0..255 & w2: 0..255 | bv16_ushort(byte_bv16(uchar_byte(w1),uchar_byte(w2)))): (0..255)*(0..255) >->> 0..65535) & pr(Tac(Rules)) & ar(SimplifyX.46,Goal) & pr;
+Pattern(ran(a) = b) & ff(0) & eh(USHORT,_h,Goal) & eh(uchar_ushort,_h,Goal) & eh(UCHAR,_h,Goal) & ah(%(w1,w2).(w1: 0..255 & w2: 0..255 | bv16_ushort(byte_bv16(uchar_byte(w1),uchar_byte(w2)))): (0..255)*(0..255) >->> 0..65535) & pr(Tac(Rules)) & ar(SimplifyX.46,Goal) & pr;
+Pattern(a: b +-> c) & ff(0) & dd & eh(uchar_byte,%v0.(v0: UCHAR | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128]),Goal) & eh(UCHAR,_h,Goal) & eh(BYTE,_h,Goal) & ah(%v0.(v0: 0..255 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128]): 0..255 >->> (1..8 --> {0,1})) & pr(Tac(Rules)) & pr(Tac(SimplifyX));
+Pattern((a)~: b +-> c) & ff(0) & dd & eh(uchar_byte,%v0.(v0: UCHAR | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128]),Goal) & eh(UCHAR,_h,Goal) & eh(BYTE,_h,Goal) & ah(%v0.(v0: 0..255 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128]): 0..255 >->> (1..8 --> {0,1})) & pr(Tac(Rules)) & pr(Tac(SimplifyX));
+Pattern(a: b +-> c) & ff(0) & dd & eh(byte_uchar,_h,Goal) & eh(BYTE,_h,Goal) & eh(UCHAR,_h,Goal) & ah(%v0.(v0: 1..8 --> {0,1} | 128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)): 1..8 --> {0,1} >->> 0..255) & pr(Tac(Rules)) & pr;
+Pattern((a)~: b +-> c) & ff(0) & dd & eh(byte_uchar,_h,Goal) & eh(BYTE,_h,Goal) & eh(UCHAR,_h,Goal) & ah(%v0.(v0: 1..8 --> {0,1} | 128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)): 1..8 --> {0,1} >->> 0..255) & pr(Tac(Rules)) & pr;
+Pattern(ran(a) = b) & ff(0) & ah(%v0.(v0: 0..255 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128]): 0..255 >->> (1..8 --> {0,1})) & pr(Tac(Rules)) & eh(uchar_byte,_h,Goal) & eh(UCHAR,_h,Goal) & eh(BYTE,_h,Goal) & ar(SimplifyX.46,Goal) & ss & pr;
+Pattern(a: b +-> c) & ff(3) & eh(schar_byte,_h,Goal) & dd & ah(%v0.(v0: -(128)..127 & 0<=v0 | [v0 mod 2,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128])\/%v0.(v0: -(128)..127 & not(0<=v0) | [(256+v0) mod 2,(256+v0) mod 4/2,(256+v0) mod 8/4,(256+v0) mod 16/8,(256+v0) mod 32/16,(256+v0) mod 64/32,(256+v0) mod 128/64,(256+v0) mod 256/128]): -(128)..127 >->> (1..8 --> {0,1})) & pr(Tac(Rules)) & eh(BYTE,_h,Goal) & eh(SCHAR,_h,Goal) & ar(SimplifyX.46,Goal);
+Pattern((a)~: b +-> c) & ff(3) & eh(schar_byte,_h,Goal) & dd & ah(%v0.(v0: -(128)..127 & 0<=v0 | [v0 mod 2,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128])\/%v0.(v0: -(128)..127 & not(0<=v0) | [(256+v0) mod 2,(256+v0) mod 4/2,(256+v0) mod 8/4,(256+v0) mod 16/8,(256+v0) mod 32/16,(256+v0) mod 64/32,(256+v0) mod 128/64,(256+v0) mod 256/128]): -(128)..127 >->> (1..8 --> {0,1})) & pr(Tac(Rules)) & eh(BYTE,_h,Goal) & eh(SCHAR,_h,Goal) & ar(SimplifyX.46,Goal);
+Pattern(ran(a) = b) & ff(3) & eh(schar_byte,_h,Goal) & dd & ah(%v0.(v0: -(128)..127 & 0<=v0 | [v0 mod 2,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128])\/%v0.(v0: -(128)..127 & not(0<=v0) | [(256+v0) mod 2,(256+v0) mod 4/2,(256+v0) mod 8/4,(256+v0) mod 16/8,(256+v0) mod 32/16,(256+v0) mod 64/32,(256+v0) mod 128/64,(256+v0) mod 256/128]): -(128)..127 >->> (1..8 --> {0,1})) & pr(Tac(Rules)) & eh(BYTE,_h,Goal) & eh(SCHAR,_h,Goal) & ar(SimplifyX.46,Goal);
+Pattern(a: b +-> c) & ff(3) & eh(byte_schar,_h,Goal) & dd & ah(%v0.(v0: 1..8 --> {0,1} | -128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+v0(1)): 1..8 --> {0,1} >->> -(128)..127) & pr(Tac(Rules)) & eh(BYTE,_h,Goal) & eh(SCHAR,_h,Goal) & ar(SimplifyX.46,Goal);
+Pattern((a)~: b +-> c) & ff(3) & eh(byte_schar,_h,Goal) & dd & ah(%v0.(v0: 1..8 --> {0,1} | -128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+v0(1)): 1..8 --> {0,1} >->> -(128)..127) & pr(Tac(Rules)) & pr(Tac(SimplifyX));
+Pattern(ran(a) = b) & ff(3) & eh(byte_schar,_h,Goal) & dd & ah(%v0.(v0: 1..8 --> {0,1} | -128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+v0(1)): 1..8 --> {0,1} >->> -(128)..127) & pr(Tac(Rules)) & pr(Tac(SimplifyX))
+END
+&
+THEORY RulesProBAssertionLemmas_1 IS 
+
+
+	 /* Expression from AssertionLemmas.1, it was added  in Tue Jan 08 07:58:26 BRT 2013
+	  verified with ProB in 2493 milliseconds
+	  Module Path:/media/B_Resources/Z80_ProB/TYPES.mch */
+
+	  %v1.(v1: -32768..32767 & 0<=v1 | v1)\/%v1.(v1: -32768..32767 & not(0<=v1) | v1+65535+1) = (%v1.(v1: 0..65535 & v1<=32767 | v1)\/%v1.(v1: 0..65535 & not(v1<=32767) | v1-65535-1))~==btrue
+
+END
+
+&
+THEORY RulesProBAssertionLemmas_3 IS 
+
+
+	 /* Expression from AssertionLemmas.3, it was added  in Mon Jan 07 19:57:08 BRT 2013
+	  verified with ProB in 2111 milliseconds
+	  Module Path:/media/B_Resources/Z80_ProB/TYPES.mch */
+
+	  (%v1.(v1: 0..65535 & v1<=32767 | v1)\/%v1.(v1: 0..65535 & not(v1<=32767) | v1-65535-1))~: -32768..32767 +-> 0..65535==btrue
+
+END
+&
+THEORY RulesProBAssertionLemmas_5 IS 
+
+
+	 /* Expression from AssertionLemmas.5, it was added  in Mon Jan 07 19:57:47 BRT 2013
+	  verified with ProB in 2018 milliseconds
+	  Module Path:/media/B_Resources/Z80_ProB/TYPES.mch */
+
+	  ran(%v1.(v1: 0..65535 & v1<=32767 | v1)\/%v1.(v1: 0..65535 & not(v1<=32767) | v1-65535-1)) = -32768..32767==btrue
+
+END
+&
+THEORY RulesProBAssertionLemmas_54 IS 
+
+
+	 /* Expression from AssertionLemmas.54, it was added  in Tue Jan 08 08:01:32 BRT 2013
+	  verified with ProB in 951 milliseconds
+	  Module Path:/media/B_Resources/Z80_ProB/TYPES.mch */
+
+	  %v1.(v1: 0..127 | v1)\/%v1.(v1: -128.. -1 | v1+256) = (%v1.(v1: 0..255 & v1<=127 | v1))~\/(%v1.(v1: 0..255 & not(v1<=127) | v1-256))~==btrue
+
+END
+&
+THEORY RulesProBAssertionLemmas_11 IS 
+
+
+	 /* Expression from AssertionLemmas.11, it was added  in Fri Jun 07 14:49:43 BRT 2013
+	  verified with ProB in 17283 milliseconds
+	  Module Path:/media/B_Resources/Z80_ProB/TYPES.mch */
+
+	  btrue => schar_sshort~: SSHORT +-> SCHAR*SCHAR==btrue
+
+END
+&
+THEORY RulesProBexpressionName IS 
+
+
+	 /* Expression from expressionName, it was added  in Mon Jun 24 14:29:52 BRT 2013
+	  evaluated with ProB in 1000 milliseconds
+	  Module Path:/Users/valerio/git/BEval/src/test/resources/br/ufrn/forall/b2asm/bintegration/pos//TYPES.pmm */
+
+	 rule
+END
+&
+THEORY RulesProBexpressionName IS 
+
+
+	 /* Expression from expressionName, it was added  in Mon Jun 24 18:16:25 BRT 2013
+	  evaluated with ProB in 1000 milliseconds
+	  Module Path:/Users/valerio/git/BEval/src/test/resources/br/ufrn/forall/b2asm/bintegration/pos//TYPES.pmm */
+
+	 rule==btrue
+
+END
+&
+THEORY RulesProBexpressionName IS 
+
+
+	 /* Expression from expressionName, it was added  in Mon Jun 24 19:40:51 BRT 2013
+	  evaluated with ProB in 1000 milliseconds
+	  Module Path:/Users/valerio/git/BEval/src/test/resources/br/ufrn/forall/b2asm/bintegration/pos//TYPES.pmm */
+
+	 rule==btrue
+
+END

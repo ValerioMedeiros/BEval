@@ -1,0 +1,8 @@
+THEORY User_Pass IS
+Pattern(x => a: dom(b)) & ff(0) & dd & eh(dom(b),_h,Goal) & ss & pr/*
+Operation(Invariants) & Pattern(a: dom(b)) & ff(0) & dd & eh(dom(b),_h,Goal) & eh(UCHAR,_h,Goal) & ss & pr;
+
+Operation(update_levelSubstitution) & Pattern(a(b(c)): dom(d)) & ff(0) & dd & eh(dom(byte_uchar),_h,Goal) & ah(uchar_byte(c): BYTE) & ah(c: UCHAR) & eh(UCHAR,_h,Goal) & ss & pr & pp(rt.0) & ah(dom(io_ports$0) = BYTE & io_ports$0: BYTE +-> BYTE) & pr & pr & ar(SimplifyX) & pp(rt.0)*/
+
+
+END

@@ -1,0 +1,97 @@
+THEORY BIT_VECTOR IS
+/**
+* @ Check based in rule GenPredicateX.31
+**/
+		b: 1..8 +-> a &
+        dom(b) = 1..8 &
+        0<=8 
+=>
+        b: seq(a);
+
+/**
+*  GenPredicateX.31
+	(s: 1..n +-> a) &
+	(dom(s) = 1..n) &
+	(0<=n)
+	=>
+	(s: seq(a)) &
+	(size(s) = n);
+**/
+
+    
+/** Used to prove PO1 - BYTE: FIN(BYTE)
+* @ Tested   --- This set are finite. Look at its expansion in all possibilities: [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,1],...,[1,1,1,1,1,1,1,1]
+* @ The left and right side are finite sets then it is finite set
+**/
+    a>=1 &
+    a<=b &
+    b<=128
+=> a..b --> {0,1} : FIN(a..b --> {0,1})
+
+END &
+
+THEORY User_Pass IS
+Pattern(1: dom(w1)) & ff(0) & pr;
+Pattern(w1: dom(w1) +-> ran(w1)) & ff(0) & pr;
+Pattern(2: dom(w1)) & ff(0) & pr;
+Pattern(3: dom(w1)) & ff(0) & pr;
+Pattern(4: dom(w1)) & ff(0) & pr;
+Pattern(5: dom(w1)) & ff(0) & pr;
+Pattern(6: dom(w1)) & ff(0) & pr;
+Pattern(7: dom(w1)) & ff(0) & pr;
+Pattern(8: dom(w1)) & ff(0) & pr;
+Pattern(bool(w1(1) = w1(2) & w1(2) = w1(3) & w1(3) = w1(4) & w1(4) = w1(5) & w1(5) = w1(6) & w1(6) = w1(7) & w1(7) = w1(8) & w1(8) = 0): dom(bool_bit)) & ff(0) & pr;
+Pattern(bool_bit: dom(bool_bit) +-> ran(bool_bit)) & ff(0) & pr;
+Pattern(1: dom(bv)) & ff(0) & pr;
+Pattern(bv: dom(bv) +-> ran(bv)) & ff(0) & pr;
+Pattern(2: dom(bv)) & ff(0) & pr;
+Pattern(3: dom(bv)) & ff(0) & pr;
+Pattern(4: dom(bv)) & ff(0) & pr;
+Pattern(5: dom(bv)) & ff(0) & pr;
+Pattern(6: dom(bv)) & ff(0) & pr;
+Pattern(7: dom(bv)) & ff(0) & pr;
+Pattern(8: dom(bv)) & ff(0) & pr;
+Pattern(idx: dom(bt1)) & ff(0) & pr;
+Pattern(bt1: dom(bt1) +-> ran(bt1)) & ff(0) & pr;
+Pattern(idx: dom(bt2)) & ff(0) & pr;
+Pattern(bt2: dom(bt2) +-> ran(bt2)) & ff(0) & pr;
+Pattern(ii+1: dom(bt1)) & ff(0) & pr;
+Pattern(idx: dom(bt)) & ff(0) & pr;
+Pattern(bt: dom(bt) +-> ran(bt)) & ff(0) & pr;
+Pattern(bt(idx): dom(bit_not)) & ff(0) & pr;
+Pattern(5: dom(bt)) & ff(0) & pr;
+Pattern(6: dom(bt)) & ff(0) & pr;
+Pattern(7: dom(bt)) & ff(0) & pr;
+Pattern(8: dom(bt)) & ff(0) & pr;
+Pattern(1: dom(bt)) & ff(0) & pr;
+Pattern(2: dom(bt)) & ff(0) & pr;
+Pattern(3: dom(bt)) & ff(0) & pr;
+Pattern(4: dom(bt)) & ff(0) & pr;
+Pattern(8: dom(by)) & ff(0) & pr;
+Pattern(by: dom(by) +-> ran(by)) & ff(0) & pr;
+Pattern(7: dom(by)) & ff(0) & pr;
+Pattern(6: dom(by)) & ff(0) & pr;
+Pattern(5: dom(by)) & ff(0) & pr;
+Pattern(4: dom(by)) & ff(0) & pr;
+Pattern(3: dom(by)) & ff(0) & pr;
+Pattern(2: dom(by)) & ff(0) & pr;
+Pattern(1: dom(by)) & ff(0) & pr;
+Pattern(BYTE: FIN(BYTE)) & ff(0) & dd & eh(BYTE,_h,Goal) & eh(BYTE_INDEX,_h,Goal) & eh(BIT,_h,Goal) & pr(Tac(BIT_VECTOR));
+Pattern(bt: seq(ran(bt))) & ff(0) & dd & ah(bt: 1..8 +-> ran(bt) & dom(bt) = 1..8 & 0<=8 => bt: seq(ran(bt))) & pr(Tac(BIT_VECTOR)) & pr(Tac(BIT_VECTOR));
+Pattern(bt1(idx),bt2(idx): dom(bit_or)) & ff(0) & dd & eh(bit_or,_h,Goal) & ah(bt1: BYTE & bt2: BYTE) & pr & pr & eh(BYTE,_h,Goal) & eh(BYTE_INDEX,_h,Goal) & eh(BIT,_h,Goal) & dd & ah(bt1(idx): BIT) & ah(bt1: 1..8 --> {0,1}) & ah(idx: 1..8) & pr & dd & ah(bt2(idx): BIT) & ah(idx: 1..8 => bt2: 1..8 --> {0,1}) & pr & ah(bt1(idx): BIT) & ss & pr;
+Pattern(bt1(idx),bt2(idx): dom(bit_xor)) & ff(0) & dd & eh(bit_xor,_h,Goal) & ah(bt1: BYTE & bt2: BYTE) & pr & pr & eh(BYTE,_h,Goal) & eh(BYTE_INDEX,_h,Goal) & eh(BIT,_h,Goal) & dd & ah(bt1(idx): BIT) & ah(bt1: 1..8 --> {0,1}) & ah(idx: 1..8) & pr & dd & ah(bt2(idx): BIT) & ah(idx: 1..8 => bt2: 1..8 --> {0,1}) & pr & ah(bt1(idx): BIT) & ss & pr;
+Pattern(0<=bv(1)+bv(2)+bv(3)+bv(4)+bv(5)+bv(6)+bv(7)+bv(8)) & ff(0) & dd & ah(0<=bv(1) & 0<=bv(2) & 0<=bv(3) & 0<=bv(4) & 0<=bv(5) & 0<=bv(6) & 0<=bv(7) & 0<=bv(8)) & ah(bv: BYTE) & eh(BYTE,_h,Goal) & eh(BIT,_h,Goal) & eh(BYTE_INDEX,_h,Goal) & pr & ah(bv: BYTE) & eh(BYTE) & eh(BYTE_INDEX) & eh(BIT) & pr & ah(bv: BYTE) & eh(BYTE) & eh(BYTE_INDEX) & eh(BIT) & pr & ah(bv: BYTE) & eh(BYTE) & eh(BYTE_INDEX) & eh(BIT) & pr & ah(bv: BYTE) & eh(BYTE) & eh(BYTE_INDEX) & eh(BIT) & pr & ah(bv: BYTE) & eh(BYTE) & eh(BYTE_INDEX) & eh(BIT) & pr & ah(bv: BYTE) & eh(BYTE) & eh(BYTE_INDEX) & eh(BIT) & pr & ah(bv: BYTE) & eh(BYTE) & eh(BYTE_INDEX) & eh(BIT) & pr & pr;
+Pattern(bt1(idx),bt2(idx): dom(bit_and)) & ff(1) & dd & eh(bit_and,_h,Goal) & ah(bt1: BYTE & bt2: BYTE) & pr & pr & eh(BYTE,_h,Goal) & eh(BYTE_INDEX,_h,Goal) & eh(BIT,_h,Goal) & dd & ah(bt1(idx): BIT) & ah(bt1: 1..8 --> {0,1}) & ah(idx: 1..8) & pr & dd & ah(bt2(idx): BIT) & ah(idx: 1..8 => bt2: 1..8 --> {0,1}) & pr & ah(bt1(idx): BIT) & ss & pr;
+Pattern(b1: seq(ran(b1))) & ff(3) & dd & ah(b1: 1..8 +-> ran(b1) & dom(b1) = 1..8 & 0<=8 => b1: seq(ran(b1))) & pr(Tac(BIT_VECTOR)) & pr(Tac(BIT_VECTOR)) & ah(b1: BYTE) & eh(BYTE,_h,Goal) & pp(rt.1) & pr & pr
+END 
+    
+    
+    /*
+    Operation(Properties) & Pattern(BYTE: FIN(BYTE)) & ff(0) & dd & eh(BYTE,_h,Goal) & eh(BYTE_INDEX,_h,Goal) & eh(BIT,_h,Goal) & pr(Tac(BIT_VECTOR));
+Operation(Assertions) & Pattern(bt: seq(ran(bt))) & ff(0) & dd & ah(bt: 1..8 +-> ran(bt) & dom(bt) = 1..8 & 0<=8 => bt: seq(ran(bt))) & pr(Tac(BIT_VECTOR)) & pr(Tac(BIT_VECTOR));
+Operation(Properties) & Pattern(bt1(idx),bt2(idx): dom(bit_or)) & ff(0) & dd & eh(bit_or,_h,Goal) & ah(bt1: BYTE & bt2: BYTE) & pr & pr & eh(BYTE,_h,Goal) & eh(BYTE_INDEX,_h,Goal) & eh(BIT,_h,Goal) & dd & ah(bt1(idx): BIT) & ah(bt1: 1..8 --> {0,1}) & ah(idx: 1..8) & pr & dd & ah(bt2(idx): BIT) & ah(idx: 1..8 => bt2: 1..8 --> {0,1}) & pr & ah(bt1(idx): BIT) & ss & pr;
+Operation(Properties) & Pattern(bt1(idx),bt2(idx): dom(bit_xor)) & ff(0) & dd & eh(bit_xor,_h,Goal) & ah(bt1: BYTE & bt2: BYTE) & pr & pr & eh(BYTE,_h,Goal) & eh(BYTE_INDEX,_h,Goal) & eh(BIT,_h,Goal) & dd & ah(bt1(idx): BIT) & ah(bt1: 1..8 --> {0,1}) & ah(idx: 1..8) & pr & dd & ah(bt2(idx): BIT) & ah(idx: 1..8 => bt2: 1..8 --> {0,1}) & pr & ah(bt1(idx): BIT) & ss & pr;
+Operation(Properties) & Pattern(0<=bv(1)+bv(2)+bv(3)+bv(4)+bv(5)+bv(6)+bv(7)+bv(8)) & ff(0) & dd & ah(0<=bv(1) & 0<=bv(2) & 0<=bv(3) & 0<=bv(4) & 0<=bv(5) & 0<=bv(6) & 0<=bv(7) & 0<=bv(8)) & ah(bv: BYTE) & eh(BYTE,_h,Goal) & eh(BIT,_h,Goal) & eh(BYTE_INDEX,_h,Goal) & pr & ah(bv: BYTE) & eh(BYTE) & eh(BYTE_INDEX) & eh(BIT) & pr & ah(bv: BYTE) & eh(BYTE) & eh(BYTE_INDEX) & eh(BIT) & pr & ah(bv: BYTE) & eh(BYTE) & eh(BYTE_INDEX) & eh(BIT) & pr & ah(bv: BYTE) & eh(BYTE) & eh(BYTE_INDEX) & eh(BIT) & pr & ah(bv: BYTE) & eh(BYTE) & eh(BYTE_INDEX) & eh(BIT) & pr & ah(bv: BYTE) & eh(BYTE) & eh(BYTE_INDEX) & eh(BIT) & pr & ah(bv: BYTE) & eh(BYTE) & eh(BYTE_INDEX) & eh(BIT) & pr & pr;
+Operation(Properties) & Pattern(bt1(idx),bt2(idx): dom(bit_and)) & ff(1) & dd & eh(bit_and,_h,Goal) & ah(bt1: BYTE & bt2: BYTE) & pr & pr & eh(BYTE,_h,Goal) & eh(BYTE_INDEX,_h,Goal) & eh(BIT,_h,Goal) & dd & ah(bt1(idx): BIT) & ah(bt1: 1..8 --> {0,1}) & ah(idx: 1..8) & pr & dd & ah(bt2(idx): BIT) & ah(idx: 1..8 => bt2: 1..8 --> {0,1}) & pr & ah(bt1(idx): BIT) & ss & pr;
+Operation(Properties) & Pattern(b1: seq(ran(b1))) & ff(3) & dd & ah(b1: 1..8 +-> ran(b1) & dom(b1) = 1..8 & 0<=8 => b1: seq(ran(b1))) & pr(Tac(BIT_VECTOR)) & pr(Tac(BIT_VECTOR)) & ah(b1: BYTE) & eh(BYTE,_h,Goal) & pp(rt.1) & pr & pr
+    */

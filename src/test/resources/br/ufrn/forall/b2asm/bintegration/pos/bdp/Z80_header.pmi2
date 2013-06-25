@@ -1,0 +1,222 @@
+THEORY BalanceX IS
+  Z80_header,66,9,0,42,1,0,1;
+  InstanciatedConstraintsLemmas,0,0,0,0,0,0,0;
+  AssertionLemmas,61,8,0,40,1,0,0;
+  Initialisation,5,1,0,2,0,0,1
+END
+&
+THEORY ProofState IS
+  Unproved;
+  Unproved;
+  Unproved;
+  Unproved;
+  Proved(Util);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(Util);
+  Unproved;
+  Unproved;
+  Unproved;
+  Proved(Util);
+  Proved(Util);
+  Proved(Util);
+  Proved(Util);
+  Proved(Util);
+  Unproved;
+  Proved(Util);
+  Unproved;
+  Proved(0);
+  Proved(1);
+  Proved(0);
+  Unproved;
+  Proved(0);
+  Unproved;
+  Proved(0);
+  Unproved;
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(3);
+  Proved(0);
+  Proved(0);
+  Proved(Util);
+  Unproved
+END
+&
+THEORY MethodList IS
+  ?;
+  ?;
+  ?;
+  ?;
+  dd & eh(BYTE,_h,Goal) & ah(rgs8: id_reg_8 +-> BYTE) & eh(BYTE,_h,Goal) & eh(id_reg_8,_h,Goal) & pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  eh(update_refresh_reg,_h,Goal) & pr;
+  ?;
+  ?;
+  ?;
+  dd & ss & eh(dom(rgs8),_h,Goal) & ss & pr;
+  dd & pp(rt.0);
+  dd & ss & eh(dom(rgs8),_h,Goal) & ss & pr;
+  dd & pp(rt.0);
+  dd & ss & eh(dom(rgs8),_h,Goal) & ss & pr;
+  pr;
+  dd & ss & eh(dom(rgs8),_h,Goal) & ss & pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  dd & pr(Tac(Update_flag));
+  pr;
+  dd & pr(Tac(Update_flag));
+  pr;
+  dd & pr(Tac(Update_flag));
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  dd & eh(id_reg_8,_h,Goal) & ss & pr;
+  dd & eh(id_reg_8,_h,Goal) & eh(BYTE,_h,Goal) & ah([1,1,1,1,1,1,1,1]: 1..8 --> {0,1}) & pr & ae([1,1,1,1,1,1,1,1],aa) & dd & ss & mp & pr & pr & pr & pr & pr & pr & pr & pr & pr & pr & mp
+END
+&
+THEORY PassList IS
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(1),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(3),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?
+END
+&
+THEORY ManForms 
+END
+&
+THEORY Version IS
+  POVersion(V3.8.3)(CLT == "V3.7.6")(genOPO == KO,genDivergencePO == KO,local_op == OK);
+  PRVersion("V3.3.3.p39")(CLT == "V3.7.6");
+  PRVersion("svn")(CLT == "V4.0-9385")
+END

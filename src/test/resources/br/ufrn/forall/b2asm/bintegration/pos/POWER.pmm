@@ -1,0 +1,25 @@
+THEORY User_Pass IS
+Operation(AssertionLemmas) & ff(0) & pr(Tac(SimplifyIntPower))
+END
+    &
+THEORY SimplifyIntPower IS
+
+      /* rule SimplifyIntPower.1 */
+  binhyp (2 <= p)     &
+  blvar(Q) &
+  Q\(2 <= p)
+  =>
+  n ** p == n * (n ** (-1+p))
+
+      /* rule SimplifyIntPower.2 
+  btest (2 <= p)
+  =>
+  n ** p == n * (n ** (-1+p))*/
+
+  
+       /* rule SimplifyIntPower.3 
+  btest ((p mod 2)= 1 )
+  =>
+  (-n) ** p == -n * (n ** (-1+p))*/
+
+END

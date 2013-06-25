@@ -1,0 +1,42 @@
+THEORY BalanceX IS
+  Z80_general_simplified,6,0,0,5,0,0,0;
+  InstanciatedConstraintsLemmas,0,0,0,0,0,0,0;
+  Initialisation,5,0,0,4,0,0,0;
+  set_pc,1,0,0,1,0,0,0;
+  get_pc,0,0,0,0,0,0,0
+END
+&
+THEORY ProofState IS
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Unproved
+END
+&
+THEORY MethodList IS
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  ?
+END
+&
+THEORY PassList IS
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),(?;0)
+END
+&
+THEORY ManForms 
+END
+&
+THEORY Version IS
+  POVersion(V3.8.3)(CLT == "V3.7.6")(genOPO == KO,genDivergencePO == KO,local_op == OK);
+  PRVersion("V3.3.3.p39")(CLT == "V3.7.6")
+END

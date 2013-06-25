@@ -1,0 +1,125 @@
+THEORY BIT_VECTOR IS
+/**
+* @ Check based in rule GenPredicateX.31
+**/
+b: 1..16 +-> a &
+        dom(b) = 1..16 &
+        0<=16 
+=>
+        b: seq(a);
+
+/**
+*  GenPredicateX.31
+	(s: 1..n +-> a) &
+	(dom(s) = 1..n) &
+	(0<=n)
+	=>
+	(s: seq(a)) &
+	(size(s) = n);
+**/    
+    
+    
+/** Used to prove PO1 - BYTE: FIN(BYTE)
+* @ This set are finite. Look at its expansion: [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,1],...,[1,1,1,1,1,1,1,1]
+**/
+    a>=1 &
+    a<=b &
+    b<=128
+=> a..b --> {0,1} : FIN(a..b --> {0,1})
+
+END &
+
+
+
+THEORY Finite_Rules IS
+    
+    
+/*
+This rule checks byte_uchar: FIN(byte_uchar)
+*/
+1..16 --> {0,1}: FIN(1..16 --> {0,1}) ==btrue;
+    
+/*
+This rule checks  ushort_bv16: FIN(ushort_bv16)
+*/ 
+%v0.(v0: 0..65535 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128,v0 mod 512/256,v0 mod 1024/512,v0 mod 2048/1024,v0 mod 4096/2048,v0 mod 8192/4096,v0 mod 16384/8192,v0 mod 32768/16384,v0 mod 65536/32768]): FIN(%v0.(v0: 0..65535 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128,v0 mod 512/256,v0 mod 1024/512,v0 mod 2048/1024,v0 mod 4096/2048,v0 mod 8192/4096,v0 mod 16384/8192,v0 mod 32768/16384,v0 mod 65536/32768]))== btrue;
+    
+
+    
+    
+/*
+This rule checks   bv16_ushort: FIN(bv16_ushort)
+*/
+%v0.(v0: 1..16 --> {0,1} | 32768*v0(16)+16384*v0(15)+8192*v0(14)+4096*v0(13)+2048*v0(12)+1024*v0(11)+512*v0(10)+256*v0(9)+128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)): FIN(%v0.(v0: 1..16 --> {0,1} | 32768*v0(16)+16384*v0(15)+8192*v0(14)+4096*v0(13)+2048*v0(12)+1024*v0(11)+512*v0(10)+256*v0(9)+128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)))== btrue;
+    
+    
+    
+/*
+This rule checks  uchar_byte: FIN(uchar_byte)
+*/
+%v0.(v0: 0..255 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128]): FIN(%v0.(v0: 0..255 | [v0 mod 2/1,v0 mod 4/2,v0 mod 8/4,v0 mod 16/8,v0 mod 32/16,v0 mod 64/32,v0 mod 128/64,v0 mod 256/128])) == btrue;
+
+        
+/*
+This rule checks byte_uchar: FIN(byte_uchar)
+*/
+%v0.(v0: 1..8 --> {0,1} | 128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1)): FIN(%v0.(v0: 1..8 --> {0,1} | 128*v0(8)+64*v0(7)+32*v0(6)+16*v0(5)+8*v0(4)+4*v0(3)+2*v0(2)+1*v0(1))) == btrue
+
+
+
+    
+END &
+THEORY User_Pass IS
+Pattern(idx: dom(bt)) & ff(0) & pr;
+Pattern(bt: dom(bt) +-> ran(bt)) & ff(0) & pr;
+Pattern(bt(idx): dom(bit_not)) & ff(0) & pr;
+Pattern(16: dom(bv)) & ff(0) & pr;
+Pattern(bv: dom(bv) +-> ran(bv)) & ff(0) & pr;
+Pattern(15: dom(bv)) & ff(0) & pr;
+Pattern(14: dom(bv)) & ff(0) & pr;
+Pattern(13: dom(bv)) & ff(0) & pr;
+Pattern(12: dom(bv)) & ff(0) & pr;
+Pattern(11: dom(bv)) & ff(0) & pr;
+Pattern(10: dom(bv)) & ff(0) & pr;
+Pattern(9: dom(bv)) & ff(0) & pr;
+Pattern(8: dom(bv)) & ff(0) & pr;
+Pattern(7: dom(bv)) & ff(0) & pr;
+Pattern(6: dom(bv)) & ff(0) & pr;
+Pattern(5: dom(bv)) & ff(0) & pr;
+Pattern(4: dom(bv)) & ff(0) & pr;
+Pattern(3: dom(bv)) & ff(0) & pr;
+Pattern(2: dom(bv)) & ff(0) & pr;
+Pattern(1: dom(bv)) & ff(0) & pr;
+Pattern(8: dom(bv1)) & ff(0) & pr;
+Pattern(bv1: dom(bv1) +-> ran(bv1)) & ff(0) & pr;
+Pattern(7: dom(bv1)) & ff(0) & pr;
+Pattern(6: dom(bv1)) & ff(0) & pr;
+Pattern(5: dom(bv1)) & ff(0) & pr;
+Pattern(4: dom(bv1)) & ff(0) & pr;
+Pattern(3: dom(bv1)) & ff(0) & pr;
+Pattern(2: dom(bv1)) & ff(0) & pr;
+Pattern(1: dom(bv1)) & ff(0) & pr;
+Pattern(8: dom(bv2)) & ff(0) & pr;
+Pattern(bv2: dom(bv2) +-> ran(bv2)) & ff(0) & pr;
+Pattern(7: dom(bv2)) & ff(0) & pr;
+Pattern(6: dom(bv2)) & ff(0) & pr;
+Pattern(5: dom(bv2)) & ff(0) & pr;
+Pattern(4: dom(bv2)) & ff(0) & pr;
+Pattern(3: dom(bv2)) & ff(0) & pr;
+Pattern(2: dom(bv2)) & ff(0) & pr;
+Pattern(1: dom(bv2)) & ff(0) & pr;
+Pattern(b1: seq(ran(b1))) & ff(0) & dd & ah(b1: 1..16 +-> ran(b1) & dom(b1) = 1..16 & 0<=16 => b1: seq(ran(b1))) & pr(Tac(BIT_VECTOR)) & pr(Tac(BIT_VECTOR));
+Pattern(BV16: FIN(BV16)) & ff(0) & dd & eh(BV16,_h,Goal) & eh(BV16_INDX,_h,Goal) & eh(BIT,_h,Goal) & ar(BIT_VECTOR.1,Multi) & pr & pr & pr;
+Pattern(BV16: FIN(BV16)) & ff(0) & dd & eh(BV16,_h,Goal) & ar(BIT_VECTOR.1,Multi) & pr & pr & pr
+END
+    
+    /* Generic
+    
+    
+Operation(Properties) & Pattern(b1: seq(ran(b1))) & ff(0) & dd & ah(b1: 1..16 +-> ran(b1) & dom(b1) = 1..16 & 0<=16 => b1: seq(ran(b1))) & pr(Tac(BIT_VECTOR)) & pr(Tac(BIT_VECTOR));
+Operation(Properties) & Pattern(BV16: FIN(BV16)) & ff(0) & dd & eh(BV16,_h,Goal) & eh(BV16_INDX,_h,Goal) & eh(BIT,_h,Goal) & ar(BIT_VECTOR.1,Multi) & pr & pr & pr;
+Operation(Assertions) & Pattern(BV16: FIN(BV16)) & ff(0) & dd & eh(BV16,_h,Goal) & ar(BIT_VECTOR.1,Multi) & pr & pr & pr
+    
+    
+    
+    */

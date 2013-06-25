@@ -1,0 +1,33 @@
+THEORY User_Pass IS
+
+Operation(AssertionLemmas) & Pattern(a<+b: c +-> d) & ff(0) & dd & pr(Tac(Update_flag)) & pp(rt.0); /* Prova as multiplas substitui??es*/
+
+Operation(AssertionLemmas) & Pattern(a(b): c) & ff(0) & eh(update_refresh_reg,_h,Goal) & pr;
+Operation(AssertionLemmas) & Pattern(ran(a) = b) & ff(1) & eh(bv_9ireg_plus_d0,_h,Goal) & pr;
+Operation(AssertionLemmas) & Pattern(ran(a) = b) & ff(0) & eh(bv_ireg_plus_d,_h,Goal) & eh(ushort_bv16,_h,Goal) & ah(ran(bv16_ushort) = USHORT) & pr & pr;
+Operation(Initialisation) & Pattern(dom({a|->b|->c(d)}\/{e|->b|->c(d)}\/{f|->b|->c(d)}\/{g|->b|->c(d)}\/{h|->b|->c(d)}\/{i|->b|->c(d)}\/{j|->b|->c(d)}\/{k|->b|->c(d)}\/{l|->b|->c(d)}\/{m|->b|->c(d)}\/{n|->b|->c(d)}\/{o|->b|->c(d)}\/{p|->b|->c(d)}\/{q|->b|->c(d)}\/{r|->b|->c(d)}\/{s|->b|->c(d)}) = (a..s)*{b}) & ff(0) & dd & ah(!xx.(xx: UCHAR => uchar_byte(xx): BYTE)) & pr & dd & ph(255,!xx.(xx: UCHAR => uchar_byte(xx): BYTE)) & pr & eh(id_reg_8,_h,Goal) & pr;
+Operation(AssertionLemmas) & Pattern(a(b): c) & ff(1) & dd & ah(instruction_next: USHORT +-> USHORT & ran(instruction_next) = USHORT & pc: USHORT) & pr & pr & pr & pr;
+Operation(Initialisation) & Pattern({a|->b|->c(d)}\/{e|->b|->c(d)}\/{f|->b|->c(d)}\/{g|->b|->c(d)}\/{h|->b|->c(d)}\/{i|->b|->c(d)}\/{j|->b|->c(d)}\/{k|->b|->c(d)}\/{l|->b|->c(d)}\/{m|->b|->c(d)}\/{n|->b|->c(d)}\/{o|->b|->c(d)}\/{p|->b|->c(d)}\/{q|->b|->c(d)}\/{r|->b|->c(d)}\/{s|->b|->c(d)}: (a..s)*{b} +-> t) & ff(0) & ae(uchar_byte(255),aa) & dd & dd & ah(!xx.(xx: UCHAR => uchar_byte(xx): BYTE)) & pr & dd & ph(255,!xx.(xx: UCHAR => uchar_byte(xx): BYTE)) & pr & eh(uchar_byte(255),_h,Goal) & eh(id_reg_8,_h,Goal) & mp & mp & ss & pr & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr & ss & pr;
+Pattern(bv16_ushort(a): b) &
+ff(1) & eh(PROGRAM_R_ADR,_h,Goal) & dd & ah(ran(bv16_ushort) = USHORT) & ss & pr;
+Pattern(dom(a<+b) = c*d) & ff(0) & dd & ss & eh(dom(rgs8),_h,Goal) & eh(update_flag_reg,_h,Goal) & ss & pr
+
+END 
+&
+
+THEORY Z80_header IS
+
+1=1==btrue
+
+
+END
+&
+THEORY RulesProBInitialisation_1 IS 
+
+
+	 /* Expression from Initialisation.1, it was added  in Tue Mar 12 13:46:44 BRT 2013
+	  verified with ProB in 16880 milliseconds
+	  Module Path:/media/B_Resources/Z80_ProB/Z80_header.mch */
+ {a0|->[1,1,1,1,1,1,1,1],f0|->[1,1,1,1,1,1,1,1],f_0|->[1,1,1,1,1,1,1,1],a_0|->[1,1,1,1,1,1,1,1],b0|->[1,1,1,1,1,1,1,1],c0|->[1,1,1,1,1,1,1,1],b_0|->[1,1,1,1,1,1,1,1],c_0|->[1,1,1,1,1,1,1,1],d0|->[1,1,1,1,1,1,1,1],e0|->[1,1,1,1,1,1,1,1],d_0|->[1,1,1,1,1,1,1,1],e_0|->[1,1,1,1,1,1,1,1],h0|->[1,1,1,1,1,1,1,1],l0|->[1,1,1,1,1,1,1,1],h_0|->[1,1,1,1,1,1,1,1],l_0|->[1,1,1,1,1,1,1,1]}: {a0,f0,f_0,a_0,b0,c0,b_0,c_0,d0,e0,d_0,e_0,h0,l0,h_0,l_0} +-> (1..8 --> {0,1})==btrue
+
+END
