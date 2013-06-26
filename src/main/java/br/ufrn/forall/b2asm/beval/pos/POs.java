@@ -186,6 +186,23 @@ public class POs {
 		
 		
 	}
+	
+	/***
+	 * 
+	 * This method add a theory rule and one user pass  
+	 */ 
+	 public void addTheoryAndUserPassInList(String theoryRule , String userPass) {
+	 
+		pmm.addTheoryAndUserPassInList(theoryRule, userPass);
+	}
+	 /***
+	  * This method  write the updated pmm file.
+	  */
+	 public void  writeUpdatedPMM ( ){
+		 pmm.writeUpdatedPMM();
+		 
+	 }
+	
 	/***
 	 * This method return one proof obligation with B comments
 	 * @param numberOfProofObligation  enumerating from 1 up to numbers of proof obligations
@@ -287,12 +304,6 @@ public class POs {
 				
 				String namePartial = tmp[result.length - i-1].split(",")[0];
 				
-				/*String namePartial;
-				if(tmp[result.length - i-1].indexOf(",")>0)
-					namePartial = tmp[result.length - i-1].substring(tmp[result.length - i].indexOf(","));
-				else
-					namePartial = tmp[result.length - i-1];*/
-				//System.out.println(result.length -i + " R:"+result.length+ " "+ i);
 				result[i]= i+1+" - "+namePartial.substring(namePartial.lastIndexOf("&")+1) + " ("+getProofState(i+1)+" )";
 			}
 			

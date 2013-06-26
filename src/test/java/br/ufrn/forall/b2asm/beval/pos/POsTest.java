@@ -1,4 +1,4 @@
-package br.ufrn.forall.b2asm.bintegration.pos;
+package br.ufrn.forall.b2asm.beval.pos;
 
 import static org.junit.Assert.*;
 
@@ -31,7 +31,7 @@ public class POsTest {
 			+ File.separator + "test" + File.separator + "resources"
 			+ File.separator + "br" + File.separator + "ufrn"
 			+ File.separator + "forall" + File.separator + "b2asm"
-			+ File.separator + "bintegration" + File.separator + "pos"
+			+ File.separator + "beval" + File.separator + "pos"
 			+ File.separator;
 	
 	/*
@@ -41,6 +41,21 @@ public class POsTest {
 	System.setErr(outError);*/
 	
 	
+	}
+	
+	@Test
+	public void testWrite() throws Exception {
+		
+		String pathBModule = new String(pathTestDirectory+	File.separator+"TYPES.mch");
+		
+		POs pos = new POs((pathBModule.substring(0, pathBModule.length() - 4) ),false);
+		
+		pos.addTheoryAndUserPassInList("Nova regra", "Novo user pass");
+		
+		pos.writeUpdatedPMM();
+		
+		
+		
 	}
 	
 	@Test

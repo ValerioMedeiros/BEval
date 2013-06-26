@@ -242,18 +242,14 @@ public class GuiPoModule extends JFrame {
 							+"The result is "+control.getResult()+"\n"
 							+proofObligation  ,1000); 
 						
-
-						
-						// This rule is used in  formal method.
-						//control.addRuleInPMMFile(control.getProofObligationsWithLocalHypotheses(numberPo))
-						
 						System.out.println("\nThe result is "+ control.getResult()+" and progress "+ countSelected+"/"+selectedItens.length+"\n");
 						textArea.repaint();
 						frame.validate();
 						frame.repaint();
 					}
 				}
-				//TODO: adjust to use the only the method for the module callProbLogicEvaluatorModule  
+				control.writeUpdatedPMM();
+				  
 				report.print( control.pathBModuleInBdpFolderWithoutExtension+"_report.csv");
 				System.out.println("A report was generated in :"+control.pathBModuleInBdpFolderWithoutExtension+"_report.csv");
 			}

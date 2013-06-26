@@ -263,12 +263,12 @@ public class Control {
 
 				if (result == Result.TRUE && addRules) {
 					
-					if(numberPo==0){
+					if(numberPo==0){ // It is used only in interactive prover
 						posManager.addOneRuleInPMMFile(poTypedWD,goal+"==btrue",expressionName,total_time);
 					}else{
 						// This rule is used to add true rules of component
-						posManager.addOneRuleInPMMFile(poTypedWD, this.getProofObligationsWithLocalHypotheses(numberPo),expressionName,total_time);
-						// addUserPass ...
+						//posManager.addOneRuleInPMMFile(poTypedWD, this.getProofObligationsWithLocalHypotheses(numberPo),expressionName,total_time);
+						if(addRules) posManager.addTheoryAndUserPassInList("theoryRule Test" , "userPass Test ");
 
 					}
 				}
@@ -315,8 +315,7 @@ public class Control {
 		//POs posManager = new POs((pathBModuleInBdpFolderWithExtension.substring(0,
 		//		pathBModuleInBdpFolderWithExtension.length() - 3) + "po"));
 		
-		int numberOftotalPOs = posManager
-				.getNumberOfProofObligations();
+		int numberOftotalPOs = posManager.getNumberOfProofObligations();
 
 		StringBuffer proofObligations = new StringBuffer();
 		try {
@@ -411,6 +410,10 @@ public class Control {
 		}
 		return report;
 
+	}
+	
+	public void writeUpdatedPMM (){
+		posManager.writeUpdatedPMM();
 	}
 
 	void printSuccessFullyMsg() {

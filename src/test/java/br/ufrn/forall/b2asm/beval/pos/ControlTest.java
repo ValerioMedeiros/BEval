@@ -1,4 +1,4 @@
-package br.ufrn.forall.b2asm.bintegration.pos;
+package br.ufrn.forall.b2asm.beval.pos;
 
 import static org.junit.Assert.*;
 
@@ -34,7 +34,7 @@ public class ControlTest {
 			+ File.separator + "test" + File.separator + "resources"
 			+ File.separator + "br" + File.separator + "ufrn"
 			+ File.separator + "forall" + File.separator + "b2asm"
-			+ File.separator + "bintegration" + File.separator + "pos"
+			+ File.separator + "beval" + File.separator + "pos"
 			+ File.separator;
 	}
 	
