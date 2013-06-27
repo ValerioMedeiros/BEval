@@ -311,6 +311,24 @@ public class POs {
 		}
 	}
 	
+	public String[] getNameAndNumberOfProofObligations() {
+		if(proofListRead==null){
+			return new String[0];
+		}else{
+			
+			String[] tmp = proofListRead.split(";");
+			String[] result = new String[tmp.length];
+			
+			for(int i =0 ;i<result.length;i++){
+				
+				String namePartial = tmp[result.length - i-1].split(",")[0];
+				
+				result[i]= namePartial.substring(namePartial.lastIndexOf("&")+1).replace(" ", "").replace("\n", "").replace(".", "_");
+			}
+			
+			return result;
+		}
+	}
 	
 	
 }

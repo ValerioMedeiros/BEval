@@ -226,6 +226,7 @@ public class GuiPoModule extends JFrame {
 				
 				int [] selectedItens = list.getSelectedIndices();
 				int countSelected=0;
+				//TODO: Move this method of commands to Control class
 				for (int numberPo = 1; numberPo <= numberOftotalPOs; numberPo++) {
 					
 					if( countSelected<selectedItens.length && selectedItens[countSelected]==numberPo-1){

@@ -44,6 +44,7 @@ public class Control {
 	String hypothesis;
 	boolean isWD;
 	long total_time = 0;
+	String [] stateAndNames;
 
 	final int indExpressionName = 0;
 	final int indModuleName = 1;
@@ -148,9 +149,8 @@ public class Control {
  
 	void setIsWD(boolean wd) throws Exception{
 		isWD = wd;
-		//JOptionPane.showMessageDialog(null,pathBModuleInBdpFolderWithoutExtension);
-		
 		posManager = new POs(pathBModuleInBdpFolderWithoutExtension,isWD);
+		stateAndNames = posManager.getNameAndNumberOfProofObligations();
 		
 	}
 	
@@ -263,12 +263,24 @@ public class Control {
 
 				if (result == Result.TRUE && addRules) {
 					
-					if(numberPo==0){ // It is used only in interactive prover
+					if(numberPo==0){ // It is used only in interactive prover - 
 						posManager.addOneRuleInPMMFile(poTypedWD,goal+"==btrue",expressionName,total_time);
 					}else{
 						// This rule is used to add true rules of component
-						//posManager.addOneRuleInPMMFile(poTypedWD, this.getProofObligationsWithLocalHypotheses(numberPo),expressionName,total_time);
-						if(addRules) posManager.addTheoryAndUserPassInList("theoryRule Test" , "userPass Test ");
+						
+						String name = stateAndNames[numberPo-1];//.replaceAll(" ", "").replaceAll("\n", "").substring(stateAndNames[numberPo-1].indexOf("-")).substring(0, stateAndNames[numberPo-1].indexOf("(") );
+						
+						String userPass= "Operation("+name.substring(0,name.lastIndexOf("_"))+") & mp(Tac(RulesProB"	+name+"))";
+								
+					    String addedRule = new String(  "THEORY RulesProB"
+								+ name+ " IS \n\n"
+								+ "\n\t /* Expression from (" + name
+								+ "), it was added  in " + new Date()
+								+ "\n\t  evaluated with ProB in " + total_time + " milliseconds"
+								+ "\n\t  Module Path:" + modulePath + " */" + "\n\n\t " + posManager.getProofObligationsWithLocalHypotheses(numberPo) 
+								+ "\nEND\n");
+						
+						if(addRules) posManager.addTheoryAndUserPassInList(addedRule , userPass);
 
 					}
 				}
