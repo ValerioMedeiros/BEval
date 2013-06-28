@@ -280,7 +280,7 @@ public class Control {
 								+ "\n\t  Module Path:" + modulePath + " */" + "\n\n\t " + posManager.getProofObligationsWithLocalHypotheses(numberPo) 
 								+ "\nEND\n");
 						
-						if(addRules) posManager.addTheoryAndUserPassInList(addedRule , userPass);
+						posManager.addTheoryAndUserPassInList(addedRule , userPass);
 
 					}
 				}
