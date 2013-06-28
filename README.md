@@ -1,6 +1,6 @@
 [BEval.jar]:https://www.dropbox.com/s/m9x8ove6dc9lf1v/BEval.jar
 [here]:https://github.com/ValerioMedeiros/BEval/blob/master/doc/Instructions.md
-[license]:https://github.com/ValerioMedeiros/BEval/blob/master/doc/Licence.md
+[license]:https://github.com/ValerioMedeiros/BEval/blob/master/doc/License.md
 [java]:http://java.com/en/download/index.jsp
 [eclipse]:http://www.eclipse.org/downloads/
 [WindowBuilder]:http://www.eclipse.org/windowbuilder/
