@@ -1,5 +1,6 @@
 [BEval.jar]:https://www.dropbox.com/s/m9x8ove6dc9lf1v/BEval.jar
 [here]:https://github.com/ValerioMedeiros/BEval/blob/master/doc/Instructions.md
+[license]:https://github.com/ValerioMedeiros/BEval/blob/master/doc/Licence.md
 [java]:http://java.com/en/download/index.jsp
 [eclipse]:http://www.eclipse.org/downloads/
 [WindowBuilder]:http://www.eclipse.org/windowbuilder/
@@ -16,8 +17,8 @@ BEval  <img src="https://raw.github.com/ValerioMedeiros/BEval/master/b2asm.png" 
 Installation procedures for users
 ---------------------
 
-* Requires: [AtelierB] `4.1`, [ProB] `1.3.6` and [Java] `1.7`
-* BEval is compatible with OS X and Linux.
+* BEval requires: [AtelierB] `4.1`, [ProB] `1.3.6` and [Java] `1.7`.
+* BEval is compatible with OS X and Linux; it has this [license].
 
 Follow these steps:
 
