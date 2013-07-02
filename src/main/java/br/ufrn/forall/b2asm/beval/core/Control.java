@@ -215,6 +215,8 @@ public class Control {
 
 			long initial_time = System.currentTimeMillis();
 			
+			//JOptionPane.showMessageDialog(null,goalExpression);
+					
 			//JOptionPane.showMessageDialog(null, this.getExecutablePath() + " "+ parameters.replace("\n", " ") + " --eval_rule_file "+ tmpFileName);
 			
 			Process proc = rt.exec(this.getExecutablePath() + " "
@@ -319,13 +321,6 @@ public class Control {
 		String proofObligation;
 		Result resultIndividual = Result.ERROR;
 		
-		//TODO: It is not needed the use the pathBModule
-		//
-		//	posManager = new POs((pathBModuleInBdpFolderWithoutExtension),isWD);
-
-		
-		//POs posManager = new POs((pathBModuleInBdpFolderWithExtension.substring(0,
-		//		pathBModuleInBdpFolderWithExtension.length() - 3) + "po"));
 		
 		int numberOftotalPOs = posManager.getNumberOfProofObligations();
 

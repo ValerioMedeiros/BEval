@@ -59,17 +59,36 @@ Pattern(bit_xor(b2,b1) = 1) & ff(3) & dd & eh(1,_h,Goal) & ah(b1: BIT & b2: BIT)
 Pattern(bit_xor(b1,bit_xor(b2,b3)) = bit_xor(bit_xor(b1,b2),b3)) & ff(3) & eh(BIT,_h,Goal) & dd & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0) = 0) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,1) = 0) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & ss & dd & dc(b1 = 0) & dc(b2 = 0) & dc(b3 = 0) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0),_h,Goal) & pr & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1),_h,Goal) & dc(b3 = 1) & ss & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0),_h,Goal) & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0) = 0) & ss & pr & ss & pr & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1) = 1) & pr & ss & pr & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0) = 1) & ss & pr & pr & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,1) = 0) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & ss & dd & eh(b2,_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1),_h,Goal) & pr & dd & eh(b3,_h,Goal) & dc(b2 = 0) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0),_h,Goal) & pr & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0) = 0) & ss & pr & pr;
 Pattern(bit_xor(b1,bit_xor(b2,b3)) = bit_xor(1,b3)) & ff(3) & dd & eh(1,_h,Goal) & ah(b1: BIT & b2: BIT & b3: BIT) & pr & pr & pr & eh(bit_xor,_h,Goal) & eh(BIT,_h,Goal) & dd & dc(b1 = 0) & dc(b2 = 0) & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & pr & dc(b2 = 1) & ss & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0) = 1) & ss & pr & dd & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1) = 1) & ss & pr & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1),_h,Goal) & pr & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0) = 0) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & pr & dd & eh(b3,_h,Goal) & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0) = 0) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0),_h,Goal) & ss & pr & pr & eh(b3,_h,Goal) & ss & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0) = 0) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0),_h,Goal) & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1),_h,Goal) & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0) = 0) & dd & pr & dd & eh(b3,_h,Goal) & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0) = 0 & {(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1) = 1 & {(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0) = 1 & {(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,1) = 0) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1),_h,Goal) & ss & pr & pr & ss & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0) = 1 & {(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1) = 1) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1),_h,Goal) & ss & pr & pr & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0) = 0 & {(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1) = 1 & {(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0) = 1 & {(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,1) = 0) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,1),_h,Goal) & ss & pr & pr & eh(b2,_h,Goal) & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0) = 0 & {(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1) = 1 & {(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0) = 1 & {(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,1) = 0) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,1),_h,Goal) & ss & pr & dd & eh(b2,_h,Goal) & ah({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0) = 0 & {(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,1) = 1 & {(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0) = 1 & {(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,1) = 0) & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & ar(SimplifyBinaryFunctions) & ss & pr & ss & pr & dd & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(0,0),_h,Goal) & eh({(0,0)|->0,(0,1)|->1,(1,0)|->1,(1,1)|->0}(1,0),_h,Goal) & ss & pr
 END
-    
-    /* Generic
-    
-    
-    
-Operation(AssertionLemmas) & Pattern(a(b,a(c,d)) = a(a(b,c),d)) & ff(0) & pp(rt.1);
-Operation(AssertionLemmas) & Pattern(a(b,c) = d) & ff(0) & pp(rt.1);
-Operation(AssertionLemmas) & Pattern(a(b,a(c,d)) = e) & ff(0) & pp(rt.1);
-Operation(AssertionLemmas) & Pattern(a = b) & ff(0) & pp(rt.1);
-Operation(AssertionLemmas) & Pattern(a(b,c) = c) & ff(0) & pp(rt.1);
-Operation(AssertionLemmas) & Pattern(a(b,a(c,d)) = a(e,d)) & ff(0) & dd & ah(bit_or(1,b3) = 1) & pr & dd & eh(bit_or(1,b3),_h,Goal) & pr & pr & pr
+&
+THEORY RulesProBexpressionName IS 
 
 
-*/
+	 /* Expression from expressionName, it was added  in Tue Jul 02 11:09:09 BRT 2013
+	  evaluated with ProB in 1000 milliseconds
+	  Module Path:/Users/valerio/git/BEval/src/test/resources/br/ufrn/forall/b2asm/beval/pos//BIT_DEFINITION.pmm */
+
+	 rule
+
+END
+&
+THEORY RulesProBexpressionName IS 
+
+
+	 /* Expression from expressionName, it was added  in Tue Jul 02 11:11:54 BRT 2013
+	  evaluated with ProB in 1000 milliseconds
+	  Module Path:/Users/valerio/git/BEval/src/test/resources/br/ufrn/forall/b2asm/beval/pos//BIT_DEFINITION.pmm */
+
+	 rule
+
+END
+&
+THEORY RulesProBexpressionName IS 
+
+
+	 /* Expression from expressionName, it was added  in Tue Jul 02 11:14:07 BRT 2013
+	  evaluated with ProB in 1000 milliseconds
+	  Module Path:/Users/valerio/git/BEval/src/test/resources/br/ufrn/forall/b2asm/beval/pos//BIT_DEFINITION.pmm */
+
+	 rule
+
+END

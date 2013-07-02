@@ -280,3 +280,14 @@ ENDTHEORY RulesProBexpressionName IS
 	 rule
 
 END
+&
+THEORY RulesProBexpressionName IS 
+
+
+	 /* Expression from expressionName, it was added  in Tue Jul 02 11:02:48 BRT 2013
+	  evaluated with ProB in 1000 milliseconds
+	  Module Path:/Users/valerio/git/BEval/src/test/resources/br/ufrn/forall/b2asm/beval/pos//TYPES.pmm */
+
+	 rule
+
+END

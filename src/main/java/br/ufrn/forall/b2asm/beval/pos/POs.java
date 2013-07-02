@@ -151,9 +151,9 @@ public class POs {
 		 	//get the list of formulas on goal
 			List<String> listGoal = getAllMatches(originalFormula,"[_][f]\\([0-9]*\\)");
 
-			for(int i=listGoal.size()-1;i<listGoal.size() ;i++){
+			for(int i=listGoal.size()-2;i<listGoal.size() ;i++){
 				
-				if(listGoal.get(i)==null)break;
+				if(listGoal.get(i)==null)continue;
 				
 				// Remove the characters no numerics, transform to Integer, get in list of formulas and append
 				expandedFormula.append(formulasSplitted[Integer.parseInt(listGoal.get(i).replaceAll("[\\D]", ""))-1]);
@@ -303,8 +303,10 @@ public class POs {
 			for(int i =0 ;i<result.length;i++){
 				
 				String namePartial = tmp[result.length - i-1].split(",")[0];
+				//if(i==0) namePartial= namePartial.replace("THEORY ProofList IS", "");
+				if(i==result.length-1) namePartial= namePartial.replace("THEORY ProofList IS", "");
 				
-				result[i]= i+1+" - "+namePartial.substring(namePartial.lastIndexOf("&")+1) + " ("+getProofState(i+1)+" )";
+				result[i]= i+1+" - "+namePartial.substring(namePartial.lastIndexOf("&")+1) + " ("+getProofState(i+1)+")";
 			}
 			
 			return result;

@@ -123,23 +123,23 @@ public class PMM {
 	 */
 	private String getNewUserPassInList() {
 		StringBuffer theoryUserPass =new StringBuffer( );
-		boolean firstUserPass=false;
+		boolean noAddSeparetor=false;
 		boolean containUserPass=false;
 		
 		for(int i=0;i<theoriesSplittedsRead.length;i++){
-			if(theoriesSplittedsRead[i].contains("THEORY User_Pass IS")){
+			if(theoriesSplittedsRead[i].contains("THEORY User_Pass IS")){//The first case
 				theoryUserPass.append(theoriesSplittedsRead[i]) ;
-				firstUserPass = !(theoriesSplittedsRead[i].contains(";"));
-				firstUserPass = firstUserPass && theoriesSplittedsRead[i].length()<=25;
+				noAddSeparetor = !(theoriesSplittedsRead[i].contains(";"));
+				noAddSeparetor = noAddSeparetor && theoriesSplittedsRead[i].length()<=25;
 				containUserPass=true;
 			}
 			else if( !containUserPass && theoriesSplittedsRead.length == 1+i && userPassList.size()>=1){ // case there is not!
 				theoryUserPass.append("THEORY User_Pass IS\n") ;
-				firstUserPass=true;
+				noAddSeparetor=true;
 			}
 		}
 		
-		if(!firstUserPass) theoryUserPass.append(";\n");
+		if( userPassList.size()>=1 && !noAddSeparetor) theoryUserPass.append(";\n");
 		
 		for(int i = 0; i< userPassList.size(); i++){
 			
