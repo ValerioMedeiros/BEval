@@ -326,12 +326,11 @@ public class Control {
 				else
 					proofObligation = this.getGoalOfCleanExpandedProofObligations(numberPo);
 				
-				int res;
 				
 				if(parameters == null){
-					res = this.callProbLogicEval(true, false, report, numberPo , actualParameters,  proofObligation);
+					this.callProbLogicEval(true, false, report, numberPo , actualParameters,  proofObligation);
 				} else{
-					res = this.callProbLogicEval(true, false, report, numberPo , parameters,  proofObligation);
+					this.callProbLogicEval(true, false, report, numberPo , parameters,  proofObligation);
 				}
 				
 				AutoDismiss.showMessageDialog(null, "Progress "+ countSelected+"/"+selectedItens.length+"\n"
@@ -344,124 +343,7 @@ public class Control {
 		
 		return report;
 	}
-	
-	/**
-	 * This method was build to support evaluation of a set of proof obligations. It is deprecated. 
-	 * 
-	 * @param pathProBcli - It contains the path of Probcli
-	 * @param parameters - It contains the parameters to call Probcli
-	 * @param isFullProofObligation - When true the proof obligations is full, otherwise, the proof obligations has only the goal  
-	 * @param report - It creates the spreadsheet
-	 * @param fileNameOut - It contains the filename out
-	 * @return
-	 */
-	public  Report callProbLogicEvaluatorModule(JFrame frame, JTextArea jTextArea , String pathProBcli,
-			String parameters,  boolean isFullProofObligation,
-			Report report, String fileNameOut,boolean isWD) {
-
-		int localExitVal = 0;
-		long localTotalTime;
-		String proofObligation;
-		Result resultIndividual = Result.ERROR;
 		
-		
-		int numberOftotalPOs = posManager.getNumberOfProofObligations();
-
-		StringBuffer proofObligations = new StringBuffer();
-		try {
-			for (int numberPo = 1; numberPo <= numberOftotalPOs; numberPo++) {
-				Runtime rt = Runtime.getRuntime();
-
-				String tmpPath = System.getProperty("java.io.tmpdir");
-				String tmpFileName = tmpPath + File.separator + "po_"
-						+ System.currentTimeMillis() + ".expanded.PO";
-
-				if (isFullProofObligation) {
-					proofObligation = posManager
-							.getCleanExpandedProofObligations(numberPo);
-					writeFile(tmpFileName,proofObligation							);
-				} else {
-					proofObligation = posManager
-							//.getGoalOfCleanExpandedProofObligations(numberPo);
-							.getCleanProofObligationsWithLocalHypotheses(numberPo);
-					writeFile(tmpFileName,proofObligation	);
-				}
-				System.out.println(proofObligation);
-
-				long initial_time = System.currentTimeMillis();
-
-				Process proc = rt.exec(pathProBcli + " "
-						+ parameters.replace("\n", "") + " --eval_rule_file "
-						+ tmpFileName);
-				
-				
-				/*
-				// any error message?
-				StreamGobbler errorGobbler = new StreamGobbler(	proc.getErrorStream(), "ERROR");
-
-				// any output?
-				StreamGobbler outputGobbler = new StreamGobbler(  proc.getInputStream(), "OUTPUT"); // Can add a new parameter , System.out
-				
-				
-				
-				// kick them off
-				errorGobbler.start();
-				outputGobbler.start();
-				*/
-				
-				
-				
-				localExitVal = proc.waitFor();
-				
-				//printStream.flush();
-				//jTextArea.repaint();
-				//jTextArea.getGraphics().
-				
-				//outputGobbler.os. jTextArea();
-				
-				// Final time
-				localTotalTime = System.currentTimeMillis() - initial_time;
-
-				Result res_out, res_error;
-				//res_out = outputGobbler.getResult();
-				//res_error = errorGobbler.getResult();
-
-				//res_out != Result.ERROR && res_error != Result.ERROR) {
-				System.out.println("It was concluded successfully!");
-				//resultIndividual = res_out;
-				
-				frame.repaint();
-				//JOptionPane.showMessageDialog(null, numberPo);
-				
-				System.out.println("Time spent: " + localTotalTime);
-
-				System.out.println("Process exit value: " + localExitVal);
-				
-				report.add(numberPo,
-						parameters,
-						POWD.Common,
-						PoGenerated.Full,
-						posManager.getProofState(numberPo),
-						proofObligation,
-						Result.INITIAL,
-						resultIndividual,
-						localTotalTime);
-
-				proofObligations.append(proofObligation + ";\n\n");
-
-			}
-			
-			Control.writeFile(
-					pathBModuleInBdpFolderWithoutExtension+ "full.EPOs", proofObligations.toString());
-			
-
-		} catch (Throwable t) {
-			t.printStackTrace();
-		}
-		return report;
-
-	}
-	
 	public void writeUpdatedPMM (){
 		posManager.writeUpdatedPMM();
 	}
