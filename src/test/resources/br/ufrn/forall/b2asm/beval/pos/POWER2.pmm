@@ -15,7 +15,9 @@ Pattern(2**14 = 16384) & ff(0) & ph(2,14,!(nn,pp).(nn : INTEGER & 0<=nn & not(nn
 Pattern(2**15 = 32768) & ff(0) & ph(2,15,!(nn,pp).(nn : INTEGER & 0<=nn & not(nn = 0) & (pp : INTEGER & 0<=pp & pp<=2147483647) => (pp = 0 => nn**pp = 1 & nn**pp = 1) & (pp = 1 => nn**pp = nn & nn**pp = nn) & (2<=pp => nn**pp = nn*nn**( -1+pp) & nn**pp = nn*nn**(pp-1)))) & pr & pr & pr & pr & pr & pr & pr;
 Pattern(2**16 = 65536) & ff(0) & ph(2,16,!(nn,pp).(nn : INTEGER & 0<=nn & not(nn = 0) & (pp : INTEGER & 0<=pp & pp<=2147483647) => (pp = 0 => nn**pp = 1 & nn**pp = 1) & (pp = 1 => nn**pp = nn & nn**pp = nn) & (2<=pp => nn**pp = nn*nn**( -1+pp) & nn**pp = nn*nn**(pp-1)))) & pr & pr & pr & pr & pr & pr & pr;
 Pattern(2**12 = 4096) & ff(0) & ph(2,11,!(nn,pp).(nn : INTEGER & 0<=nn & not(nn = 0) & (pp : INTEGER & 0<=pp & pp<=2147483647) => (pp = 0 => nn**pp = 1 & nn**pp = 1) & (pp = 1 => nn**pp = nn & nn**pp = nn) & (2<=pp => nn**pp = nn*nn**( -1+pp) & nn**pp = nn*nn**(pp-1)))) & pr & pr & pr & pr & pr & pr & pr & ph(2,12,!(nn,pp).(nn : INTEGER & 0<=nn & not(nn = 0) & (pp : INTEGER & 0<=pp & pp<=2147483647) => (pp = 0 => nn**pp = 1 & nn**pp = 1) & (pp = 1 => nn**pp = nn & nn**pp = nn) & (2<=pp => nn**pp = nn*nn**( -1+pp) & nn**pp = nn*nn**(pp-1)))) & pr & pr & pr & pr & pr & pr & pr
+
 END
+ 
     &
     
 THEORY SimplifyIntPower IS

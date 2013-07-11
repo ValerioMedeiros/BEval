@@ -237,7 +237,7 @@ public class GuiPoModule extends JFrame {
 						else
 							proofObligation = control.getGoalOfCleanExpandedProofObligations(numberPo);
 						
-						int res = control.callProbLogicEvaluator(true, false, report, numberPo , actualParameters.getText(),  proofObligation);
+						int res = control.callProbLogicEval(true, false, report, numberPo , actualParameters.getText(),  proofObligation);
 						
 						AutoDismiss.showMessageDialog(null, "Progress "+ countSelected+"/"+selectedItens.length+"\n"
 							+"The result is "+control.getResult()+"\n"

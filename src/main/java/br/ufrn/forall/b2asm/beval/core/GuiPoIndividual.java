@@ -154,7 +154,7 @@ public class GuiPoIndividual extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 
 				
-				control.callProbLogicEvaluator(
+				control.callProbLogicEval(
 						chckbxAddRule.isSelected(),
 						chckbxPoWD.isSelected(),
 						new Report(), 0,

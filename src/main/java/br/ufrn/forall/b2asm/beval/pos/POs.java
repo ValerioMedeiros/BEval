@@ -303,7 +303,7 @@ public class POs {
 			for(int i =0 ;i<result.length;i++){
 				
 				String namePartial = tmp[result.length - i-1].split(",")[0];
-				//if(i==0) namePartial= namePartial.replace("THEORY ProofList IS", "");
+
 				if(i==result.length-1) namePartial= namePartial.replace("THEORY ProofList IS", "");
 				
 				result[i]= i+1+" - "+namePartial.substring(namePartial.lastIndexOf("&")+1) + " ("+getProofState(i+1)+")";
@@ -324,6 +324,8 @@ public class POs {
 			for(int i =0 ;i<result.length;i++){
 				
 				String namePartial = tmp[result.length - i-1].split(",")[0];
+				
+				if(i==result.length-1) namePartial= namePartial.replace("THEORY ProofList IS", "");
 				
 				result[i]= namePartial.substring(namePartial.lastIndexOf("&")+1).replace(" ", "").replace("\n", "").replace(".", "_");
 			}

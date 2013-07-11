@@ -20,6 +20,7 @@ import br.ufrn.forall.b2asm.beval.core.Report.POWD;
 import br.ufrn.forall.b2asm.beval.core.Report.PoGenerated;
 import br.ufrn.forall.b2asm.beval.core.StreamGobbler.Result;
 import br.ufrn.forall.b2asm.beval.pos.POs;
+import br.ufrn.forall.b2asm.utils.AutoDismiss;
 
 /**
  * This class contains the control elements to call the ProB evaluator
@@ -64,15 +65,13 @@ public class Control {
 	 * This method load config preferences the path of ProB; the time limit and others informations.
 	 * 
 	 */
-	void loadConfig() {
+	public void loadConfig() {
 
 			currentPath = Control.class.getProtectionDomain().getCodeSource().getLocation().getPath().replaceAll(Installation.filenameJar, "");
 			
 			executablePath = GeneralPreferences.getPathProbcli();
 			
 			actualParameters = GeneralPreferences.getActualParameters();
-			
-			
 			
 	}
 
@@ -147,7 +146,7 @@ public class Control {
 
 	}
  
-	void setIsWD(boolean wd) throws Exception{
+	public void setIsWD(boolean wd) throws Exception{
 		isWD = wd;
 		posManager = new POs(pathBModuleInBdpFolderWithoutExtension,isWD);
 		stateAndNames = posManager.getNameAndNumberOfProofObligations();
@@ -199,7 +198,7 @@ public class Control {
 	}
 
 	
-	public int callProbLogicEvaluator(boolean addRules, boolean poTypedWD, Report report, int numberPo,
+	public int callProbLogicEval(boolean addRules, boolean poTypedWD, Report report, int numberPo,
 			String parameters, String goalExpression) {
 
 		exitVal = 0;
@@ -303,7 +302,51 @@ public class Control {
 	}
 
 	/**
-	 * This method was build to support evaluation of a set of proof obligations. It is temporally inactive. 
+	 * This method is uded for one component and it calls several times the method to evaluate a proof obligation
+	 * @param report - it contains the results of evaluations 
+	 * @param parameters - it is the parameters of evaluation, when it is "null" then preferences parameter of machine are loaded. 
+	 * @param onlyLocalHypotheses - evaluate with only local hypothesis or with all hypothesis
+	 * @param selectedItens - it is a vector with selected proof obligations. The range index is 0..(numberOfselectedPOs-1)  and the elements 0..(numberOfTotalPOs-1) that represent the  "numberPo"  
+	 * @return
+	 */
+	public Report callProbLogicEval_Module(Report report, String parameters, boolean onlyLocalHypotheses,int [] selectedItens ){
+	
+	
+	int countSelected=0;
+	int numberOftotalPOs = this.getNumberOfProofObligations();
+	
+
+		for (int numberPo = 1; numberPo <= numberOftotalPOs; numberPo++) {
+			
+			if( countSelected<selectedItens.length && selectedItens[countSelected]==numberPo-1){
+				countSelected++;
+				String proofObligation;
+				if(onlyLocalHypotheses)
+					proofObligation = this.getCleanProofObligationsWithLocalHypotheses(numberPo);
+				else
+					proofObligation = this.getGoalOfCleanExpandedProofObligations(numberPo);
+				
+				int res;
+				
+				if(parameters == null){
+					res = this.callProbLogicEval(true, false, report, numberPo , actualParameters,  proofObligation);
+				} else{
+					res = this.callProbLogicEval(true, false, report, numberPo , parameters,  proofObligation);
+				}
+				
+				AutoDismiss.showMessageDialog(null, "Progress "+ countSelected+"/"+selectedItens.length+"\n"
+					+"The result is "+this.getResult()+"\n"
+					+proofObligation  ,700); 
+				
+				System.out.println("\nThe result is "+ this.getResult()+" and progress "+ countSelected+"/"+selectedItens.length+"\n");
+			}
+		}
+		
+		return report;
+	}
+	
+	/**
+	 * This method was build to support evaluation of a set of proof obligations. It is deprecated. 
 	 * 
 	 * @param pathProBcli - It contains the path of Probcli
 	 * @param parameters - It contains the parameters to call Probcli

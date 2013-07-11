@@ -16,9 +16,10 @@ public class Installation {
 	protected static String pathProbCli;
 	
 	protected static String defaultParameters = new String("-p BOOL_AS_PREDICATE TRUE \n"+
-			  "-p CLPFD TRUE \n"+
+			  "-p CLPFD TRUE \n"+  // restrict to range of integers. 
 			  "-p MAXINT 65536 \n"+
 			  "-p MININT -65536 \n"+
+			  "-p SYMBOLIC TRUE "+ // expands only the concepts needed"
 			  "-p TIME_OUT 50000 ");
 
 	protected static String currentPathExtensions;

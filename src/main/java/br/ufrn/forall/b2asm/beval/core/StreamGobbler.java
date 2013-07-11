@@ -24,7 +24,7 @@ public class StreamGobbler extends Thread
 	OutputStream os;
 
 	public enum Result {
-		INITIAL, ERROR, TIME_OUT, TRUE, FALSE, NOT_WELL_DEFINED}
+		INITIAL, ERROR, TIME_OUT, TRUE, FALSE, NOT_WELL_DEFINED, SYNTAX_ERROR, Warning}
 
 	Result result= Result.INITIAL;
 
@@ -59,18 +59,22 @@ public class StreamGobbler extends Thread
 					pw.println(line);
 
 				if( result == Result.INITIAL){
-					if (line.contains("is TRUE"))
-						result= Result.TRUE;
+					if (line.contains("warning occurred"))
+						result= Result.Warning;
 					else if (line.contains("NOT-WELL-DEFINED"))
 						result= Result.NOT_WELL_DEFINED;	
 					else if (line.contains("is FALSE"))
 						result= Result.FALSE;
-					else if (line.contains("expecting ")){
-						result= Result.ERROR;
-					}
-					else if (line.contains("TIME-OUT occured")){
+					else if (line.contains("TIME-OUT occured"))
 						result= Result.TIME_OUT;
-					}
+					else if (line.contains("SYNTAX ERROR"))
+						result= Result.SYNTAX_ERROR;
+					else if (line.contains("expecting:"))
+						result= Result.SYNTAX_ERROR;
+					else if (line.contains("INTERNAL ERROR"))
+							result= Result.ERROR;
+					else if (line.contains("Universally Quantified Predicate over") && line.contains("is TRUE"))
+							result= Result.TRUE;
 					else if (line.contains("Not a valid")){
 						result= Result.ERROR;
 					}

@@ -1,0 +1,33 @@
+THEORY User_Pass IS
+Operation(Assertions) & mp(Tac(RulesProBAssertions_1)); 
+Operation(Assertions) & mp(Tac(RulesProBAssertions_2))
+END
+  &
+THEORY RulesProBAssertions_1 IS 
+
+
+	 /* Expression from (Assertions_1), it was added  in Thu Jul 11 11:41:53 BRT 2013
+	  evaluated with ProB in 1203 milliseconds
+	  Module Path:/Users/valerio/git/BEval/src/test/resources/br/ufrn/forall/b2asm/beval/pos/POWER.mch */
+
+	 
+("`Component invariant'" & btrue) & 
+("`Local hypotheses'" & nn: INTEGER & 0<=nn & not(nn = 0) & pp: INTEGER & 0<=pp & pp<=maxint & pp = 0)
+ => 
+(0<=pp)
+END
+
+&
+THEORY RulesProBAssertions_2 IS 
+
+
+	 /* Expression from (Assertions_2), it was added  in Thu Jul 11 11:41:56 BRT 2013
+	  evaluated with ProB in 1521 milliseconds
+	  Module Path:/Users/valerio/git/BEval/src/test/resources/br/ufrn/forall/b2asm/beval/pos/POWER.mch */
+
+	 
+("`Component invariant'" & btrue) & 
+("`Local hypotheses'" & nn: INTEGER & 0<=nn & not(nn = 0) & pp: INTEGER & 0<=pp & pp<=maxint & (pp = 0 => nn**pp = 1) & pp = 1)
+ => 
+(0<=pp)
+END

@@ -1,6 +1,22 @@
 THEORY User_Pass IS
 Operation(AssertionLemmas) & ff(0) & pr(Tac(SimplifyIntPower))
+
+
+; 
+Operation(AssertionLemmas) & mp(Tac(RulesProBAssertionLemmas_1)); 
+Operation(AssertionLemmas) & mp(Tac(RulesProBAssertionLemmas_2))
+; 
+Operation(AssertionLemmas) & mp(Tac(RulesProBAssertionLemmas_1)); 
+Operation(AssertionLemmas) & mp(Tac(RulesProBAssertionLemmas_2))
+; 
+Operation(AssertionLemmas) & mp(Tac(RulesProBAssertionLemmas_1)); 
+Operation(AssertionLemmas) & mp(Tac(RulesProBAssertionLemmas_2))
 END
+ 
+ 
+ 
+ 
+ 
     &
 THEORY SimplifyIntPower IS
 
@@ -22,4 +38,100 @@ THEORY SimplifyIntPower IS
   =>
   (-n) ** p == -n * (n ** (-1+p))*/
 
+END
+
+
+ &
+THEORY RulesProBAssertionLemmas_1 IS 
+
+
+	 /* Expression from (AssertionLemmas_1), it was added  in Thu Jul 11 11:10:53 BRT 2013
+	  evaluated with ProB in 2711 milliseconds
+	  Module Path:/Users/valerio/git/BEval/src/test/resources/br/ufrn/forall/b2asm/beval/pos/POWER.mch */
+
+	 
+
+  ("`Local hypotheses'" & nn: INTEGER & 0<=nn & not(nn = 0) & pp: INTEGER & 0<=pp & pp<=2147483647 & pp = 0) & 
+  "`Check assertion (!(nn,pp).(nn: NATURAL1 & pp: NAT => (pp = 0 => nn**pp = 1) & (pp = 1 => nn**pp = nn) & (pp>1 => nn**pp = nn*nn**(pp-1)))) deduction - ref 3.2, 4.2, 5.3'"
+ => 
+  (nn**pp = 1)
+END
+
+
+
+&
+THEORY RulesProBAssertionLemmas_2 IS 
+
+
+	 /* Expression from (AssertionLemmas_2), it was added  in Thu Jul 11 11:10:56 BRT 2013
+	  evaluated with ProB in 1386 milliseconds
+	  Module Path:/Users/valerio/git/BEval/src/test/resources/br/ufrn/forall/b2asm/beval/pos/POWER.mch */
+
+	 
+  ("`Local hypotheses'" & nn: INTEGER & 0<=nn & not(nn = 0) & pp: INTEGER & 0<=pp & pp<=2147483647 & pp = 1) & 
+  "`Check assertion (!(nn,pp).(nn: NATURAL1 & pp: NAT => (pp = 0 => nn**pp = 1) & (pp = 1 => nn**pp = nn) & (pp>1 => nn**pp = nn*nn**(pp-1)))) deduction - ref 3.2, 4.2, 5.3'"
+ => 
+  (nn**pp = nn)
+END
+
+ &
+THEORY RulesProBAssertionLemmas_1 IS 
+
+
+	 /* Expression from (AssertionLemmas_1), it was added  in Thu Jul 11 11:25:33 BRT 2013
+	  evaluated with ProB in 1314 milliseconds
+	  Module Path:/Users/valerio/git/BEval/src/test/resources/br/ufrn/forall/b2asm/beval/pos/POWER.mch */
+
+	 
+
+  ("`Local hypotheses'" & nn: INTEGER & 0<=nn & not(nn = 0) & pp: INTEGER & 0<=pp & pp<=2147483647 & pp = 0) & 
+  "`Check assertion (!(nn,pp).(nn: NATURAL1 & pp: NAT => (pp = 0 => nn**pp = 1) & (pp = 1 => nn**pp = nn) & (pp>1 => nn**pp = nn*nn**(pp-1)))) deduction - ref 3.2, 4.2, 5.3'"
+ => 
+  (nn**pp = 1)
+END
+
+
+&
+THEORY RulesProBAssertionLemmas_2 IS 
+
+
+	 /* Expression from (AssertionLemmas_2), it was added  in Thu Jul 11 11:25:36 BRT 2013
+	  evaluated with ProB in 1453 milliseconds
+	  Module Path:/Users/valerio/git/BEval/src/test/resources/br/ufrn/forall/b2asm/beval/pos/POWER.mch */
+
+	 
+  ("`Local hypotheses'" & nn: INTEGER & 0<=nn & not(nn = 0) & pp: INTEGER & 0<=pp & pp<=2147483647 & pp = 1) & 
+  "`Check assertion (!(nn,pp).(nn: NATURAL1 & pp: NAT => (pp = 0 => nn**pp = 1) & (pp = 1 => nn**pp = nn) & (pp>1 => nn**pp = nn*nn**(pp-1)))) deduction - ref 3.2, 4.2, 5.3'"
+ => 
+  (nn**pp = nn)
+END
+ &
+THEORY RulesProBAssertionLemmas_1 IS 
+
+
+	 /* Expression from (AssertionLemmas_1), it was added  in Thu Jul 11 11:40:54 BRT 2013
+	  evaluated with ProB in 1295 milliseconds
+	  Module Path:/Users/valerio/git/BEval/src/test/resources/br/ufrn/forall/b2asm/beval/pos/POWER.mch */
+
+	 
+
+  ("`Local hypotheses'" & nn: INTEGER & 0<=nn & not(nn = 0) & pp: INTEGER & 0<=pp & pp<=2147483647 & pp = 0) & 
+  "`Check assertion (!(nn,pp).(nn: NATURAL1 & pp: NAT => (pp = 0 => nn**pp = 1) & (pp = 1 => nn**pp = nn) & (pp>1 => nn**pp = nn*nn**(pp-1)))) deduction - ref 3.2, 4.2, 5.3'"
+ => 
+  (nn**pp = 1)
+END
+
+&
+THEORY RulesProBAssertionLemmas_2 IS 
+
+
+	 /* Expression from (AssertionLemmas_2), it was added  in Thu Jul 11 11:40:57 BRT 2013
+	  evaluated with ProB in 1363 milliseconds
+	  Module Path:/Users/valerio/git/BEval/src/test/resources/br/ufrn/forall/b2asm/beval/pos/POWER.mch */
+
+	 
+  ("`Local hypotheses'" & nn: INTEGER & 0<=nn & not(nn = 0) & pp: INTEGER & 0<=pp & pp<=2147483647 & pp = 1) & 
+  "`Check assertion (!(nn,pp).(nn: NATURAL1 & pp: NAT => (pp = 0 => nn**pp = 1) & (pp = 1 => nn**pp = nn) & (pp>1 => nn**pp = nn*nn**(pp-1)))) deduction - ref 3.2, 4.2, 5.3'"
+ => 
+  (nn**pp = nn)
 END

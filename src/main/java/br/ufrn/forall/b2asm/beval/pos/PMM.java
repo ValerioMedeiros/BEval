@@ -139,14 +139,14 @@ public class PMM {
 			}
 		}
 		
-		if( userPassList.size()>=1 && !noAddSeparetor) theoryUserPass.append(";\n");
+		if( userPassList.size()>=1 && !noAddSeparetor) theoryUserPass.append("; \n");
 		
 		for(int i = 0; i< userPassList.size(); i++){
 			
 			if(userPassList.size()==i+1){	// The last element
 				theoryUserPass.append(userPassList.get(i));
 			}else{
-				theoryUserPass.append(userPassList.get(i)+";\n");
+				theoryUserPass.append(userPassList.get(i)+"; \n");
 			}
 		}
 		theoryUserPass.append("\nEND\n");

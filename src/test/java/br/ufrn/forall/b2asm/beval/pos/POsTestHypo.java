@@ -58,9 +58,11 @@ public class POsTestHypo {
 		//TODO: Create or find the method to create the user pass and specific rule.
 		
 		//pos.addOneRuleInPMMFile(false,  "rule", "expressionName",  1000L );
-		
-		System.out.println("OK"+ pos.getCleanExpandedProofObligations(9));
-		System.out.println("OK"+ pos.getCleanProofObligationsWithLocalHypotheses(9));
+		System.out.println(pos.getNameAndNumberOfProofObligations()[0]);
+		System.out.println(pos.getNameAndNumberOfProofObligations()[1]);
+		System.out.println(pos.getNameAndNumberOfProofObligations()[2]);
+		//System.out.println("OK"+ pos.getCleanExpandedProofObligations(9));
+		//System.out.println("OK"+ pos.getCleanProofObligationsWithLocalHypotheses(9));
 		//assertTrue("OK", pos.getProofObligationsWithLocalHypotheses(71).contains("`Check assertion (byte_uchar: BYTE >->> UCHAR) deduction - ref 3.2, 4.2, 5.3'") && pos.getProofObligationsWithLocalHypotheses(71).contains("(ran(byte_uchar) = UCHAR)"));
 		
 		
