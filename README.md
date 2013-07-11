@@ -90,6 +90,8 @@ Steps to use the IDE Eclipse:
  * Click  `Window` > `Open Perspective` > `Open` and select `Git Repository Exploring`.
  * Click `Clone a Git Repository` then in field URI paste `https://github.com/ValerioMedeiros/BEval.git` using HTTPS or `git@github.com:ValerioMedeiros/BEval.git` using SSH.
  * Follow the remaining procedures to clone a local git repository.
+ 
+ * Or alternativally, use this command in terminal: `git clone git@github.com:ValerioMedeiros/BEval.git` and add an existing local Git repository.
 
 4. Import the project as an existing maven project.
  * Click `File` > `Import` then select `Maven` and `Existing Maven Project`.
