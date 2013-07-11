@@ -46,7 +46,7 @@ In the interactive prover window:
 
 1. Use the shortcut (`Command+D` or `CRTL+D`) to call BEval on the current proof obligation.
 
-2. A pop-up window appears, with several elements. 
+2. The following pop-up window appears, with several elements. <img src="https://raw.github.com/ValerioMedeiros/BEval/master/doc/figures/ReducedScreen.png" width="450" align="center">
     * Parameters: located on the top-left of the window, it is an editable text where the user has access to the options 
 used to call ProB.
     * Main options: located on the top-middle of the window, three basic options are checkable: Kodkod indicates that
@@ -66,6 +66,17 @@ proof obligation in AtelierB. In the interactive prover, the command `pc` loads 
 3. Select the created rule in the theory list and click `mp(Tac(..))`.
 
 * Parameters are explained [here].
+
+
+### Using BEval in the component window
+
+1. Use the shortcut (`Command+D` or `CRTL+D`) to call BEval on the current component.
+
+2. The following pop-up window appears, presenting a set of proof obligations.  <img src="https://raw.github.com/ValerioMedeiros/BEval/master/doc/figures/ScreenModular.png" width="450" align="center">
+
+3. Submit the selected elements clicking in the button `Eval`. By default, only the unproved proof obligations are selected to be submitted.
+
+4. Apply the rules created in `pmm` file using the shortcut (`Command+U` or `CRTL+U`) to call the USER_PASS.
 
 Procedures for developers 
 ---------------------
