@@ -10,8 +10,9 @@
 [ProB]:http://www.stups.uni-duesseldorf.de/ProB/index.php5/Download
 [AtelierB]:http://www.atelierb.eu/en/download-atelier-b/
 [Java]:http://java.com/en/download/
+[GUI component BEval]:https://www.dropbox.com/s/5sq4k2ve06iw8px/F0_F1_F2_F3_and_BEvalComponent.mov
 
-BEval  <img src="https://raw.github.com/ValerioMedeiros/BEval/master/b2asm.png" width="50" align="right">
+BEval  
 ============
 
 Installation procedures for users
@@ -37,10 +38,11 @@ BEval is a tool that offers to the user the possibility to use ProB within Ateli
 may be used in the interactive prover (we plan to integrate it to the components window in the future).
 When the proof obligation is ''true'', a rule is added to the pmm file corresponding to the B component under 
 verification. The user may then use the new rule to discharge the proof obligation within AtelierB. So, even when ProB
-finds that a goal is true, the proof obligation is *not* automatically discharged in AtelierB. The actions that the user
-must take are described below.
+finds that a goal is true, the proof obligation is *not* automatically discharged in AtelierB. See a small video demonstration about
+the [GUI component BEval]. The actions that the user must take are described below.
 
 ### Using BEval in the interactive prover
+
 
 In the interactive prover window:
 
