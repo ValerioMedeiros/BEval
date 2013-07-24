@@ -38,8 +38,8 @@ BEval is a tool that offers to the user the possibility to use ProB within Ateli
 may be used in the interactive prover (we plan to integrate it to the components window in the future).
 When the proof obligation is ''true'', a rule is added to the pmm file corresponding to the B component under 
 verification. The user may then use the new rule to discharge the proof obligation within AtelierB. So, even when ProB
-finds that a goal is true, the proof obligation is *not* automatically discharged in AtelierB. See a small video demonstration about
-the [GUI component BEval]. The actions that the user must take are described below.
+finds that a goal is true, the proof obligation is *not* automatically discharged in AtelierB. A video demonstration about
+the [GUI component BEval] is available. The actions that the user must take are described below.
 
 ### Using BEval in the interactive prover
 
