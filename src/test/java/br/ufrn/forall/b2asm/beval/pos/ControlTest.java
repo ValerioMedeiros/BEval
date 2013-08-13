@@ -110,7 +110,7 @@ public class ControlTest {
 		Control control = new Control();
 		JTextArea ps = new JTextArea();
 		
-		control.callProbLogicEvaluatorModule(null,ps,pathProBcli, parameters, isFullProofObligation, report, pathBModule+".out",false);
+		//control.callProbLogicEvaluatorModule(null,ps,pathProBcli, parameters, isFullProofObligation, report, pathBModule+".out",false);
 		
 		
 

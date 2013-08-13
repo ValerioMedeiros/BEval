@@ -1,20 +1,14 @@
 package br.ufrn.forall.b2asm.beval.core;
 
 import java.io.BufferedReader;
-import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
-
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
 
 import br.ufrn.forall.b2asm.beval.core.Report.POWD;
 import br.ufrn.forall.b2asm.beval.core.Report.PoGenerated;
@@ -125,6 +119,7 @@ public class Control {
 	}
 
 
+	@SuppressWarnings("unused")
 	public void setModuleArgs(String[] args) {
 		
 		boolean startReadHypothesis = false;
