@@ -5,29 +5,20 @@ import java.awt.Rectangle;
 
 import javax.swing.JFrame;
 import javax.swing.JCheckBox;
-import java.awt.BorderLayout;
 import javax.swing.JButton;
 import net.miginfocom.swing.MigLayout;
 
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextPane;
 import javax.swing.JTextArea;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.event.ChangeListener;
-import javax.swing.event.ChangeEvent;
-
 import br.ufrn.forall.b2asm.beval.core.StreamGobbler.Result;
 
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
-import javax.swing.DropMode;
 import javax.swing.UIManager;
-import javax.swing.JTabbedPane;
 
 /**
  * This class contains the graphic elements

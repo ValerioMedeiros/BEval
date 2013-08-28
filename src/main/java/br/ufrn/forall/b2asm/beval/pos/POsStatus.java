@@ -1,7 +1,5 @@
 package br.ufrn.forall.b2asm.beval.pos;
 
-import javax.swing.JOptionPane;
-
 import br.ufrn.forall.b2asm.beval.core.Control;
 
  class POsStatus {

@@ -3,8 +3,6 @@ package br.ufrn.forall.b2asm.beval.core;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JOptionPane;
-
 import br.ufrn.forall.b2asm.beval.core.StreamGobbler.Result;
 
 public class Report {

@@ -1,11 +1,6 @@
 package br.ufrn.forall.b2asm.beval.core;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URL;
-import java.util.Scanner;
-
 import javax.swing.JOptionPane;
 
 public class Installation {

@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import br.ufrn.forall.b2asm.network.client.ProofClient;
-import br.ufrn.forall.b2asm.network.server.ProofServer;
 
 public class ProofClientTest {
 

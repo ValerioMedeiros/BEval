@@ -1,18 +1,12 @@
 package br.ufrn.forall.b2asm.core;
-import static org.junit.Assert.fail;
-
 import java.io.File;
 import java.io.IOException;
-
-import javax.swing.JTextArea;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import br.ufrn.forall.b2asm.beval.core.Control;
-import br.ufrn.forall.b2asm.beval.core.GeneralPreferences;
 import br.ufrn.forall.b2asm.beval.core.Report;
-import br.ufrn.forall.b2asm.utils.AutoDismiss;
 
 
 public class PoStatisticsTest {

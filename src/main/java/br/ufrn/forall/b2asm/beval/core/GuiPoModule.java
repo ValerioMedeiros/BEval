@@ -10,27 +10,18 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
-import javax.sound.sampled.ReverbType;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 
 import net.miginfocom.swing.MigLayout;
-import br.ufrn.forall.b2asm.beval.core.Report.POWD;
-import br.ufrn.forall.b2asm.beval.core.Report.PoGenerated;
-import br.ufrn.forall.b2asm.beval.core.StreamGobbler.Result;
-import br.ufrn.forall.b2asm.beval.pos.POs;
 import br.ufrn.forall.b2asm.utils.AutoDismiss;
-
-import javax.swing.event.ChangeListener;
-import javax.swing.event.ChangeEvent;
 
 /**
  * This class contains the graphic elements
