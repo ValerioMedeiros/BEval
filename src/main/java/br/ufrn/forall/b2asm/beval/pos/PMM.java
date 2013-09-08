@@ -148,7 +148,10 @@ public class PMM {
 				theoryUserPass.append(userPassList.get(i)+"; \n");
 			}
 		}
-		theoryUserPass.append("\nEND\n");
+		
+		if( containUserPass)  
+			theoryUserPass.append("\nEND\n");
+		
 		
 		return theoryUserPass.toString(); 
 	}
