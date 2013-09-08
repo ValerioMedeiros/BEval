@@ -12,10 +12,10 @@ public class Installation {
 	
 	protected static String defaultParameters = new String("-p BOOL_AS_PREDICATE TRUE \n"+
 			  "-p CLPFD TRUE \n"+  // restrict to range of integers. 
-			  "-p MAXINT 65536 \n"+
-			  "-p MININT -65536 \n"+
+			  "-p MAXINT 2147483647 \n"+
+			  "-p MININT -2147483647 \n"+
 			  "-p SYMBOLIC TRUE "+ // expands only the concepts needed"
-			  "-p TIME_OUT 50000 ");
+			  "-p TIME_OUT 12000 ");
 
 	protected static String currentPathExtensions;
 
@@ -29,9 +29,9 @@ public class Installation {
 			"-p CLPFD TRUE\n"+
 			"-p MAXINT 65536\n"+
 			"-p MININT -65536\n"+
-			"-p TIME_OUT 50000\n";*/
+			"-p TIME_OUT 7000\n";*/
 
-	protected static String bEvalGoalEtool = "<externalTool category=\"goal\"   name=\"ProB Logic Calculator\" icon=\"b2asm.png\" label=\"&amp;Call B-Eval (B2ASM) \"  shortcut=\"Ctrl+D\" >\n"
+	protected static String bEvalGoalEtool = "<externalTool category=\"goal\"   name=\"ProB Logic Calculator\" icon=\"b2asm.png\" label=\"&amp;Call B-Eval  \"  shortcut=\"Ctrl+D\" >\n"
 			+ "<toolParameter name=\"editor\" type=\"tool\" configure=\"yes\"\n"
 			+ "default=\"!currentPathExtensions!BEval.sh\"/>\n" //Its replaced using the field currentPathExtensions 
 			+ "<command>${editor}</command>\n"
@@ -43,7 +43,7 @@ public class Installation {
 			+ "<param> #@# ${poHypothesis}</param>" + "</externalTool>";
 
 	protected static final String IdModule = "#@Module#";
-	protected static String bEvalProofEtool = "<externalTool category=\"component\"   name=\"B-Eval\" label=\"&amp;Call B-Eval (B2ASM)\"   shortcut=\"Ctrl+D\"  >\n"
+	protected static String bEvalProofEtool = "<externalTool category=\"component\"   name=\"B-Eval\" label=\"&amp;Call B-Eval \"   shortcut=\"Ctrl+D\"  >\n"
 			+ "<toolParameter name=\"editor\" type=\"tool\" configure=\"yes\"\n"
 			+ "default=\"!currentPathExtensions!BEval.sh\"/>\n" //It is replaced using the field currentPathExtensions
 			+ "<command>${editor}</command>\n"
