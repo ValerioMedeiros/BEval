@@ -46,7 +46,7 @@ public class GuiPoModule extends JFrame {
 	private  JList list ;
 	private final JCheckBox checkBoxKokod = new JCheckBox("Kodkod");
 	private final JCheckBox checkBoxSmt = new JCheckBox("Smt");
-	private final JCheckBox checkBoxInitialiseModule = new JCheckBox("Initialise");
+	private final JCheckBox checkBoxLoadModule = new JCheckBox("Load definitions");
 	private final JCheckBox checkBoxHypothesis = new JCheckBox("Only first hypothesis");
 	private final JTextArea textArea = new JTextArea();
 	private PrintStream ps;
@@ -154,9 +154,9 @@ public class GuiPoModule extends JFrame {
         frame.getContentPane().add(checkBoxKokod, "cell 4 1");
 		
 		frame.getContentPane().add(checkBoxSmt, "cell 4 2");
-		checkBoxInitialiseModule.setSelected(true);
+		checkBoxLoadModule.setSelected(true);
 		
-		frame.getContentPane().add(checkBoxInitialiseModule, "cell 4 3");
+		frame.getContentPane().add(checkBoxLoadModule, "cell 4 3");
 		checkBoxHypothesis.setSelected(true);
 		
 		frame.getContentPane().add(checkBoxHypothesis, "cell 4 4");
@@ -267,7 +267,7 @@ public class GuiPoModule extends JFrame {
 			}
 		});
 
-		checkBoxInitialiseModule.addItemListener(new ItemListener() {
+		checkBoxLoadModule.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				String parameterToConfig = new String(control.getModulePath()
 						+ " -init ");

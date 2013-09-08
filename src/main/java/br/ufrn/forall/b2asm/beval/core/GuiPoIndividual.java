@@ -47,7 +47,7 @@ public class GuiPoIndividual extends JFrame {
 	private final JScrollPane scrollHypothesis = new JScrollPane(textHypothesis);
 	private final JCheckBox checkBoxKokod = new JCheckBox("Kodkod");
 	private final JCheckBox checkBoxSmt = new JCheckBox("Smt");
-	private final JCheckBox checkBoxInitialiseModule = new JCheckBox("Initialise");
+	private final JCheckBox checkBoxLoadDefinitionsModule = new JCheckBox("Load definitions");
 
 	/**
 	 * Launch the application.
@@ -119,9 +119,9 @@ public class GuiPoIndividual extends JFrame {
 		frame.getContentPane().add(scrollHypothesis, "cell 3 1 4 4,grow");
 
 		frame.getContentPane().add(checkBoxSmt, "cell 2 2");
-		checkBoxInitialiseModule.setSelected(true);
+		checkBoxLoadDefinitionsModule.setSelected(true);
 
-		frame.getContentPane().add(checkBoxInitialiseModule, "cell 2 3");
+		frame.getContentPane().add(checkBoxLoadDefinitionsModule, "cell 2 3");
 
 		frame.getContentPane().add(lblExpressionToEvaluate, "cell 1 5");
 
@@ -194,7 +194,7 @@ public class GuiPoIndividual extends JFrame {
 			}
 		});
 
-		checkBoxInitialiseModule.addItemListener(new ItemListener() {
+		checkBoxLoadDefinitionsModule.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				String parameterToConfig = new String(control.getModulePath()
 						+ " -init ");
