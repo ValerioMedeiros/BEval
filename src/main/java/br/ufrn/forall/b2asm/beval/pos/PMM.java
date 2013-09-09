@@ -144,13 +144,14 @@ public class PMM {
 			
 			if(userPassList.size()==i+1){	// The last element
 				theoryUserPass.append(userPassList.get(i));
+				theoryUserPass.append("\nEND\n");
 			}else{
 				theoryUserPass.append(userPassList.get(i)+"; \n");
 			}
 		}
 		
-		if( containUserPass)  
-			theoryUserPass.append("\nEND\n");
+		  
+		
 		
 		
 		return theoryUserPass.toString(); 
