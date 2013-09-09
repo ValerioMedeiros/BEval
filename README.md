@@ -53,7 +53,7 @@ In the interactive prover window:
     * Parameters: located on the top-left of the window, it is an editable text where the user has access to the options 
 used to call ProB.
     * Main options: located on the top-middle of the window, three basic options are checkable: Kodkod indicates that
-ProB may use the tool of the same name; Smt indicates that ProB to do more aggressive constraint solving; Initialise indicates that definitions
+ProB may use the tool of the same name; Smt indicates that ProB to do more aggressive constraint solving; Load definitions indicates that definitions
 from the B component shall be loaded. 
     * Hypothesis: located on the top-right of the window, it presents hypothesis that the user may want to add to the goal.
 Addition of such hypothesis shall be performed with copy-and-paste operations.
