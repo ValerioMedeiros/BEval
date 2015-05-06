@@ -26,7 +26,7 @@ Follow these steps:
 
 1. Find where AtelierB is installed on your system. Let $ABDIR denote this location (usually /Application/AtelierB.app/ on OS X; /opt/AtelierB on Linux). 
 2. Find where probcli (ProB Command Line Interface) is installed on your system. Let $PROBDIR denote this location.
-3. If you are using Linux, EXTDIR=$ABDIR/AB/extensions. If you are using OS X, EXTDIR=$ABDIR/extensions.
+3. Let $EXTDIR denotes the final path ($ABDIR/AB/extensions).
 4. Download file [BEval.jar] and install it in $EXTDIR.
 5. Open a terminal, and issue the following command:
     `cd $EXTDIR; java -jar BEval.jar --install`
