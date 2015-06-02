@@ -49,7 +49,7 @@ public class DownloadFile {
             public void run() {
                 try {
                 	
-                	System.out.println("Dowloading from:"+DownloadFile.args[1]);
+                	System.out.println("Dowloading from:https://github.com/ValerioMedeiros/BEval/archive/master.zip");
                 	
                 	 URL url = new URL("https://github.com/ValerioMedeiros/BEval/archive/master.zip");
                      HttpURLConnection httpConnection = (HttpURLConnection) (url.openConnection());
@@ -82,7 +82,8 @@ public class DownloadFile {
                      }
                      bout.close();
                      in.close();
-                     frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+                     System.out.println("Download finished!");
+                   //  frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
                      
                  } catch (FileNotFoundException e) {
                  } catch (IOException e) {
