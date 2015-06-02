@@ -1,3 +1,3 @@
 /bin/cat --help @127.0.0.1
 /bin/cat @localhost 
-/bin/cat@127.0.0.1 
+/bin/cat@127.0.0.1
