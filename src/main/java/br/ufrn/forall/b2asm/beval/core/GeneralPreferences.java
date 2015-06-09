@@ -25,6 +25,25 @@ public class GeneralPreferences {
 	public GeneralPreferences() {
 	}
 	
+	public static void updatePathFileB2llvm(String path){
+		 GeneralPreferences.PREFERENCES.put("PathFileB2llvm", path);
+	}
+	
+	public static String getPathFileB2llvm(String destinationfilePath){
+		
+		String res = GeneralPreferences.PREFERENCES.get("PathFileB2llvm", null);
+		
+		if (res==null || res.length()<=2) {
+			res = destinationfilePath;
+		}
+			res = JOptionPane.showInputDialog(null,"Please, type the destination path of b2llvm:", res);
+			
+			updatePathFileB2llvm(res);
+		
+			
+		 return res; 
+	}
+	
 	public static void updatePathProbcli(String path){
 		 GeneralPreferences.PREFERENCES.put("PathProbcli", path);
 	}

@@ -2,6 +2,7 @@ package br.ufrn.forall.b2asm.beval.pos;
 
 import java.io.File;
 import java.io.IOException;
+
 import javax.swing.JTextArea;
 
 import org.junit.Before;
