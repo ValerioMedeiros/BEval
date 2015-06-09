@@ -6,18 +6,22 @@ import java.awt.Rectangle;
 import javax.swing.JFrame;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
+
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JLabel;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import br.ufrn.forall.b2asm.beval.core.StreamGobbler.Result;
 
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
+
 import javax.swing.UIManager;
 
 /**
