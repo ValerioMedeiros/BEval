@@ -85,6 +85,7 @@ public class Installation {
 			+ "<toolParameter name=\"editor\" type=\"tool\" configure=\"yes\"\n"
 			+ "default=\"!currentPathExtensions!BEval.sh\"/>\n" //It is replaced using the field currentPathExtensions
 			+ "<command>${editor}</command>\n"
+			+ "<param>-a</param>\n"
 			+ "<param>-v</param>\n"
 			+ "<param>-m</param>\n"
 			+ "<param>comp</param>\n"
@@ -92,6 +93,7 @@ public class Installation {
 			+ "<param>${componentName}.llvm</param>\n"
 			+ "<param>${projectBdp}</param>\n"
 			+ "<param>project.xml</param>\n"
+			+ "<param>${projectTrad}</param>\n"
 			+ "</externalTool>\n";
 	
 	protected static String bEvalSh = "#!/bin/bash\n"
