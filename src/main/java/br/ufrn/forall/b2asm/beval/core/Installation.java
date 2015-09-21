@@ -172,8 +172,6 @@ public class Installation {
 					System.out.println("- Unzip finished.");
 					
 					
-					//Control.writeFile(currentPathExtensions + "b2llvm.etool",
-					//		Installation.B2llvm_tool.replaceFirst("!currentPathExtensions!BEval.sh", currentPathExtensions+"b2llvm.sh"));
 					
 					
 				
@@ -192,6 +190,9 @@ public class Installation {
 		
 		Control.writeFile(currentPathExtensions + "b2llvm.etool",
 						Installation.B2llvm_tool.replaceFirst("!currentPathExtensions!BEval.sh", destinationPath+"b2llvm.py"));
+		
+		Control.writeFile(currentPathExtensions + "BEvalGoal.etool",
+				Installation.bEvalGoalEtool.replaceFirst("!currentPathExtensions!BEval.sh", currentPathExtensions+"BEval.sh"));
 		
 		
 				}
