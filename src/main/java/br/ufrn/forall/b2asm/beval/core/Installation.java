@@ -122,6 +122,9 @@ public class Installation {
 		Control.writeFile(currentPathExtensions + "BEvalProof.etool",
 				Installation.bEvalProofEtool.replaceFirst("!currentPathExtensions!BEval.sh", currentPathExtensions+"BEval.sh"));
 		
+		Control.writeFile(currentPathExtensions + "BEvalGoal.etool",
+				Installation.bEvalGoalEtool.replaceFirst("!currentPathExtensions!BEval.sh", currentPathExtensions+"BEval.sh"));
+		
 		
 		
 		pathProbCli = new JOptionPane().showInputDialog("Please, type the destination path of binary file probcli, for example: /Users/guest/Myprograms/ProB/probcli:");
@@ -171,7 +174,7 @@ public class Installation {
 					}
 					System.out.println("- Unzip finished.");
 					
-					
+			
 					
 					
 				
@@ -191,8 +194,7 @@ public class Installation {
 		Control.writeFile(currentPathExtensions + "b2llvm.etool",
 						Installation.B2llvm_tool.replaceFirst("!currentPathExtensions!BEval.sh", destinationPath+"b2llvm.py"));
 		
-		Control.writeFile(currentPathExtensions + "BEvalGoal.etool",
-				Installation.bEvalGoalEtool.replaceFirst("!currentPathExtensions!BEval.sh", currentPathExtensions+"BEval.sh"));
+
 		
 		
 				}
